@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.edata.monitor.dao.locate.ILocateDao">
+	<insert id="saveAlarms" parameterType="com.edata.monitor.dao.locate.AlarmDto">
+		INSERT INTO alarm (ID,
+		DEVICENUMBER, GPSTIME, SERVERTIME, LNG, LAT,
+		ALT,
+		SPEED, ANGLE, ALARMS,
+		`STATUS`, MILEAGE, OILMASS, VSS, OVAREATYPE,
+		OVAREAID, IOAREATYPE,
+		IOAREAID, IOAREAFLAG, ROUTEID, ROUTESECONDS,
+		ROUTEFLAG, ALARMID,
+		EXSTATUS, IOSTATUS, AD0, AD1, NETWORK, SATELLITES,
+		`FROM`, VALID,
+		ISHANDLED) VALUES
+		<foreach collection="list" item="item" separator=",">
+			(#{item.id},
+			#{item.dn}, #{item.gt}, #{item.st}, #{item.lng}, #{item.lat},
+			#{item.alt},
+			#{item.sp}, #{item.d}, #{item.a}, #{item.s}, #{item.m},
+			#{item.oil}, #{item.vss}, #{item.ovt}, #{item.oid}, #{item.iot},
+			#{item.iid}, #{item.iof}, #{item.rid}, #{item.rt}, #{item.rf},
+			#{item.aid}, #{item.exs}, #{item.ios}, #{item.ad0},
+			#{item.ad1},
+			#{item.net}, #{item.sat}, #{item.from}, #{item.val}, 0)
+		</foreach>
+	</insert>
+	<select id="vehicleBaseInfo" resultType="com.edata.monitor.dao.locate.VehicleBaseInfoDto">
+		SELECT B.SHORTNAME AS
+		COMPANY, C.NAME AS MOTORCADE, D.DEVICENUMBER,
+		A.PLATENUMBER,
+		A.PLATECOLOR, A.VEHICLECOLOR, A.VEHICLETYPE,
+		A.VEHICLEVOLTAGE,
+		A.CARRYTYPE, A.INITIALMILEAGE, A.OILWEAR,
+		A.USEFULLIFE, A.ADMINAREA,
+		A.REMARK, A.INSTALLDATE, A.ANNUALSURVEYDATE
+		FROM vehicle AS A INNER
+		JOIN company AS B ON A.COMPANYID=B.ID INNER
+		JOIN motorcade AS C ON
+		A.MOTORCADEID=C.ID INNER JOIN device AS D ON
+		A.DEVICEID=D.ID WHERE
+		A.ID=#{0} LIMIT 1
+	</select>
+	<select id="ownerBaseInfo" resultType="com.edata.monitor.dao.locate.OwnerBaseInfoDto">
+		SELECT
+		OWNERNAME,B.PHONE,A.IDTYPE,A.IDNUMBER,B.EMAIL,B.REMARK FROM owner AS
+		A
+		INNER JOIN user AS B ON A.ID=B.ID INNER JOIN vehicleinowner AS C ON
+		A.ID=C.OWNERID WHERE C.VEHICLEID=#{0}
+	</select>
+	<select id="driverBaseInfo" resultType="com.edata.monitor.dao.locate.DriverBaseInfoDto">
+		SELECT
+		NAME,SEX,PHONE,IDTYPE,IDNUMBER,DRIVINGLICENSENUMBER,DRIVINGLICENSEEXPIRYDATE,REMARK
+		FROM driver AS A INNER JOIN vehicleindriver AS B ON A.ID=B.DRIVERID
+		WHERE B.VEHICLEID=#{0}
+	</select>
+	<insert id="saveMultimediaEventReport"
+		parameterType="com.edata.monitor.dao.locate.MultimediaEventReportDto">
+		INSERT INTO multimediaeventreport(ID, DEVICENUMBER,
+		TIME, MEDIAID,
+		MEDIATYPE, FORMATTYPE, EVENTTYPE, CHANNELID, READED)
+		VALUES(#{id}, #{number}, #{time},
+		#{mediaId}, #{mediaType},
+		#{formatType}, #{eventType}, #{channelId},0)
+	</insert>
+	<select id="loadUnreadMultimediaEvent"
+		resultType="com.edata.monitor.dao.locate.MultimediaEventReportDto">
+		SELECT ID, DEVICENUMBER, TIME, MEDIAID, FORMATTYPE, EVENTTYPE,
+		CHANNELID
+		FROM multimediaeventreport WHERE READED=0 AND DEVICENUMBER IN
+		<foreach item="item" index="index" collection="list" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+		ORDER BY TIME
+	</select>
+	<update id="readMultmediaEventReport">
+		UPDATE multimediaeventreport SET
+		READED=1,USERID=#{1},USERNAME=#{2},USERTIME=NOW()
+		WHERE ID=#{0} LIMIT 1
+	</update>
+	<insert id="saveMultimediaRetrieval">
+		REPLACE INTO multimediaretrieval
+		(DEVICENUMBER, TIME, MEDIAID,
+		MEDIATYPE, EVENTTYPE, CHANNELID, LNG, LAT, ALT, SPEED,
+		ANGLE, ALARMS,
+		`STATUS`)
+		VALUES
+		<foreach collection="list" item="item" separator=",">
+			(#{number},
+			#{gpstime},
+			#{mediaId}, #{mediaType}, #{eventType}, #{channelId},
+			#{lng}, #{lat}, #{altitude}, #{speed}, #{angle}, #{alarms},
+			#{status})
+		</foreach>
+	</insert>
+	<select id="getEventReportDescription" resultType="java.lang.String">
+		SELECT CONTENT
+		FROM eventmenu WHERE DEVICENUMBER=#{0} AND EVENTID=#{1} LIMIT 1
+	</select>
+	<insert id="saveDeviceEventReport" parameterType="com.edata.monitor.dao.locate.DeviceEventReportDto">
+		INSERT INTO
+		eventreport(ID, DEVICENUMBER, TIME, EVENTID, CONTENT, READED)
+		VALUES
+		(#{id}, #{number}, NOW(), #{eventId}, #{content}, 0)
+	</insert>
+	<update id="readDeviceEventReport">
+		UPDATE eventreport SET
+		READED=1,USERID=#{1},USERNAME=#{2},USERTIME=NOW() WHERE
+		ID=#{0} LIMIT 1
+	</update>
+	<select id="loadUnreadDeviceEvent" resultType="com.edata.monitor.dao.locate.DeviceEventReportDto">
+		SELECT ID, DEVICENUMBER, TIME, EVENTID, CONTENT FROM eventreport WHERE
+		READED=0 AND
+		DEVICENUMBER IN
+		<foreach item="item" index="index" collection="list" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+		ORDER BY TIME
+	</select>
+	<insert id="saveUpgradeResultReport" parameterType="com.edata.monitor.dao.locate.UpgradeResultReportDto">
+		INSERT INTO
+		upgradereport(ID, DEVICENUMBER, TIME, `TYPE`, RESULT, READED)
+		VALUES
+		(#{id}, #{number}, NOW(), #{type}, #{result}, 0)
+	</insert>
+	<select id="loadUnreadDeviceUpgradeResultReport" resultType="com.edata.monitor.dao.locate.UpgradeResultReportDto">
+		SELECT ID, DEVICENUMBER, TIME, `TYPE`, RESULT FROM upgradereport WHERE
+		READED=0 AND
+		DEVICENUMBER IN
+		<foreach item="item" index="index" collection="list" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+		ORDER BY TIME
+	</select>
+	<update id="readDeviceUpgradeResultReport">
+		UPDATE upgradereport SET
+		READED=1,USERID=#{1},USERNAME=#{2},USERTIME=NOW() WHERE
+		ID=#{0} LIMIT 1
+	</update>
+</mapper>

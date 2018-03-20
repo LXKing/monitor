@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.edata.godp.dao.permission.IPermissionDao">
+    <select id="getAdminRoleId" resultType="java.lang.String">
+        SELECT ID FROM role WHERE
+        NAME='admin' LIMIT 1
+    </select>
+    <insert id="create" parameterType="com.edata.godp.dao.permission.PermissionDto">
+        INSERT INTO permission(NAME,
+        REMARK, ID) VALUES (#{name}, #{remark}, #{id})
+    </insert>
+    <insert id="adminRoleAuthorize">
+        REPLACE INTO authorize SET ROLEID=#{0},PERMID=#{1}
+    </insert>
+    <select id="fetch" resultType="com.edata.godp.dao.permission.PermissionDto">
+        SELECT * FROM permission where ID
+        = #{0}
+    </select>
+    <delete id="deleteAuthorize">
+        DELETE FROM authorize WHERE PERMID=#{0}
+    </delete>
+    <delete id="delete">
+        DELETE FROM permission WHERE ID=#{0}
+    </delete>
+    <select id="list" resultType="com.edata.godp.dao.permission.PermissionDto">
+        SELECT ID, NAME, REMARK FROM
+        permission ORDER BY Name
+    </select>
+    <select id="exsits" resultType="java.lang.Boolean">
+        SELECT COUNT(1) FROM permission
+        WHERE NAME = #{0} LIMIT 1
+    </select>
+    <select id="exsitsOutId" resultType="java.lang.Boolean">
+        SELECT COUNT(1) FROM
+        permission WHERE NAME = #{0} AND ID != #{1} LIMIT 1
+    </select>
+</mapper>

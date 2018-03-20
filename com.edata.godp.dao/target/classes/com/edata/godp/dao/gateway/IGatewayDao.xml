@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.edata.godp.dao.gateway.IGatewayDao">
+    <update id="saveInstructStatus" parameterType="com.edata.godp.dao.gateway.InstructResultDto">
+        UPDATE instruct
+        SET
+        `STATUS`=20, REPLYTIME=sysdate(), RESULT=#{result} WHERE ID=#{id}
+        LIMIT
+        1
+    </update>
+    <insert id="saveTracks">
+        INSERT INTO track (NUMBER,
+        GPSTIME,
+        SERVERTIME,
+        LNG,
+        LAT,
+        ALT,
+        SPEED,
+        ANGLE,
+        ALARMS,
+        `STATUS`,
+        MILEAGE,
+        OILMASS,
+        VSS,
+        OVAREATYPE,
+        OVAREAID,
+        IOAREATYPE,
+        IOAREAID,
+        IOAREAFLAG,
+        ROUTEID,
+        ROUTESECONDS,
+        ROUTEFLAG,
+        ALARMID,
+        EXSTATUS,
+        IOSTATUS,
+        AD0,
+        AD1,
+        NETWORK,
+        SATELLITES) VALUES
+        <foreach collection="list" item="item" index="index"
+                 separator=",">
+            (#{item.dn},
+            #{item.gt},
+            SYSDATE(),
+            #{item.lng},
+            #{item.lat},
+            #{item.alt},
+            #{item.sp},
+            #{item.d},
+            #{item.a},
+            #{item.s},
+            #{item.m},
+            #{item.oil},
+            #{item.vss},
+            #{item.ovt},
+            #{item.oid},
+            #{item.iot},
+            #{item.iid},
+            #{item.iof},
+            #{item.rid},
+            #{item.rt},
+            #{item.rf},
+            #{item.aid},
+            #{item.exs},
+            #{item.ios},
+            #{item.ad0},
+            #{item.ad1},
+            #{item.net},
+            #{item.sat})
+        </foreach>
+    </insert>
+    <insert id="saveFaults">
+        INSERT INTO fault (NUMBER, GPSTIME, SYSID, MODEID, CODE1, CODE2,
+        CODE3)
+        VALUES
+        <foreach collection="list" item="item" index="index"
+                 separator=",">
+            (#{item.number}, #{item.time}, #{item.sysId},
+            #{item.modeId}, #{item.code1},
+            #{item.code2}, #{item.code3})
+        </foreach>
+    </insert>
+    <insert id="saveFlows">
+        INSERT INTO flow (NUMBER, GPSTIME, VSS, MILEAGE, BV,
+        RPM, ECT, RUNTM,
+        EOT,
+        IFC, OT, IAT, ET, MAF, AP, LOADPCT, MAP, LFTP,
+        ALTP, RRTP, RFTP,
+        MORD,
+        IAA, LONGFTB1, SHRTFTB1, SHRTFTB1S1,
+        SHRTFTB1S2, FAULTS, TP,
+        TPALB,
+        TPALC, FRP, FUELSYS1, FUELSYS2, O2SB1S1,
+        O2SB1S2, PPSD, PPSE,
+        VAPTB1S1, VAPTB1S2) VALUES
+        <foreach collection="list" item="item" index="index"
+                 separator=",">
+            (#{item.number}, #{item.time},
+            #{item.vss}, #{item.mil},
+            #{item.bv}, #{item.rpm}, #{item.ect},
+            #{item.runtm}, #{item.eot},
+            #{item.ifc}, #{item.ot},
+            #{item.iat}, #{item.et}, #{item.maf},
+            #{item.ap},
+            #{item.loadpct}, #{item.map}, #{item.lftp},
+            #{item.altp},
+            #{item.rrtp}, #{item.rftp}, #{item.mord},
+            #{item.iaa},
+            #{item.longftb1}, #{item.shrtftb1},
+            #{item.shrtftb1s1},
+            #{item.shrtftb1s2},
+            #{item.faults}, #{item.tp}, #{item.tpalb},
+            #{item.tpalc},
+            #{item.frp},
+            #{item.fuelsys1},
+            #{item.fuelsys2},
+            #{item.o2sb1s1}, #{item.o2sb1s2}, #{item.ppsd},
+            #{item.ppse},
+            #{item.vaptb1s1}, #{item.vaptb1s2})
+        </foreach>
+    </insert>
+    <insert id="saveDataLogs">
+        INSERT INTO datalog (NUMBER, TIME, RAW) VALUES
+        <foreach collection="list" item="item" index="index"
+                 separator=",">
+            (#{item.number}, #{item.time}, #{item.raw})
+        </foreach>
+    </insert>
+    <insert id="saveTrips">
+        INSERT INTO trip (NUMBER, STARTTIME, ENDTIME, MILEAGE, MAXSPEED,
+        AVGSPEED,
+        OVERSPEED, OVERSPEEDTIME, BREAKS, SPEEDUP, MAXECT, MAXRPM,
+        AVGBV,
+        TOTALOIL, AVGOIL, FATIGUETIME, IDLETIME) VALUES
+        <foreach collection="list" item="item" index="index"
+                 separator=",">
+            (#{item.number}, #{item.startTime}, #{item.endTime},
+            #{item.mileage},
+            #{item.maxSpeed}, #{item.avgSpeed},
+            #{item.overSpeed},
+            #{item.overSpeedTime}, #{item.breaks},
+            #{item.speedUp}, #{item.maxEct}, #{item.maxRpm},
+            #{item.avgBv},
+            #{item.totalOil}, #{item.avgOil},
+            #{item.fatigueTime},
+            #{item.idleTime})
+        </foreach>
+    </insert>
+    <update id="saveInstructResults">
+        <foreach collection="list" item="item" separator=";">
+            UPDATE
+            instruct SET `STATUS`=100,REPLYTIME=sysdate(), RESULT=#{item.result}
+            WHERE
+            ID=#{item.id}
+        </foreach>
+    </update>
+    <insert id="saveMultimedia" parameterType="com.edata.godp.dao.gateway.MultimediaDto">
+        INSERT INTO
+        multimedia(ID, NUMBER, TIME, MEDIAID, MEDIATYPE,
+        FORMATTYPE,
+        EVENTTYPE,
+        CHANNELID, LNG, LAT, SPEED, ANGLE, ALARMS, `STATUS`,
+        CONTENT) VALUES
+        (#{id}, #{number}, #{time}, #{mediaId}, #{mediaType}, #{formatType},
+        #{eventType}, #{channelId}, #{lng}, #{lat}, #{speed}, #{angle},
+        #{alarms}, #{status}, #{data})
+    </insert>
+    <insert id="saveDeviceOnlineOfflineReport"
+            parameterType="com.edata.godp.dao.gateway.DeviceOnlineOfflineReportDto">
+        INSERT INTO onoffline(NUMBER, TIME, ISON, ONTIME,
+        OFFTIME) VALUES (#{number}, #{time}, #{on},
+        #{onTime}, #{offTime})
+    </insert>
+
+</mapper>

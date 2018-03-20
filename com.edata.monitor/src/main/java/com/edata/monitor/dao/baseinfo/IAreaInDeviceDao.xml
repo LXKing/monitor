@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.edata.monitor.dao.baseinfo.IAreaInDeviceDao">
+	<select id="assignedPageVehiclesCount" resultType="java.lang.Integer">
+		SELECT
+		COUNT(1) FROM areaindevice AS A INNER JOIN device AS B ON
+		A.DEVICENUMBER=B.DEVICENUMBER LEFT JOIN vehicle AS C ON
+		B.ID=C.DEVICEID WHERE AREAID=#{0} AND AREATYPE=#{1}
+	</select>
+	<select id="assignedPageVehiclesDetail" resultType="com.edata.monitor.dao.baseinfo.AreaInDeviceInfoDto">
+		SELECT
+		A.DEVICENUMBER, A.AREAID, A.AREATYPE, A.TIME, C.PLATENUMBER FROM
+		areaindevice AS A INNER JOIN device AS B ON
+		A.DEVICENUMBER=B.DEVICENUMBER LEFT JOIN vehicle AS C ON
+		B.ID=C.DEVICEID WHERE AREAID=#{0} AND AREATYPE=#{1} ORDER BY A.TIME
+		LIMIT
+		#{2},#{3}
+	</select>
+	<insert id="addVehicle">
+		REPLACE areaindevice SET
+		DEVICENUMBER=#{0},AREAID=#{1},AREATYPE=#{2},TIME=NOW()
+	</insert>
+	<delete id="removeVehicle">
+		DELETE FROM areaindevice WHERE DEVICENUMBER=#{0} AND
+		AREAID=#{1} AND AREATYPE=#{2}
+	</delete>
+	<insert id="log">
+		INSERT INTO areaindevicelog(ID, DEVICENUMBER, AREAID,
+		AREATYPE, `ACTION`,
+		UNID, USER, SENDTIME) VALUES (#{0}, #{1}, #{2},
+		#{3}, #{4}, #{5}, #{6}, NOW())
+	</insert>
+	<select id="findDevice" resultType="java.lang.String">
+		SELECT DEVICENUMBER FROM
+		areaindevice WHERE AREAID=#{0} AND AREATYPE=#{1}
+	</select>
+	<delete id="deleteAreaInDevice">
+		DELETE FROM areaindevice WHERE AREAID=#{0} AND
+		AREATYPE=#{1}
+	</delete>
+	<delete id="deleteAreaInMaplayer">
+		DELETE FROM areainmaplayer WHERE AREAID=#{0} AND
+		AREATYPE=#{1}
+	</delete>
+</mapper>

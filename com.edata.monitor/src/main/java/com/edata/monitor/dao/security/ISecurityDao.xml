@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.edata.monitor.dao.security.ISecurityDao">
+	<resultMap type="com.edata.monitor.dao.security.ParentDto"
+		id="ParentDtoMap">
+		<result property="companyId" column="PID" jdbcType="VARCHAR" />
+		<result property="serviceStartTime" column="SERVICESTARTDATE"
+			jdbcType="DATE" />
+		<result property="serviceEndTime" column="SERVICEENDDATE"
+			jdbcType="DATE" />
+		<result property="enabled" column="ENABLE" jdbcType="BOOLEAN" />
+	</resultMap>
+	<resultMap type="com.edata.monitor.dao.security.IdentifyDto"
+		id="IdentifyDtoMap">
+		<result property="id" column="ID" jdbcType="VARCHAR" />
+		<result property="unid" column="UNID" jdbcType="VARCHAR" />
+		<result property="companyId" column="COMPANYID" jdbcType="VARCHAR" />
+		<result property="account" column="ACCOUNT" jdbcType="VARCHAR" />
+		<result property="password" column="PASSWORD" jdbcType="VARCHAR" />
+		<result property="name" column="NAME" jdbcType="VARCHAR" />
+		<result property="kind" column="KIND" jdbcType="VARCHAR" />
+		<result property="serviceStartTime" column="SERVICESTARTDATE"
+			jdbcType="DATE" />
+		<result property="serviceEndTime" column="SERVICEENDDATE"
+			jdbcType="DATE" />
+		<result property="enabled" column="ENABLE" jdbcType="BOOLEAN" />
+	</resultMap>
+
+	<select id="login" resultMap="IdentifyDtoMap">
+		SELECT ID, UNID, COMPANYID,
+		ACCOUNT, PASSWORD, NAME, KIND, SERVICESTARTDATE,
+		SERVICEENDDATE,
+		`ENABLE`
+		FROM user where ACCOUNT=#{0} LIMIT 1
+	</select>
+
+	<select id="getPasswordByUnid" resultType="java.lang.String">
+		SELECT PASSWORD FROM
+		user where UNID=#{0} LIMIT 1
+	</select>
+
+	<select id="getPasswodById" resultType="java.lang.String">
+		SELECT PASSWORD FROM
+		user
+		where ID=#{0} LIMIT 1
+	</select>
+
+	<resultMap type="com.edata.monitor.dao.security.MyInfoDto"
+		id="MyInfoDtoMap">
+		<result property="id" column="ID" jdbcType="VARCHAR" />
+		<result property="account" column="ACCOUNT" jdbcType="VARCHAR" />
+		<result property="name" column="NAME" jdbcType="VARCHAR" />
+		<result property="email" column="EMAIL" jdbcType="VARCHAR" />
+		<result property="phone" column="PHONE" jdbcType="VARCHAR" />
+		<result property="contact" column="CONTACT" jdbcType="VARCHAR" />
+		<result property="editTime" column="EDITTIME" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<select id="getMyInfo" resultMap="MyInfoDtoMap">
+		SELECT ID, ACCOUNT, NAME,
+		EMAIL,
+		PHONE, CONTACT, EDITTIME FROM user WHERE ID = #{0} LIMIT 1
+	</select>
+
+	<update id="saveMyInfo" parameterType="com.edata.monitor.dao.security.MyInfoDto">
+		UPDATE user
+		<set>
+			ACCOUNT=#{account}, NAME=#{name}, EMAIL=#{email}, PHONE=#{phone},
+			CONTACT=#{contact}
+		</set>
+		WHERE ID=#{id}
+		AND EDITTIME=#{editTime} LIMIT 1
+	</update>
+
+	<update id="saveMyKey">
+		UPDATE user
+		<set>
+			PASSWORD=#{1}
+		</set>
+		WHERE ID=#{0} LIMIT 1
+	</update>
+
+	<select id="getParentCompany" resultMap="ParentDtoMap">
+		SELECT
+		PID,
+		SERVICESTARTDATE, SERVICEENDDATE, `ENABLE` FROM user WHERE
+		COMPANYID=#{0} LIMIT 1
+	</select>
+
+	<select id="getRoles" resultType="java.lang.String">
+		SELECT ROLEID FROM roleinuser
+		WHERE USERID=#{0}
+	</select>
+
+	<insert id="saveOperateLogs" parameterType="java.util.List">
+		INSERT INTO log(TIME, COMPANYID, USERID, USERNAME, OPERATION) VALUES
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.time}, #{item.companyId}, #{item.userId},
+			#{item.user},
+			#{item.action})
+		</foreach>
+	</insert>
+
+	<select id="roleAuthorizes" resultType="com.edata.monitor.dao.security.RoleAuthorizeDto">
+		SELECT ROLEID,
+		PERMISSIONID FROM roleauthorize
+	</select>
+</mapper>

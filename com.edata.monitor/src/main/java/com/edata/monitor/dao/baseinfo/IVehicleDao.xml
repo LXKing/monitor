@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.edata.monitor.dao.baseinfo.IVehicleDao">
+	<select id="queryPageCount" resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM
+		vehicle AS A LEFT JOIN device AS
+		B ON A.DEVICEID=B.ID
+		LEFT JOIN simcard
+		AS C ON B.SIMCARDID=C.ID LEFT
+		JOIN motorcade AS D ON
+		A.MOTORCADEID=D.ID
+		WHERE A.COMPANYID=#{0} AND
+		(A.PLATENUMBER LIKE CONCAT('%',#{1},'%') OR
+		B.DEVICENUMBER LIKE
+		CONCAT('%',#{1},'%') OR C.PHONENUMBER LIKE
+		CONCAT('%',#{1},'%') OR
+		D.NAME LIKE CONCAT('%',#{1},'%'))
+	</select>
+
+	<select id="queryPageDetail" resultType="com.edata.monitor.dao.baseinfo.VehicleInfoDto">
+		SELECT A.ID,
+		B.DEVICENUMBER, C.PHONENUMBER,
+		A.PLATENUMBER, A.PLATECOLOR,
+		A.INSTALLDATE, A.ANNUALSURVEYDATE,
+		A.MARKER, A.REMARK, D.NAME AS
+		MOTORCADE FROM vehicle AS A LEFT JOIN
+		device AS B ON A.DEVICEID=B.ID
+		LEFT JOIN simcard AS C ON
+		B.SIMCARDID=C.ID LEFT JOIN motorcade AS D ON
+		A.MOTORCADEID=D.ID WHERE
+		A.COMPANYID=#{0} AND (A.PLATENUMBER LIKE
+		CONCAT('%',#{1},'%') OR
+		B.DEVICENUMBER LIKE CONCAT('%',#{1},'%') OR
+		C.PHONENUMBER LIKE
+		CONCAT('%',#{1},'%') OR D.NAME LIKE
+		CONCAT('%',#{1},'%'))
+		ORDER BY
+		A.PLATENUMBER LIMIT #{2},#{3}
+	</select>
+	<insert id="create" parameterType="com.edata.monitor.dao.baseinfo.VehicleDto">
+		INSERT INTO vehicle(ID,
+		COMPANYID, MOTORCADEID, DEVICEID, PLATENUMBER,
+		PLATECOLOR,
+		VEHICLECOLOR, VEHICLETYPE, VEHICLEVOLTAGE, CARRYTYPE,
+		INITIALMILEAGE,
+		OILWEAR, USEFULLIFE, INSTALLDATE, ANNUALSURVEYDATE,
+		ADMINAREA, MARKER,
+		ROTATE, REMARK, CREATETIME) VALUES (#{id}, #{companyId},
+		#{motorcadeId}, #{deviceId}, #{plateNumber},
+		#{plateColor},
+		#{vehicleColor}, #{vehicleType}, #{vehicleVoltage}, #{carryType},
+		#{initialMileage}, #{oilWear}, #{usefullife}, #{installDate},
+		#{annualSurveyDate}, #{adminArea}, #{marker}, #{rotate},
+		#{remark},
+		SYSDATE())
+	</insert>
+	<update id="update" parameterType="com.edata.monitor.dao.baseinfo.VehicleDto">
+		UPDATE vehicle SET
+		COMPANYID=#{companyId}, MOTORCADEID=#{motorcadeId},
+		DEVICEID=#{deviceId}, PLATENUMBER=#{plateNumber},
+		PLATECOLOR=#{plateColor},
+		VEHICLECOLOR=#{vehicleColor},
+		VEHICLETYPE=#{vehicleType}, VEHICLEVOLTAGE=#{vehicleVoltage},
+		CARRYTYPE=#{carryType},
+		INITIALMILEAGE=#{initialMileage},
+		OILWEAR=#{oilWear},
+		USEFULLIFE=#{usefullife},
+		ADMINAREA=#{adminArea},
+		MARKER=#{marker}, ROTATE=#{rotate}, REMARK=#{remark},
+		INSTALLDATE=#{installDate}, ANNUALSURVEYDATE=#{annualSurveyDate}
+		WHERE
+		ID=#{id} AND EDITTIME=#{editTime} LIMIT 1
+	</update>
+	<delete id="deleteVehicleInOwner">
+		DELETE FROM vehicleinowner WHERE VEHICLEID=#{0}
+	</delete>
+	<delete id="deleteVehicleInDriver">
+		DELETE FROM vehicleindriver WHERE VEHICLEID=#{0}
+	</delete>
+	<delete id="delete">
+		DELETE FROM vehicle WHERE ID=#{0} LIMIT 1
+	</delete>
+	<select id="fetch" resultType="com.edata.monitor.dao.baseinfo.VehicleDto">
+		SELECT A.ID, A.COMPANYID,
+		A.MOTORCADEID, C.NAME AS MOTORCADE, A.DEVICEID,
+		B.DEVICENUMBER,
+		A.PLATENUMBER, A.PLATECOLOR, A.VEHICLECOLOR,
+		A.VEHICLETYPE,
+		A.VEHICLEVOLTAGE, A.CARRYTYPE, A.INITIALMILEAGE,
+		A.OILWEAR,
+		A.USEFULLIFE, A.ADMINAREA, A.MARKER, A.ROTATE, A.REMARK,
+		A.EDITTIME,
+		A.INSTALLDATE, A.ANNUALSURVEYDATE FROM vehicle AS A LEFT
+		JOIN device AS
+		B ON A.DEVICEID=B.ID LEFT JOIN motorcade AS C ON
+		A.MOTORCADEID=C.ID
+		WHERE A.ID=#{0} LIMIT 1
+	</select>
+	<select id="exist" resultType="java.lang.Boolean">
+		SELECT COUNT(1) FROM vehicle WHERE
+		PLATENUMBER = #{0} LIMIT 1
+	</select>
+	<select id="existOutId" resultType="java.lang.Boolean">
+		SELECT COUNT(1) FROM vehicle
+		WHERE PLATENUMBER = #{0} AND ID != #{1} LIMIT 1
+	</select>
+	<select id="searchPageCount" resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM
+		vehicle AS A LEFT JOIN device AS B ON A.DEVICEID=B.ID
+		LEFT JOIN simcard
+		AS C ON B.SIMCARDID=C.ID WHERE A.COMPANYID=#{0} AND
+		A.PLATENUMBER LIKE
+		CONCAT('%',#{1},'%')
+	</select>
+	<select id="searchPageDetail" resultType="com.edata.monitor.dao.baseinfo.VehicleInfoDto">
+		SELECT A.ID,
+		B.DEVICENUMBER, C.PHONENUMBER, A.PLATENUMBER, A.PLATECOLOR,
+		A.INSTALLDATE, A.ANNUALSURVEYDATE, A.REMARK, D.NAME AS MOTORCADE FROM
+		vehicle AS A LEFT JOIN device AS B ON A.DEVICEID=B.ID LEFT JOIN
+		simcard AS C ON B.SIMCARDID=C.ID LEFT JOIN motorcade AS D ON
+		A.MOTORCADEID=D.ID WHERE A.COMPANYID=#{0} AND A.PLATENUMBER LIKE
+		CONCAT('%',#{1},'%') ORDER
+		BY A.PLATENUMBER LIMIT #{2},#{3}
+	</select>
+	<select id="assignedOwners" resultType="com.edata.monitor.dao.baseinfo.OwnerInfoDto">
+		SELECT A.ID, A.`ENABLE`,
+		A.PHONE, A.SERVICESTARTDATE,
+		A.SERVICEENDDATE,
+		A.CREATETIME, A.REMARK,
+		B.OWNERNAME, B.IDTYPE,
+		B.IDNUMBER FROM user A
+		INNER JOIN owner B ON
+		A.ID
+		= B.ID INNER JOIN
+		vehicleinowner C ON A.ID
+		= C.OWNERID WHERE
+		C.VEHICLEID
+		= #{0}
+	</select>
+	<insert id="addOwners">
+		REPLACE INTO vehicleinowner(OWNERID, VEHICLEID) VALUES
+		<foreach collection="list" item="item" separator=",">
+			(#{item.key},#{item.value})
+		</foreach>
+	</insert>
+	<delete id="removeOwner">
+		DELETE FROM vehicleinowner WHERE OWNERID=#{1} AND
+		VEHICLEID=#{0} LIMIT 1
+	</delete>
+	<select id="assignedDrivers" resultType="com.edata.monitor.dao.baseinfo.DriverInfoDto">
+		SELECT ID, NAME, SEX,
+		PHONE, DRIVINGLICENSENUMBER, REMARK FROM driver AS A
+		INNER JOIN
+		vehicleindriver AS B ON A.ID = B.DRIVERID WHERE
+		B.VEHICLEID=#{0}
+	</select>
+	<insert id="addDrivers">
+		REPLACE INTO vehicleindriver(DRIVERID, VEHICLEID) VALUES
+		<foreach collection="list" item="item" separator=",">
+			(#{item.key},#{item.value})
+		</foreach>
+	</insert>
+	<delete id="removeDriver">
+		DELETE FROM vehicleindriver WHERE DRIVERID=#{1} AND
+		VEHICLEID=#{0} LIMIT 1
+	</delete>
+	<update id="resetMarker">
+		UPDATE vehicle SET MARKER=#{1} WHERE MARKER=#{0}
+	</update>
+</mapper>

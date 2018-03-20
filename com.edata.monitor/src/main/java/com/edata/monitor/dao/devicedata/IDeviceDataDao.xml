@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.edata.monitor.dao.devicedata.IDeviceDataDao">
+	<select id="queryMultimediaEventReportPageCount" resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM multimediaeventreport WHERE DEVICENUMBER=#{0} AND
+		TIME BETWEEN #{1} AND #{2}
+	</select>
+	<select id="queryMultimediaEventReportPageDetail"
+		resultType="com.edata.monitor.dao.locate.MultimediaEventReportDto">
+		SELECT ID, DEVICENUMBER, TIME, MEDIAID, MEDIATYPE,
+		FORMATTYPE, EVENTTYPE,
+		CHANNELID FROM multimediaeventreport WHERE
+		DEVICENUMBER=#{0} AND TIME
+		BETWEEN #{1} AND #{2} ORDER BY TIME LIMIT
+		#{3},#{4}
+	</select>
+	<select id="queryMultimediaDataRetrievalPageCount" resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM multimediaretrieval WHERE DEVICENUMBER=#{0} AND
+		TIME
+		BETWEEN #{1} AND #{2}
+	</select>
+	<select id="queryMultimediaDataRetrievalPageDetail" resultType="com.edata.monitor.dao.locate.MultimediaRetrievalDto">
+		SELECT * FROM multimediaretrieval WHERE DEVICENUMBER=#{0} AND TIME
+		BETWEEN #{1} AND #{2} ORDER BY TIME LIMIT #{3},#{4}
+	</select>
+	<select id="queryDeviceEventReportPageCount" resultType="java.lang.Integer">
+		SELECT
+		COUNT(1) FROM eventreport WHERE DEVICENUMBER=#{0} AND TIME BETWEEN
+		#{1} AND
+		#{2}
+	</select>
+	<select id="queryDeviceEventReportPageDetail" resultType="com.edata.monitor.dao.locate.DeviceEventReportDto">
+		SELECT
+		ID, DEVICENUMBER, TIME, EVENTID, CONTENT FROM eventreport WHERE
+		DEVICENUMBER=#{0} AND TIME BETWEEN #{1} AND #{2} ORDER BY TIME LIMIT
+		#{3},#{4}
+	</select>
+	<select id="queryDeviceUpgradeResultReportPageCount" resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM upgradereport WHERE DEVICENUMBER=#{0} AND TIME
+		BETWEEN #{1} AND #{2}
+	</select>
+	<select id="queryDeviceUpgradeResultReportPageDetail"
+		resultType="com.edata.monitor.dao.locate.UpgradeResultReportDto">
+		SELECT ID, DEVICENUMBER, TIME, `TYPE`, RESULT FROM
+		upgradereport WHERE
+		DEVICENUMBER=#{0} AND TIME BETWEEN #{1} AND #{2}
+		ORDER BY
+		TIME LIMIT #{3},#{4}
+	</select>
+	<select id="getDriverName" resultType="java.lang.String">
+		SELECT NAME FROM driver
+		WHERE DRIVINGLICENSENUMBER =
+		#{0}
+		LIMIT 1
+	</select>
+</mapper>
