@@ -63,13 +63,13 @@ public class LocateController {
                     break;
             }
         }
-        System.out.println(list);
-        Map<String, Object> map = new HashMap<>();
-        map.put("Rows", list);
-        map.put("Total", list.size());
-        return map;
-        // TODO fuck me
-        // return list;
+        // System.out.println(list);
+        // Map<String, Object> map = new HashMap<>();
+        // map.put("Rows", list);
+        // map.put("Total", list.size());
+        // return map;
+        // // TODO fuck me
+        return list;
 
     }
 

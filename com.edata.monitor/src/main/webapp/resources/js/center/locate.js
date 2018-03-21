@@ -675,113 +675,23 @@ window.locate = {
     /**
      * 加载组别与车辆树
      */
-    loadGroups: function () {
-        var shit;
-
-        $.ajax({
-            type: "POST",
-            url: '../locate/groupVehicles',
-            data: {
-                force: false
-            },
-            success: function (data) {
-                shit = data;
-                locate.vehicles = shit;
-                console.log(shit);
-                var onlines = 0;
-                var list = [];
-                for (var x = 0; x < shit.length; x++) {
-                    var item = shit[x];
-                    if (item.type === 0) {
-                        list.push(item);
-                        console.log(item);
-                        onlines += item.o
-                        locate.devices[item.dn] = item;
-                    }
-                }
-                locate.webMap.translate(list, 0, function () {
-                    // 共享到上级
-                    parent.center.devices = locate.devices;
-
-                    locate.loadLatests({
-                        rows: list
-                    });
-                });
-                locate.resetOnlines.total = list.length;
-                locate.resetOnlines.onlines = onlines;
-                locate.resetOnlines.reset();
-                locate.loadUnreadMessage();
-
-                locate.groupVehicles = $("#groupVehicles").ligerGrid({
-
-                    checkbox: true,
-                    columns: [
-                        {display: '主键', name: 'na', align: 'left'},
-                        {display: '公司名', name: 'dn'}
-                    ],
-                    data: shit
-
-
-                });
-            }
-
-        });
-
-
-    },
     // loadGroups: function () {
-    //     locate.groupVehicles = $("#groupVehicles").ligerTree({
+    //     var shit;
+    //
+    //     $.ajax({
+    //         type: "POST",
     //         url: '../locate/groupVehicles',
-    //         parms: {
+    //         data: {
     //             force: false
     //         },
-    //         idFieldName: 'id',
-    //         parentIDFieldName: 'pid',
-    //         textFieldName: 'na',
-    //         checkbox: true,
-    //         nodeWidth: 'auto',
-    //         onSelect: function (node) {
-    //             function findSub(list, data) {
-    //                 if (data.type !== 0) {
-    //                     var children = data.children;
-    //                     if (children) {
-    //                         for (var x = 0; x < children.length; x++) {
-    //                             var item = children[x];
-    //                             if (item.type === 0)
-    //                                 list.push(item);
-    //                             else
-    //                                 findSub(list, item);
-    //                         }
-    //                     }
-    //                 }
-    //             }
-    //
-    //             if (!node || !node.data)
-    //                 return;
-    //             if (node.data.type !== 0) {
-    //                 var list = [];
-    //                 findSub(list, node.data);
-    //                 locate.loadLatests({
-    //                     rows: list
-    //                 });
-    //                 return;
-    //             }
-    //             locate.showLocate(locate.devices[node.data.dn]);
-    //         },
-    //         onError: function (XMLHttpRequest, textStatus, errorThrown) {
-    //             $.ligerDialog.open({
-    //                 width: 800,
-    //                 height: 500,
-    //                 content: XMLHttpRequest.responseText
-    //             });
-    //         },
-    //         onSuccess: function (data) {
-    //             locate.vehicles = data;
-    //             console.log(data);
+    //         success: function (data) {
+    //             shit = data;
+    //             locate.vehicles = shit;
+    //             console.log(shit);
     //             var onlines = 0;
     //             var list = [];
-    //             for (var x = 0; x < data.length; x++) {
-    //                 var item = data[x];
+    //             for (var x = 0; x < shit.length; x++) {
+    //                 var item = shit[x];
     //                 if (item.type === 0) {
     //                     list.push(item);
     //                     console.log(item);
@@ -801,9 +711,99 @@ window.locate = {
     //             locate.resetOnlines.onlines = onlines;
     //             locate.resetOnlines.reset();
     //             locate.loadUnreadMessage();
+    //
+    //             locate.groupVehicles = $("#groupVehicles").ligerGrid({
+    //
+    //                 checkbox: true,
+    //                 columns: [
+    //                     {display: '主键', name: 'na', align: 'left'},
+    //                     {display: '公司名', name: 'dn'}
+    //                 ],
+    //                 data: shit
+    //
+    //
+    //             });
     //         }
+    //
     //     });
+    //
+    //
     // },
+    loadGroups: function () {
+        locate.groupVehicles = $("#groupVehicles").ligerTree({
+            url: '../locate/groupVehicles',
+            parms: {
+                force: false
+            },
+            idFieldName: 'id',
+            parentIDFieldName: 'pid',
+            textFieldName: 'na',
+            checkbox: true,
+            nodeWidth: 'auto',
+            onSelect: function (node) {
+                function findSub(list, data) {
+                    if (data.type !== 0) {
+                        var children = data.children;
+                        if (children) {
+                            for (var x = 0; x < children.length; x++) {
+                                var item = children[x];
+                                if (item.type === 0)
+                                    list.push(item);
+                                else
+                                    findSub(list, item);
+                            }
+                        }
+                    }
+                }
+
+                if (!node || !node.data)
+                    return;
+                if (node.data.type !== 0) {
+                    var list = [];
+                    findSub(list, node.data);
+                    locate.loadLatests({
+                        rows: list
+                    });
+                    return;
+                }
+                locate.showLocate(locate.devices[node.data.dn]);
+            },
+            onError: function (XMLHttpRequest, textStatus, errorThrown) {
+                $.ligerDialog.open({
+                    width: 800,
+                    height: 500,
+                    content: XMLHttpRequest.responseText
+                });
+            },
+            onSuccess: function (data) {
+                locate.vehicles = data;
+                console.log(data);
+                var onlines = 0;
+                var list = [];
+                for (var x = 0; x < data.length; x++) {
+                    var item = data[x];
+                    if (item.type === 0) {
+                        list.push(item);
+                        console.log(item);
+                        onlines += item.o
+                        locate.devices[item.dn] = item;
+                    }
+                }
+                locate.webMap.translate(list, 0, function () {
+                    // 共享到上级
+                    parent.center.devices = locate.devices;
+
+                    locate.loadLatests({
+                        rows: list
+                    });
+                });
+                locate.resetOnlines.total = list.length;
+                locate.resetOnlines.onlines = onlines;
+                locate.resetOnlines.reset();
+                locate.loadUnreadMessage();
+            }
+        });
+    },
     refreshGroups: function () {
         locate.groupVehicles.loading.show();
         $.post('../locate/groupVehicles', {

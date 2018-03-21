@@ -21,13 +21,64 @@ public class SimcardInfo {
     private Date createTime;
     private String remark;
 
+
+    // FUCK ME
+    private String ACCOUNTNAME;
+    private String MONTHLYRENT;
+    private Date INSTOCKDATE;
+    private Date OUTSTOCKDATE;
+    private Date EXPIRENOTIFYDATE;
+    // FUCK ME
+
     @Override
     public String toString() {
         return "SimcardInfo{" + "id='" + id + '\'' + ", phoneNumber='" + phoneNumber + '\'' + ", simcardNumber='" +
                 simcardNumber + '\'' + ", speechType='" + speechType + '\'' + ", openSMS=" + openSMS + ", " +
                 "purchaseDate=" + purchaseDate + ", carrierOperator='" + carrierOperator + '\'' + ", prepayment=" +
                 prepayment + ", expireDate=" + expireDate + ", createTime=" + createTime + ", remark='" + remark +
-                '\'' + '}';
+                '\'' + ", ACCOUNTNAME='" + ACCOUNTNAME + '\'' + ", MONTHLYRENT='" + MONTHLYRENT + '\'' + ", " +
+                "INSTOCKDATE=" + INSTOCKDATE + ", OUTSTOCKDATE=" + OUTSTOCKDATE + ", EXPIRENOTIFYDATE=" +
+                EXPIRENOTIFYDATE + '}';
+    }
+
+    public String getACCOUNTNAME() {
+        return ACCOUNTNAME;
+    }
+
+    public void setACCOUNTNAME(String ACCOUNTNAME) {
+        this.ACCOUNTNAME = ACCOUNTNAME;
+    }
+
+    public String getMONTHLYRENT() {
+        return MONTHLYRENT;
+    }
+
+    public void setMONTHLYRENT(String MONTHLYRENT) {
+        this.MONTHLYRENT = MONTHLYRENT;
+    }
+
+    public Date getINSTOCKDATE() {
+        return INSTOCKDATE;
+    }
+
+    public void setINSTOCKDATE(Date INSTOCKDATE) {
+        this.INSTOCKDATE = INSTOCKDATE;
+    }
+
+    public Date getOUTSTOCKDATE() {
+        return OUTSTOCKDATE;
+    }
+
+    public void setOUTSTOCKDATE(Date OUTSTOCKDATE) {
+        this.OUTSTOCKDATE = OUTSTOCKDATE;
+    }
+
+    public Date getEXPIRENOTIFYDATE() {
+        return EXPIRENOTIFYDATE;
+    }
+
+    public void setEXPIRENOTIFYDATE(Date EXPIRENOTIFYDATE) {
+        this.EXPIRENOTIFYDATE = EXPIRENOTIFYDATE;
     }
 
     /**

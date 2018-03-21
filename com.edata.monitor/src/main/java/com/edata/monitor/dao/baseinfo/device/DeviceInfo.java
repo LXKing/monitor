@@ -15,12 +15,82 @@ public class DeviceInfo {
     private Date warranty;
     private String remark;
 
+
+    //
+    private String SN;
+    private Date INSTOCKDATE;
+    private Date OUTSTOCKDATE;
+    private Date ACTIVATIONDATE;
+    private String IMEI;
+    private String LIFECYCLE;
+    private Date LIFEEXPIRATIONDATE;
+    //
+
+
     @Override
     public String toString() {
         return "DeviceInfo{" + "id='" + id + '\'' + ", deviceNumber='" + deviceNumber + '\'' + ", phoneNumber='" +
                 phoneNumber + '\'' + ", factoryNumber='" + factoryNumber + '\'' + ", model='" + model + '\'' + ", " +
                 "enable=" + enable + ", serviceStartDate=" + serviceStartDate + ", serviceEndDate=" + serviceEndDate
-                + ", warranty=" + warranty + ", remark='" + remark + '\'' + '}';
+                + ", warranty=" + warranty + ", remark='" + remark + '\'' + ", SN='" + SN + '\'' + ", INSTOCKDATE=" +
+                INSTOCKDATE + ", OUTSTOCKDATE=" + OUTSTOCKDATE + ", ACTIVATIONDATE=" + ACTIVATIONDATE + ", IMEI='" +
+                IMEI + '\'' + ", LIFECYCLE='" + LIFECYCLE + '\'' + ", LIFEEXPIRATIONDATE=" + LIFEEXPIRATIONDATE + '}';
+    }
+
+    public String getSN() {
+        return SN;
+    }
+
+    public void setSN(String SN) {
+        this.SN = SN;
+    }
+
+    public Date getINSTOCKDATE() {
+        return INSTOCKDATE;
+    }
+
+    public void setINSTOCKDATE(Date INSTOCKDATE) {
+        this.INSTOCKDATE = INSTOCKDATE;
+    }
+
+    public Date getOUTSTOCKDATE() {
+        return OUTSTOCKDATE;
+    }
+
+    public void setOUTSTOCKDATE(Date OUTSTOCKDATE) {
+        this.OUTSTOCKDATE = OUTSTOCKDATE;
+    }
+
+    public Date getACTIVATIONDATE() {
+        return ACTIVATIONDATE;
+    }
+
+    public void setACTIVATIONDATE(Date ACTIVATIONDATE) {
+        this.ACTIVATIONDATE = ACTIVATIONDATE;
+    }
+
+    public String getIMEI() {
+        return IMEI;
+    }
+
+    public void setIMEI(String IMEI) {
+        this.IMEI = IMEI;
+    }
+
+    public String getLIFECYCLE() {
+        return LIFECYCLE;
+    }
+
+    public void setLIFECYCLE(String LIFECYCLE) {
+        this.LIFECYCLE = LIFECYCLE;
+    }
+
+    public Date getLIFEEXPIRATIONDATE() {
+        return LIFEEXPIRATIONDATE;
+    }
+
+    public void setLIFEEXPIRATIONDATE(Date LIFEEXPIRATIONDATE) {
+        this.LIFEEXPIRATIONDATE = LIFEEXPIRATIONDATE;
     }
 
     /**

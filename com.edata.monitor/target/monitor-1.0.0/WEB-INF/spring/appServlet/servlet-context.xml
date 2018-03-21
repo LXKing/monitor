@@ -32,6 +32,9 @@
     <beans:bean id="webObjectMapper" class="com.edata.monitor.util.WebObjectMapper"/>
 
 
+    <!-- 全局异常处理器只有一个，配置多个也没用 -->
+    <beans:bean class="com.edata.monitor.CustomExceptionResolver"/>
+
     <!-- Enables the Spring MVC @Controller programming model -->
     <annotation-driven conversion-service="conversionService">
         <message-converters>

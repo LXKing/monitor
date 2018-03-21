@@ -22,6 +22,16 @@ public class User {
     private String name;
     private String email;
     private String phone;
+    //
+    private String tel;
+    private String fax;
+    private String zipcode;
+    private Date registerDate;
+    private Date serviceEndNotifyDate;
+    private String bussinessAgent;
+    //
+
+
     private String contact;
     private boolean enable;
     private Date serviceStartDate;
@@ -30,14 +40,64 @@ public class User {
     private String remark;
     private Timestamp editTime;
 
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
+
+    public String getFax() {
+        return fax;
+    }
+
+    public void setFax(String fax) {
+        this.fax = fax;
+    }
+
+    public String getZipcode() {
+        return zipcode;
+    }
+
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
+    }
+
+    public Date getRegisterDate() {
+        return registerDate;
+    }
+
+    public void setRegisterDate(Date registerDate) {
+        this.registerDate = registerDate;
+    }
+
+    public Date getServiceEndNotifyDate() {
+        return serviceEndNotifyDate;
+    }
+
+    public void setServiceEndNotifyDate(Date serviceEndNotifyDate) {
+        this.serviceEndNotifyDate = serviceEndNotifyDate;
+    }
+
+    public String getBussinessAgent() {
+        return bussinessAgent;
+    }
+
+    public void setBussinessAgent(String bussinessAgent) {
+        this.bussinessAgent = bussinessAgent;
+    }
+
     @Override
     public String toString() {
         return "User{" + "password='" + password + '\'' + ", id='" + id + '\'' + ", pid='" + pid + '\'' + ", " +
                 "companyId='" + companyId + '\'' + ", kind=" + kind + ", account='" + account + '\'' + ", name='" +
-                name + '\'' + ", email='" + email + '\'' + ", phone='" + phone + '\'' + ", contact='" + contact +
-                '\'' + ", enable=" + enable + ", serviceStartDate=" + serviceStartDate + ", serviceEndDate=" +
-                serviceEndDate + ", createTime=" + createTime + ", remark='" + remark + '\'' + ", editTime=" +
-                editTime + '}';
+                name + '\'' + ", email='" + email + '\'' + ", phone='" + phone + '\'' + ", tel='" + tel + '\'' + ", " +
+                "fax='" + fax + '\'' + ", zipcode='" + zipcode + '\'' + ", registerDate=" + registerDate + ", " +
+                "serviceEndNotifyDate=" + serviceEndNotifyDate + ", bussinessAgent='" + bussinessAgent + '\'' + ", " +
+                "contact='" + contact + '\'' + ", enable=" + enable + ", serviceStartDate=" + serviceStartDate + ", " +
+                "serviceEndDate=" + serviceEndDate + ", createTime=" + createTime + ", remark='" + remark + '\'' + "," +
+                " editTime=" + editTime + '}';
     }
 
     public String getPassword() {

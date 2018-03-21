@@ -1,5 +1,6 @@
 package com.edata.monitor.dao.baseinfo.motorcade;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 /**
@@ -19,11 +20,35 @@ public class Motorcade {
     private String remark;
     private Timestamp editTime;
 
+
+    //
+    private Date REGISTATIONDATE;
+    private String BUSSINESSAGENT;
+    //
+
+
     @Override
     public String toString() {
         return "Motorcade{" + "id='" + id + '\'' + ", companyId='" + companyId + '\'' + ", type='" + type + '\'' + "," +
-                "" + " " + "name='" + name + '\'' + ", parentVisible=" + parentVisible + ", linkMan='" + linkMan +
-                '\'' + ", " + "phone='" + phone + '\'' + ", remark='" + remark + '\'' + ", editTime=" + editTime + '}';
+                " name='" + name + '\'' + ", parentVisible=" + parentVisible + ", linkMan='" + linkMan + '\'' + ", " +
+                "phone='" + phone + '\'' + ", remark='" + remark + '\'' + ", editTime=" + editTime + ", " +
+                "REGISTATIONDATE=" + REGISTATIONDATE + ", BUSSINESSAGENT='" + BUSSINESSAGENT + '\'' + '}';
+    }
+
+    public Date getREGISTATIONDATE() {
+        return REGISTATIONDATE;
+    }
+
+    public void setREGISTATIONDATE(Date REGISTATIONDATE) {
+        this.REGISTATIONDATE = REGISTATIONDATE;
+    }
+
+    public String getBUSSINESSAGENT() {
+        return BUSSINESSAGENT;
+    }
+
+    public void setBUSSINESSAGENT(String BUSSINESSAGENT) {
+        this.BUSSINESSAGENT = BUSSINESSAGENT;
     }
 
     /**

@@ -14,12 +14,65 @@ public class OwnerInfo {
     private Date createTime;
     private String remark;
 
+
+
+    //
+    private String CONTACT;
+    private Date REGISTRATIONDATE;
+    private String PHONE;
+    private String FAX;
+    private String BUSSINESSAGENT;
+    //
+
+
     @Override
     public String toString() {
         return "OwnerInfo{" + "id='" + id + '\'' + ", ownerName='" + ownerName + '\'' + ", phone='" + phone + '\'' +
                 ", idType='" + idType + '\'' + ", idNumber='" + idNumber + '\'' + ", serviceStartDate=" +
                 serviceStartDate + ", serviceEndDate=" + serviceEndDate + ", enable=" + enable + ", createTime=" +
-                createTime + ", remark='" + remark + '\'' + '}';
+                createTime + ", remark='" + remark + '\'' + ", CONTACT='" + CONTACT + '\'' + ", REGISTRATIONDATE=" +
+                REGISTRATIONDATE + ", PHONE='" + PHONE + '\'' + ", FAX='" + FAX + '\'' + ", BUSSINESSAGENT='" +
+                BUSSINESSAGENT + '\'' + '}';
+    }
+
+    public String getCONTACT() {
+        return CONTACT;
+    }
+
+    public void setCONTACT(String CONTACT) {
+        this.CONTACT = CONTACT;
+    }
+
+    public Date getREGISTRATIONDATE() {
+        return REGISTRATIONDATE;
+    }
+
+    public void setREGISTRATIONDATE(Date REGISTRATIONDATE) {
+        this.REGISTRATIONDATE = REGISTRATIONDATE;
+    }
+
+    public String getPHONE() {
+        return PHONE;
+    }
+
+    public void setPHONE(String PHONE) {
+        this.PHONE = PHONE;
+    }
+
+    public String getFAX() {
+        return FAX;
+    }
+
+    public void setFAX(String FAX) {
+        this.FAX = FAX;
+    }
+
+    public String getBUSSINESSAGENT() {
+        return BUSSINESSAGENT;
+    }
+
+    public void setBUSSINESSAGENT(String BUSSINESSAGENT) {
+        this.BUSSINESSAGENT = BUSSINESSAGENT;
     }
 
     /**

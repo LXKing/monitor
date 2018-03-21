@@ -1,5 +1,7 @@
 package com.edata.monitor.dao.baseinfo.sim;
 
+import java.sql.Date;
+
 public class SimcardSearchInfo {
 
     private String id;
@@ -9,11 +11,63 @@ public class SimcardSearchInfo {
     private String carrierOperator;
     private String remark;
 
+
+    // FUCK ME
+    private String ACCOUNTNAME;
+    private String MONTHLYRENT;
+    private Date INSTOCKDATE;
+    private Date OUTSTOCKDATE;
+    private Date EXPIRENOTIFYDATE;
+    // FUCK ME
+
+
     @Override
     public String toString() {
         return "SimcardSearchInfo{" + "id='" + id + '\'' + ", phoneNumber='" + phoneNumber + '\'' + ", speechType='"
-                + speechType + '\'' + ", openSMS=" + openSMS + ", carrierOperator='" + carrierOperator + '\'' + ", "
-                + "remark='" + remark + '\'' + '}';
+                + speechType + '\'' + ", openSMS=" + openSMS + ", carrierOperator='" + carrierOperator + '\'' + ", " +
+                "remark='" + remark + '\'' + ", ACCOUNTNAME='" + ACCOUNTNAME + '\'' + ", MONTHLYRENT='" + MONTHLYRENT
+                + '\'' + ", INSTOCKDATE=" + INSTOCKDATE + ", OUTSTOCKDATE=" + OUTSTOCKDATE + ", EXPIRENOTIFYDATE=" +
+                EXPIRENOTIFYDATE + '}';
+    }
+
+    public String getACCOUNTNAME() {
+        return ACCOUNTNAME;
+    }
+
+    public void setACCOUNTNAME(String ACCOUNTNAME) {
+        this.ACCOUNTNAME = ACCOUNTNAME;
+    }
+
+    public String getMONTHLYRENT() {
+        return MONTHLYRENT;
+    }
+
+    public void setMONTHLYRENT(String MONTHLYRENT) {
+        this.MONTHLYRENT = MONTHLYRENT;
+    }
+
+    public Date getINSTOCKDATE() {
+        return INSTOCKDATE;
+    }
+
+    public void setINSTOCKDATE(Date INSTOCKDATE) {
+        this.INSTOCKDATE = INSTOCKDATE;
+    }
+
+    public Date getOUTSTOCKDATE() {
+        return OUTSTOCKDATE;
+    }
+
+    public void setOUTSTOCKDATE(Date OUTSTOCKDATE) {
+        this.OUTSTOCKDATE = OUTSTOCKDATE;
+    }
+
+    public Date getEXPIRENOTIFYDATE() {
+        return EXPIRENOTIFYDATE;
+    }
+
+    public void setEXPIRENOTIFYDATE(Date EXPIRENOTIFYDATE) {
+        this.EXPIRENOTIFYDATE = EXPIRENOTIFYDATE;
     }
 
     /**

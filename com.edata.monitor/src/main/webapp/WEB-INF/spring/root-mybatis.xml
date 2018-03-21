@@ -13,15 +13,15 @@
             <value>com.mysql.jdbc.Driver</value>
         </property>
         <property name="url">
-            <value>jdbc:mysql://192.168.1.252:3306/monitordb?useUnicode=true&amp;characterEncoding=utf-8&amp;allowMultiQueries=true</value>
-            <!--<value>jdbc:mysql://localhost:3306/monitordb?useUnicode=true&amp;characterEncoding=utf-8&amp;allowMultiQueries=true</value>-->
+            <!--<value>jdbc:mysql://192.168.1.252:3306/monitordb?useUnicode=true&amp;characterEncoding=utf-8&amp;allowMultiQueries=true</value>-->
+            <value>jdbc:mysql://localhost:3306/monitordb?useUnicode=true&amp;characterEncoding=utf-8&amp;allowMultiQueries=true</value>
         </property>
         <property name="username">
             <value>root</value>
         </property>
         <property name="password">
-            <value>abc123</value>
-            <!--<value>123456</value>-->
+            <!--<value>abc123</value>-->
+            <value>123456</value>
         </property>
         <!-- 连接池最大使用连接数 -->
         <property name="maxActive">

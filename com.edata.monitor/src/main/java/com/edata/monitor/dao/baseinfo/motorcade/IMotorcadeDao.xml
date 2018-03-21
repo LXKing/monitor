@@ -3,31 +3,51 @@
 <mapper namespace="com.edata.monitor.dao.baseinfo.motorcade.IMotorcadeDao">
     <select id="list" resultType="com.edata.monitor.dao.baseinfo.motorcade.Motorcade">
         SELECT
-        ID,
-        `TYPE`,
-        NAME,
-        LINKMAN,
-        PHONE,
-        PARENTVISIBLE,
-        REMARK
+            ID,
+            `TYPE`,
+            NAME,
+            LINKMAN,
+            PHONE,
+            PARENTVISIBLE,
+            REMARK,
+            REGISTATIONDATE,
+            BUSSINESSAGENT
         FROM
-        motorcade
+            motorcade
         WHERE COMPANYID = #{0}
     </select>
     <insert id="create" parameterType="com.edata.monitor.dao.baseinfo.motorcade.Motorcade">
         INSERT INTO motorcade (ID,
-        COMPANYID, `TYPE`, NAME, LINKMAN, PHONE,
-        PARENTVISIBLE, REMARK) VALUES
-        (#{id}, #{companyId}, #{type}, #{name}, #{linkMan}, #{phone},
-        #{parentVisible}, #{remark})
+                               COMPANYID, `TYPE`, NAME, LINKMAN, PHONE,
+                               PARENTVISIBLE, REMARK,
+
+
+                               REGISTATIONDATE,
+                               BUSSINESSAGENT
+
+        ) VALUES
+            (#{id}, #{companyId}, #{type}, #{name}, #{linkMan}, #{phone},
+             #{parentVisible}, #{remark},
+
+
+             #{REGISTATIONDATE}, #{BUSSINESSAGENT}
+
+
+            )
     </insert>
     <update id="update" parameterType="com.edata.monitor.dao.baseinfo.motorcade.Motorcade">
         UPDATE motorcade
         SET
-        COMPANYID = #{companyId}, `TYPE` = #{type}, NAME = #{name},
-        LINKMAN = #{linkMan}, PHONE = #{phone},
-        PARENTVISIBLE = #{parentVisible},
-        REMARK = #{remark}
+            COMPANYID       = #{companyId}, `TYPE` = #{type}, NAME = #{name},
+            LINKMAN         = #{linkMan}, PHONE = #{phone},
+            PARENTVISIBLE   = #{parentVisible},
+            REMARK          = #{remark},
+
+
+            REGISTATIONDATE = #{REGISTATIONDATE},
+            BUSSINESSAGENT  = #{BUSSINESSAGENT}
+
+
         WHERE ID = #{id} AND EDITTIME = #{editTime}
         LIMIT 1
     </update>
@@ -38,18 +58,20 @@
     </delete>
     <select id="fetch" resultType="com.edata.monitor.dao.baseinfo.motorcade.Motorcade">
         SELECT
-        ID,
-        COMPANYID,
-        `TYPE`,
-        NAME,
-        LINKMAN,
-        PHONE,
-        PARENTVISIBLE,
-        REMARK,
-        EDITTIME
+            ID,
+            COMPANYID,
+            `TYPE`,
+            NAME,
+            LINKMAN,
+            PHONE,
+            PARENTVISIBLE,
+            REMARK,
+            EDITTIME,
+            REGISTATIONDATE,
+            BUSSINESSAGENT
         FROM motorcade
         WHERE
-        ID = #{0}
+            ID = #{0}
         LIMIT 1
     </select>
     <select id="exist" resultType="java.lang.Boolean">
@@ -61,9 +83,9 @@
     <select id="existOutId" resultType="java.lang.Boolean">
         SELECT COUNT(1)
         FROM
-        motorcade
+            motorcade
         WHERE
-        NAME = #{0} AND COMPANYID = #{1} AND ID != #{2}
+            NAME = #{0} AND COMPANYID = #{1} AND ID != #{2}
         LIMIT 1
     </select>
     <select id="hasVehicle" resultType="java.lang.Boolean">

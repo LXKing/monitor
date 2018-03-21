@@ -17,11 +17,69 @@ public class UserInfo {
     private String remark;
     private Date createTime;
 
+    //
+    private String tel;
+    private String fax;
+    private String zipcode;
+    private Date registerDate;
+    private Date serviceEndNotifyDate;
+    private String bussinessAgent;
+    //
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
+
+    public String getFax() {
+        return fax;
+    }
+
+    public void setFax(String fax) {
+        this.fax = fax;
+    }
+
+    public String getZipcode() {
+        return zipcode;
+    }
+
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
+    }
+
+    public Date getRegisterDate() {
+        return registerDate;
+    }
+
+    public void setRegisterDate(Date registerDate) {
+        this.registerDate = registerDate;
+    }
+
+    public Date getServiceEndNotifyDate() {
+        return serviceEndNotifyDate;
+    }
+
+    public void setServiceEndNotifyDate(Date serviceEndNotifyDate) {
+        this.serviceEndNotifyDate = serviceEndNotifyDate;
+    }
+
+    public String getBussinessAgent() {
+        return bussinessAgent;
+    }
+
+    public void setBussinessAgent(String bussinessAgent) {
+        this.bussinessAgent = bussinessAgent;
+    }
+
     @Override
     public String toString() {
         return "UserInfo{" + "id='" + id + '\'' + ", name='" + name + '\'' + ", enable=" + enable + ", phone='" +
-                phone + '\'' + ", ServiceStartDate=" + ServiceStartDate + ", serviceEndDate=" + serviceEndDate + ", "
-                + "remark='" + remark + '\'' + ", createTime=" + createTime + '}';
+                phone + '\'' + ", ServiceStartDate=" + ServiceStartDate + ", serviceEndDate=" + serviceEndDate + ", " +
+                "remark='" + remark + '\'' + ", createTime=" + createTime + ", tel='" + tel + '\'' + ", fax='" + fax
+                + '\'' + ", zipcode='" + zipcode + '\'' + ", registerDate=" + registerDate + ", " +
+                "serviceEndNotifyDate=" + serviceEndNotifyDate + ", bussinessAgent='" + bussinessAgent + '\'' + '}';
     }
 
     /**

@@ -10,13 +10,14 @@
         <module name="com.edata.common" />
         <module name="com.edata.godp.dao" />
         <module name="com.edata.godp.domain" />
-        <module name="monitor" />
+        <module name="FUCK" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="com.edata.common" target="1.8" />
       <module name="com.edata.godp.dao" target="1.8" />
       <module name="com.edata.godp.domain" target="1.8" />
+      <module name="FUCK" target="1.8" />
       <module name="monitor" target="1.8" />
     </bytecodeTargetLevel>
   </component>

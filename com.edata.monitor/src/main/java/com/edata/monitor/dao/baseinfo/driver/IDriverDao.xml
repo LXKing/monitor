@@ -4,46 +4,75 @@
     <select id="queryPageCount" resultType="java.lang.Integer">
         SELECT COUNT(1)
         FROM
-        driver
+            driver
         WHERE (NAME LIKE CONCAT('%', #{1}, '%') OR PHONE LIKE
-        CONCAT('%', #{1}, '%') OR
-        DRIVINGLICENSENUMBER LIKE CONCAT('%', #{1}, '%'))
-        AND COMPANYID = #{0}
+                                                   CONCAT('%', #{1}, '%') OR
+               DRIVINGLICENSENUMBER LIKE CONCAT('%', #{1}, '%'))
+              AND COMPANYID = #{0}
     </select>
     <select id="queryPageDetail" resultType="com.edata.monitor.dao.baseinfo.driver.DriverInfo">
         SELECT
-        ID,
-        NAME,
-        SEX,
-        PHONE,
-        DRIVINGLICENSENUMBER,
-        REMARK
+            ID,
+            NAME,
+            SEX,
+            PHONE,
+            DRIVINGLICENSENUMBER,
+            REMARK,
+
+            REGISTRATIONDATE,
+            PERMITCODE,
+            EMERGENCYCONTACTA,
+            EMERGENCYCONTACTB
+
+
         FROM driver
         WHERE
-        (NAME LIKE
-        CONCAT('%', #{1}, '%') OR PHONE LIKE CONCAT('%', #{1}, '%') OR
-        DRIVINGLICENSENUMBER LIKE CONCAT('%', #{1}, '%')) AND
-        COMPANYID = #{0}
+            (NAME LIKE
+             CONCAT('%', #{1}, '%') OR PHONE LIKE CONCAT('%', #{1}, '%') OR
+             DRIVINGLICENSENUMBER LIKE CONCAT('%', #{1}, '%')) AND
+            COMPANYID = #{0}
         LIMIT #{2}, #{3}
     </select>
     <insert id="create" parameterType="com.edata.monitor.dao.baseinfo.driver.Driver">
         INSERT INTO driver (ID,
-        COMPANYID, NAME, SEX, PHONE, IDTYPE, IDNUMBER,
-        DRIVINGLICENSENUMBER,
-        REMARK, DRIVINGLICENSEEXPIRYDATE) VALUES (
-        #{id}, #{companyId},
-        #{name}, #{sex}, #{phone}, #{idType}, #{idNumber},
-        #{drivingLicenseNumber}, #{remark}, #{drivingLicenseExpiryDate})
+                            COMPANYID, NAME, SEX, PHONE, IDTYPE, IDNUMBER,
+                            DRIVINGLICENSENUMBER,
+                            REMARK, DRIVINGLICENSEEXPIRYDATE,
+
+                            REGISTRATIONDATE,
+                            PERMITCODE,
+                            EMERGENCYCONTACTA,
+                            EMERGENCYCONTACTB
+
+        ) VALUES (
+            #{id}, #{companyId},
+                   #{name}, #{sex}, #{phone}, #{idType}, #{idNumber},
+                   #{drivingLicenseNumber}, #{remark}, #{drivingLicenseExpiryDate},
+
+                   #{REGISTRATIONDATE},
+            #{PERMITCODE},
+            #{EMERGENCYCONTACTA},
+            #{EMERGENCYCONTACTB}
+
+
+        )
     </insert>
     <update id="update" parameterType="com.edata.monitor.dao.baseinfo.driver.Driver">
         UPDATE driver
         SET
-        COMPANYID = #{companyId}, NAME = #{name}, SEX = #{sex}, PHONE = #{phone},
-        IDTYPE = #{idType}, IDNUMBER = #{idNumber},
-        DRIVINGLICENSENUMBER = #{drivingLicenseNumber}, REMARK = #{remark},
-        DRIVINGLICENSEEXPIRYDATE = #{drivingLicenseExpiryDate}
+            COMPANYID                = #{companyId}, NAME = #{name}, SEX = #{sex}, PHONE = #{phone},
+            IDTYPE                   = #{idType}, IDNUMBER = #{idNumber},
+            DRIVINGLICENSENUMBER     = #{drivingLicenseNumber}, REMARK = #{remark},
+            DRIVINGLICENSEEXPIRYDATE = #{drivingLicenseExpiryDate},
+
+
+            REGISTRATIONDATE         = #{REGISTRATIONDATE},
+            PERMITCODE               = #{PERMITCODE},
+            EMERGENCYCONTACTA        = #{EMERGENCYCONTACTA},
+            EMERGENCYCONTACTB        = #{EMERGENCYCONTACTB}
+
         WHERE ID = #{id} AND
-        EDITTIME = #{editTime}
+              EDITTIME = #{editTime}
         LIMIT 1
     </update>
     <delete id="deleteVehicleInDriver">
@@ -57,42 +86,48 @@
     </delete>
     <select id="fetch" resultType="com.edata.monitor.dao.baseinfo.driver.Driver">
         SELECT
-        ID,
-        COMPANYID,
-        NAME,
-        SEX,
-        PHONE,
-        IDTYPE,
-        IDNUMBER,
-        DRIVINGLICENSENUMBER,
-        REMARK,
-        EDITTIME,
-        DRIVINGLICENSEEXPIRYDATE
+            ID,
+            COMPANYID,
+            NAME,
+            SEX,
+            PHONE,
+            IDTYPE,
+            IDNUMBER,
+            DRIVINGLICENSENUMBER,
+            REMARK,
+            EDITTIME,
+            DRIVINGLICENSEEXPIRYDATE,
+
+
+            REGISTRATIONDATE,
+            PERMITCODE,
+            EMERGENCYCONTACTA,
+            EMERGENCYCONTACTB
         FROM driver
         WHERE ID = #{0}
         LIMIT 1
     </select>
     <select id="assignedVehicles" resultType="com.edata.monitor.dao.baseinfo.vehicle.VehicleInfoDto">
         SELECT
-        A.ID,
-        B.DEVICENUMBER,
-        C.PHONENUMBER,
-        A.PLATENUMBER,
-        A.PLATECOLOR,
-        A.INSTALLDATE,
-        A.ANNUALSURVEYDATE,
-        A.REMARK,
-        D.NAME AS
-        MOTORCADE
+            A.ID,
+            B.DEVICENUMBER,
+            C.PHONENUMBER,
+            A.PLATENUMBER,
+            A.PLATECOLOR,
+            A.INSTALLDATE,
+            A.ANNUALSURVEYDATE,
+            A.REMARK,
+            D.NAME AS
+                MOTORCADE
         FROM
-        vehicle AS A INNER JOIN device AS B ON A.DEVICEID = B.ID
-        INNER JOIN
-        simcard AS C ON B.SIMCARDID = C.ID
-        INNER JOIN motorcade AS D
-        ON
-        A.MOTORCADEID = D.ID
-        INNER JOIN vehicleindriver AS E ON
-        A.ID = E.VEHICLEID
+            vehicle AS A INNER JOIN device AS B ON A.DEVICEID = B.ID
+            INNER JOIN
+            simcard AS C ON B.SIMCARDID = C.ID
+            INNER JOIN motorcade AS D
+                ON
+                    A.MOTORCADEID = D.ID
+            INNER JOIN vehicleindriver AS E ON
+                                                A.ID = E.VEHICLEID
         WHERE E.DRIVERID = #{0}
         ORDER BY A.PLATENUMBER
     </select>
@@ -106,7 +141,7 @@
     <delete id="removeVehicle">
         DELETE FROM vehicleindriver
         WHERE DRIVERID = #{0} AND
-        VEHICLEID = #{1}
+              VEHICLEID = #{1}
         LIMIT 1
     </delete>
 </mapper>

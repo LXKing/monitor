@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/FUCK/FUCK.iml" filepath="$PROJECT_DIR$/FUCK/FUCK.iml" />
       <module fileurl="file://$PROJECT_DIR$/com.edata.common/com.edata.common.iml" filepath="$PROJECT_DIR$/com.edata.common/com.edata.common.iml" />
       <module fileurl="file://$PROJECT_DIR$/com.edata.godp.dao/com.edata.godp.dao.iml" filepath="$PROJECT_DIR$/com.edata.godp.dao/com.edata.godp.dao.iml" />
       <module fileurl="file://$PROJECT_DIR$/com.edata.godp.domain/com.edata.godp.domain.iml" filepath="$PROJECT_DIR$/com.edata.godp.domain/com.edata.godp.domain.iml" />

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.edata.monitor.dao.baseinfo.sysvid.SysvidMapper">
+  <resultMap id="BaseResultMap" type="com.edata.monitor.dao.baseinfo.sysvid.Sysvid">
+    <id column="SYSVID" jdbcType="VARCHAR" property="sysvid" />
+    <result column="SYSVIDACTIVATIONDATE" jdbcType="TIMESTAMP" property="sysvidactivationdate" />
+    <result column="EXPIREDATE" jdbcType="TIMESTAMP" property="expiredate" />
+    <result column="EXPIRENOTIFYDATE" jdbcType="TIMESTAMP" property="expirenotifydate" />
+    <result column="BUSSINESSAGENT" jdbcType="VARCHAR" property="bussinessagent" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    SYSVID, SYSVIDACTIVATIONDATE, EXPIREDATE, EXPIRENOTIFYDATE, BUSSINESSAGENT
+  </sql>
+  <select id="selectByExample" parameterType="com.edata.monitor.dao.baseinfo.sysvid.SysvidExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sysvid
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sysvid
+    where SYSVID = #{sysvid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sysvid
+    where SYSVID = #{sysvid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.edata.monitor.dao.baseinfo.sysvid.SysvidExample">
+    delete from sysvid
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.edata.monitor.dao.baseinfo.sysvid.Sysvid">
+    insert into sysvid (SYSVID, SYSVIDACTIVATIONDATE, EXPIREDATE, 
+      EXPIRENOTIFYDATE, BUSSINESSAGENT)
+    values (#{sysvid,jdbcType=VARCHAR}, #{sysvidactivationdate,jdbcType=TIMESTAMP}, #{expiredate,jdbcType=TIMESTAMP}, 
+      #{expirenotifydate,jdbcType=TIMESTAMP}, #{bussinessagent,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.edata.monitor.dao.baseinfo.sysvid.Sysvid">
+    insert into sysvid
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sysvid != null">
+        SYSVID,
+      </if>
+      <if test="sysvidactivationdate != null">
+        SYSVIDACTIVATIONDATE,
+      </if>
+      <if test="expiredate != null">
+        EXPIREDATE,
+      </if>
+      <if test="expirenotifydate != null">
+        EXPIRENOTIFYDATE,
+      </if>
+      <if test="bussinessagent != null">
+        BUSSINESSAGENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sysvid != null">
+        #{sysvid,jdbcType=VARCHAR},
+      </if>
+      <if test="sysvidactivationdate != null">
+        #{sysvidactivationdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expiredate != null">
+        #{expiredate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expirenotifydate != null">
+        #{expirenotifydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bussinessagent != null">
+        #{bussinessagent,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.edata.monitor.dao.baseinfo.sysvid.SysvidExample" resultType="java.lang.Long">
+    select count(*) from sysvid
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sysvid
+    <set>
+      <if test="record.sysvid != null">
+        SYSVID = #{record.sysvid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sysvidactivationdate != null">
+        SYSVIDACTIVATIONDATE = #{record.sysvidactivationdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.expiredate != null">
+        EXPIREDATE = #{record.expiredate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.expirenotifydate != null">
+        EXPIRENOTIFYDATE = #{record.expirenotifydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.bussinessagent != null">
+        BUSSINESSAGENT = #{record.bussinessagent,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sysvid
+    set SYSVID = #{record.sysvid,jdbcType=VARCHAR},
+      SYSVIDACTIVATIONDATE = #{record.sysvidactivationdate,jdbcType=TIMESTAMP},
+      EXPIREDATE = #{record.expiredate,jdbcType=TIMESTAMP},
+      EXPIRENOTIFYDATE = #{record.expirenotifydate,jdbcType=TIMESTAMP},
+      BUSSINESSAGENT = #{record.bussinessagent,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.edata.monitor.dao.baseinfo.sysvid.Sysvid">
+    update sysvid
+    <set>
+      <if test="sysvidactivationdate != null">
+        SYSVIDACTIVATIONDATE = #{sysvidactivationdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expiredate != null">
+        EXPIREDATE = #{expiredate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expirenotifydate != null">
+        EXPIRENOTIFYDATE = #{expirenotifydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bussinessagent != null">
+        BUSSINESSAGENT = #{bussinessagent,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SYSVID = #{sysvid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.edata.monitor.dao.baseinfo.sysvid.Sysvid">
+    update sysvid
+    set SYSVIDACTIVATIONDATE = #{sysvidactivationdate,jdbcType=TIMESTAMP},
+      EXPIREDATE = #{expiredate,jdbcType=TIMESTAMP},
+      EXPIRENOTIFYDATE = #{expirenotifydate,jdbcType=TIMESTAMP},
+      BUSSINESSAGENT = #{bussinessagent,jdbcType=VARCHAR}
+    where SYSVID = #{sysvid,jdbcType=VARCHAR}
+  </update>
+</mapper>

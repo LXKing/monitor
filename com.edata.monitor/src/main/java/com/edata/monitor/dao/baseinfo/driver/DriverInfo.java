@@ -1,5 +1,7 @@
 package com.edata.monitor.dao.baseinfo.driver;
 
+import java.sql.Date;
+
 /**
  * 驾驶员信息
  *
@@ -14,11 +16,54 @@ public class DriverInfo {
     private String drivingLicenseNumber;
     private String remark;
 
+
+    // FFFFFFUUUUUUCCCCKKKKKKK
+    private Date REGISTRATIONDATE;
+    private String PERMITCODE;
+    private String EMERGENCYCONTACTA;
+    private String EMERGENCYCONTACTB;
+
+    //
+
+
+    public Date getREGISTRATIONDATE() {
+        return REGISTRATIONDATE;
+    }
+
+    public void setREGISTRATIONDATE(Date REGISTRATIONDATE) {
+        this.REGISTRATIONDATE = REGISTRATIONDATE;
+    }
+
+    public String getPERMITCODE() {
+        return PERMITCODE;
+    }
+
+    public void setPERMITCODE(String PERMITCODE) {
+        this.PERMITCODE = PERMITCODE;
+    }
+
+    public String getEMERGENCYCONTACTA() {
+        return EMERGENCYCONTACTA;
+    }
+
+    public void setEMERGENCYCONTACTA(String EMERGENCYCONTACTA) {
+        this.EMERGENCYCONTACTA = EMERGENCYCONTACTA;
+    }
+
+    public String getEMERGENCYCONTACTB() {
+        return EMERGENCYCONTACTB;
+    }
+
+    public void setEMERGENCYCONTACTB(String EMERGENCYCONTACTB) {
+        this.EMERGENCYCONTACTB = EMERGENCYCONTACTB;
+    }
+
     @Override
     public String toString() {
         return "DriverInfo{" + "id='" + id + '\'' + ", name='" + name + '\'' + ", sex='" + sex + '\'' + ", phone='" +
                 phone + '\'' + ", drivingLicenseNumber='" + drivingLicenseNumber + '\'' + ", remark='" + remark +
-                '\'' + '}';
+                '\'' + ", REGISTRATIONDATE=" + REGISTRATIONDATE + ", PERMITCODE='" + PERMITCODE + '\'' + ", " +
+                "EMERGENCYCONTACTA='" + EMERGENCYCONTACTA + '\'' + ", EMERGENCYCONTACTB='" + EMERGENCYCONTACTB + '\'' + '}';
     }
 
     /**

@@ -4,68 +4,104 @@
     <select id="queryPageCount" resultType="java.lang.Integer">
         SELECT COUNT(1)
         FROM
-        simcard
+            simcard
         WHERE COMPANYID = #{0} AND (SIMCARDNUMBER LIKE
-        CONCAT('%', #{1}, '%') OR
-        CARRIEROPERATOR LIKE CONCAT('%', #{1}, '%') OR
-        PHONENUMBER LIKE CONCAT('%', #{1}, '%'))
+                                    CONCAT('%', #{1}, '%') OR
+                                    CARRIEROPERATOR LIKE CONCAT('%', #{1}, '%') OR
+                                    PHONENUMBER LIKE CONCAT('%', #{1}, '%'))
     </select>
     <select id="queryPageDetail" resultType="com.edata.monitor.dao.baseinfo.sim.Simcard">
         SELECT
-        ID,
-        PHONENUMBER,
-        SIMCARDNUMBER,
-        SPEECHTYPE,
-        OPENSMS,
-        PURCHASEDATE,
-        CARRIEROPERATOR,
-        PREPAYMENT,
-        EXPIREDATE,
-        CREATETIME,
-        REMARK
+            ID,
+            PHONENUMBER,
+            SIMCARDNUMBER,
+            SPEECHTYPE,
+            OPENSMS,
+            PURCHASEDATE,
+            CARRIEROPERATOR,
+            PREPAYMENT,
+            EXPIREDATE,
+            CREATETIME,
+            REMARK,
+
+
+            ACCOUNTNAME,
+            MONTHLYRENT,
+            INSTOCKDATE,
+            OUTSTOCKDATE,
+            EXPIRENOTIFYDATE
+
+
         FROM
-        simcard
+            simcard
         WHERE
-        COMPANYID = #{0} AND (SIMCARDNUMBER
-        LIKE CONCAT('%', #{1}, '%') OR
-        CARRIEROPERATOR LIKE CONCAT('%', #{1}, '%')
-        OR PHONENUMBER LIKE
-        CONCAT('%', #{1}, '%'))
+            COMPANYID = #{0} AND (SIMCARDNUMBER
+                                  LIKE CONCAT('%', #{1}, '%') OR
+                                  CARRIEROPERATOR LIKE CONCAT('%', #{1}, '%')
+                                  OR PHONENUMBER LIKE
+                                     CONCAT('%', #{1}, '%'))
         ORDER BY PHONENUMBER
         LIMIT
-        #{2}, #{3}
+            #{2}, #{3}
     </select>
     <insert id="create" parameterType="com.edata.monitor.dao.baseinfo.sim.Simcard">
         INSERT INTO simcard (ID,
-        COMPANYID, PHONENUMBER, SIMCARDNUMBER, SPEECHTYPE,
-        OPENSMS, OPENDATE,
-        PURCHASEDATE, CARRIEROPERATOR, PREPAYMENT,
-        EXPIREDATE, FLOWSET,
-        CREATETIME, REMARK) VALUES (#{id}, #{companyId}, #{phoneNumber},
-        #{simcardNumber}, #{speechType}, #{openSMS},
-        #{openDate},
-        #{purchaseDate}, #{carrierOperator}, #{prepayment},
-        #{expireDate},
-        #{flowset}, SYSDATE(), #{remark})
+                             COMPANYID, PHONENUMBER, SIMCARDNUMBER, SPEECHTYPE,
+                             OPENSMS, OPENDATE,
+                             PURCHASEDATE, CARRIEROPERATOR, PREPAYMENT,
+                             EXPIREDATE, FLOWSET,
+                             CREATETIME, REMARK,
+
+                             ACCOUNTNAME,
+                             MONTHLYRENT,
+                             INSTOCKDATE,
+                             OUTSTOCKDATE,
+                             EXPIRENOTIFYDATE
+
+
+        ) VALUES (#{id}, #{companyId}, #{phoneNumber},
+                         #{simcardNumber}, #{speechType}, #{openSMS},
+                         #{openDate},
+                         #{purchaseDate}, #{carrierOperator}, #{prepayment},
+                         #{expireDate},
+                  #{flowset}, SYSDATE(), #{remark},
+
+                  #{ACCOUNTNAME},
+                  #{MONTHLYRENT},
+                  #{INSTOCKDATE},
+                  #{OUTSTOCKDATE},
+                  #{EXPIRENOTIFYDATE}
+
+
+        )
     </insert>
     <update id="update" parameterType="com.edata.monitor.dao.baseinfo.sim.Simcard">
         UPDATE simcard
         SET
-        COMPANYID = #{companyId}, PHONENUMBER = #{phoneNumber},
-        SIMCARDNUMBER = #{simcardNumber},
-        SPEECHTYPE = #{speechType}, OPENSMS = #{openSMS}, OPENDATE = #{openDate},
-        PURCHASEDATE = #{purchaseDate},
-        CARRIEROPERATOR = #{carrierOperator},
-        PREPAYMENT = #{prepayment}, EXPIREDATE = #{expireDate},
-        FLOWSET = #{flowset}, REMARK = #{remark}
+            COMPANYID        = #{companyId}, PHONENUMBER = #{phoneNumber},
+            SIMCARDNUMBER    = #{simcardNumber},
+            SPEECHTYPE       = #{speechType}, OPENSMS = #{openSMS}, OPENDATE = #{openDate},
+            PURCHASEDATE     = #{purchaseDate},
+            CARRIEROPERATOR  = #{carrierOperator},
+            PREPAYMENT       = #{prepayment}, EXPIREDATE = #{expireDate},
+            FLOWSET          = #{flowset}, REMARK = #{remark},
+
+
+            ACCOUNTNAME      = #{ACCOUNTNAME},
+            MONTHLYRENT      = #{MONTHLYRENT},
+            INSTOCKDATE      = #{INSTOCKDATE},
+            OUTSTOCKDATE     = #{OUTSTOCKDATE},
+            EXPIRENOTIFYDATE = #{EXPIRENOTIFYDATE}
+
+
         WHERE ID = #{id} AND
-        EDITTIME = #{editTime}
+              EDITTIME = #{editTime}
         LIMIT 1
     </update>
     <select id="assignedDevice" resultType="java.lang.String">
         SELECT DEVICENUMBER
         FROM
-        device
+            device
         WHERE SIMCARDID = #{0}
         LIMIT 1
     </select>
@@ -75,21 +111,26 @@
     </delete>
     <select id="fetch" resultType="com.edata.monitor.dao.baseinfo.sim.Simcard">
         SELECT
-        ID,
-        COMPANYID,
-        PHONENUMBER,
-        SIMCARDNUMBER,
-        SPEECHTYPE,
-        OPENSMS,
-        OPENDATE,
-        PURCHASEDATE,
-        CARRIEROPERATOR,
-        PREPAYMENT,
-        EXPIREDATE,
-        FLOWSET,
-        CREATETIME,
-        REMARK,
-        EDITTIME
+            ID,
+            COMPANYID,
+            PHONENUMBER,
+            SIMCARDNUMBER,
+            SPEECHTYPE,
+            OPENSMS,
+            OPENDATE,
+            PURCHASEDATE,
+            CARRIEROPERATOR,
+            PREPAYMENT,
+            EXPIREDATE,
+            FLOWSET,
+            CREATETIME,
+            REMARK,
+            EDITTIME,
+            ACCOUNTNAME,
+            MONTHLYRENT,
+            INSTOCKDATE,
+            OUTSTOCKDATE,
+            EXPIRENOTIFYDATE
         FROM simcard
         WHERE ID = #{0}
         LIMIT 1
@@ -98,7 +139,7 @@
         SELECT COUNT(1)
         FROM simcard
         WHERE
-        PHONENUMBER = #{0}
+            PHONENUMBER = #{0}
         LIMIT 1
     </select>
     <select id="existOutId" resultType="java.lang.Boolean">
@@ -110,55 +151,65 @@
     <select id="searchPageCount" resultType="java.lang.Integer">
         SELECT COUNT(1)
         FROM
-        simcard
+            simcard
         WHERE COMPANYID = #{0} AND
-        PHONENUMBER LIKE
-        CONCAT('%', #{1}, '%')
+              PHONENUMBER LIKE
+              CONCAT('%', #{1}, '%')
     </select>
     <select id="searchPageDetail" resultType="com.edata.monitor.dao.baseinfo.sim.SimcardSearchInfo">
         SELECT
-        ID,
-        PHONENUMBER,
-        SPEECHTYPE,
-        OPENSMS,
-        CARRIEROPERATOR,
-        REMARK
+            ID,
+            PHONENUMBER,
+            SPEECHTYPE,
+            OPENSMS,
+            CARRIEROPERATOR,
+            REMARK,
+            ACCOUNTNAME,
+            MONTHLYRENT,
+            INSTOCKDATE,
+            OUTSTOCKDATE,
+            EXPIRENOTIFYDATE
         FROM
-        simcard
+            simcard
         WHERE
-        COMPANYID = #{0} AND PHONENUMBER LIKE CONCAT('%', #{1}, '%')
+            COMPANYID = #{0} AND PHONENUMBER LIKE CONCAT('%', #{1}, '%')
         ORDER BY
-        SIMCARDNUMBER
+            SIMCARDNUMBER
         LIMIT #{2}, #{3}
     </select>
     <select id="freePageCount" resultType="java.lang.Integer">
         SELECT COUNT(1)
         FROM
-        simcard
+            simcard
         WHERE ID NOT IN (SELECT SIMCARDID
-        FROM device
-        WHERE
-        COMPANYID = #{0}) AND COMPANYID = #{0} AND PHONENUMBER LIKE
-        CONCAT('%', #{1}, '%')
+                         FROM device
+                         WHERE
+                             COMPANYID = #{0}) AND COMPANYID = #{0} AND PHONENUMBER LIKE
+                                                                        CONCAT('%', #{1}, '%')
     </select>
     <select id="freePageDetail" resultType="com.edata.monitor.dao.baseinfo.sim.SimcardSearchInfo">
         SELECT
-        ID,
-        PHONENUMBER,
-        SPEECHTYPE,
-        OPENSMS,
-        CARRIEROPERATOR,
-        REMARK
+            ID,
+            PHONENUMBER,
+            SPEECHTYPE,
+            OPENSMS,
+            CARRIEROPERATOR,
+            REMARK,
+            ACCOUNTNAME,
+            MONTHLYRENT,
+            INSTOCKDATE,
+            OUTSTOCKDATE,
+            EXPIRENOTIFYDATE
         FROM
-        simcard
+            simcard
         WHERE ID NOT
         IN (SELECT SIMCARDID
-        FROM device
-        WHERE
-        COMPANYID = #{0}) AND
-        COMPANYID = #{0} AND PHONENUMBER LIKE CONCAT('%', #{1}, '%')
+            FROM device
+            WHERE
+                COMPANYID = #{0}) AND
+              COMPANYID = #{0} AND PHONENUMBER LIKE CONCAT('%', #{1}, '%')
         ORDER BY
-        SIMCARDNUMBER
+            SIMCARDNUMBER
         LIMIT #{2}, #{3}
     </select>
 </mapper>

@@ -2,6 +2,7 @@ package com.edata.monitor.dao.baseinfo.owner;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 public class Owner {
@@ -14,10 +15,60 @@ public class Owner {
     private String idNumber;
     private Timestamp editTime;
 
+    //
+    private String CONTACT;
+    private Date REGISTRATIONDATE;
+    private String PHONE;
+    private String FAX;
+    private String BUSSINESSAGENT;
+    //
+
     @Override
     public String toString() {
         return "Owner{" + "id='" + id + '\'' + ", companyId='" + companyId + '\'' + ", ownerName='" + ownerName +
-                '\'' + ", idType='" + idType + '\'' + ", idNumber='" + idNumber + '\'' + ", editTime=" + editTime + '}';
+                '\'' + ", idType='" + idType + '\'' + ", idNumber='" + idNumber + '\'' + ", editTime=" + editTime +
+                ", CONTACT='" + CONTACT + '\'' + ", REGISTRATIONDATE=" + REGISTRATIONDATE + ", PHONE='" + PHONE +
+                '\'' + ", FAX='" + FAX + '\'' + ", BUSSINESSAGENT='" + BUSSINESSAGENT + '\'' + '}';
+    }
+
+    public String getCONTACT() {
+        return CONTACT;
+    }
+
+    public void setCONTACT(String CONTACT) {
+        this.CONTACT = CONTACT;
+    }
+
+    public Date getREGISTRATIONDATE() {
+        return REGISTRATIONDATE;
+    }
+
+    public void setREGISTRATIONDATE(Date REGISTRATIONDATE) {
+        this.REGISTRATIONDATE = REGISTRATIONDATE;
+    }
+
+    public String getPHONE() {
+        return PHONE;
+    }
+
+    public void setPHONE(String PHONE) {
+        this.PHONE = PHONE;
+    }
+
+    public String getFAX() {
+        return FAX;
+    }
+
+    public void setFAX(String FAX) {
+        this.FAX = FAX;
+    }
+
+    public String getBUSSINESSAGENT() {
+        return BUSSINESSAGENT;
+    }
+
+    public void setBUSSINESSAGENT(String BUSSINESSAGENT) {
+        this.BUSSINESSAGENT = BUSSINESSAGENT;
     }
 
     public String getId() {
