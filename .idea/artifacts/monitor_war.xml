@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="war" name="monitor:war">
-    <output-path>$PROJECT_DIR$/com.edata.monitor/target/m2e-jee/web-resources/META-INF/maven/com.edata/monitor/target</output-path>
+    <output-path>$PROJECT_DIR$/com.edata.monitor/target</output-path>
     <root id="archive" name="monitor-1.0.0.war">
       <element id="artifact" artifact-name="monitor:war exploded" />
     </root>

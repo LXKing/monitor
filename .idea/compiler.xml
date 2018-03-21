@@ -11,17 +11,13 @@
         <module name="com.edata.godp.dao" />
         <module name="com.edata.godp.domain" />
         <module name="monitor" />
-        <module name="monitor (1)" />
-        <module name="monitor (2)" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="com.edata.common" target="1.8" />
       <module name="com.edata.godp.dao" target="1.8" />
       <module name="com.edata.godp.domain" target="1.8" />
-      <module name="monitor" target="1.6" />
-      <module name="monitor (1)" target="1.8" />
-      <module name="monitor (2)" target="1.6" />
+      <module name="monitor" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

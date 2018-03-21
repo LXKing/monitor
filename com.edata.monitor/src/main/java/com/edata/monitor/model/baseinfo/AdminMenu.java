@@ -2,53 +2,56 @@ package com.edata.monitor.model.baseinfo;
 
 
 public class AdminMenu {
-	private String id;
 
-	public String getId() {
-		return id;
-	}
+    private String id;
+    private String pid;
+    private String text;
+    private String url;
+    private boolean leaf;
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    @Override
+    public String toString() {
+        return "AdminMenu{" + "id='" + id + '\'' + ", pid='" + pid + '\'' + ", text='" + text + '\'' + ", url='" +
+                url + '\'' + ", leaf=" + leaf + '}';
+    }
 
-	private String pid;
+    public String getId() {
+        return id;
+    }
 
-	public String getPid() {
-		return pid;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public void setPid(String pid) {
-		this.pid = pid;
-	}
+    public String getPid() {
+        return pid;
+    }
 
-	private String text;
+    public void setPid(String pid) {
+        this.pid = pid;
+    }
 
-	public String getText() {
-		return text;
-	}
+    public String getText() {
+        return text;
+    }
 
-	public void setText(String text) {
-		this.text = text;
-	}
+    public void setText(String text) {
+        this.text = text;
+    }
 
-	private String url;
+    public String getUrl() {
+        return url;
+    }
 
-	public String getUrl() {
-		return url;
-	}
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
-	public void setUrl(String url) {
-		this.url = url;
-	}
+    public boolean isLeaf() {
+        return leaf;
+    }
 
-	private boolean leaf;
-
-	public boolean isLeaf() {
-		return leaf;
-	}
-
-	public void setLeaf(boolean leaf) {
-		this.leaf = leaf;
-	}
+    public void setLeaf(boolean leaf) {
+        this.leaf = leaf;
+    }
 }

@@ -1,0 +1,59 @@
+package com.edata.monitor.controller;
+
+import com.edata.monitor.aop.ServiceMethod;
+import com.edata.monitor.dao.security.Identity;
+import com.edata.monitor.service.UserService;
+import com.edata.monitor.util.WebUtil;
+import com.edata.monitor.util.enums.UserOptions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Hashtable;
+import java.util.Map;
+
+@Controller
+public class MapOptionController {
+    @Autowired
+    private UserService userService;
+
+    @ServiceMethod(id = "baseinfo.mapOption", pid = "baseinfo", prefix = "打开", name = "地图设置", suffix = "页面")
+    @RequestMapping("/mapOption/mapOption.iframe")
+    public String index() {
+        return "/baseinfo/mapOption/mapOption.iframe";
+    }
+
+    @RequestMapping("/mapOption/query")
+    @ResponseBody
+    public Object query(HttpServletRequest request) throws Exception {
+        Identity identity = (Identity) request.getAttribute("user");
+        return userService.getUserOptions(identity.getId(), UserOptions.MapOption);
+    }
+
+    @RequestMapping(value = "/mapOption/save", method = RequestMethod.POST)
+    public String save(@RequestParam double lat, @RequestParam double lng, @RequestParam int zoom, HttpServletRequest
+            request, RedirectAttributes r) {
+
+        try {
+            Identity identity = (Identity) request.getAttribute("user");
+
+            Map<Object, Object> values = new Hashtable<Object, Object>();
+            values.put("lat", lat);
+            values.put("lng", lng);
+            values.put("zoom", zoom);
+
+            userService.saveUserOptions(identity.getId(), UserOptions.MapOption, values);
+            WebUtil.success(r);
+        } catch (Exception ex) {
+            WebUtil.error(r, ex.getMessage());
+        }
+
+        return "redirect:/result";
+    }
+
+}

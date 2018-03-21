@@ -1,126 +1,126 @@
 package com.edata.monitor.godp;
 
-import org.codehaus.jackson.map.ObjectMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-
 import com.edata.common.DateFormats;
 import com.edata.godp.domain.AppRequest;
 import com.edata.godp.domain.AppResponse;
 import com.edata.godp.domain.security.LoginRequest;
 import com.edata.godp.domain.security.LoginResponse;
-import com.edata.monitor.domain.AppConfig;
+import com.edata.monitor.AppConfig;
 import com.ning.http.client.AsyncHttpClient;
 import com.ning.http.client.AsyncHttpClient.BoundRequestBuilder;
 import com.ning.http.client.Response;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 @Repository
 public class GodpPortal {
-	private static ObjectMapper objectMapper = new ObjectMapper();
-	private static GodpPortal godp;
-	static {
-		// objectMapper.configure(Feature.WRITE_DATES_AS_TIMESTAMPS, false);
-		objectMapper.setDateFormat(DateFormats.DateTimeFormat);// 设置自己的格式
-	}
-	@Autowired
-	private AppConfig appConfig;
+    private static ObjectMapper objectMapper = new ObjectMapper();
+    private static GodpPortal godp;
+    private static String token;
 
-	public String getGodpPortal() {
-		return appConfig.getGodpPortal();
-	}
+    static {
+        // objectMapper.configure(Feature.WRITE_DATES_AS_TIMESTAMPS, false);
+        objectMapper.setDateFormat(DateFormats.DateTimeFormat);// 设置自己的格式
+    }
 
-	public String getGodpUser() {
-		return appConfig.getGodpUser();
-	}
+    @Autowired
+    private AppConfig appConfig;
 
-	public String getGodpPassword() {
-		return appConfig.getGodpPassword();
-	}
+    public GodpPortal() {
+        godp = this;
+    }
 
-	public GodpPortal() {
-		godp = this;
-	}
+    public static String getToken() {
+        return token;
+    }
 
-	private static String token;
+    private synchronized static void login() {
+        if (token != null)
+            return;
+        LoginRequest request = new LoginRequest();
+        request.setAccount(godp.getGodpUser());
+        request.setPwd(godp.getGodpPassword());
 
-	public static String getToken() {
-		return token;
-	}
+        try {
+            AppResponse response = GodpPortal.go(request, "security.login");
+            if (response.getCode() == 0) {
+                String json = objectMapper.writeValueAsString(response.getResult());
+                LoginResponse login = objectMapper.readValue(json, LoginResponse.class);
+                token = login.getToken();
+            }
 
-	private synchronized static void login() {
-		if (token != null)
-			return;
-		LoginRequest request = new LoginRequest();
-		request.setAccount(godp.getGodpUser());
-		request.setPwd(godp.getGodpPassword());
+        } catch (Exception e) {
+            e.printStackTrace();
+            token = null;
+        }
 
-		try {
-			AppResponse response = GodpPortal.go(request, "security.login");
-			if (response.getCode() == 0) {
-				String json = objectMapper.writeValueAsString(response.getResult());
-				LoginResponse login = objectMapper.readValue(json, LoginResponse.class);
-				token = login.getToken();
-			}
+    }
 
-		} catch (Exception e) {
-			e.printStackTrace();
-			token = null;
-		}
+    @SuppressWarnings("unchecked")
+    public static <T> T execute(Class<T> c, Object request, String serviceMethod) throws RuntimeException {
+        if (token == null)
+            login();
+        AppResponse response = go(request, serviceMethod);
+        if (response.getCode() != 0)
+            throw new RuntimeException(response.getError());
 
-	}
+        if (c == AppResponse.class)
+            return (T) response;
 
-	@SuppressWarnings("unchecked")
-	public static <T> T execute(Class<T> c, Object request, String serviceMethod) throws RuntimeException {
-		if (token == null)
-			login();
-		AppResponse response = go(request, serviceMethod);
-		if (response.getCode() != 0)
-			throw new RuntimeException(response.getError());
+        try {
+            String json = objectMapper.writeValueAsString(response.getResult());
+            return objectMapper.readValue(json, c);
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+    }
 
-		if (c == AppResponse.class)
-			return (T) response;
+    private static <T> AppResponse go(T parameter, String serviceMethod) throws RuntimeException {
+        AsyncHttpClient asyncHttpClient = new AsyncHttpClient();
+        try {
 
-		try {
-			String json = objectMapper.writeValueAsString(response.getResult());
-			return objectMapper.readValue(json, c);
-		} catch (Exception ex) {
-			throw new RuntimeException(ex);
-		}
-	}
+            // String requestJson = "";
+            // if (request != null)
+            // requestJson = objectMapper.writeValueAsString(request);
 
-	private static <T> AppResponse go(T parameter, String serviceMethod) throws RuntimeException {
-		AsyncHttpClient asyncHttpClient = new AsyncHttpClient();
-		try {
+            AppRequest request = new AppRequest();
+            request.setMethod(serviceMethod);
+            request.setParameter(parameter);
+            request.setToken(token);
 
-			// String requestJson = "";
-			// if (request != null)
-			// requestJson = objectMapper.writeValueAsString(request);
+            String paraJson = objectMapper.writeValueAsString(request);
 
-			AppRequest request = new AppRequest();
-			request.setMethod(serviceMethod);
-			request.setParameter(parameter);
-			request.setToken(token);
+            BoundRequestBuilder builder = asyncHttpClient.preparePost(godp.getGodpPortal());
+            builder.addHeader("accept", "*/*").addHeader("connection", "Keep-Alive").addHeader("user-agent",
+                    "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)").addHeader("Content-Type",
+                    "application/json").setBodyEncoding("utf-8");
 
-			String paraJson = objectMapper.writeValueAsString(request);
+            builder.setBody(paraJson);
 
-			BoundRequestBuilder builder = asyncHttpClient.preparePost(godp.getGodpPortal());
-			builder.addHeader("accept", "*/*").addHeader("connection", "Keep-Alive")
-					.addHeader("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)").addHeader("Content-Type", "application/json")
-					.setBodyEncoding("utf-8");
+            Response response = asyncHttpClient.executeRequest(builder.build()).get();
 
-			builder.setBody(paraJson);
+            if (response.getStatusCode() == 200) {
+                String result = response.getResponseBody("utf-8");
+                return objectMapper.readValue(result, AppResponse.class);
+            }
+            throw new Exception("GOP请求失败！");
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        } finally {
+            asyncHttpClient.close();
+        }
+    }
 
-			Response response = asyncHttpClient.executeRequest(builder.build()).get();
+    public String getGodpPortal() {
+        return appConfig.getGodpPortal();
+    }
 
-			if (response.getStatusCode() == 200) {
-				String result = response.getResponseBody("utf-8");
-				return objectMapper.readValue(result, AppResponse.class);
-			}
-			throw new Exception("GOP请求失败！");
-		} catch (Exception ex) {
-			throw new RuntimeException(ex);
-		} finally {
-			asyncHttpClient.close();
-		}
-	}
+    public String getGodpUser() {
+        return appConfig.getGodpUser();
+    }
+
+    public String getGodpPassword() {
+        return appConfig.getGodpPassword();
+    }
 }

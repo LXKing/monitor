@@ -5,9 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/com.edata.common/com.edata.common.iml" filepath="$PROJECT_DIR$/com.edata.common/com.edata.common.iml" />
       <module fileurl="file://$PROJECT_DIR$/com.edata.godp.dao/com.edata.godp.dao.iml" filepath="$PROJECT_DIR$/com.edata.godp.dao/com.edata.godp.dao.iml" />
       <module fileurl="file://$PROJECT_DIR$/com.edata.godp.domain/com.edata.godp.domain.iml" filepath="$PROJECT_DIR$/com.edata.godp.domain/com.edata.godp.domain.iml" />
-      <module fileurl="file://$PROJECT_DIR$/com.edata.monitor/target/m2e-jee/web-resources/META-INF/maven/com.edata/monitor/monitor.iml" filepath="$PROJECT_DIR$/com.edata.monitor/target/m2e-jee/web-resources/META-INF/maven/com.edata/monitor/monitor.iml" />
-      <module fileurl="file://$PROJECT_DIR$/com.edata.monitor/monitor (1).iml" filepath="$PROJECT_DIR$/com.edata.monitor/monitor (1).iml" />
-      <module fileurl="file://$PROJECT_DIR$/com.edata.monitor/target/m2e-jee/web-resources/META-INF/maven/com.edata/monitor/monitor (2).iml" filepath="$PROJECT_DIR$/com.edata.monitor/target/m2e-jee/web-resources/META-INF/maven/com.edata/monitor/monitor (2).iml" />
+      <module fileurl="file://$PROJECT_DIR$/com.edata.monitor/monitor.iml" filepath="$PROJECT_DIR$/com.edata.monitor/monitor.iml" />
     </modules>
   </component>
 </project>

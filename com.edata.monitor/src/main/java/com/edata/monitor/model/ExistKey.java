@@ -1,34 +1,38 @@
 package com.edata.monitor.model;
 
 public class ExistKey {
-	private String key;
 
-	public String getKey() {
-		return key;
-	}
+    private String key;
+    private String id;
+    private boolean checkId;
 
-	public void setKey(String key) {
-		this.key = key;
-	}
+    @Override
+    public String toString() {
+        return "ExistKey{" + "key='" + key + '\'' + ", id='" + id + '\'' + ", checkId=" + checkId + '}';
+    }
 
-	private String id;
+    public String getKey() {
+        return key;
+    }
 
-	public String getId() {
-		return id;
-	}
+    public void setKey(String key) {
+        this.key = key;
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public String getId() {
+        return id;
+    }
 
-	private boolean checkId;
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public boolean isCheckId() {
-		return checkId;
-	}
+    public boolean isCheckId() {
+        return checkId;
+    }
 
-	public void setCheckId(boolean checkId) {
-		this.checkId = checkId;
-	}
+    public void setCheckId(boolean checkId) {
+        this.checkId = checkId;
+    }
 
 }

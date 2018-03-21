@@ -4,46 +4,50 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class Login {
-	@Size(min = 3, max = 50, message = "用户名错误！")
-	private String account;
 
-	public String getAccount() {
-		return account;
-	}
+    @Size(min = 3, max = 50, message = "用户名错误！")
+    private String account;
+    @Size(min = 6, max = 50, message = "密码错误！")
+    private String pwd;
+    @NotNull
+    private String verify;
+    private String error;
 
-	public void setAccount(String account) {
-		this.account = account;
-	}
+    @Override
+    public String toString() {
+        return "Login{" + "account='" + account + '\'' + ", pwd='" + pwd + '\'' + ", verify='" + verify + '\'' + ", "
+                + "error='" + error + '\'' + '}';
+    }
 
-	@Size(min = 6, max = 50, message = "密码错误！")
-	private String pwd;
+    public String getAccount() {
+        return account;
+    }
 
-	public String getPwd() {
-		return pwd;
-	}
+    public void setAccount(String account) {
+        this.account = account;
+    }
 
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
-	}
+    public String getPwd() {
+        return pwd;
+    }
 
-	@NotNull
-	private String verify;
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
+    }
 
-	public String getVerify() {
-		return verify;
-	}
+    public String getVerify() {
+        return verify;
+    }
 
-	public void setVerify(String verify) {
-		this.verify = verify;
-	}
+    public void setVerify(String verify) {
+        this.verify = verify;
+    }
 
-	private String error;
+    public String getError() {
+        return error;
+    }
 
-	public String getError() {
-		return error;
-	}
-
-	public void setError(String error) {
-		this.error = error;
-	}
+    public void setError(String error) {
+        this.error = error;
+    }
 }

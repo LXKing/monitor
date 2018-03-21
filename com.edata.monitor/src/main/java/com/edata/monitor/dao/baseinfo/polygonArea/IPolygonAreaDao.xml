@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.edata.monitor.dao.baseinfo.polygonArea.IPolygonAreaDao">
+    <select id="queryPageCount" resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM
+        polygon
+        WHERE COMPANYID = #{0} AND NAME LIKE CONCAT('%', #{1}, '%')
+    </select>
+    <select id="queryPageDetail" resultType="com.edata.monitor.dao.baseinfo.polygonArea.PolygonAreaInfo">
+        SELECT
+        ID,
+        NAME,
+        DEVICECATCH,
+        REMARK
+        FROM polygon
+        WHERE COMPANYID = #{0} AND NAME LIKE
+        CONCAT('%', #{1}, '%')
+        ORDER BY NAME
+        LIMIT #{2}, #{3}
+    </select>
+    <select id="searchPageCount" resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM
+        polygon
+        WHERE COMPANYID = #{0} AND NAME LIKE CONCAT('%', #{1}, '%')
+    </select>
+    <select id="searchPageDetail" resultType="com.edata.monitor.dao.baseinfo.polygonArea.PolygonAreaInfo">
+        SELECT
+        ID,
+        NAME,
+        DEVICECATCH,
+        REMARK
+        FROM polygon
+        WHERE COMPANYID = #{0} AND NAME LIKE
+        CONCAT('%', #{1}, '%')
+        ORDER BY NAME
+        LIMIT #{2}, #{3}
+    </select>
+    <insert id="create" useGeneratedKeys="true" keyProperty="id"
+            parameterType="com.edata.monitor.dao.baseinfo.polygonArea.PolygonArea">
+        INSERT INTO polygon (COMPANYID,
+        NAME, DEVICECATCH, FLAG, MAXSPEED,
+        OVERSPEEDSECONDS, STARTTIME,
+        ENDTIME, REMARK) VALUES (#{companyId}, #{name}, #{deviceCatch},
+        #{flag}, #{maxSpeed}, #{overspeedSeconds},
+        #{startTime}, #{endTime},
+        #{remark})
+    </insert>
+    <select id="fetch" resultType="com.edata.monitor.dao.baseinfo.polygonArea.PolygonArea">
+        SELECT
+        ID,
+        COMPANYID,
+        NAME,
+        DEVICECATCH,
+        FLAG,
+        MAXSPEED,
+        OVERSPEEDSECONDS,
+        STARTTIME,
+        ENDTIME,
+        REMARK,
+        EDITTIME
+        FROM polygon
+        WHERE ID = #{)0}
+        LIMIT 1
+    </select>
+    <update id="update" parameterType="com.edata.monitor.dao.baseinfo.polygonArea.PolygonArea">
+        UPDATE polygon
+        SET
+        COMPANYID = #{companyId}, NAME = #{name}, DEVICECATCH = #{deviceCatch},
+        FLAG = #{flag}, MAXSPEED = #{maxSpeed},
+        OVERSPEEDSECONDS = #{overspeedSeconds}, STARTTIME = #{startTime},
+        ENDTIME = #{endTime}, REMARK = #{remark}
+        WHERE ID = #{id} AND
+        EDITTIME = #{editTime}
+        LIMIT 1
+    </update>
+    <delete id="delete">
+        DELETE FROM polygon
+        WHERE ID = #{0}
+        LIMIT 1
+    </delete>
+    <insert id="createPolygonPoint">
+        INSERT INTO polygonpoint(PID, LAT, LNG) VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.key},#{item.value.lat},#{item.value.lng})
+        </foreach>
+    </insert>
+    <select id="fetchPolygonPoint" resultType="com.edata.common.LatLng">
+        SELECT
+        LAT,
+        LNG
+        FROM
+        polygonpoint
+        WHERE PID = #{0}
+    </select>
+    <delete id="deletePolygonPoint">
+        DELETE FROM polygonpoint
+        WHERE PID = #{0}
+    </delete>
+    <select id="exist" resultType="java.lang.Boolean">
+        SELECT COUNT(1)
+        FROM polygon
+        WHERE
+        NAME = #{0} AND COMPANYID = #{1}
+        LIMIT 1
+    </select>
+    <select id="existOutId" resultType="java.lang.Boolean">
+        SELECT COUNT(1)
+        FROM polygon
+        WHERE NAME = #{0} AND COMPANYID = #{1} AND ID != #{2}
+        LIMIT 1
+    </select>
+</mapper>

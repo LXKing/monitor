@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="monitor:war exploded">
-    <output-path>$PROJECT_DIR$/com.edata.monitor/target/m2e-jee/web-resources/META-INF/maven/com.edata/monitor/target/monitor-1.0.0</output-path>
+    <output-path>$PROJECT_DIR$/com.edata.monitor/target/monitor-1.0.0</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
@@ -15,12 +15,13 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-expression:4.0.9.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:4.0.9.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-web:4.0.9.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-test:4.0.9.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-websocket:4.0.9.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-messaging:4.0.9.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:4.0.9.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-tx:4.0.9.RELEASE" />
-          <element id="library" level="project" name="Maven: org.aspectj:aspectjrt:1.6.10" />
-          <element id="library" level="project" name="Maven: org.aspectj:aspectjweaver:1.6.10" />
+          <element id="library" level="project" name="Maven: org.aspectj:aspectjrt:1.8.9" />
+          <element id="library" level="project" name="Maven: org.aspectj:aspectjweaver:1.8.9" />
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.5" />
           <element id="library" level="project" name="Maven: org.slf4j:jcl-over-slf4j:1.7.5" />
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-log4j12:1.7.5" />
@@ -60,10 +61,15 @@
           <element id="archive" name="com.edata.godp.domain-1.0.0.jar">
             <element id="module-output" name="com.edata.godp.domain" />
           </element>
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.39" />
+          <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.30" />
+          <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-stdlib:1.2.30" />
+          <element id="library" level="project" name="Maven: org.jetbrains:annotations:13.0" />
+          <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.30" />
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/com.edata.monitor/target/m2e-jee/web-resources/META-INF/maven/com.edata/monitor/target/monitor-1.0.0/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/com.edata.monitor/target/monitor-1.0.0/META-INF/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="monitor/web/Web" />
     </root>

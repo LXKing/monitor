@@ -5,18 +5,19 @@ import java.util.List;
 
 public interface IAlarmDao {
 
-	List<AlarmDto> untreatedByDeviceNumber(String deviceNumber);
 
-	List<AlarmDto> untreatedByDeviceNumbers(List<String> deviceNumbers);
+    List<Alarm> untreatedByDeviceNumber(String deviceNumber);
 
-	int processPageCount(String deviceNumber, Date start, Date end);
+    List<Alarm> untreatedByDeviceNumbers(List<String> deviceNumbers);
 
-	List<AlarmDto> processedPageDetail(String deviceNumber, Date start, Date end, int pageIndex, int pageSize);
+    int processPageCount(String deviceNumber, Date start, Date end);
 
-	Date getAlarmTimestamp(String alarmId);
+    List<Alarm> processedPageDetail(String deviceNumber, Date start, Date end, int pageIndex, int pageSize);
 
-	void processOnce(ProcessOnceDto dto);
+    Date getAlarmTimestamp(String alarmId);
 
-	void processAll(ProcessAllDto dto);
+    void processOnce(ProcessOnceDto dto);
+
+    void processAll(ProcessAllDto dto);
 
 }

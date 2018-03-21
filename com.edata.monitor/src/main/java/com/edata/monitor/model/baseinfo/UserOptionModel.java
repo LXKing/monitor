@@ -3,24 +3,29 @@ package com.edata.monitor.model.baseinfo;
 import java.util.Map;
 
 public class UserOptionModel {
-	private int type;
 
-	public int getType() {
-		return type;
-	}
+    private int type;
+    private Map<String, Object> options;
 
-	public void setType(int type) {
-		this.type = type;
-	}
+    @Override
+    public String toString() {
+        return "UserOptionModel{" + "type=" + type + ", options=" + options + '}';
+    }
 
-	private Map<String, Object> options;
+    public int getType() {
+        return type;
+    }
 
-	public Map<String, Object> getOptions() {
-		return options;
-	}
+    public void setType(int type) {
+        this.type = type;
+    }
 
-	public void setOptions(Map<String, Object> options) {
-		this.options = options;
-	}
+    public Map<String, Object> getOptions() {
+        return options;
+    }
+
+    public void setOptions(Map<String, Object> options) {
+        this.options = options;
+    }
 
 }

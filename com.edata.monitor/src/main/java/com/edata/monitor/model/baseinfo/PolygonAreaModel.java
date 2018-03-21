@@ -1,21 +1,27 @@
 package com.edata.monitor.model.baseinfo;
 
-import com.edata.monitor.domain.baseinfo.PolygonArea;
+import com.edata.monitor.dao.baseinfo.polygonArea.PolygonArea;
 
 public class PolygonAreaModel extends PolygonArea {
-	private String path;
 
-	/**
-	 * 获取路径点json字符
-	 */
-	public String getPath() {
-		return path;
-	}
+    private String path;
 
-	/**
-	 * 设置路径点json字符
-	 */
-	public void setPath(String path) {
-		this.path = path;
-	}
+    @Override
+    public String toString() {
+        return "PolygonAreaModel{" + "path='" + path + '\'' + '}';
+    }
+
+    /**
+     * 获取路径点json字符
+     */
+    public String getPath() {
+        return path;
+    }
+
+    /**
+     * 设置路径点json字符
+     */
+    public void setPath(String path) {
+        this.path = path;
+    }
 }

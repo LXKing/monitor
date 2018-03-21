@@ -4,94 +4,93 @@ import java.sql.Date;
 
 /**
  * 车辆基本信息类
- * 
- * @author yangzs
  *
+ * @author yangzs
  */
 public class VehicleBaseInfoDto {
-	/**
-	 * 所属企业
-	 */
-	public String company;
+    /**
+     * 所属企业
+     */
+    public String company;
 
-	/**
-	 * 所属车队
-	 */
+    /**
+     * 所属车队
+     */
 
-	public String motorcade;
+    public String motorcade;
 
-	/**
-	 * 设备号
-	 */
+    /**
+     * 设备号
+     */
 
-	public String deviceNumber;
+    public String deviceNumber;
 
-	/**
-	 * 车牌号码
-	 */
-	public String plateNumber;
-	/**
-	 * 车牌颜色
-	 */
-	public String plateColor;
+    /**
+     * 车牌号码
+     */
+    public String plateNumber;
+    /**
+     * 车牌颜色
+     */
+    public String plateColor;
 
-	/**
-	 * 车辆颜色
-	 */
-	public String vehicleColor;
+    /**
+     * 车辆颜色
+     */
+    public String vehicleColor;
 
-	/**
-	 * 车辆类型
-	 */
-	public String vehicleType;
+    /**
+     * 车辆类型
+     */
+    public String vehicleType;
 
-	/**
-	 * 车辆电压
-	 */
+    /**
+     * 车辆电压
+     */
 
-	public String vehicleVoltage;
+    public String vehicleVoltage;
 
-	/**
-	 * 载运类型
-	 */
+    /**
+     * 载运类型
+     */
 
-	public String carryType;
+    public String carryType;
 
-	/**
-	 * 初始里程
-	 */
-	public int initialMileage;
+    /**
+     * 初始里程
+     */
+    public int initialMileage;
 
-	/**
-	 * 百公里油耗
-	 */
-	public double oilWear;
+    /**
+     * 百公里油耗
+     */
+    public double oilWear;
 
-	/**
-	 * 使用年限
-	 */
-	public int usefullLife;
+    /**
+     * 使用年限
+     */
+    public int usefullLife;
 
-	/**
-	 * 安装日期
-	 */
+    /**
+     * 安装日期
+     */
 
-	public Date installDate;
+    public Date installDate;
 
-	/**
-	 * 年检日期
-	 */
+    /**
+     * 年检日期
+     */
 
-	public Date annualSurveyDate;
+    public Date annualSurveyDate;
 
-	/**
-	 * 所属行政区域
-	 */
-	public String adminArea;
+    /**
+     * 所属行政区域
+     */
+    public String adminArea;
 
-	/**
-	 * 备注
-	 */
-	public String remark;
+    /**
+     * 备注
+     */
+    public String remark;
 
 }

@@ -1,329 +1,269 @@
 package com.edata.monitor.service;
 
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.edata.monitor.aop.ServiceMethod;
 import com.edata.monitor.cache.AreaCatcherCache;
 import com.edata.monitor.cache.SynchronizerCache;
 import com.edata.monitor.dao.Page;
-import com.edata.monitor.dao.baseinfo.AreaInDeviceInfoDto;
-import com.edata.monitor.dao.baseinfo.CircleAreaDto;
-import com.edata.monitor.dao.baseinfo.CircleAreaInfoDto;
-import com.edata.monitor.dao.baseinfo.IAreaInDeviceDao;
-import com.edata.monitor.dao.baseinfo.ICircleAreaDao;
-import com.edata.monitor.domain.baseinfo.AreaInDeviceInfo;
-import com.edata.monitor.domain.baseinfo.CircleArea;
-import com.edata.monitor.domain.baseinfo.CircleAreaInfo;
-import com.edata.monitor.domain.instruct.DeviceInAreaInfo;
-import com.edata.monitor.util.kind.AreaActions;
-import com.edata.monitor.util.kind.AreaKinds;
+import com.edata.monitor.dao.baseinfo.areaInDevice.AreaInDeviceInfo;
+import com.edata.monitor.dao.baseinfo.areaInDevice.IAreaInDeviceDao;
+import com.edata.monitor.dao.baseinfo.circleArea.CircleArea;
+import com.edata.monitor.dao.baseinfo.circleArea.CircleAreaInfo;
+import com.edata.monitor.dao.baseinfo.circleArea.ICircleAreaDao;
+import com.edata.monitor.dao.instruct.DeviceInAreaInfo;
+import com.edata.monitor.util.enums.AreaActions;
+import com.edata.monitor.util.enums.AreaKinds;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
 @Service
 public class CircleAreaService {
-	@Autowired
-	private ICircleAreaDao circleAreaDao;
-	@Autowired
-	private IAreaInDeviceDao areaInDeviceDao;
+    private final byte areaKind = (byte) AreaKinds.CircleArea.getIndex();
+    @Autowired
+    private ICircleAreaDao circleAreaDao;
+    @Autowired
+    private IAreaInDeviceDao areaInDeviceDao;
 
-	private final byte areaKind = (byte) AreaKinds.CircleArea.getIndex();
+    public Page<CircleAreaInfo> query(String companyId, String filter, int pageIndex, int pageSize) {
+        int total = circleAreaDao.queryPageCount(companyId, filter);
+        Page<CircleAreaInfo> query = new Page<CircleAreaInfo>();
+        query.total = total;
 
-	public Page<CircleAreaInfo> query(String companyId, String filter, int pageIndex, int pageSize) {
-		int total = circleAreaDao.queryPageCount(companyId, filter);
-		Page<CircleAreaInfo> query = new Page<CircleAreaInfo>();
-		query.total = total;
+        if (total > 0) {
+            List<CircleAreaInfo> rows = circleAreaDao.queryPageDetail(companyId, filter, (pageIndex - 1) * pageSize,
+                    pageSize);
+            query.rows.addAll(rows);
 
-		if (total > 0) {
-			List<CircleAreaInfoDto> rows = circleAreaDao.queryPageDetail(companyId, filter, (pageIndex - 1) * pageSize, pageSize);
 
-			for (CircleAreaInfoDto dto : rows) {
-				CircleAreaInfo info = new CircleAreaInfo();
-				info.setId(dto.id);
-				info.setName(dto.name);
-				info.setLat(dto.lat);
-				info.setLng(dto.lng);
-				info.setRadius(dto.radius);
-				info.setRemark(dto.remark);
+        }
 
-				query.rows.add(info);
-			}
-		}
+        return query;
+    }
 
-		return query;
-	}
+    public Page<CircleAreaInfo> search(String companyId, String filter, int pageIndex, int pageSize) {
+        int total = circleAreaDao.searchPageCount(companyId, filter);
+        Page<CircleAreaInfo> page = new Page<CircleAreaInfo>();
+        page.total = total;
 
-	public Page<CircleAreaInfo> search(String companyId, String filter, int pageIndex, int pageSize) {
-		int total = circleAreaDao.searchPageCount(companyId, filter);
-		Page<CircleAreaInfo> page = new Page<CircleAreaInfo>();
-		page.total = total;
+        if (total > 0) {
+            List<CircleAreaInfo> rows = circleAreaDao.searchPageDetail(companyId, filter, pageIndex, pageSize);
+            page.rows.addAll(rows);
 
-		if (total > 0) {
-			List<CircleAreaInfoDto> rows = circleAreaDao.searchPageDetail(companyId, filter, pageIndex, pageSize);
 
-			for (CircleAreaInfoDto dto : rows) {
-				CircleAreaInfo info = new CircleAreaInfo();
-				info.setId(dto.id);
-				info.setName(dto.name);
-				info.setLat(dto.lat);
-				info.setLng(dto.lng);
-				info.setRadius(dto.radius);
-				info.setRemark(dto.remark);
-				page.rows.add(info);
-			}
-		}
-		return page;
-	}
+        }
+        return page;
+    }
 
-	@ServiceMethod(id = "baseinfo.circleArea.create", pid = "baseinfo.circleArea", name = "创建圆形区域")
-	@Transactional
-	public void create(CircleArea circleArea) {
-		CircleAreaDto dto = new CircleAreaDto();
-		dto.id = circleArea.getId();
-		dto.companyId = circleArea.getCompanyId();
-		dto.name = circleArea.getName();
-		dto.deviceCatch = circleArea.isDeviceCatch();
-		dto.flag = circleArea.getFlag();
-		dto.lat = circleArea.getLat();
-		dto.lng = circleArea.getLng();
-		dto.radius = circleArea.getRadius();
-		dto.maxSpeed = circleArea.getMaxSpeed();
-		dto.overspeedSeconds = circleArea.getOverspeedSeconds();
-		dto.startTime = circleArea.getStartTime();
-		dto.endTime = circleArea.getEndTime();
-		dto.remark = circleArea.getRemark();
+    @ServiceMethod(id = "baseinfo.circleArea.create", pid = "baseinfo.circleArea", name = "创建圆形区域")
+    @Transactional
+    public void create(CircleArea circleArea) {
 
-		circleAreaDao.create(dto);
-	}
 
-	@ServiceMethod(id = "baseinfo.circleArea.update", pid = "baseinfo.circleArea", name = "修改圆形区域")
-	@Transactional
-	public void update(String unid, String user, CircleArea circleArea) {
-		CircleAreaDto old = circleAreaDao.fetch(circleArea.getId());
+        circleAreaDao.create(circleArea);
+    }
 
-		CircleAreaDto dto = new CircleAreaDto();
-		dto.id = circleArea.getId();
-		dto.companyId = circleArea.getCompanyId();
-		dto.name = circleArea.getName();
-		dto.deviceCatch = circleArea.isDeviceCatch();
-		dto.flag = circleArea.getFlag();
-		dto.lat = circleArea.getLat();
-		dto.lng = circleArea.getLng();
-		dto.radius = circleArea.getRadius();
-		dto.maxSpeed = circleArea.getMaxSpeed();
-		dto.overspeedSeconds = circleArea.getOverspeedSeconds();
-		dto.startTime = circleArea.getStartTime();
-		dto.endTime = circleArea.getEndTime();
-		dto.remark = circleArea.getRemark();
-		dto.editTime = circleArea.getEditTime();
+    @ServiceMethod(id = "baseinfo.circleArea.update", pid = "baseinfo.circleArea", name = "修改圆形区域")
+    @Transactional
+    public void update(String unid, String user, CircleArea circleArea) {
+        CircleArea old = circleAreaDao.fetch(circleArea.getId());
 
-		int rows = circleAreaDao.update(dto);
-		if (rows != 1)
-			throw new RuntimeException(Errors.anotherEdited);
+        CircleArea dto = new CircleArea();
+        BeanUtils.copyProperties(circleArea, dto);
 
-		List<String> numbers = areaInDeviceDao.findDevice(dto.id, areaKind);
-		for (String number : numbers) {
-			// 更新指令同步器
-			DeviceInAreaInfo info = new DeviceInAreaInfo();
 
-			info.setAreaId(dto.id);
-			info.setAreaType(areaKind);
-			info.setDeviceNumber(number);
-			info.setId(UUID.randomUUID().toString());
-			info.setSendTime(new Date());
-			info.setUnid(unid);
-			info.setUser(user);
+        int rows = circleAreaDao.update(dto);
+        if (rows != 1)
+            throw new RuntimeException(Errors.anotherEdited);
 
-			if (old.deviceCatch && !circleArea.isDeviceCatch()) {// 由终端计算变成平台计算
-				AreaCatcherCache.bind(number, dto.id, areaKind);
+        List<String> numbers = areaInDeviceDao.findDevice(dto.getId(), areaKind);
+        for (String number : numbers) {
+            // 更新指令同步器
+            DeviceInAreaInfo info = new DeviceInAreaInfo();
 
-				info.setAction((byte) AreaActions.Remove.getIndex());
-				areaInDeviceDao.log(info.getId(), number, dto.id, areaKind, (byte) AreaActions.Remove.getIndex(), unid, user);
+            info.setAreaId(dto.getId());
+            info.setAreaType(areaKind);
+            info.setDeviceNumber(number);
+            info.setId(UUID.randomUUID().toString());
+            info.setSendTime(new Date());
+            info.setUnid(unid);
+            info.setUser(user);
 
-				SynchronizerCache.put(info);
+            if (old.isDeviceCatch() && !circleArea.isDeviceCatch()) {// 由终端计算变成平台计算
+                AreaCatcherCache.bind(number, dto.getId(), areaKind);
 
-				info.setAction((byte) AreaActions.Edit.getIndex());
-				SynchronizerCache.put(info);
-			} else if (!old.deviceCatch && circleArea.isDeviceCatch()) {// 由平台计算变成终端计算
-				AreaCatcherCache.remove(dto.id, areaKind);
+                info.setAction((byte) AreaActions.Remove.getIndex());
+                areaInDeviceDao.log(info.getId(), number, dto.getId(), areaKind, (byte) AreaActions.Remove.getIndex()
+                        , unid, user);
 
-				info.setAction((byte) AreaActions.Append.getIndex());
-				areaInDeviceDao.addVehicle(number, dto.id, areaKind);
-				areaInDeviceDao.log(info.getId(), number, dto.id, areaKind, (byte) AreaActions.Append.getIndex(), unid, user);
+                SynchronizerCache.put(info);
 
-				SynchronizerCache.put(info);
+                info.setAction((byte) AreaActions.Edit.getIndex());
+                SynchronizerCache.put(info);
+            } else if (!old.isDeviceCatch() && circleArea.isDeviceCatch()) {// 由平台计算变成终端计算
+                AreaCatcherCache.remove(dto.getId(), areaKind);
 
-				info.setAction((byte) AreaActions.Edit.getIndex());
-				SynchronizerCache.put(info);
-			} else {
-				if (!circleArea.isDeviceCatch())
-					AreaCatcherCache.refresh(dto.id, areaKind);
+                info.setAction((byte) AreaActions.Append.getIndex());
+                areaInDeviceDao.addVehicle(number, dto.getId(), areaKind);
+                areaInDeviceDao.log(info.getId(), number, dto.getId(), areaKind, (byte) AreaActions.Append.getIndex()
+                        , unid, user);
 
-				info.setAction((byte) AreaActions.Edit.getIndex());
-				areaInDeviceDao.log(info.getId(), number, dto.id, areaKind, (byte) AreaActions.Update.getIndex(), unid, user);
-				SynchronizerCache.put(info);
-			}
-		}
-	}
+                SynchronizerCache.put(info);
 
-	public CircleArea fetch(long id) {
-		CircleAreaDto dto = circleAreaDao.fetch(id);
+                info.setAction((byte) AreaActions.Edit.getIndex());
+                SynchronizerCache.put(info);
+            } else {
+                if (!circleArea.isDeviceCatch())
+                    AreaCatcherCache.refresh(dto.getId(), areaKind);
 
-		CircleArea circleArea = new CircleArea();
-		circleArea.setId(dto.id);
-		circleArea.setCompanyId(dto.companyId);
-		circleArea.setName(dto.name);
-		circleArea.setDeviceCatch(dto.deviceCatch);
-		circleArea.setFlag(dto.flag);
-		circleArea.setLat(dto.lat);
-		circleArea.setLng(dto.lng);
-		circleArea.setRadius(dto.radius);
-		circleArea.setMaxSpeed(dto.maxSpeed);
-		circleArea.setOverspeedSeconds(dto.overspeedSeconds);
-		circleArea.setStartTime(dto.startTime);
-		circleArea.setEndTime(dto.endTime);
-		circleArea.setRemark(dto.remark);
-		circleArea.setEditTime(dto.editTime);
+                info.setAction((byte) AreaActions.Edit.getIndex());
+                areaInDeviceDao.log(info.getId(), number, dto.getId(), areaKind, (byte) AreaActions.Update.getIndex()
+                        , unid, user);
+                SynchronizerCache.put(info);
+            }
+        }
+    }
 
-		return circleArea;
-	}
+    public CircleArea fetch(long id) {
+        CircleArea circleArea = circleAreaDao.fetch(id);
 
-	@ServiceMethod(id = "baseinfo.circleArea.delete", pid = "baseinfo.circleArea", name = "删除圆形区域")
-	@Transactional
-	public void delete(String unid, String user, long id) {
-		CircleAreaDto circle = circleAreaDao.fetch(id);
-		List<String> numbers = areaInDeviceDao.findDevice(id, areaKind);
-		
-		circleAreaDao.delete(id);
-		areaInDeviceDao.deleteAreaInDevice(id, areaKind);
-		areaInDeviceDao.deleteAreaInMaplayer(id, areaKind);
-		
-		for (String number : numbers) {
-			// 更新指令同步器
-			DeviceInAreaInfo info = new DeviceInAreaInfo();
-			info.setAction((byte) AreaActions.Remove.getIndex());
-			info.setAreaId(id);
-			info.setAreaType(areaKind);
-			info.setDeviceNumber(number);
-			info.setId(UUID.randomUUID().toString());
-			info.setSendTime(new Date());
-			info.setUnid(unid);
-			info.setUser(user);
 
-			if (circle != null) {
-				areaInDeviceDao.removeVehicle(number, id, areaKind);
-				if (circle.deviceCatch)
-					areaInDeviceDao.log(info.getId(), number, id, areaKind, (byte) AreaActions.Remove.getIndex(), unid, user);
-			}
+        return circleArea;
+    }
 
-			SynchronizerCache.put(info);
-			AreaCatcherCache.unbind(number, id, areaKind);
-		}
-	}
+    @ServiceMethod(id = "baseinfo.circleArea.delete", pid = "baseinfo.circleArea", name = "删除圆形区域")
+    @Transactional
+    public void delete(String unid, String user, long id) {
+        CircleArea circle = circleAreaDao.fetch(id);
+        List<String> numbers = areaInDeviceDao.findDevice(id, areaKind);
 
-	public boolean exist(String name, String companyId, long id) {
-		return circleAreaDao.existOutId(name, companyId, id);
-	}
+        circleAreaDao.delete(id);
+        areaInDeviceDao.deleteAreaInDevice(id, areaKind);
+        areaInDeviceDao.deleteAreaInMaplayer(id, areaKind);
 
-	public boolean exist(String name, String companyId) {
-		return circleAreaDao.exist(name, companyId);
-	}
+        for (String number : numbers) {
+            // 更新指令同步器
+            DeviceInAreaInfo info = new DeviceInAreaInfo();
+            info.setAction((byte) AreaActions.Remove.getIndex());
+            info.setAreaId(id);
+            info.setAreaType(areaKind);
+            info.setDeviceNumber(number);
+            info.setId(UUID.randomUUID().toString());
+            info.setSendTime(new Date());
+            info.setUnid(unid);
+            info.setUser(user);
 
-	/**
-	 * 获取已绑定的车辆
-	 */
-	public Page<AreaInDeviceInfo> assignedVehicles(long circleAreaId, int pageIndex, int pageSize) {
-		int total = areaInDeviceDao.assignedPageVehiclesCount(circleAreaId, areaKind);
-		Page<AreaInDeviceInfo> query = new Page<AreaInDeviceInfo>();
-		query.total = total;
+            if (circle != null) {
+                areaInDeviceDao.removeVehicle(number, id, areaKind);
+                if (circle.isDeviceCatch())
+                    areaInDeviceDao.log(info.getId(), number, id, areaKind, (byte) AreaActions.Remove.getIndex(),
+                            unid, user);
+            }
 
-		if (total > 0) {
-			List<AreaInDeviceInfoDto> rows = areaInDeviceDao.assignedPageVehiclesDetail(circleAreaId, areaKind, (pageIndex - 1) * pageSize, pageSize);
+            SynchronizerCache.put(info);
+            AreaCatcherCache.unbind(number, id, areaKind);
+        }
+    }
 
-			for (AreaInDeviceInfoDto dto : rows) {
-				AreaInDeviceInfo info = new AreaInDeviceInfo();
-				info.setAreaId(dto.areaId);
-				info.setAreaType(dto.areaType);
-				info.setDeviceNumber(dto.deviceNumber);
-				info.setPlateNumber(dto.plateNumber);
-				info.setTime(dto.time);
+    public boolean exist(String name, String companyId, long id) {
+        return circleAreaDao.existOutId(name, companyId, id);
+    }
 
-				query.rows.add(info);
-			}
-		}
-		return query;
-	}
+    public boolean exist(String name, String companyId) {
+        return circleAreaDao.exist(name, companyId);
+    }
 
-	/**
-	 * 绑定车辆
-	 */
-	@ServiceMethod(id = "baseinfo.circleArea.addVehicles", pid = "baseinfo.circleArea", name = "圆形区域绑定车辆")
-	@Transactional
-	public void addVehicles(String unid, String user, long circleAreaId, List<String> numbers) {
-		CircleAreaDto circle = circleAreaDao.fetch(circleAreaId);
-		for (String number : numbers) {
-			// 更新指令同步器
-			DeviceInAreaInfo info = new DeviceInAreaInfo();
-			info.setAction((byte) AreaActions.Append.getIndex());
-			info.setAreaId(circleAreaId);
-			info.setAreaType(areaKind);
-			info.setDeviceNumber(number);
-			info.setId(UUID.randomUUID().toString());
-			info.setSendTime(new Date());
-			info.setUnid(unid);
-			info.setUser(user);
+    /**
+     * 获取已绑定的车辆
+     */
+    public Page<AreaInDeviceInfo> assignedVehicles(long circleAreaId, int pageIndex, int pageSize) {
+        int total = areaInDeviceDao.assignedPageVehiclesCount(circleAreaId, areaKind);
+        Page<AreaInDeviceInfo> query = new Page<AreaInDeviceInfo>();
+        query.total = total;
 
-			if (circle != null) {
-				areaInDeviceDao.addVehicle(number, circleAreaId, areaKind);
-				if (circle.deviceCatch)
-					areaInDeviceDao.log(info.getId(), number, circleAreaId, areaKind, (byte) AreaActions.Append.getIndex(), unid, user);
-			}
-			SynchronizerCache.put(info);
-			AreaCatcherCache.bind(number, circleAreaId, areaKind);
-		}
-	}
+        if (total > 0) {
+            List<AreaInDeviceInfo> rows = areaInDeviceDao.assignedPageVehiclesDetail(circleAreaId, areaKind,
+                    (pageIndex - 1) * pageSize, pageSize);
 
-	/**
-	 * 解除车辆
-	 */
-	@ServiceMethod(id = "baseinfo.circleArea.removeVehicle", pid = "baseinfo.circleArea", name = "圆形区域解除车辆")
-	@Transactional
-	public void removeVehicle(String unid, String user, long circleAreaId, String number) {
-		CircleAreaDto circle = circleAreaDao.fetch(circleAreaId);
-		// 更新指令同步器
-		DeviceInAreaInfo info = new DeviceInAreaInfo();
-		info.setAction((byte) AreaActions.Remove.getIndex());
-		info.setAreaId(circleAreaId);
-		info.setAreaType(areaKind);
-		info.setDeviceNumber(number);
-		info.setId(UUID.randomUUID().toString());
-		info.setSendTime(new Date());
-		info.setUnid(unid);
-		info.setUser(user);
+            query.rows.addAll(rows);
 
-		if (circle != null) {
-			areaInDeviceDao.removeVehicle(number, circleAreaId, areaKind);
-			if (circle.deviceCatch)
-				areaInDeviceDao.log(info.getId(), number, circleAreaId, areaKind, (byte) AreaActions.Remove.getIndex(), unid, user);
-		}
-		SynchronizerCache.put(info);
-		AreaCatcherCache.unbind(number, circleAreaId, areaKind);
-	}
+        }
+        return query;
+    }
 
-	public CircleAreaInfo fetchInfo(Long id) {
-		CircleAreaDto dto = circleAreaDao.fetch(id);
-		CircleAreaInfo info = new CircleAreaInfo();
-		info.setId(dto.id);
-		info.setName(dto.name);
-		info.setLat(dto.lat);
-		info.setLng(dto.lng);
-		info.setRadius(dto.radius);
-		info.setRemark(dto.remark);
+    /**
+     * 绑定车辆
+     */
+    @ServiceMethod(id = "baseinfo.circleArea.addVehicles", pid = "baseinfo.circleArea", name = "圆形区域绑定车辆")
+    @Transactional
+    public void addVehicles(String unid, String user, long circleAreaId, List<String> numbers) {
+        CircleArea circle = circleAreaDao.fetch(circleAreaId);
+        for (String number : numbers) {
+            // 更新指令同步器
+            DeviceInAreaInfo info = new DeviceInAreaInfo();
+            info.setAction((byte) AreaActions.Append.getIndex());
+            info.setAreaId(circleAreaId);
+            info.setAreaType(areaKind);
+            info.setDeviceNumber(number);
+            info.setId(UUID.randomUUID().toString());
+            info.setSendTime(new Date());
+            info.setUnid(unid);
+            info.setUser(user);
 
-		return info;
-	}
+            if (circle != null) {
+                areaInDeviceDao.addVehicle(number, circleAreaId, areaKind);
+                if (circle.isDeviceCatch())
+                    areaInDeviceDao.log(info.getId(), number, circleAreaId, areaKind, (byte) AreaActions.Append
+                            .getIndex(), unid, user);
+            }
+            SynchronizerCache.put(info);
+            AreaCatcherCache.bind(number, circleAreaId, areaKind);
+        }
+    }
+
+    /**
+     * 解除车辆
+     */
+    @ServiceMethod(id = "baseinfo.circleArea.removeVehicle", pid = "baseinfo.circleArea", name = "圆形区域解除车辆")
+    @Transactional
+    public void removeVehicle(String unid, String user, long circleAreaId, String number) {
+        CircleArea circle = circleAreaDao.fetch(circleAreaId);
+        // 更新指令同步器
+        DeviceInAreaInfo info = new DeviceInAreaInfo();
+        info.setAction((byte) AreaActions.Remove.getIndex());
+        info.setAreaId(circleAreaId);
+        info.setAreaType(areaKind);
+        info.setDeviceNumber(number);
+        info.setId(UUID.randomUUID().toString());
+        info.setSendTime(new Date());
+        info.setUnid(unid);
+        info.setUser(user);
+
+        if (circle != null) {
+            areaInDeviceDao.removeVehicle(number, circleAreaId, areaKind);
+            if (circle.isDeviceCatch())
+                areaInDeviceDao.log(info.getId(), number, circleAreaId, areaKind, (byte) AreaActions.Remove.getIndex
+                        (), unid, user);
+        }
+        SynchronizerCache.put(info);
+        AreaCatcherCache.unbind(number, circleAreaId, areaKind);
+    }
+
+    public CircleAreaInfo fetchInfo(Long id) {
+        CircleArea dto = circleAreaDao.fetch(id);
+        CircleAreaInfo info = new CircleAreaInfo();
+        BeanUtils.copyProperties(dto, info);
+        // info.setId(dto.id);
+        // info.setName(dto.name);
+        // info.setLat(dto.lat);
+        // info.setLng(dto.lng);
+        // info.setRadius(dto.radius);
+        // info.setRemark(dto.remark);
+
+        return info;
+    }
 }

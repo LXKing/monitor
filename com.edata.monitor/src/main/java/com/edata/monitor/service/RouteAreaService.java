@@ -1,439 +1,433 @@
 package com.edata.monitor.service;
 
+import com.edata.monitor.aop.ServiceMethod;
+import com.edata.monitor.cache.AreaCatcherCache;
+import com.edata.monitor.cache.SynchronizerCache;
+import com.edata.monitor.dao.Page;
+import com.edata.monitor.dao.baseinfo.areaInDevice.AreaInDeviceInfo;
+import com.edata.monitor.dao.baseinfo.areaInDevice.IAreaInDeviceDao;
+import com.edata.monitor.dao.baseinfo.routeArea.IRouteAreaDao;
+import com.edata.monitor.dao.baseinfo.routeArea.RouteArea;
+import com.edata.monitor.dao.baseinfo.routeArea.RouteAreaInfo;
+import com.edata.monitor.dao.baseinfo.sectionArea.ISectionAreaDao;
+import com.edata.monitor.dao.baseinfo.sectionArea.SectionAreaInfo;
+import com.edata.monitor.dao.instruct.DeviceInAreaInfo;
+import com.edata.monitor.util.KeyValue;
+import com.edata.monitor.util.enums.AreaActions;
+import com.edata.monitor.util.enums.AreaKinds;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import com.edata.monitor.aop.ServiceMethod;
-import com.edata.monitor.cache.AreaCatcherCache;
-import com.edata.monitor.cache.SynchronizerCache;
-import com.edata.monitor.dao.Page;
-import com.edata.monitor.dao.baseinfo.AreaInDeviceInfoDto;
-import com.edata.monitor.dao.baseinfo.IAreaInDeviceDao;
-import com.edata.monitor.dao.baseinfo.IRouteAreaDao;
-import com.edata.monitor.dao.baseinfo.ISectionAreaDao;
-import com.edata.monitor.dao.baseinfo.RouteAreaDto;
-import com.edata.monitor.dao.baseinfo.RouteAreaInfoDto;
-import com.edata.monitor.dao.baseinfo.SectionAreaInfoDto;
-import com.edata.monitor.dao.baseinfo.SectionPointDto;
-import com.edata.monitor.domain.baseinfo.AreaInDeviceInfo;
-import com.edata.monitor.domain.baseinfo.RouteArea;
-import com.edata.monitor.domain.baseinfo.RouteAreaInfo;
-import com.edata.monitor.domain.baseinfo.SectionAreaInfo;
-import com.edata.monitor.domain.baseinfo.SectionPoint;
-import com.edata.monitor.domain.instruct.DeviceInAreaInfo;
-import com.edata.monitor.util.KeyValue;
-import com.edata.monitor.util.kind.AreaActions;
-import com.edata.monitor.util.kind.AreaKinds;
-
 /**
  * 路线区域服务类
- * 
- * @author yangzs
  *
+ * @author yangzs
  */
 @Service
 public class RouteAreaService {
-	@Autowired
-	private IRouteAreaDao routeAreaDao;
-	@Autowired
-	private ISectionAreaDao sectionAreaDao;
-	@Autowired
-	private IAreaInDeviceDao areaInDeviceDao;
+    private final byte areaKind = (byte) AreaKinds.RouteArea.getIndex();
+    @Autowired
+    private IRouteAreaDao routeAreaDao;
+    @Autowired
+    private ISectionAreaDao sectionAreaDao;
+    @Autowired
+    private IAreaInDeviceDao areaInDeviceDao;
 
-	private final byte areaKind = (byte) AreaKinds.RouteArea.getIndex();
+    public Page<RouteAreaInfo> query(String companyId, String filter, int pageIndex, int pageSize) {
+        int total = routeAreaDao.queryPageCount(companyId, filter);
+        Page<RouteAreaInfo> query = new Page<RouteAreaInfo>();
+        query.total = total;
 
-	public Page<RouteAreaInfo> query(String companyId, String filter, int pageIndex, int pageSize) {
-		int total = routeAreaDao.queryPageCount(companyId, filter);
-		Page<RouteAreaInfo> query = new Page<RouteAreaInfo>();
-		query.total = total;
+        if (total > 0) {
+            List<RouteAreaInfo> rows = routeAreaDao.queryPageDetail(companyId, filter, (pageIndex - 1) * pageSize,
+                    pageSize);
 
-		if (total > 0) {
-			List<RouteAreaInfoDto> rows = routeAreaDao.queryPageDetail(companyId, filter, (pageIndex - 1) * pageSize, pageSize);
-			for (RouteAreaInfoDto dto : rows) {
-				RouteAreaInfo info = new RouteAreaInfo();
-				info.setId(dto.id);
-				info.setName(dto.name);
-				info.setDeviceCatch(dto.deviceCatch);
-				info.setRemark(dto.remark);
+            for (RouteAreaInfo info : rows) {
+                // RouteAreaInfo info = new RouteAreaInfo();
+                // info.setId(dto.id);
+                // info.setName(dto.name);
+                // info.setDeviceCatch(dto.deviceCatch);
+                // info.setRemark(dto.remark);
 
-				dto.sections = routeAreaDao.assignedSections(dto.id);
-				if (dto.sections != null) {
-					for (SectionAreaInfoDto s : dto.sections) {
-						SectionAreaInfo i = new SectionAreaInfo();
-						i.setId(s.id);
-						i.setName(s.name);
-						i.setRemark(s.remark);
+                info.setSections(routeAreaDao.assignedSections(info.getId()));
+                if (info.getSections() != null) {
+                    for (SectionAreaInfo s : info.getSections()) {
+                        // SectionAreaInfo i = new SectionAreaInfo();
+                        // i.setId(s.id);
+                        // i.setName(s.name);
+                        // i.setRemark(s.remark);
 
-						s.points = sectionAreaDao.fetchSectionPoint(s.id);
-						if (s.points != null) {
-							for (SectionPointDto p : s.points) {
-								SectionPoint sp = new SectionPoint();
-								sp.setId(p.id);
-								sp.setIndex(p.index);
-								sp.setLat(p.lat);
-								sp.setLng(p.lng);
-								sp.setSectionId(p.sectionId);
+                        s.setPoints(sectionAreaDao.fetchSectionPoint(s.getId()));
+                        // if (s.getPoints() != null) {
+                        //     for (SectionPoint p : s.getPoints()) {
+                        //         // SectionPoint sp = new SectionPoint();
+                        //         // sp.setId(p.id);
+                        //         // sp.setIndex(p.index);
+                        //         // sp.setLat(p.lat);
+                        //         // sp.setLng(p.lng);
+                        //         // sp.setSectionId(p.sectionId);
+                        //
+                        //         s.getPoints().add(p);
+                        //     }
+                        // }
 
-								i.getPoints().add(sp);
-							}
-						}
+                        // info.getSections().add(s);
+                    }
+                }
 
-						info.getSections().add(i);
-					}
-				}
 
-				query.rows.add(info);
-			}
-		}
+            }
+            query.rows.addAll(rows);
+        }
 
-		return query;
-	}
+        return query;
+    }
 
-	public Page<RouteAreaInfo> search(String companyId, String filter, int pageIndex, int pageSize) {
-		int total = routeAreaDao.searchPageCount(companyId, filter);
-		Page<RouteAreaInfo> search = new Page<RouteAreaInfo>();
-		search.total = total;
+    public Page<RouteAreaInfo> search(String companyId, String filter, int pageIndex, int pageSize) {
+        int total = routeAreaDao.searchPageCount(companyId, filter);
+        Page<RouteAreaInfo> search = new Page<RouteAreaInfo>();
+        search.total = total;
 
-		if (total > 0) {
-			List<RouteAreaInfoDto> rows = routeAreaDao.searchPageDetail(companyId, filter, (pageIndex - 1) * pageSize, pageSize);
-			for (RouteAreaInfoDto dto : rows) {
-				RouteAreaInfo info = new RouteAreaInfo();
-				info.setId(dto.id);
-				info.setName(dto.name);
-				info.setDeviceCatch(dto.deviceCatch);
-				info.setRemark(dto.remark);
+        if (total > 0) {
+            List<RouteAreaInfo> rows = routeAreaDao.searchPageDetail(companyId, filter, (pageIndex - 1) * pageSize,
+                    pageSize);
+            for (RouteAreaInfo dto : rows) {
+                // RouteAreaInfo info = new RouteAreaInfo();
+                // info.setId(dto.id);
+                // info.setName(dto.name);
+                // info.setDeviceCatch(dto.deviceCatch);
+                // info.setRemark(dto.remark);
 
-				dto.sections = routeAreaDao.assignedSections(dto.id);
-				if (dto.sections != null) {
-					for (SectionAreaInfoDto s : dto.sections) {
-						SectionAreaInfo i = new SectionAreaInfo();
-						i.setId(s.id);
-						i.setName(s.name);
-						i.setRemark(s.remark);
+                dto.setSections(routeAreaDao.assignedSections(dto.getId()));
+                if (dto.getSections() != null) {
+                    for (SectionAreaInfo s : dto.getSections()) {
+                        // SectionAreaInfo i = new SectionAreaInfo();
+                        // i.setId(s.id);
+                        // i.setName(s.name);
+                        // i.setRemark(s.remark);
 
-						s.points = sectionAreaDao.fetchSectionPoint(s.id);
-						if (s.points != null) {
-							for (SectionPointDto p : s.points) {
-								SectionPoint sp = new SectionPoint();
-								sp.setId(p.id);
-								sp.setIndex(p.index);
-								sp.setLat(p.lat);
-								sp.setLng(p.lng);
-								sp.setSectionId(p.sectionId);
+                        s.setPoints(sectionAreaDao.fetchSectionPoint(s.getId()));
+                        // if (s.points != null) {
+                        //     for (SectionPointDto p : s.points) {
+                        //         SectionPoint sp = new SectionPoint();
+                        //         sp.setId(p.id);
+                        //         sp.setIndex(p.index);
+                        //         sp.setLat(p.lat);
+                        //         sp.setLng(p.lng);
+                        //         sp.setSectionId(p.sectionId);
+                        //
+                        //         i.getPoints().add(sp);
+                        //     }
+                        // }
 
-								i.getPoints().add(sp);
-							}
-						}
+                        // dto.getSections().add(s);
+                    }
+                }
 
-						info.getSections().add(i);
-					}
-				}
 
-				search.rows.add(info);
-			}
-		}
-		return search;
-	}
+            }
+            search.rows.addAll(rows);
+        }
+        return search;
+    }
 
-	@ServiceMethod(id = "baseinfo.routeArea.create", pid = "baseinfo.routeArea", name = "创建新的路线")
-	@Transactional
-	public void create(RouteArea routeArea) {
-		RouteAreaDto dto = new RouteAreaDto();
-		dto.id = routeArea.getId();
-		dto.companyId = routeArea.getCompanyId();
-		dto.name = routeArea.getName();
-		dto.deviceCatch = routeArea.isDeviceCatch();
-		dto.flag = routeArea.getFlag();
-		dto.startTime = routeArea.getStartTime();
-		dto.endTime = routeArea.getEndTime();
-		dto.remark = routeArea.getRemark();
+    @ServiceMethod(id = "baseinfo.routeArea.create", pid = "baseinfo.routeArea", name = "创建新的路线")
+    @Transactional
+    public void create(RouteArea routeArea) {
+        // RouteAreaDto dto = new RouteAreaDto();
+        // dto.id = routeArea.getId();
+        // dto.companyId = routeArea.getCompanyId();
+        // dto.name = routeArea.getName();
+        // dto.deviceCatch = routeArea.isDeviceCatch();
+        // dto.flag = routeArea.getFlag();
+        // dto.startTime = routeArea.getStartTime();
+        // dto.endTime = routeArea.getEndTime();
+        // dto.remark = routeArea.getRemark();
 
-		routeAreaDao.create(dto);
-	}
+        routeAreaDao.create(routeArea);
+    }
 
-	public RouteArea fetch(long id) {
-		RouteAreaDto dto = routeAreaDao.fetch(id);
-		RouteArea routeArea = new RouteArea();
-		routeArea.setId(dto.id);
-		routeArea.setCompanyId(dto.companyId);
-		routeArea.setName(dto.name);
-		routeArea.setDeviceCatch(dto.deviceCatch);
-		routeArea.setFlag(dto.flag);
-		routeArea.setStartTime(dto.startTime);
-		routeArea.setEndTime(dto.endTime);
-		routeArea.setRemark(dto.remark);
-		routeArea.setEditTime(dto.editTime);
+    public RouteArea fetch(long id) {
+        RouteArea routeArea = routeAreaDao.fetch(id);
+        // RouteArea routeArea = new RouteArea();
+        // routeArea.setId(dto.id);
+        // routeArea.setCompanyId(dto.companyId);
+        // routeArea.setName(dto.name);
+        // routeArea.setDeviceCatch(dto.deviceCatch);
+        // routeArea.setFlag(dto.flag);
+        // routeArea.setStartTime(dto.startTime);
+        // routeArea.setEndTime(dto.endTime);
+        // routeArea.setRemark(dto.remark);
+        // routeArea.setEditTime(dto.editTime);
 
-		return routeArea;
-	}
+        return routeArea;
+    }
 
-	@ServiceMethod(id = "baseinfo.routeArea.update", pid = "baseinfo.routeArea", name = "修改路线")
-	@Transactional
-	public void update(String unid, String user, RouteArea routeArea) {
-		RouteAreaDto old = routeAreaDao.fetch(routeArea.getId());
+    @ServiceMethod(id = "baseinfo.routeArea.update", pid = "baseinfo.routeArea", name = "修改路线")
+    @Transactional
+    public void update(String unid, String user, RouteArea routeArea) {
+        RouteArea old = routeAreaDao.fetch(routeArea.getId());
 
-		RouteAreaDto dto = new RouteAreaDto();
-		dto.id = routeArea.getId();
-		dto.companyId = routeArea.getCompanyId();
-		dto.name = routeArea.getName();
-		dto.deviceCatch = routeArea.isDeviceCatch();
-		dto.flag = routeArea.getFlag();
-		dto.startTime = routeArea.getStartTime();
-		dto.endTime = routeArea.getEndTime();
-		dto.remark = routeArea.getRemark();
-		dto.editTime = routeArea.getEditTime();
+        // RouteAreaDto dto = new RouteAreaDto();
+        // dto.id = routeArea.getId();
+        // dto.companyId = routeArea.getCompanyId();
+        // dto.name = routeArea.getName();
+        // dto.deviceCatch = routeArea.isDeviceCatch();
+        // dto.flag = routeArea.getFlag();
+        // dto.startTime = routeArea.getStartTime();
+        // dto.endTime = routeArea.getEndTime();
+        // dto.remark = routeArea.getRemark();
+        // dto.editTime = routeArea.getEditTime();
 
-		int rows = routeAreaDao.update(dto);
-		if (rows != 1)
-			throw new RuntimeException(Errors.anotherEdited);
+        int rows = routeAreaDao.update(routeArea);
+        if (rows != 1)
+            throw new RuntimeException(Errors.anotherEdited);
 
-		List<String> numbers = areaInDeviceDao.findDevice(dto.id, areaKind);
-		for (String number : numbers) {
-			// 更新指令同步器
-			DeviceInAreaInfo info = new DeviceInAreaInfo();
+        List<String> numbers = areaInDeviceDao.findDevice(routeArea.getId(), areaKind);
+        for (String number : numbers) {
+            // 更新指令同步器
+            DeviceInAreaInfo info = new DeviceInAreaInfo();
 
-			info.setAreaId(dto.id);
-			info.setAreaType(areaKind);
-			info.setDeviceNumber(number);
-			info.setId(UUID.randomUUID().toString());
-			info.setSendTime(new Date());
-			info.setUnid(unid);
-			info.setUser(user);
+            info.setAreaId(routeArea.getId());
+            info.setAreaType(areaKind);
+            info.setDeviceNumber(number);
+            info.setId(UUID.randomUUID().toString());
+            info.setSendTime(new Date());
+            info.setUnid(unid);
+            info.setUser(user);
 
-			if (old.deviceCatch && !routeArea.isDeviceCatch()) {// 由终端计算变成平台计算
-				AreaCatcherCache.bind(number, dto.id, areaKind);
+            if (old.isDeviceCatch() && !routeArea.isDeviceCatch()) {// 由终端计算变成平台计算
+                AreaCatcherCache.bind(number, routeArea.getId(), areaKind);
 
-				info.setAction((byte) AreaActions.Remove.getIndex());
-				areaInDeviceDao.log(info.getId(), number, dto.id, areaKind, (byte) AreaActions.Remove.getIndex(), unid, user);
-				SynchronizerCache.put(info);
+                info.setAction((byte) AreaActions.Remove.getIndex());
+                areaInDeviceDao.log(info.getId(), number, routeArea.getId(), areaKind, (byte) AreaActions.Remove
+                        .getIndex(), unid, user);
+                SynchronizerCache.put(info);
 
-				info.setAction((byte) AreaActions.Edit.getIndex());
-				SynchronizerCache.put(info);
-			} else if (!old.deviceCatch && routeArea.isDeviceCatch()) {// 由平台计算变成终端计算
-				AreaCatcherCache.remove(dto.id, areaKind);
+                info.setAction((byte) AreaActions.Edit.getIndex());
+                SynchronizerCache.put(info);
+            } else if (!old.isDeviceCatch() && routeArea.isDeviceCatch()) {// 由平台计算变成终端计算
+                AreaCatcherCache.remove(routeArea.getId(), areaKind);
 
-				info.setAction((byte) AreaActions.Append.getIndex());
-				areaInDeviceDao.addVehicle(number, dto.id, areaKind);
-				areaInDeviceDao.log(info.getId(), number, dto.id, areaKind, (byte) AreaActions.Append.getIndex(), unid, user);
-				SynchronizerCache.put(info);
+                info.setAction((byte) AreaActions.Append.getIndex());
+                areaInDeviceDao.addVehicle(number, routeArea.getId(), areaKind);
+                areaInDeviceDao.log(info.getId(), number, routeArea.getId(), areaKind, (byte) AreaActions.Append
+                        .getIndex(), unid, user);
+                SynchronizerCache.put(info);
 
-				info.setAction((byte) AreaActions.Edit.getIndex());
-				SynchronizerCache.put(info);
-			} else {
-				if (!routeArea.isDeviceCatch())
-					AreaCatcherCache.refresh(dto.id, areaKind);
+                info.setAction((byte) AreaActions.Edit.getIndex());
+                SynchronizerCache.put(info);
+            } else {
+                if (!routeArea.isDeviceCatch())
+                    AreaCatcherCache.refresh(routeArea.getId(), areaKind);
 
-				info.setAction((byte) AreaActions.Edit.getIndex());
-				areaInDeviceDao.log(info.getId(), number, dto.id, areaKind, (byte) AreaActions.Update.getIndex(), unid, user);
-				SynchronizerCache.put(info);
-			}
-		}
+                info.setAction((byte) AreaActions.Edit.getIndex());
+                areaInDeviceDao.log(info.getId(), number, routeArea.getId(), areaKind, (byte) AreaActions.Update
+                        .getIndex(), unid, user);
+                SynchronizerCache.put(info);
+            }
+        }
 
-	}
+    }
 
-	@ServiceMethod(id = "baseinfo.routeArea.delete", pid = "baseinfo.routeArea", name = "删除路线")
-	@Transactional
-	public void delete(String unid, String user, long id) {
-		RouteAreaDto route = routeAreaDao.fetch(id);
-		List<String> numbers = areaInDeviceDao.findDevice(id, areaKind);
+    @ServiceMethod(id = "baseinfo.routeArea.delete", pid = "baseinfo.routeArea", name = "删除路线")
+    @Transactional
+    public void delete(String unid, String user, long id) {
+        RouteArea route = routeAreaDao.fetch(id);
+        List<String> numbers = areaInDeviceDao.findDevice(id, areaKind);
 
-		routeAreaDao.delete(id);
-		routeAreaDao.deleteRouteSection(id);
-		areaInDeviceDao.deleteAreaInDevice(id, areaKind);
-		areaInDeviceDao.deleteAreaInMaplayer(id, areaKind);
+        routeAreaDao.delete(id);
+        routeAreaDao.deleteRouteSection(id);
+        areaInDeviceDao.deleteAreaInDevice(id, areaKind);
+        areaInDeviceDao.deleteAreaInMaplayer(id, areaKind);
 
-		for (String number : numbers) {
-			// 更新指令同步器
-			DeviceInAreaInfo info = new DeviceInAreaInfo();
-			info.setAction((byte) AreaActions.Remove.getIndex());
-			info.setAreaId(id);
-			info.setAreaType(areaKind);
-			info.setDeviceNumber(number);
-			info.setId(UUID.randomUUID().toString());
-			info.setSendTime(new Date());
-			info.setUnid(unid);
-			info.setUser(user);
+        for (String number : numbers) {
+            // 更新指令同步器
+            DeviceInAreaInfo info = new DeviceInAreaInfo();
+            info.setAction((byte) AreaActions.Remove.getIndex());
+            info.setAreaId(id);
+            info.setAreaType(areaKind);
+            info.setDeviceNumber(number);
+            info.setId(UUID.randomUUID().toString());
+            info.setSendTime(new Date());
+            info.setUnid(unid);
+            info.setUser(user);
 
-			if (route != null) {
-				areaInDeviceDao.removeVehicle(number, id, areaKind);
-				if (route.deviceCatch)
-					areaInDeviceDao.log(info.getId(), number, id, areaKind, (byte) AreaActions.Remove.getIndex(), unid, user);
-			}
+            if (route != null) {
+                areaInDeviceDao.removeVehicle(number, id, areaKind);
+                if (route.isDeviceCatch())
+                    areaInDeviceDao.log(info.getId(), number, id, areaKind, (byte) AreaActions.Remove.getIndex(),
+                            unid, user);
+            }
 
-			SynchronizerCache.put(info);
-			AreaCatcherCache.unbind(number, id, areaKind);
-		}
-	}
+            SynchronizerCache.put(info);
+            AreaCatcherCache.unbind(number, id, areaKind);
+        }
+    }
 
-	public boolean exist(String name, String companyId, long id) {
-		return routeAreaDao.existOutId(name, companyId, id);
-	}
+    public boolean exist(String name, String companyId, long id) {
+        return routeAreaDao.existOutId(name, companyId, id);
+    }
 
-	public boolean exist(String name, String companyId) {
-		return routeAreaDao.exist(name, companyId);
-	}
+    public boolean exist(String name, String companyId) {
+        return routeAreaDao.exist(name, companyId);
+    }
 
-	public List<SectionAreaInfo> assignedSections(String companyId, long routeId) {
-		List<SectionAreaInfoDto> page = routeAreaDao.assignedSections(routeId);
-		List<SectionAreaInfo> sections = new ArrayList<SectionAreaInfo>();
-		for (SectionAreaInfoDto dto : page) {
-			SectionAreaInfo info = new SectionAreaInfo();
-			info.setId(dto.id);
-			info.setName(dto.name);
-			info.setRemark(dto.remark);
+    public List<SectionAreaInfo> assignedSections(String companyId, long routeId) {
+        List<SectionAreaInfo> sections = routeAreaDao.assignedSections(routeId);
+        // List<SectionAreaInfo> sections = new ArrayList<SectionAreaInfo>();
+        for (SectionAreaInfo dto : sections) {
+            // SectionAreaInfo info = new SectionAreaInfo();
+            // info.setId(dto.id);
+            // info.setName(dto.name);
+            // info.setRemark(dto.remark);
 
-			dto.points = sectionAreaDao.fetchSectionPoint(dto.id);
-			if (dto.points != null) {
-				for (SectionPointDto rpd : dto.points) {
-					SectionPoint rp = new SectionPoint();
-					rp.setId(rpd.id);
-					rp.setLat(rpd.lat);
-					rp.setLng(rpd.lng);
-					rp.setSectionId(rpd.sectionId);
-					rp.setIndex(rpd.index);
+            dto.setPoints(sectionAreaDao.fetchSectionPoint(dto.getId()));
+            // if (dto.points != null) {
+            //     for (SectionPointDto rpd : dto.points) {
+            //         SectionPoint rp = new SectionPoint();
+            //         rp.setId(rpd.id);
+            //         rp.setLat(rpd.lat);
+            //         rp.setLng(rpd.lng);
+            //         rp.setSectionId(rpd.sectionId);
+            //         rp.setIndex(rpd.index);
+            //
+            //         info.getPoints().add(rp);
+            //     }
+            // }
 
-					info.getPoints().add(rp);
-				}
-			}
+            // sections.add(dto);
+        }
 
-			sections.add(info);
-		}
+        return sections;
+    }
 
-		return sections;
-	}
+    @ServiceMethod(id = "baseinfo.routeArea.addSections", pid = "baseinfo.routeArea", name = "路线绑定路段")
+    @Transactional
+    public void addSections(long routeId, List<Long> list) {
+        List<KeyValue> rows = new ArrayList<KeyValue>();
+        for (Long id : list) {
+            KeyValue row = new KeyValue();
+            row.setKey(routeId);
+            row.setValue(id);
 
-	@ServiceMethod(id = "baseinfo.routeArea.addSections", pid = "baseinfo.routeArea", name = "路线绑定路段")
-	@Transactional
-	public void addSections(long routeId, List<Long> list) {
-		List<KeyValue> rows = new ArrayList<KeyValue>();
-		for (Long id : list) {
-			KeyValue row = new KeyValue();
-			row.setKey(routeId);
-			row.setValue(id);
+            rows.add(row);
+        }
+        routeAreaDao.addSections(rows);
+    }
 
-			rows.add(row);
-		}
-		routeAreaDao.addSections(rows);
-	}
+    @ServiceMethod(id = "baseinfo.routeArea.removeSection", pid = "baseinfo.routeArea", name = "路线解除路段")
+    @Transactional
+    public void removeSection(long routeId, long sectionId) {
+        routeAreaDao.removeSection(routeId, sectionId);
+    }
 
-	@ServiceMethod(id = "baseinfo.routeArea.removeSection", pid = "baseinfo.routeArea", name = "路线解除路段")
-	@Transactional
-	public void removeSection(long routeId, long sectionId) {
-		routeAreaDao.removeSection(routeId, sectionId);
-	}
+    public Page<AreaInDeviceInfo> assignedVehicles(long routeAreaId, int pageIndex, int pageSize) {
+        int total = areaInDeviceDao.assignedPageVehiclesCount(routeAreaId, areaKind);
+        Page<AreaInDeviceInfo> query = new Page<AreaInDeviceInfo>();
+        query.total = total;
 
-	public Page<AreaInDeviceInfo> assignedVehicles(long routeAreaId, int pageIndex, int pageSize) {
-		int total = areaInDeviceDao.assignedPageVehiclesCount(routeAreaId, areaKind);
-		Page<AreaInDeviceInfo> query = new Page<AreaInDeviceInfo>();
-		query.total = total;
+        if (total > 0) {
+            List<AreaInDeviceInfo> rows = areaInDeviceDao.assignedPageVehiclesDetail(routeAreaId, areaKind,
+                    (pageIndex - 1) * pageSize, pageSize);
+            query.rows.addAll(rows);
+        }
+        return query;
+    }
 
-		if (total > 0) {
-			List<AreaInDeviceInfoDto> rows = areaInDeviceDao.assignedPageVehiclesDetail(routeAreaId, areaKind, (pageIndex - 1) * pageSize, pageSize);
-			for (AreaInDeviceInfoDto dto : rows) {
-				AreaInDeviceInfo info = new AreaInDeviceInfo();
-				info.setAreaId(dto.areaId);
-				info.setAreaType(dto.areaType);
-				info.setDeviceNumber(dto.deviceNumber);
-				info.setPlateNumber(dto.plateNumber);
-				info.setTime(dto.time);
+    @ServiceMethod(id = "baseinfo.routeArea.addVehicles", pid = "baseinfo.routeArea", name = "路线绑定车辆")
+    @Transactional
+    public void addVehicles(String unid, String user, long routeAreaId, List<String> numbers) {
+        RouteArea route = routeAreaDao.fetch(routeAreaId);
+        for (String number : numbers) {
+            // 更新指令同步器
+            DeviceInAreaInfo info = new DeviceInAreaInfo();
+            info.setAction((byte) AreaActions.Append.getIndex());
+            info.setAreaId(routeAreaId);
+            info.setAreaType(areaKind);
+            info.setDeviceNumber(number);
+            info.setId(UUID.randomUUID().toString());
+            info.setSendTime(new Date());
+            info.setUnid(unid);
+            info.setUser(user);
 
-				query.rows.add(info);
-			}
-		}
-		return query;
-	}
+            if (route != null) {
+                areaInDeviceDao.addVehicle(number, routeAreaId, areaKind);
+                if (route.isDeviceCatch())
+                    areaInDeviceDao.log(info.getId(), number, routeAreaId, areaKind, (byte) AreaActions.Append
+                            .getIndex(), unid, user);
+            }
+            SynchronizerCache.put(info);
+            AreaCatcherCache.bind(number, routeAreaId, areaKind);
+        }
+    }
 
-	@ServiceMethod(id = "baseinfo.routeArea.addVehicles", pid = "baseinfo.routeArea", name = "路线绑定车辆")
-	@Transactional
-	public void addVehicles(String unid, String user, long routeAreaId, List<String> numbers) {
-		RouteAreaDto route = routeAreaDao.fetch(routeAreaId);
-		for (String number : numbers) {
-			// 更新指令同步器
-			DeviceInAreaInfo info = new DeviceInAreaInfo();
-			info.setAction((byte) AreaActions.Append.getIndex());
-			info.setAreaId(routeAreaId);
-			info.setAreaType(areaKind);
-			info.setDeviceNumber(number);
-			info.setId(UUID.randomUUID().toString());
-			info.setSendTime(new Date());
-			info.setUnid(unid);
-			info.setUser(user);
+    @ServiceMethod(id = "baseinfo.routeArea.removeVehicle", pid = "baseinfo.routeArea", name = "路线解除车辆")
+    @Transactional
+    public void removeVehicle(String unid, String user, long routeAreaId, String number) {
+        RouteArea route = routeAreaDao.fetch(routeAreaId);
+        // 更新指令同步器
+        DeviceInAreaInfo info = new DeviceInAreaInfo();
+        info.setAction((byte) AreaActions.Remove.getIndex());
+        info.setAreaId(routeAreaId);
+        info.setAreaType(areaKind);
+        info.setDeviceNumber(number);
+        info.setId(UUID.randomUUID().toString());
+        info.setSendTime(new Date());
+        info.setUnid(unid);
+        info.setUser(user);
 
-			if (route != null) {
-				areaInDeviceDao.addVehicle(number, routeAreaId, areaKind);
-				if (route.deviceCatch)
-					areaInDeviceDao.log(info.getId(), number, routeAreaId, areaKind, (byte) AreaActions.Append.getIndex(), unid, user);
-			}
-			SynchronizerCache.put(info);
-			AreaCatcherCache.bind(number, routeAreaId, areaKind);
-		}
-	}
+        if (route != null) {
+            areaInDeviceDao.removeVehicle(number, routeAreaId, areaKind);
+            if (route.isDeviceCatch())
+                areaInDeviceDao.log(info.getId(), number, routeAreaId, areaKind, (byte) AreaActions.Remove.getIndex()
+                        , unid, user);
+        }
+        SynchronizerCache.put(info);
+        AreaCatcherCache.unbind(number, routeAreaId, areaKind);
+    }
 
-	@ServiceMethod(id = "baseinfo.routeArea.removeVehicle", pid = "baseinfo.routeArea", name = "路线解除车辆")
-	@Transactional
-	public void removeVehicle(String unid, String user, long routeAreaId, String number) {
-		RouteAreaDto route = routeAreaDao.fetch(routeAreaId);
-		// 更新指令同步器
-		DeviceInAreaInfo info = new DeviceInAreaInfo();
-		info.setAction((byte) AreaActions.Remove.getIndex());
-		info.setAreaId(routeAreaId);
-		info.setAreaType(areaKind);
-		info.setDeviceNumber(number);
-		info.setId(UUID.randomUUID().toString());
-		info.setSendTime(new Date());
-		info.setUnid(unid);
-		info.setUser(user);
+    public RouteAreaInfo fetchInfo(Long id) {
+        RouteAreaInfo dto = routeAreaDao.fetchInfo(id);
+        // RouteAreaInfo info = new RouteAreaInfo();
+        // info.setId(dto.id);
+        // info.setName(dto.name);
+        // info.setDeviceCatch(dto.deviceCatch);
+        // info.setRemark(dto.remark);
 
-		if (route != null) {
-			areaInDeviceDao.removeVehicle(number, routeAreaId, areaKind);
-			if (route.deviceCatch)
-				areaInDeviceDao.log(info.getId(), number, routeAreaId, areaKind, (byte) AreaActions.Remove.getIndex(), unid, user);
-		}
-		SynchronizerCache.put(info);
-		AreaCatcherCache.unbind(number, routeAreaId, areaKind);
-	}
+        dto.setSections(routeAreaDao.assignedSections(id));
+        if (dto.getSections() != null) {
+            for (SectionAreaInfo s : dto.getSections()) {
+                // SectionAreaInfo i = new SectionAreaInfo();
+                // i.setId(s.id);
+                // i.setName(s.name);
+                // i.setRemark(s.remark);
 
-	public RouteAreaInfo fetchInfo(Long id) {
-		RouteAreaInfoDto dto = routeAreaDao.fetchInfo(id);
-		RouteAreaInfo info = new RouteAreaInfo();
-		info.setId(dto.id);
-		info.setName(dto.name);
-		info.setDeviceCatch(dto.deviceCatch);
-		info.setRemark(dto.remark);
+                s.setPoints(sectionAreaDao.fetchSectionPoint(s.getId()));
+                // if (s.getPoints() != null) {
+                //     for (SectionPoint p : s.getPoints()) {
+                //         SectionPoint sp = new SectionPoint();
+                //         sp.setId(p.id);
+                //         sp.setIndex(p.index);
+                //         sp.setLat(p.lat);
+                //         sp.setLng(p.lng);
+                //         sp.setSectionId(p.sectionId);
+                //
+                //         i.getPoints().add(sp);
+                //     }
+                // }
 
-		dto.sections = routeAreaDao.assignedSections(id);
-		if (dto.sections != null) {
-			for (SectionAreaInfoDto s : dto.sections) {
-				SectionAreaInfo i = new SectionAreaInfo();
-				i.setId(s.id);
-				i.setName(s.name);
-				i.setRemark(s.remark);
+                // info.getSections().add(s);
+            }
+        }
 
-				s.points = sectionAreaDao.fetchSectionPoint(s.id);
-				if (s.points != null) {
-					for (SectionPointDto p : s.points) {
-						SectionPoint sp = new SectionPoint();
-						sp.setId(p.id);
-						sp.setIndex(p.index);
-						sp.setLat(p.lat);
-						sp.setLng(p.lng);
-						sp.setSectionId(p.sectionId);
-
-						i.getPoints().add(sp);
-					}
-				}
-
-				info.getSections().add(i);
-			}
-		}
-
-		return info;
-	}
+        return dto;
+    }
 
 }

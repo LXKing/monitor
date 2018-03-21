@@ -4,8 +4,8 @@ import java.util.List;
 
 public interface ISyncInstructDao {
 
-	List<DeviceInAreaInfoDto> loadUnfinishedAreaInDevice();
+    List<DeviceInAreaInfoDto> loadUnfinishedAreaInDevice();
 
-	void updateLog(String serialNumber);
+    void updateLog(String serialNumber);
 
 }

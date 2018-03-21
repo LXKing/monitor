@@ -14,12 +14,14 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/com.edata.common/pom.xml" />
-        <option value="$PROJECT_DIR$/com.edata.monitor/target/m2e-jee/web-resources/META-INF/maven/com.edata/monitor/pom.xml" />
         <option value="$PROJECT_DIR$/com.edata.monitor/pom.xml" />
         <option value="$PROJECT_DIR$/com.edata.godp.dao/pom.xml" />
         <option value="$PROJECT_DIR$/com.edata.godp.domain/pom.xml" />
       </list>
     </option>
+  </component>
+  <component name="ProjectDictionaryState">
+    <dictionary name="huangzhike" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
