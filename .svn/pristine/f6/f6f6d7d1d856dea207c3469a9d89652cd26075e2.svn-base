@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.edata.godp.dao.firmware.IFirmwareDao">
+    <select id="query" resultType="com.edata.godp.dao.firmware.FirmwareInfoDto">
+        SELECT VERSION AS version,
+        FILESIZE AS fileLength, CHECKCODE AS fileXor FROM firmware WHERE
+        FACTORYID = #{0}
+    </select>
+    <select id="getContent" resultType="com.edata.godp.dao.firmware.FirmwarePageDataDto">
+        SELECT
+        CONTENT FROM
+        firmware WHERE FACTORYID = #{0}
+    </select>
+
+    <select id="queryPageCount" resultType="java.lang.Integer">
+        SELECT COUNT(1) FROM
+        firmware WHERE NAME LIKE CONCAT('%',#{0},'%')
+    </select>
+    <select id="queryPageDetail" resultType="com.edata.godp.dao.firmware.FirmwareDto">
+        SELECT ID, FACTORYID,
+        NAME, VERSION, UPLOADTIME, DESCRIPTION FROM firmware
+        WHERE NAME LIKE
+        CONCAT('%',#{0},'%') ORDER BY VERSION LIMIT #{1},#{2}
+    </select>
+    <select id="exist" resultType="java.lang.Boolean">
+        SELECT COUNT(1) FROM firmware
+        WHERE
+        FACTORYID = #{0} LIMIT 1
+    </select>
+    <select id="existOutId" resultType="java.lang.Boolean">
+        SELECT COUNT(1) FROM firmware
+        WHERE
+        FACTORYID = #{0} and ID != #{1} LIMIT 1
+    </select>
+    <insert id="create" parameterType="com.edata.godp.dao.firmware.FirmwareDto">
+        INSERT INTO firmware
+        (FACTORYID, NAME, VERSION, DESCRIPTION, ID) VALUES (#{factoryId},
+        #{name}, #{version}, #{description},
+        #{id})
+    </insert>
+    <update id="update" parameterType="com.edata.godp.dao.firmware.FirmwareDto">
+        UPDATE firmware SET
+        FACTORYID=#{factoryId}, NAME=#{name}, VERSION=#{version},
+        DESCRIPTION=#{description} WHERE ID=#{id}
+        and EDITTIME=#{editTime}
+    </update>
+    <delete id="delete">
+        DELETE FROM firmware WHERE ID=#{0}
+    </delete>
+    <select id="fetch" resultType="com.edata.godp.dao.firmware.FirmwareDto">
+        SELECT ID, FACTORYID, NAME,
+        VERSION, UPLOADTIME, FILESIZE, CHECKCODE,
+        DESCRIPTION, EDITTIME FROM
+        firmware where ID = #{0}
+    </select>
+    <update id="upload">
+        UPDATE firmware SET
+        UPLOADTIME=sysdate(),
+        CONTENT=#{1}, CHECKCODE=#{2}, FILESIZE=#{3},
+        WHERE
+        ID=#{0}
+    </update>
+</mapper>
