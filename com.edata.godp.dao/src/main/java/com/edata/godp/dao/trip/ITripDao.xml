@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.edata.godp.dao.trip.ITripDao">
-    <select id="load" resultType="com.edata.godp.dao.trip.TripDto">
-        SELECT * FROM trip WHERE NUMBER =
-        #{0} AND STARTTIME &gt;=#{2} AND ENDTIME &lt;=#{2}
-    </select>
-</mapper>

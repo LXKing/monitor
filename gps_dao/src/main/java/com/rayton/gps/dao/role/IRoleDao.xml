@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rayton.gps.dao.role.IRoleDao">
+    <insert id="create" parameterType="com.rayton.gps.dao.role.RoleDto">
+        INSERT INTO role(NAME, REMARK,
+        ID) VALUES (#{name}, #{remark}, #{id})
+    </insert>
+    <update id="update" parameterType="com.rayton.gps.dao.role.RoleDto">
+        UPDATE role SET NAME=#{name},
+        REMARK=#{remark} WHERE
+        ID=#{id} and EDITTIME=#{editTime}
+    </update>
+    <select id="fetch" resultType="com.rayton.gps.dao.role.RoleDto">
+        SELECT * FROM role where ID = #{0}
+    </select>
+    <delete id="deleteAuthorize">
+        DELETE FROM authorize WHERE ROLEID=#{0}
+    </delete>
+    <delete id="delete">
+        DELETE FROM role WHERE ID=#{0}
+    </delete>
+    <select id="list" resultType="com.rayton.gps.dao.role.RoleDto">
+        SELECT ID, NAME, REMARK FROM role
+        ORDER BY Name
+    </select>
+    <select id="exsits" resultType="java.lang.Boolean">
+        SELECT COUNT(1) FROM role WHERE
+        NAME = #{0} LIMIT 1
+    </select>
+    <select id="exsitsOutId" resultType="java.lang.Boolean">
+        SELECT COUNT(1) FROM role
+        WHERE NAME = #{0} AND ID != #{1} LIMIT 1
+    </select>
+    <insert id="assignPermission">
+        REPLACE INTO authorize(ROLEID, PERMID) VALUES (#{0},
+        #{1})
+    </insert>
+    <delete id="removePermission">
+        DELETE FROM authorize WHERE ROLEID=#{0} AND
+        PERMID=#{1}
+    </delete>
+    <select id="getPermissions" resultType="java.lang.String">
+        SELECT PERMID FROM
+        authorize WHERE ROLEID=#{0}
+    </select>
+</mapper>

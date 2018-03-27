@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rayton.gps.dao.baseinfo.dictionary.IDictionaryDao">
+    <select id="list" resultType="com.rayton.gps.dao.baseinfo.dictionary.DictionaryItem">
+        SELECT
+        ID,
+        PID,
+        NAME,
+        CODE,
+        `INDEX`
+        FROM dictionary
+        WHERE KIND = #{0}
+        ORDER BY
+        `INDEX`
+    </select>
+    <insert id="create" parameterType="com.rayton.gps.dao.baseinfo.dictionary.DictionaryItem">
+        INSERT INTO dictionary (PID,
+        KIND, NAME, CODE, `INDEX`) VALUES (#{pid}, #{kind}, #{name}, #{code},
+        #{index})
+    </insert>
+    <select id="fetch" resultType="com.rayton.gps.dao.baseinfo.dictionary.DictionaryItem">
+        SELECT
+        ID,
+        PID,
+        KIND,
+        NAME,
+        CODE,
+        `INDEX`,
+        EDITTIME
+        FROM dictionary
+        WHERE ID = #{0}
+        LIMIT 1
+    </select>
+    <update id="update" parameterType="com.rayton.gps.dao.baseinfo.dictionary.DictionaryItem">
+        UPDATE dictionary
+        SET
+        PID = #{pid}, KIND = #{kind}, NAME = #{name}, CODE = #{code}, `INDEX` = #{index}
+        WHERE ID = #{id} AND
+        EDITTIME = #{editTime}
+        LIMIT 1
+    </update>
+    <delete id="delete">
+        DELETE FROM dictionary
+        WHERE ID = #{0}
+        LIMIT 1
+    </delete>
+    <select id="exist" resultType="java.lang.Boolean">
+        SELECT COUNT(1)
+        FROM dictionary
+        WHERE
+        NAME = #{0} AND KIND = #{1}
+        LIMIT 1
+    </select>
+    <select id="existOutId" resultType="java.lang.Boolean">
+        SELECT COUNT(1)
+        FROM
+        dictionary
+        WHERE NAME = #{0} AND KIND = #{1} AND ID != #{2}
+        LIMIT 1
+    </select>
+    <update id="move">
+        UPDATE dictionary
+        SET PID = #{1}
+        WHERE ID = #{0}
+        LIMIT 1
+    </update>
+</mapper>

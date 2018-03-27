@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rayton.gps.dao.baseinfo.rectangleArea.IRectangleAreaDao">
+    <select id="queryPageCount" resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM
+        rectangle
+        WHERE COMPANYID = #{0} AND NAME LIKE CONCAT('%', #{1}, '%')
+    </select>
+    <select id="queryPageDetail" resultType="com.rayton.gps.dao.baseinfo.rectangleArea.RectangleAreaInfo">
+        SELECT
+        ID,
+        NAME,
+        DEVICECATCH,
+        ULLAT,
+        ULLNG,
+        BRLAT,
+        BRLNG,
+        REMARK
+        FROM
+        rectangle
+        WHERE
+        COMPANYID = #{0} AND NAME LIKE CONCAT('%', #{1}, '%')
+        ORDER BY NAME
+        LIMIT
+        #{2}, #{3}
+    </select>
+    <select id="searchPageCount" resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM
+        rectangle
+        WHERE COMPANYID = #{0} AND NAME LIKE CONCAT('%', #{1}, '%')
+    </select>
+    <select id="searchPageDetail" resultType="com.rayton.gps.dao.baseinfo.rectangleArea.RectangleAreaInfo">
+        SELECT
+        ID,
+        NAME,
+        DEVICECATCH,
+        ULLAT,
+        ULLNG,
+        BRLAT,
+        BRLNG,
+        REMARK
+        FROM
+        rectangle
+        WHERE
+        COMPANYID = #{0} AND NAME LIKE CONCAT('%', #{1}, '%')
+        ORDER BY NAME
+        LIMIT
+        #{2}, #{3}
+    </select>
+    <insert id="create" parameterType="com.rayton.gps.dao.baseinfo.rectangleArea.RectangleArea">
+        INSERT INTO
+        rectangle (COMPANYID, NAME, DEVICECATCH, FLAG, ULLAT, ULLNG,
+        BRLAT,
+        BRLNG, MAXSPEED, OVERSPEEDSECONDS, STARTTIME, ENDTIME, REMARK)
+        VALUES (#{companyId}, #{name}, #{deviceCatch}, #{flag}, #{ullat},
+        #{ullng}, #{brlat}, #{brlng}, #{maxSpeed}, #{overspeedSeconds},
+        #{startTime}, #{endTime},
+        #{remark})
+    </insert>
+    <select id="fetch" resultType="com.rayton.gps.dao.baseinfo.rectangleArea.RectangleArea">
+        SELECT
+        ID,
+        COMPANYID,
+        NAME,
+        DEVICECATCH,
+        FLAG,
+        ULLAT,
+        ULLNG,
+        BRLAT,
+        BRLNG,
+        MAXSPEED,
+        OVERSPEEDSECONDS,
+        STARTTIME,
+        ENDTIME,
+        REMARK,
+        EDITTIME
+        FROM
+        rectangle
+        WHERE ID = #{0}
+        LIMIT 1
+    </select>
+    <update id="update" parameterType="com.rayton.gps.dao.baseinfo.rectangleArea.RectangleArea">
+        UPDATE rectangle
+        SET
+        COMPANYID = #{companyId}, NAME = #{name}, DEVICECATCH = #{deviceCatch},
+        FLAG = #{flag},
+        ULLAT = #{ullat}, ULLNG = #{ullng}, BRLAT = #{brlat},
+        BRLNG = #{brlng}, MAXSPEED = #{maxSpeed},
+        OVERSPEEDSECONDS = #{overspeedSeconds}, STARTTIME = #{startTime},
+        ENDTIME = #{endTime}, REMARK = #{remark}
+        WHERE ID = #{id} AND
+        EDITTIME = #{editTime}
+        LIMIT 1
+    </update>
+    <delete id="delete">
+        DELETE FROM rectangle
+        WHERE ID = #{0}
+        LIMIT 1
+    </delete>
+    <select id="existOutId" resultType="java.lang.Boolean">
+        SELECT COUNT(1)
+        FROM
+        rectangle
+        WHERE NAME = #{0} AND COMPANYID = #{1} AND ID !=
+        #{2}
+        LIMIT 1
+    </select>
+    <select id="exist" resultType="java.lang.Boolean">
+        SELECT COUNT(1)
+        FROM rectangle
+        WHERE NAME = #{0} AND COMPANYID = #{1}
+        LIMIT 1
+    </select>
+</mapper>

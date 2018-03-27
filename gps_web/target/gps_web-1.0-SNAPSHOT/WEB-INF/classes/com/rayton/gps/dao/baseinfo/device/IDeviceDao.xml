@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rayton.gps.dao.baseinfo.device.IDeviceDao">
+    <select id="queryPageCount" resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM
+        device AS A LEFT JOIN simcard AS B ON A.SIMCARDID = B.ID
+        WHERE
+        (A.DEVICENUMBER LIKE CONCAT('%', #{1}, '%') OR B.PHONENUMBER LIKE
+        CONCAT('%', #{1}, '%')) AND
+        A.COMPANYID = #{0}
+    </select>
+    <select id="queryPageDetail" resultType="com.rayton.gps.dao.baseinfo.device.DeviceInfo">
+        SELECT
+        A.ID,
+        B.DEVICENUMBER,
+        C.PHONENUMBER,
+        B.FACTORYNUMBER,
+        B.MODEL,
+        A.`ENABLE`,
+        A.SERVICESTARTDATE,
+        A.SERVICEENDDATE,
+        B.WARRANTY,
+        A.REMARK,
+
+
+        B.SN,
+        B.INSTOCKDATE,
+        B.OUTSTOCKDATE,
+        B.ACTIVATIONDATE,
+        B.IMEI,
+        B.LIFECYCLE,
+        B.LIFEEXPIRATIONDATE
+
+        FROM USER AS A INNER JOIN device AS B ON A.ID = B.ID
+        LEFT JOIN simcard
+        AS C ON B.SIMCARDID = C.ID
+        WHERE (B.DEVICENUMBER LIKE
+        CONCAT('%', #{1}, '%') OR
+        C.PHONENUMBER LIKE CONCAT('%', #{1}, '%')) AND
+        A.COMPANYID = #{0}
+        ORDER BY B.DEVICENUMBER
+        LIMIT #{2}, #{3}
+    </select>
+    <insert id="create" parameterType="com.rayton.gps.dao.baseinfo.device.Device">
+        INSERT INTO device (ID,
+        COMPANYID, DEVICENUMBER, SIMCARDID, MODEL,
+        FACTORYNAME, FACTORYNUMBER,
+        CAMERAS, HASMICROPHONE, HASNAVIGATION,
+        SENSORS, WARRANTY, PURCHASEDATE,
+        INSTALLDATE,
+
+        SN,
+        INSTOCKDATE,
+        OUTSTOCKDATE,
+        ACTIVATIONDATE,
+        IMEI,
+        LIFECYCLE,
+        LIFEEXPIRATIONDATE
+
+        ) VALUES (#{id}, #{companyId}, #{deviceNumber},
+        #{simcardId}, #{model},
+        #{factoryName}, #{factoryNumber}, #{cameras},
+        #{hasMicrophone}, #{hasNavigation}, #{sensors}, #{warranty},
+        #{purchaseDate}, #{installDate}
+
+        , #{SN}
+        , #{INSTOCKDATE}
+        , #{OUTSTOCKDATE}
+        , #{ACTIVATIONDATE}
+        , #{IMEI}
+        , #{LIFECYCLE}
+        , #{LIFEEXPIRATIONDATE}
+
+
+        )
+    </insert>
+    <update id="update" parameterType="com.rayton.gps.dao.baseinfo.device.Device">
+        UPDATE device
+        SET
+        COMPANYID = #{companyId}, DEVICENUMBER = #{deviceNumber},
+        SIMCARDID = #{simcardId}, MODEL = #{model}, FACTORYNAME = #{factoryName},
+        FACTORYNUMBER = #{factoryNumber},
+        CAMERAS = #{cameras},
+        HASMICROPHONE = #{hasMicrophone}, HASNAVIGATION = #{hasNavigation},
+        SENSORS = #{sensors}, WARRANTY = #{warranty},
+        PURCHASEDATE = #{purchaseDate}, INSTALLDATE = #{installDate},
+
+
+        SN = #{SN},
+        INSTOCKDATE = #{INSTOCKDATE},
+        OUTSTOCKDATE = #{OUTSTOCKDATE},
+        ACTIVATIONDATE = #{ACTIVATIONDATE},
+        IMEI = #{IMEI},
+        LIFECYCLE = #{LIFECYCLE},
+        LIFEEXPIRATIONDATE = #{LIFEEXPIRATIONDATE}
+
+
+        WHERE ID = #{id}
+        AND
+        EDITTIME = #{editTime}
+        LIMIT 1
+    </update>
+    <select id="assignedVehicle" resultType="java.lang.String">
+        SELECT PLATENUMBER
+        FROM
+        vehicle
+        WHERE DEVICEID = #{0}
+    </select>
+    <delete id="delete">
+        DELETE FROM device
+        WHERE ID = #{0}
+    </delete>
+    <select id="getDeviceNumber" resultType="java.lang.String">
+        SELECT DEVICENUMBER
+        FROM
+        device
+        WHERE ID = #{0}
+        LIMIT 1
+    </select>
+    <select id="getPlateNumber" resultType="java.lang.String">
+        SELECT A.PLATENUMBER
+        FROM
+        vehicle AS A INNER JOIN device AS B ON
+        A.DEVICEID = B.ID
+        WHERE
+        B.DEVICENUMBER = #{0}
+        LIMIT 1
+    </select>
+    <select id="fetch" resultType="com.rayton.gps.dao.baseinfo.device.Device">
+        SELECT
+        A.ID,
+        A.COMPANYID,
+        A.DEVICENUMBER,
+        B.PHONENUMBER,
+        A.SIMCARDID,
+        A.MODEL,
+        A.FACTORYNAME,
+        A.FACTORYNUMBER,
+        A.CAMERAS,
+        A.HASMICROPHONE,
+        A.HASNAVIGATION,
+        A.SENSORS,
+        A.WARRANTY,
+        A.EDITTIME,
+        A.PURCHASEDATE,
+        A.INSTALLDATE,
+
+
+        A.SN,
+        A.INSTOCKDATE,
+        A.OUTSTOCKDATE,
+        A.ACTIVATIONDATE,
+        A.IMEI,
+        A.LIFECYCLE,
+        A.LIFEEXPIRATIONDATE
+        FROM
+        device AS A LEFT JOIN simcard AS B ON A.SIMCARDID = B.ID
+        WHERE A.ID = #{0}
+        LIMIT 1
+    </select>
+    <select id="exist" resultType="java.lang.Boolean">
+        SELECT COUNT(1)
+        FROM device
+        WHERE
+        DEVICENUMBER = #{0}
+        LIMIT 1
+    </select>
+    <select id="existOutId" resultType="java.lang.Boolean">
+        SELECT COUNT(1)
+        FROM device
+        WHERE DEVICENUMBER = #{0} AND ID != #{1}
+        LIMIT 1
+    </select>
+    <select id="searchPageCount" resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM
+        device
+        LEFT JOIN simcard ON device.SIMCARDID = simcard.ID
+        WHERE
+        device.COMPANYID = #{0} AND device.DEVICENUMBER LIKE
+        CONCAT('%', #{1}, '%')
+    </select>
+    <select id="searchPageDetail" resultType="com.rayton.gps.dao.baseinfo.device.DeviceSearchInfo">
+        SELECT
+        A.ID,
+        A.DEVICENUMBER,
+        B.PHONENUMBER,
+        A.MODEL,
+        A.FACTORYNAME,
+        A.FACTORYNUMBER
+        FROM device AS A LEFT JOIN simcard AS B ON
+        A.SIMCARDID = B.ID
+        WHERE
+        A.COMPANYID = #{0} AND A.DEVICENUMBER LIKE CONCAT('%', #{1}, '%')
+        ORDER
+        BY
+        A.DEVICENUMBER
+        LIMIT #{2}, #{3}
+    </select>
+    <select id="freePageCount" resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM
+        device
+        LEFT JOIN simcard ON device.SIMCARDID = simcard.ID
+        WHERE device.ID
+        NOT IN (SELECT DEVICEID
+        FROM vehicle
+        WHERE
+        COMPANYID = #{0}) AND
+        device.COMPANYID = #{0} AND device.DEVICENUMBER LIKE
+        CONCAT('%', #{1}, '%')
+    </select>
+    <select id="freePageDetail" resultType="com.rayton.gps.dao.baseinfo.device.DeviceSearchInfo">
+        SELECT
+        A.ID,
+        A.DEVICENUMBER,
+        B.PHONENUMBER,
+        A.MODEL,
+        A.FACTORYNAME,
+        A.FACTORYNUMBER
+        FROM device AS A LEFT JOIN simcard AS B ON
+        A.SIMCARDID = B.ID
+        WHERE A.ID
+        NOT IN (SELECT DEVICEID
+        FROM vehicle
+        WHERE
+        COMPANYID = #{0}) AND
+        A.COMPANYID = #{0} AND A.DEVICENUMBER LIKE CONCAT('%', #{1}, '%')
+        ORDER BY
+        A.DEVICENUMBER
+        LIMIT #{2}, #{3}
+    </select>
+    <delete id="clearEventMenu">
+        DELETE FROM eventmenu
+        WHERE DEVICENUMBER = #{0}
+    </delete>
+    <insert id="resetEventNumber">
+        REPLACE eventmenu
+        SET
+        DEVICENUMBER = #{0}, EVENTID = #{1}, CONTENT = #{2}
+    </insert>
+    <delete id="removeEventNumber">
+        DELETE FROM eventmenu
+        WHERE DEVICENUMBER = #{0} AND
+        EVENTID = #{1}
+        LIMIT 1
+    </delete>
+</mapper>

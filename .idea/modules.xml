@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/FUCK/FUCK.iml" filepath="$PROJECT_DIR$/FUCK/FUCK.iml" />
-      <module fileurl="file://$PROJECT_DIR$/com.edata.common/com.edata.common.iml" filepath="$PROJECT_DIR$/com.edata.common/com.edata.common.iml" />
-      <module fileurl="file://$PROJECT_DIR$/com.edata.godp.dao/com.edata.godp.dao.iml" filepath="$PROJECT_DIR$/com.edata.godp.dao/com.edata.godp.dao.iml" />
-      <module fileurl="file://$PROJECT_DIR$/com.edata.godp.domain/com.edata.godp.domain.iml" filepath="$PROJECT_DIR$/com.edata.godp.domain/com.edata.godp.domain.iml" />
-      <module fileurl="file://$PROJECT_DIR$/com.rayton.gps/monitor.iml" filepath="$PROJECT_DIR$/com.rayton.gps/monitor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gps_common/gps_common.iml" filepath="$PROJECT_DIR$/gps_common/gps_common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gps_dao/gps_dao.iml" filepath="$PROJECT_DIR$/gps_dao/gps_dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gps_domain/gps_domain.iml" filepath="$PROJECT_DIR$/gps_domain/gps_domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gps_web/gps_web.iml" filepath="$PROJECT_DIR$/gps_web/gps_web.iml" />
     </modules>
   </component>
 </project>

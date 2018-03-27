@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rayton.gps.dao.fault.IFaultDao">
+    <select id="load" resultType="com.rayton.gps.dao.fault.FaultQueryDto">
+        SELECT a.NUMBER, a.GPSTIME AS TIME,
+        a.SYSID AS SYSTEMID, b.`LEVEL`, b.CONTENTC AS descriptionC, b.CONTENTE AS descriptionE,
+        b.BRAND, b.SOLUTION,
+        b.SENSORS FROM fault a INNER JOIN faultcode b ON
+        a.MODEID = b.MODEID
+        AND a.CODE1=b.CODE1 AND a.CODE2=b.CODE2 AND
+        a.CODE3
+        = b.CODE3 WHERE
+        a.NUMBER=? AND a.GPSTIME BETWEEN ? AND ? ORDER BY
+        a.GPSTIME
+    </select>
+</mapper>

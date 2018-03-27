@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rayton.gps.dao.alarm.IAlarmDao">
+    <select id="loadPageCount" resultType="java.lang.Integer">
+        SELECT COUNT(1) FROM alarm
+        WHERE NUMBER = #{0} AND GPSTIME BETWEEN #{1} AND #{2}
+    </select>
+    <select id="loadPageDetail" resultType="com.rayton.gps.dao.alarm.AlarmDto">
+        SELECT GPSTIME AS GT,
+        SERVERTIME AS ST, LNG, LAT, ALT, SPEED AS SP, ANGLE AS D, ALARMS AS A,
+        `STATUS` AS S, MILEAGE AS M,
+        OILMASS AS OIL, VSS, OVAREATYPE AS OVT,
+        OVAREAID AS OID, IOAREATYPE AS IOT, IOAREAID AS IID, IOAREAFLAG AS
+        IOF,
+        ROUTEID AS RID, ROUTESECONDS AS RT, ROUTEFLAG AS RF, ALARMID AS
+        AID, EXSTATUS AS EXS, IOSTATUS AS IOS, AD0,
+        AD1, NETWORK AS NET,
+        SATELLITES AS SAT FROM alarm WHERE
+        NUMBER = #{0} AND GPSTIME
+        BETWEEN
+        #{1} AND
+        #{2} ORDER BY
+        GPSTIME LIMIT #{3},#{4}
+    </select>
+</mapper>
