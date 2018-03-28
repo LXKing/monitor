@@ -107,9 +107,9 @@ public class DriverDto {
     @Override
     public String toString() {
         return "DriverDto{" + "id='" + id + '\'' + ", companyId='" + companyId + '\'' + ", name='" + name + '\'' + "," +
-                "" + "" + "" + " sex='" + sex + '\'' + ", phone='" + phone + '\'' + ", idType='" + idType + '\'' + "," +
-                " " + "idNumber='" + idNumber + '\'' + ", drivingLicenseNumber='" + drivingLicenseNumber + '\'' + ", " +
-                "" + "drivingLicenseExpiryDate=" + drivingLicenseExpiryDate + ", remark='" + remark + '\'' + ", " +
-                "editTime=" + editTime + '}';
+                "" + "" + "" + "" + " sex='" + sex + '\'' + ", phone='" + phone + '\'' + ", idType='" + idType + '\''
+                + "," + " " + "idNumber='" + idNumber + '\'' + ", drivingLicenseNumber='" + drivingLicenseNumber +
+                '\'' + ", " + "" + "drivingLicenseExpiryDate=" + drivingLicenseExpiryDate + ", remark='" + remark +
+                '\'' + ", " + "editTime=" + editTime + '}';
     }
 }

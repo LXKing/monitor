@@ -17,7 +17,7 @@ public class VehicleFatigueDrivingDetail {
     public String toString() {
         return "VehicleFatigueDrivingDetail{" + "deviceNumber='" + deviceNumber + '\'' + ", motorcade='" + motorcade
                 + '\'' + ", plateNumber='" + plateNumber + '\'' + ", times=" + times + ", mileages=" + mileages + ", " +
-                "" + "" + "" + "duration=" + duration + ", start=" + start + ", end=" + end + '}';
+                "" + "" + "" + "" + "duration=" + duration + ", start=" + start + ", end=" + end + '}';
     }
 
     public String getDeviceNumber() {

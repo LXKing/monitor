@@ -16,6 +16,10 @@
           rel="stylesheet" type="text/css"/>
     <link href="<%=request.getContextPath()%>/resources/css/icon.css"
           rel="stylesheet" type="text/css"/>
+
+
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/new/css/hzkstyle.css">
+
     <script type="text/javascript"
             src="<%=request.getContextPath()%>/resources/js/jquery-1.11.1.min.js"></script>
     <script type="text/javascript"
@@ -33,4 +37,5 @@
 <body>
 <sitemesh:write property='body'/>
 </body>
+
 </html>

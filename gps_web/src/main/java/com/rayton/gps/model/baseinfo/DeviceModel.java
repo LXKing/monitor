@@ -55,7 +55,7 @@ public class DeviceModel {
                 "name='" + name + '\'' + ", email='" + email + '\'' + ", phone='" + phone + '\'' + ", contact='" +
                 contact + '\'' + ", " + "enable=" + enable + ", serviceStartDate=" + serviceStartDate + ", " +
                 "serviceEndDate=" + serviceEndDate + ", createTime=" + createTime + ", remark='" + remark + '\'' + "," +
-                "" + "" + " userEditTime=" + userEditTime + '}';
+                "" + "" + "" + " userEditTime=" + userEditTime + '}';
     }
 
     public String getId() {

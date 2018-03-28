@@ -208,7 +208,6 @@ public class RectangleAreaService {
     }
 
 
-
     @RequiresPermissions("baseinfo.rectangleArea.delete")
     @ServiceMethod(id = "baseinfo.rectangleArea.delete", pid = "baseinfo.rectangleArea", name = "删除矩形区域")
     @Transactional

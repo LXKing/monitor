@@ -4,7 +4,6 @@ import com.rayton.gps.aop.ServiceMethod;
 import com.rayton.gps.dao.baseinfo.sectionArea.SectionArea;
 import com.rayton.gps.dao.baseinfo.sectionArea.SectionPoint;
 import com.rayton.gps.dao.security.IdentifyDto;
-import com.rayton.gps.dao.security.Identity;
 import com.rayton.gps.model.baseinfo.SectionAreaModel;
 import com.rayton.gps.service.SectionAreaService;
 import com.rayton.gps.util.JsonMapper;

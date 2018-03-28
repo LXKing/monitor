@@ -18,9 +18,9 @@ public class TimeoutLog {
     @Override
     public String toString() {
         return "TimeoutLog{" + "number='" + number + '\'' + ", startTime=" + startTime + ", endTime=" + endTime + ", " +
-                "" + "" + "" + "license='" + license + '\'' + ", startLng=" + startLng + ", startLat=" + startLat +
-                ", " + "startAlt=" + startAlt + ", endLng=" + endLng + ", endLat=" + endLat + ", endAlt=" + endAlt +
-                '}';
+                "" + "" + "" + "" + "license='" + license + '\'' + ", startLng=" + startLng + ", startLat=" +
+                startLat + ", " + "startAlt=" + startAlt + ", endLng=" + endLng + ", endLat=" + endLat + ", endAlt="
+                + endAlt + '}';
     }
 
     public String getNumber() {

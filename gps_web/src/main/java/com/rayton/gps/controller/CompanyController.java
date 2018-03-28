@@ -1,11 +1,10 @@
 package com.rayton.gps.controller;
 
-import com.rayton.gps.common.Tuple;
 import com.rayton.gps.aop.ServiceMethod;
+import com.rayton.gps.common.Tuple;
 import com.rayton.gps.dao.baseinfo.company.Company;
 import com.rayton.gps.dao.baseinfo.user.User;
 import com.rayton.gps.dao.security.IdentifyDto;
-import com.rayton.gps.dao.security.Identity;
 import com.rayton.gps.model.baseinfo.CompanyModel;
 import com.rayton.gps.service.CompanyService;
 import com.rayton.gps.util.WebUtil;

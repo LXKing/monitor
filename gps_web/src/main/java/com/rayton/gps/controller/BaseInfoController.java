@@ -1,7 +1,7 @@
 package com.rayton.gps.controller;
 
-import com.rayton.gps.common.ObjectId;
 import com.rayton.gps.aop.ServiceMethod;
+import com.rayton.gps.common.ObjectId;
 import com.rayton.gps.model.baseinfo.AdminMenu;
 import com.rayton.gps.service.SecurityService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;

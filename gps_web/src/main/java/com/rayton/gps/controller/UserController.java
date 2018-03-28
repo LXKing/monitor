@@ -1,12 +1,11 @@
 package com.rayton.gps.controller;
 
-import com.rayton.gps.domain.role.RoleInfo;
 import com.rayton.gps.aop.ServiceMethod;
 import com.rayton.gps.dao.Page;
 import com.rayton.gps.dao.baseinfo.MonitorInfo;
 import com.rayton.gps.dao.baseinfo.user.User;
 import com.rayton.gps.dao.security.IdentifyDto;
-import com.rayton.gps.dao.security.Identity;
+import com.rayton.gps.domain.role.RoleInfo;
 import com.rayton.gps.model.baseinfo.UserOptionModel;
 import com.rayton.gps.service.UserService;
 import com.rayton.gps.util.JsonMapper;

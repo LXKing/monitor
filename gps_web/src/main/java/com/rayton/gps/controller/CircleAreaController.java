@@ -3,7 +3,6 @@ package com.rayton.gps.controller;
 import com.rayton.gps.aop.ServiceMethod;
 import com.rayton.gps.dao.baseinfo.circleArea.CircleArea;
 import com.rayton.gps.dao.security.IdentifyDto;
-import com.rayton.gps.dao.security.Identity;
 import com.rayton.gps.service.CircleAreaService;
 import com.rayton.gps.util.JsonMapper;
 import com.rayton.gps.util.WebUtil;

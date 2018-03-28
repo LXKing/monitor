@@ -96,8 +96,8 @@ public class User {
                 + "fax='" + fax + '\'' + ", zipcode='" + zipcode + '\'' + ", registerDate=" + registerDate + ", " +
                 "serviceEndNotifyDate=" + serviceEndNotifyDate + ", bussinessAgent='" + bussinessAgent + '\'' + ", "
                 + "contact='" + contact + '\'' + ", enable=" + enable + ", serviceStartDate=" + serviceStartDate + "," +
-                " " + "serviceEndDate=" + serviceEndDate + ", createTime=" + createTime + ", remark='" + remark +
-                '\'' + "," + " editTime=" + editTime + '}';
+                "" + " " + "serviceEndDate=" + serviceEndDate + ", createTime=" + createTime + ", remark='" + remark
+                + '\'' + "," + " editTime=" + editTime + '}';
     }
 
     public String getPassword() {

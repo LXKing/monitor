@@ -30,9 +30,9 @@ public class Motorcade {
     @Override
     public String toString() {
         return "Motorcade{" + "id='" + id + '\'' + ", companyId='" + companyId + '\'' + ", type='" + type + '\'' + "," +
-                "" + " name='" + name + '\'' + ", parentVisible=" + parentVisible + ", linkMan='" + linkMan + '\'' +
-                ", " + "phone='" + phone + '\'' + ", remark='" + remark + '\'' + ", editTime=" + editTime + ", " +
-                "REGISTATIONDATE=" + REGISTATIONDATE + ", BUSSINESSAGENT='" + BUSSINESSAGENT + '\'' + '}';
+                "" + "" + " name='" + name + '\'' + ", parentVisible=" + parentVisible + ", linkMan='" + linkMan +
+                '\'' + ", " + "phone='" + phone + '\'' + ", remark='" + remark + '\'' + ", editTime=" + editTime + "," +
+                " " + "REGISTATIONDATE=" + REGISTATIONDATE + ", BUSSINESSAGENT='" + BUSSINESSAGENT + '\'' + '}';
     }
 
     public Date getREGISTATIONDATE() {

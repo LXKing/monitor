@@ -1,12 +1,9 @@
 package com.rayton.gps.controller;
 
 import com.rayton.gps.dao.security.IdentifyDto;
-import com.rayton.gps.dao.security.Identity;
 import com.rayton.gps.service.CommonService;
 import com.rayton.gps.service.SecurityService;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +20,6 @@ public class CommonContorller {
     private SecurityService securityService;
     @Autowired
     private CommonService commonService;
-
 
 
     @RequestMapping(value = "/common/device/status", method = {RequestMethod.POST, RequestMethod.GET})

@@ -70,6 +70,7 @@ public class DictionaryItemDto {
     @Override
     public String toString() {
         return "DictionaryItemDto{" + "id=" + id + ", pid=" + pid + ", enums=" + kind + ", name='" + name + '\'' + "," +
-                "" + "" + " " + "code='" + code + '\'' + ", index='" + index + '\'' + ", editTime=" + editTime + '}';
+                "" + "" + "" + " " + "code='" + code + '\'' + ", index='" + index + '\'' + ", editTime=" + editTime +
+                '}';
     }
 }

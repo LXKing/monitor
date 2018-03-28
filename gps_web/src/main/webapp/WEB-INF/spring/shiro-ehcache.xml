@@ -17,7 +17,6 @@
                   memoryStoreEvictionPolicy="LRU"/>
 
 
-
     <cache name="authorizationCache"
            maxElementsInMemory="10000"
            eternal="false"

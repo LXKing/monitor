@@ -35,7 +35,6 @@
     </filter-mapping>
 
 
-
     <filter>
         <filter-name>siteMesh</filter-name>
         <filter-class>org.sitemesh.config.ConfigurableSiteMeshFilter</filter-class>
@@ -45,7 +44,6 @@
         <filter-name>siteMesh</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-
 
 
     <servlet>

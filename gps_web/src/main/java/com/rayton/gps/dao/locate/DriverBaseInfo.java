@@ -21,7 +21,7 @@ public class DriverBaseInfo {
     @Override
     public String toString() {
         return "DriverBaseInfo{" + "name='" + name + '\'' + ", sex='" + sex + '\'' + ", phone='" + phone + '\'' + ", " +
-                "" + "" + "" + "idType='" + idType + '\'' + ", idNumber='" + idNumber + '\'' + ", " +
+                "" + "" + "" + "" + "idType='" + idType + '\'' + ", idNumber='" + idNumber + '\'' + ", " +
                 "drivingLicenseNumber='" + drivingLicenseNumber + '\'' + ", drivingLicenseExpiryDate=" +
                 drivingLicenseExpiryDate + ", " + "remark='" + remark + '\'' + '}';
     }

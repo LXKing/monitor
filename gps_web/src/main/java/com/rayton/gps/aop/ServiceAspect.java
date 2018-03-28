@@ -1,7 +1,6 @@
 package com.rayton.gps.aop;
 
 import com.rayton.gps.AppConfig;
-import com.rayton.gps.cache.AuthorizeCache;
 import com.rayton.gps.dao.security.IdentifyDto;
 import com.rayton.gps.dao.security.OperateLog;
 import com.rayton.gps.service.SecurityService;

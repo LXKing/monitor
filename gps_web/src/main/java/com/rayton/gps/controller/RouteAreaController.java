@@ -5,7 +5,6 @@ import com.rayton.gps.dao.Page;
 import com.rayton.gps.dao.baseinfo.routeArea.RouteArea;
 import com.rayton.gps.dao.baseinfo.sectionArea.SectionAreaInfo;
 import com.rayton.gps.dao.security.IdentifyDto;
-import com.rayton.gps.dao.security.Identity;
 import com.rayton.gps.service.RouteAreaService;
 import com.rayton.gps.util.JsonMapper;
 import com.rayton.gps.util.WebUtil;

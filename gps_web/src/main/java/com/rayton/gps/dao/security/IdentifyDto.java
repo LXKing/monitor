@@ -110,6 +110,6 @@ public class IdentifyDto {
         return "IdentifyDto{" + "id='" + id + '\'' + ", unid='" + unid + '\'' + ", companyId='" + companyId + '\'' +
                 ", account='" + account + '\'' + ", password='" + password + '\'' + ", name='" + name + '\'' + ", " +
                 "kind=" + kind + ", serviceStartTime=" + serviceStartTime + ", serviceEndTime=" + serviceEndTime + "," +
-                "" + "" + " enable=" + enable + '}';
+                "" + "" + "" + " enable=" + enable + '}';
     }
 }

@@ -1,9 +1,8 @@
 package com.rayton.gps.controller;
 
+import com.rayton.gps.aop.ServiceMethod;
 import com.rayton.gps.common.DateFormats;
 import com.rayton.gps.common.ObjectId;
-import com.rayton.gps.aop.ServiceMethod;
-
 import com.rayton.gps.dao.security.IdentifyDto;
 import com.rayton.gps.dao.security.OperateLog;
 import com.rayton.gps.dao.statistics.*;
@@ -55,7 +54,7 @@ public class StatisticsController {
         menuTeamOperationDataAnalysis.setText("车队运营数据分析");
         menuTeamOperationDataAnalysis.setLeaf(false);
 
-        if (securityService.hasAuthorized("statistics.historyOnlineOffline" )) {
+        if (securityService.hasAuthorized("statistics.historyOnlineOffline")) {
             AdminMenu menuHistoryOnlineOffline = new AdminMenu();
             menuHistoryOnlineOffline.setId(ObjectId.next());
             menuHistoryOnlineOffline.setPid(menuTeamOperationDataAnalysis.getId());
@@ -66,7 +65,7 @@ public class StatisticsController {
             count++;
         }
 
-        if (securityService.hasAuthorized("statistics.historyOnlineTime" )) {
+        if (securityService.hasAuthorized("statistics.historyOnlineTime")) {
             AdminMenu menuHistoryOnlineTime = new AdminMenu();
             menuHistoryOnlineTime.setId(ObjectId.next());
             menuHistoryOnlineTime.setPid(menuTeamOperationDataAnalysis.getId());
@@ -88,7 +87,7 @@ public class StatisticsController {
             count++;
         }
 
-        if (securityService.hasAuthorized("statistics.mileageOil" )) {
+        if (securityService.hasAuthorized("statistics.mileageOil")) {
             AdminMenu menuMileageOil = new AdminMenu();
             menuMileageOil.setId(ObjectId.next());
             menuMileageOil.setPid(menuTeamOperationDataAnalysis.getId());
@@ -99,7 +98,7 @@ public class StatisticsController {
             count++;
         }
 
-        if (securityService.hasAuthorized("statistics.vehicleAlarm" )) {
+        if (securityService.hasAuthorized("statistics.vehicleAlarm")) {
             AdminMenu menuVehicleAlarm = new AdminMenu();
             menuVehicleAlarm.setId(ObjectId.next());
             menuVehicleAlarm.setPid(menuTeamOperationDataAnalysis.getId());
@@ -119,7 +118,7 @@ public class StatisticsController {
         menuDrivingBehaviorAnalysis.setText("驾驶行为分析");
         menuDrivingBehaviorAnalysis.setLeaf(false);
 
-        if (securityService.hasAuthorized("statistics.vehicleFatigueDriving" )) {
+        if (securityService.hasAuthorized("statistics.vehicleFatigueDriving")) {
             AdminMenu menuVehicleFatigueDriving = new AdminMenu();
             menuVehicleFatigueDriving.setId(ObjectId.next());
             menuVehicleFatigueDriving.setPid(menuDrivingBehaviorAnalysis.getId());
@@ -130,7 +129,7 @@ public class StatisticsController {
             count++;
         }
 
-        if (securityService.hasAuthorized("statistics.vehicleOverspeed" )) {
+        if (securityService.hasAuthorized("statistics.vehicleOverspeed")) {
             AdminMenu menuVehicleOverspeed = new AdminMenu();
             menuVehicleOverspeed.setId(ObjectId.next());
             menuVehicleOverspeed.setPid(menuDrivingBehaviorAnalysis.getId());
@@ -141,7 +140,7 @@ public class StatisticsController {
             count++;
         }
 
-        if (securityService.hasAuthorized("statistics.sectionOverspeed" )) {
+        if (securityService.hasAuthorized("statistics.sectionOverspeed")) {
             AdminMenu menuSectionOverspeed = new AdminMenu();
             menuSectionOverspeed.setId(ObjectId.next());
             menuSectionOverspeed.setPid(menuDrivingBehaviorAnalysis.getId());
@@ -152,7 +151,7 @@ public class StatisticsController {
             count++;
         }
 
-        if (securityService.hasAuthorized("statistics.areaOverspeed" )) {
+        if (securityService.hasAuthorized("statistics.areaOverspeed")) {
             AdminMenu menuAreaOverspeed = new AdminMenu();
             menuAreaOverspeed.setId(ObjectId.next());
             menuAreaOverspeed.setPid(menuDrivingBehaviorAnalysis.getId());
@@ -163,7 +162,7 @@ public class StatisticsController {
             count++;
         }
 
-        if (securityService.hasAuthorized("statistics.timeoutParking" )) {
+        if (securityService.hasAuthorized("statistics.timeoutParking")) {
             AdminMenu menuTimeoutParking = new AdminMenu();
             menuTimeoutParking.setId(ObjectId.next());
             menuTimeoutParking.setPid(menuDrivingBehaviorAnalysis.getId());
@@ -174,7 +173,7 @@ public class StatisticsController {
             count++;
         }
 
-        if (securityService.hasAuthorized("statistics.routeDeviation" )) {
+        if (securityService.hasAuthorized("statistics.routeDeviation")) {
             AdminMenu menuRouteDeviation = new AdminMenu();
             menuRouteDeviation.setId(ObjectId.next());
             menuRouteDeviation.setPid(menuDrivingBehaviorAnalysis.getId());
@@ -185,7 +184,7 @@ public class StatisticsController {
             count++;
         }
 
-        if (securityService.hasAuthorized("statistics.areaIo" )) {
+        if (securityService.hasAuthorized("statistics.areaIo")) {
             AdminMenu menuAreaIO = new AdminMenu();
             menuAreaIO.setId(ObjectId.next());
             menuAreaIO.setPid(menuDrivingBehaviorAnalysis.getId());
@@ -205,7 +204,7 @@ public class StatisticsController {
         menuLogs.setText("日志查询");
         menuLogs.setLeaf(false);
 
-        if (securityService.hasAuthorized("statistics.operateLog" )) {
+        if (securityService.hasAuthorized("statistics.operateLog")) {
             AdminMenu menuOperationLog = new AdminMenu();
             menuOperationLog.setId(ObjectId.next());
             menuOperationLog.setPid(menuLogs.getId());

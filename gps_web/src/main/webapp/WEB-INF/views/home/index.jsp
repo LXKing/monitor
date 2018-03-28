@@ -4,12 +4,34 @@
 <html>
 <head>
     <title>首页</title>
+
+    <link href="<%=request.getContextPath()%>/resources/images/monitor.ico"
+          rel="icon" type="image/x-icon"/>
+    <link href="<%=request.getContextPath()%>/resources/images/monitor.ico"
+          rel="shortcut" type="image/x-icon"/>
+    <link
+            href="<%=request.getContextPath()%>/resources/skins/Aqua/css/ligerui-all.css"
+            rel="stylesheet" type="text/css"/>
+    <link href="<%=request.getContextPath()%>/resources/css/site.css"
+          rel="stylesheet" type="text/css"/>
+    <link href="<%=request.getContextPath()%>/resources/css/icon.css"
+          rel="stylesheet" type="text/css"/>
+    <script type="text/javascript"
+            src="<%=request.getContextPath()%>/resources/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript"
+            src="<%=request.getContextPath()%>/resources/js/jquery.validate.min.js"></script>
+    <script type="text/javascript"
+            src="<%=request.getContextPath()%>/resources/js/jquery.metadata.js"></script>
+    <script type="text/javascript"
+            src="<%=request.getContextPath()%>/resources/js/messages_cn.js"></script>
+    <script type="text/javascript"
+            src="<%=request.getContextPath()%>/resources/js/ligerui.all.js"></script>
+    <script type="text/javascript"
+            src="<%=request.getContextPath()%>/resources/js/framework.js"></script>
     <script type="text/javascript"
             src="<%=request.getContextPath()%>/resources/js/highcharts.js"></script>
     <script type="text/javascript"
             src="<%=request.getContextPath()%>/resources/js/home/home.js"></script>
-
-
     <style type="text/css">
         .box {
             width: 650px;

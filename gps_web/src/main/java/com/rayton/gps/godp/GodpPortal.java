@@ -1,14 +1,14 @@
 package com.rayton.gps.godp;
 
+import com.ning.http.client.AsyncHttpClient;
+import com.ning.http.client.AsyncHttpClient.BoundRequestBuilder;
+import com.ning.http.client.Response;
+import com.rayton.gps.AppConfig;
 import com.rayton.gps.common.DateFormats;
 import com.rayton.gps.domain.AppRequest;
 import com.rayton.gps.domain.AppResponse;
 import com.rayton.gps.domain.security.LoginRequest;
 import com.rayton.gps.domain.security.LoginResponse;
-import com.rayton.gps.AppConfig;
-import com.ning.http.client.AsyncHttpClient;
-import com.ning.http.client.AsyncHttpClient.BoundRequestBuilder;
-import com.ning.http.client.Response;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

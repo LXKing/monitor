@@ -7,7 +7,6 @@ import com.rayton.gps.dao.baseinfo.driver.DriverInfo;
 import com.rayton.gps.dao.baseinfo.owner.OwnerInfo;
 import com.rayton.gps.dao.baseinfo.vehicle.Vehicle;
 import com.rayton.gps.dao.security.IdentifyDto;
-import com.rayton.gps.dao.security.Identity;
 import com.rayton.gps.service.MarkerService;
 import com.rayton.gps.service.VehicleService;
 import com.rayton.gps.util.JsonMapper;

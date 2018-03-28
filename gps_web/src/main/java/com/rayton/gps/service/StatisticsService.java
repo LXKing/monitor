@@ -1,6 +1,5 @@
 package com.rayton.gps.service;
 
-import com.rayton.gps.domain.statistics.MileageOilCountResult;
 import com.rayton.gps.cache.AssociationCache;
 import com.rayton.gps.dao.Page;
 import com.rayton.gps.dao.cache.UserMonitorTarget;
@@ -8,6 +7,7 @@ import com.rayton.gps.dao.cache.association.MonitorTarget;
 import com.rayton.gps.dao.security.OperateLog;
 import com.rayton.gps.dao.security.OperateLogDto;
 import com.rayton.gps.dao.statistics.*;
+import com.rayton.gps.domain.statistics.MileageOilCountResult;
 import com.rayton.gps.godp.IGodpDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

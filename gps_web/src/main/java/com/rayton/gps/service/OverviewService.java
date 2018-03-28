@@ -8,7 +8,6 @@ import com.rayton.gps.dao.cache.UserMonitorTarget;
 import com.rayton.gps.dao.cache.association.MonitorTarget;
 import com.rayton.gps.dao.locate.GroupVehicle;
 import com.rayton.gps.dao.overview.*;
-import com.rayton.gps.dao.overview.IOverviewDao;
 import com.rayton.gps.util.KeyValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

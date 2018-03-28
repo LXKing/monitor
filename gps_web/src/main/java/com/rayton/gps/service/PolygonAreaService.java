@@ -1,9 +1,9 @@
 package com.rayton.gps.service;
 
-import com.rayton.gps.common.LatLng;
 import com.rayton.gps.aop.ServiceMethod;
 import com.rayton.gps.cache.AreaCatcherCache;
 import com.rayton.gps.cache.SynchronizerCache;
+import com.rayton.gps.common.LatLng;
 import com.rayton.gps.dao.Page;
 import com.rayton.gps.dao.baseinfo.areaInDevice.AreaInDeviceInfo;
 import com.rayton.gps.dao.baseinfo.areaInDevice.IAreaInDeviceDao;

@@ -5,9 +5,9 @@ window.admin = {
     layout: function () {
         $("#layout").ligerLayout({
             space: 0,
-            topHeight: 80,
-            leftWidth: 200,
-            allowTopResize: false
+            topHeight: 100,
+            leftWidth: 282,
+            allowTopResize: true
         });
         var height = $(".l-layout-center").height();
         admin.pages = $("#pages").ligerTab({
@@ -32,7 +32,8 @@ window.admin = {
                     url: node.data.url,
                     text: node.data.text,
                     showClose: true,
-                    height: height - 27
+                    height: height - 27,
+
                 });
             }
         });
@@ -41,4 +42,6 @@ window.admin = {
 $(function () {
     $('#btnBaseInfo').addClass("select");
     admin.layout();
+    console.log("ddddd");
+    // alert("dddd");
 });

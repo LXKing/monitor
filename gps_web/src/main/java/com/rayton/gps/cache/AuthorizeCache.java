@@ -1,7 +1,6 @@
 package com.rayton.gps.cache;
 
 import com.rayton.gps.dao.security.IdentifyDto;
-import com.rayton.gps.dao.security.Identity;
 import com.rayton.gps.dao.security.RoleAuthorize;
 import com.rayton.gps.service.SecurityService;
 import org.apache.shiro.SecurityUtils;

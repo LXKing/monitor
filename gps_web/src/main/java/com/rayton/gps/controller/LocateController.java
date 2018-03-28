@@ -1,12 +1,11 @@
 package com.rayton.gps.controller;
 
-import com.rayton.gps.domain.AppResponse;
 import com.rayton.gps.aop.ServiceMethod;
 import com.rayton.gps.dao.locate.GodpDataBlock;
 import com.rayton.gps.dao.locate.GroupVehicle;
 import com.rayton.gps.dao.locate.VehicleInfo;
 import com.rayton.gps.dao.security.IdentifyDto;
-import com.rayton.gps.dao.security.Identity;
+import com.rayton.gps.domain.AppResponse;
 import com.rayton.gps.service.LocateService;
 import com.rayton.gps.service.UserService;
 import com.rayton.gps.util.WebUtil;
@@ -34,6 +33,12 @@ public class LocateController {
     @RequestMapping("/locate/locate.iframe")
     public String index() {
         return "/center/locate/locate.iframe";
+    }
+
+
+    @RequestMapping("/locate/locate.panel")
+    public String locate() {
+        return "/center/new/locate/map.panel";
     }
 
     @RequestMapping("/locate/maptools.panel")

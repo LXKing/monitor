@@ -10,7 +10,6 @@ import com.rayton.gps.dao.baseinfo.polygonArea.PolygonAreaInfo;
 import com.rayton.gps.dao.baseinfo.rectangleArea.RectangleAreaInfo;
 import com.rayton.gps.dao.baseinfo.routeArea.RouteAreaInfo;
 import com.rayton.gps.dao.security.IdentifyDto;
-import com.rayton.gps.dao.security.Identity;
 import com.rayton.gps.service.MapLayerService;
 import com.rayton.gps.util.WebUtil;
 import org.apache.shiro.SecurityUtils;

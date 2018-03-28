@@ -25,7 +25,7 @@ public class InstructInfo {
         return "InstructInfo{" + "id='" + id + '\'' + ", deviceNumber='" + deviceNumber + '\'' + ", plateNumber='" +
                 plateNumber + '\'' + ", command='" + command + '\'' + ", name='" + name + '\'' + ", parameter='" +
                 parameter + '\'' + ", status=" + status + ", sendTime=" + sendTime + ", replyTime=" + replyTime + ", " +
-                "" + "" + "" + "result='" + result + '\'' + '}';
+                "" + "" + "" + "" + "result='" + result + '\'' + '}';
     }
 
     /**

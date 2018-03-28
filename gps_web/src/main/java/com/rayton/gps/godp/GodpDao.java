@@ -7,18 +7,14 @@ import com.rayton.gps.dao.common.DeviceStatusDto;
 import com.rayton.gps.dao.devicedata.DrivingRecorderInfoDto;
 import com.rayton.gps.dao.devicedata.PhotoInfoDto;
 import com.rayton.gps.dao.devicedata.log.*;
-
-
-
 import com.rayton.gps.dao.instruct.CommandDto;
 import com.rayton.gps.dao.instruct.FeatureDto;
 import com.rayton.gps.dao.instruct.InstructDto;
 import com.rayton.gps.dao.instruct.ParameterDto;
 import com.rayton.gps.dao.locate.LatestDto;
 import com.rayton.gps.dao.locate.TrackDto;
-import com.rayton.gps.domain.*;
+import com.rayton.gps.domain.AppResponse;
 import com.rayton.gps.domain.device.*;
-
 import com.rayton.gps.domain.drivingrecorder.*;
 import com.rayton.gps.domain.drivingrecorder.LocateLog;
 import com.rayton.gps.domain.drivingrecorder.SpeedLog;
@@ -26,17 +22,14 @@ import com.rayton.gps.domain.drivingrecorder.SpeedStatusLog;
 import com.rayton.gps.domain.feature.FeatureInfo;
 import com.rayton.gps.domain.feature.MatchFeatureRequest;
 import com.rayton.gps.domain.feature.MatchFeatureResponse;
-import com.rayton.gps.domain.instruct.InstructInfo;
-import com.rayton.gps.domain.instruct.QueryInstructRequest;
-import com.rayton.gps.domain.instruct.QueryInstructResponse;
 import com.rayton.gps.domain.instruct.*;
-import com.rayton.gps.domain.locate.*;
+import com.rayton.gps.domain.locate.LatestInfo;
+import com.rayton.gps.domain.locate.QueryLatestRequest;
+import com.rayton.gps.domain.locate.QueryLatestResponse;
 import com.rayton.gps.domain.multimedia.*;
-import com.rayton.gps.domain.multimedia.QueryMultimediaRequest;
-import com.rayton.gps.domain.multimedia.QueryMultimediaResponse;
 import com.rayton.gps.domain.parameter.LoadParameterInfo;
 import com.rayton.gps.domain.parameter.LoadParametersRequest;
-import com.rayton.gps.domain.parameter.*;
+import com.rayton.gps.domain.parameter.LoadParametersResponse;
 import com.rayton.gps.domain.statistics.*;
 import com.rayton.gps.domain.track.*;
 import org.springframework.stereotype.Repository;

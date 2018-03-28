@@ -14,7 +14,8 @@ public class AreaOverspeedCount {
     @Override
     public String toString() {
         return "AreaOverspeedCount{" + "motorcadeId='" + motorcadeId + '\'' + ", motorcade='" + motorcade + '\'' + "," +
-                "" + "" + " " + "times=" + times + ", duration=" + duration + ", start=" + start + ", end=" + end + '}';
+                "" + "" + "" + " " + "times=" + times + ", duration=" + duration + ", start=" + start + ", end=" +
+                end + '}';
     }
 
     public String getMotorcadeId() {

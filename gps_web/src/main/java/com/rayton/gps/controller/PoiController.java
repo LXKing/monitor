@@ -3,7 +3,6 @@ package com.rayton.gps.controller;
 import com.rayton.gps.aop.ServiceMethod;
 import com.rayton.gps.dao.baseinfo.poi.Poi;
 import com.rayton.gps.dao.security.IdentifyDto;
-import com.rayton.gps.dao.security.Identity;
 import com.rayton.gps.service.PoiService;
 import com.rayton.gps.util.WebUtil;
 import org.apache.shiro.SecurityUtils;

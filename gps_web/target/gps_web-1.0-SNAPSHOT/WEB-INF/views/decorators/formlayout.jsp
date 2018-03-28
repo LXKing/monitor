@@ -32,5 +32,26 @@
 </head>
 <body>
 <sitemesh:write property='body'/>
+
+<script>
+    $(document).ready(function () {
+
+        setInterval(function () {
+            $("input:text").each(function () {
+                if ($.trim($(this).val()) === "") {
+                    // alert("dddddd");
+                    // console.log(this);
+                    $(this).css("background", "orange");
+                } else {
+                    $(this).css("background", "#fff");
+                }
+
+            });
+            //    hehe
+        }, 5);
+
+
+    });
+</script>
 </body>
 </html>

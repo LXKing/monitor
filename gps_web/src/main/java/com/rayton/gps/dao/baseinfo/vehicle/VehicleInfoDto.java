@@ -50,7 +50,7 @@ public class VehicleInfoDto {
                 + ", installDate=" + installDate + ", annualSurveyDate=" + annualSurveyDate + ", serviceStartDate=" +
                 serviceStartDate + ", serviceEndDate=" + serviceEndDate + ", nextMaintainDate=" + nextMaintainDate +
                 ", motorcade='" + motorcade + '\'' + ", marker='" + marker + '\'' + ", remark='" + remark + '\'' + "," +
-                "" + " FACTORYPLATEMODE='" + FACTORYPLATEMODE + '\'' + ", AXLENUM='" + AXLENUM + '\'' + ", " +
+                "" + "" + " FACTORYPLATEMODE='" + FACTORYPLATEMODE + '\'' + ", AXLENUM='" + AXLENUM + '\'' + ", " +
                 "MANUFACTURER='" + MANUFACTURER + '\'' + ", TRAILERNUM='" + TRAILERNUM + '\'' + ", VIN='" + VIN +
                 '\'' + ", " + "BUYMONEY='" + BUYMONEY + '\'' + ", SERVICEPROVIDER='" + SERVICEPROVIDER + '\'' + ", "
                 + "LICENSEPLATESELFNUM='" + LICENSEPLATESELFNUM + '\'' + ", ENGINENUM='" + ENGINENUM + '\'' + ", " +

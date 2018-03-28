@@ -103,23 +103,15 @@
 
             <div class="mon-mainmenu">
 <span style="vertical-align: center">
-
-      <c:if test="${saveMyinfo_auth}">
-                    <a id="btnMyinfo"><%=request.getAttribute("name")%>
+                    <a id="btnMyinfo"> <shiro:principal property="name"/>
                         <div>用户管理</div>
                     </a>
-      </c:if>
-                <c:if test="${!saveMyinfo_auth}">
-                    <%=request.getAttribute("name")%>
-                </c:if>
-
+     <shiro:principal property="account"/>
 </span>
 
-
                 <a>
-                    <c:if test="${saveMyKey_auth}">
-                        <span id="btnMykey">修改密码</span>
-                    </c:if>
+                    <span id="btnMykey">修改密码</span>
+
                     <span id="btnLogout">退出</span>
                 </a>
 

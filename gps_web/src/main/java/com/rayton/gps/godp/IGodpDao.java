@@ -1,20 +1,18 @@
 package com.rayton.gps.godp;
 
-import com.rayton.gps.domain.statistics.MileageOilCountResult;
 import com.rayton.gps.dao.Page;
 import com.rayton.gps.dao.common.DataLogDto;
 import com.rayton.gps.dao.common.DeviceStatusDto;
 import com.rayton.gps.dao.devicedata.DrivingRecorderInfoDto;
 import com.rayton.gps.dao.devicedata.PhotoInfoDto;
 import com.rayton.gps.dao.devicedata.log.*;
-import com.rayton.gps.dao.devicedata.log.PowerLogDto;
-import com.rayton.gps.dao.devicedata.log.TimeoutLogDto;
 import com.rayton.gps.dao.instruct.CommandDto;
 import com.rayton.gps.dao.instruct.FeatureDto;
 import com.rayton.gps.dao.instruct.InstructDto;
 import com.rayton.gps.dao.instruct.ParameterDto;
 import com.rayton.gps.dao.locate.LatestDto;
 import com.rayton.gps.dao.locate.TrackDto;
+import com.rayton.gps.domain.statistics.MileageOilCountResult;
 
 import java.util.Date;
 import java.util.List;

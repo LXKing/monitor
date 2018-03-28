@@ -14,6 +14,8 @@ public class CenterController {
     public String index() throws Exception {
 
         // throw new Exception("fuck");
-        return "/center/index";
+        // return "/center/index";
+        // TODO
+        return "/center/new/index";
     }
 }

@@ -1,8 +1,8 @@
 package com.rayton.gps.service;
 
-import com.rayton.gps.common.PackageUtil;
 import com.rayton.gps.AppConfig;
 import com.rayton.gps.aop.ServiceMethod;
+import com.rayton.gps.common.PackageUtil;
 import com.rayton.gps.dao.baseinfo.company.ICompanyDao;
 import com.rayton.gps.dao.security.*;
 import org.apache.shiro.SecurityUtils;

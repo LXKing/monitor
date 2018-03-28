@@ -682,7 +682,7 @@ window.locate = {
     //
     //     $.ajax({
     //         type: "POST",
-    //         url: '../locate/groupVehicles',
+    //         url: '/locate/groupVehicles',
     //         data: {
     //             force: false
     //         },
@@ -733,7 +733,7 @@ window.locate = {
     // },
     loadGroups: function () {
         locate.groupVehicles = $("#groupVehicles").ligerTree({
-            url: '../locate/groupVehicles',
+            url: '/locate/groupVehicles',
             parms: {
                 force: false
             },
@@ -808,7 +808,7 @@ window.locate = {
     },
     refreshGroups: function () {
         locate.groupVehicles.loading.show();
-        $.post('../locate/groupVehicles', {
+        $.post('/locate/groupVehicles', {
             force: true
         });
         location.reload();

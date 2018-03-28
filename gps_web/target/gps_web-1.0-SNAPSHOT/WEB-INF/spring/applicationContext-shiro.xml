@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
@@ -10,7 +10,7 @@
         <!-- 认证提交地址，没有认证会请求此地址认证，由formAuthenticationFilter进行表单认证 -->
         <property name="loginUrl" value="/"/>
         <!-- 认证成功统一跳转地址，不配置的话认证成功会自动到上一个请求路径 -->
-         <property name="successUrl" value="/home"/>
+        <property name="successUrl" value="/home"/>
         <property name="unauthorizedUrl" value="/"/>
         <!-- 自定义filter -->
         <!--<property name="filters">-->
@@ -181,7 +181,6 @@
     <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
         <property name="securityManager" ref="securityManager"/>
     </bean>
-
 
 
 </beans>

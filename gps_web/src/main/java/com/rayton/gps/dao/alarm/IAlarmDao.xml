@@ -44,10 +44,10 @@
     <select id="untreatedByDeviceNumber" resultMap="AlarmDtoMap">
         SELECT *
         FROM
-            alarm
+        alarm
         WHERE DEVICENUMBER = #{0} AND ISHANDLED = 0
         ORDER BY
-            GPSTIME
+        GPSTIME
         DESC
     </select>
     <select id="untreatedByDeviceNumbers" resultMap="AlarmDtoMap">
@@ -65,38 +65,38 @@
     <select id="processPageCount" resultType="java.lang.Integer">
         SELECT COUNT(1)
         FROM
-            alarm
+        alarm
         WHERE DEVICENUMBER = #{0} AND (GPSTIME BETWEEN #{1} AND
         #{2}) AND
-              ISHANDLED = 1
+        ISHANDLED = 1
     </select>
     <select id="processedPageDetail" resultMap="AlarmDtoMap">
         SELECT *
         FROM alarm
         WHERE DEVICENUMBER = #{0} AND (GPSTIME BETWEEN #{1} AND #{2}) AND
-              ISHANDLED = 1
+        ISHANDLED = 1
         ORDER BY GPSTIME
     </select>
     <select id="getAlarmTimestamp" resultType="java.util.Date">
         SELECT EDITTIME
         FROM
-            alarm
+        alarm
         WHERE ID = #{0} AND ISHANDLED = 0
         LIMIT 1
     </select>
     <update id="processOnce" parameterType="com.rayton.gps.dao.alarm.ProcessOnceDto">
         UPDATE alarm
         SET
-            USERID     = #{userId}, USERNAME = #{userName}, USERTIME = NOW(), ISHANDLED = 1, USERMETHOD = #{userMethod},
-            USERREMARK = #{userRemark}
+        USERID = #{userId}, USERNAME = #{userName}, USERTIME = NOW(), ISHANDLED = 1, USERMETHOD = #{userMethod},
+        USERREMARK = #{userRemark}
         WHERE ID = #{alarmId} AND EDITTIME = #{alarmTimestamp}
         LIMIT 1
     </update>
     <update id="processAll" parameterType="com.rayton.gps.dao.alarm.ProcessAllDto">
         UPDATE alarm
         SET
-            USERID     = #{userId}, USERNAME = #{userName}, USERTIME = NOW(), ISHANDLED = 1, USERMETHOD = #{userMethod},
-            USERREMARK = #{userRemark}
+        USERID = #{userId}, USERNAME = #{userName}, USERTIME = NOW(), ISHANDLED = 1, USERMETHOD = #{userMethod},
+        USERREMARK = #{userRemark}
         WHERE DEVICENUMBER = #{deviceNumber} AND ISHANDLED = 0
     </update>
 </mapper>
