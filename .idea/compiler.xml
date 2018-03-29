@@ -7,6 +7,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="generator" />
         <module name="gps_common" />
         <module name="gps_dao" />
         <module name="gps_domain" />
@@ -14,6 +15,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="generator" target="1.8" />
       <module name="gps_common" target="1.8" />
       <module name="gps_dao" target="1.8" />
       <module name="gps_domain" target="1.8" />

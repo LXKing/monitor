@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/generator" />
     <file type="web" url="file://$PROJECT_DIR$/gps_web" />
   </component>
   <component name="JavaScriptSettings">
@@ -13,6 +14,7 @@
         <option value="$PROJECT_DIR$/gps_web/pom.xml" />
         <option value="$PROJECT_DIR$/gps_common/pom.xml" />
         <option value="$PROJECT_DIR$/gps_domain/pom.xml" />
+        <option value="$PROJECT_DIR$/generator/pom.xml" />
       </list>
     </option>
   </component>

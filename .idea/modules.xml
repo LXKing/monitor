@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/generator/generator.iml" filepath="$PROJECT_DIR$/generator/generator.iml" />
       <module fileurl="file://$PROJECT_DIR$/gps_common/gps_common.iml" filepath="$PROJECT_DIR$/gps_common/gps_common.iml" />
       <module fileurl="file://$PROJECT_DIR$/gps_dao/gps_dao.iml" filepath="$PROJECT_DIR$/gps_dao/gps_dao.iml" />
       <module fileurl="file://$PROJECT_DIR$/gps_domain/gps_domain.iml" filepath="$PROJECT_DIR$/gps_domain/gps_domain.iml" />

@@ -460,6 +460,8 @@ window.locate = {
             locate.drawMapLayers();
         }, 1000 * 10);
     },
+
+
     overlayComplete: function (e) {
         locate.webMap.removeOverlay(e.overlay);
         locate.webMap.drawingClose();
