@@ -21,7 +21,7 @@ $(function () {
     $(".bodyall").attr("style", " width: " + window.screen.width + "px;height:" + window.screen.height + "px")
 
 });
-//window.onresize 事件可用于检测页面是否触发了放大或缩小。	 
+//window.onresize 事件可用于检测页面是否触发了放大或缩小。
 $(window).on('resize', function () {
     // isScale();
 });
@@ -29,7 +29,8 @@ $(window).on('resize', function () {
 
 
 //阻止pc端浏览器缩放js代码
-//由于浏览器菜单栏属于系统软件权限，没发控制，我们着手解决ctrl/cammond + +/- 或 Windows下ctrl + 滚轮 缩放页面的情况，只能通过js来控制了
+//由于浏览器菜单栏属于系统软件权限，没发控制，
+// 我们着手解决ctrl/cammond + +/- 或 Windows下ctrl + 滚轮 缩放页面的情况，只能通过js来控制了
 // jqeury version
 $(document).ready(function () {
     // chrome 浏览器直接加上下面这个样式就行了，但是ff不识别
@@ -149,6 +150,7 @@ function addHoverDom(treeId, treeNode) {
     sObj.after(addStr);
     var btn = $("#addBtn_" + treeNode.tId);
     if (btn) btn.bind("click", function () {
+
         var zTree = $.fn.zTree.getZTreeObj("treeDemo");
         zTree.addNodes(treeNode, {id: (100 + newCount), pId: treeNode.id, name: "new node" + (newCount++)});
         return false;

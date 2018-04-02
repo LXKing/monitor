@@ -52,8 +52,8 @@
     </select>
     <select id="untreatedByDeviceNumbers" resultMap="AlarmDtoMap">
         SELECT A.*,C.PLATENUMBER FROM alarm AS A INNER JOIN
-        device AS B ON
-        A.DEVICENUMBER=B.DEVICENUMBER INNER JOIN vehicle AS C ON
+        equipment AS B ON
+        A.DEVICENUMBER=B.DEVICENUMBER INNER JOIN automobile AS C ON
         B.ID=C.DEVICEID WHERE
         ISHANDLED=0 AND A.DEVICENUMBER IN
         <foreach item="item" index="index" collection="list" open="("

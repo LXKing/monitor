@@ -17,7 +17,7 @@
         FROM
         motorcade AS A
         INNER
-        JOIN usermonitor AS B
+        JOIN user_monitor AS B
         ON B.TARGETID = A.ID
         WHERE B.USERID = #{0}
         UNION
@@ -29,7 +29,7 @@
         2 AS `TYPE`
         FROM company AS C
         INNER JOIN
-        usermonitor AS D ON D.TARGETID = C.ID
+        user_monitor AS D ON D.TARGETID = C.ID
         WHERE D.USERID = #{0} AND
         C.PARENTVISIBLE = 1
     </select>
@@ -58,8 +58,8 @@
     <select id="loadUserVehicles" resultMap="MonitorTargetDtoMap">
         SELECT A.ID, A.MOTORCADEID AS PID, A.PLATENUMBER AS NAME,
         B.DEVICENUMBER, 0
-        AS `TYPE`, A.MARKER, A.ROTATE FROM vehicle AS A INNER
-        JOIN device AS B
+        AS `TYPE`, A.MARKER, A.ROTATE FROM automobile AS A INNER
+        JOIN equipment AS B
         ON A.DEVICEID=B.ID WHERE A.MOTORCADEID IN
         <foreach item="item" index="index" collection="list" open="("
                  separator="," close=")">

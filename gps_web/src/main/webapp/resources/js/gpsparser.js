@@ -63,7 +63,7 @@ window.gpsDataParser.parseStatus = function (data) {
         states.push('空车');
     // 10
     // 0:车辆油路正常;1:车辆油路断开
-    states.push((state >> 10 & 1) == 1 ? '油路断开' : '油路正常');
+    states.push((state >> 10 & 1) === 1 ? '油路断开' : '油路正常');
     // 11
     // 0:车辆电路正常;1:车辆电路断开
     states.push((state >> 11 & 1) == 1 ? '电路断开' : '电路正常');

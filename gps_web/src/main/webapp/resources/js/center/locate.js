@@ -1153,6 +1153,7 @@ window.locate = {
     replay: function (deviceNumber) {
         var device = locate.devices[deviceNumber];
         var plateNumber = device.na;
+        // 父frame
         parent.center.replay(deviceNumber, plateNumber);
     },
     /**

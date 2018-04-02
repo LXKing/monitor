@@ -23,9 +23,9 @@
     </select>
 
     <select id="vehicleServiceOverview" resultType="java.lang.Integer">
-        SELECT COUNT(1) FROM user INNER JOIN device ON user.ID=device.ID WHERE
+        SELECT COUNT(1) FROM user INNER JOIN equipment ON user.ID=equipment.ID WHERE
         user.SERVICEENDDATE &lt; SYSDATE() AND
-        device.DEVICENUMBER IN
+        equipment.DEVICENUMBER IN
         <foreach item="item" index="index" collection="list" open="("
                  separator="," close=")">
             #{item}
@@ -33,10 +33,10 @@
     </select>
 
     <select id="vehicleServiceOverviewDays" resultType="java.lang.Integer">
-        SELECT COUNT(1) FROM user INNER JOIN device ON user.ID=device.ID WHERE
+        SELECT COUNT(1) FROM user INNER JOIN equipment ON user.ID=equipment.ID WHERE
         user.SERVICEENDDATE BETWEEN NOW() AND date_add(NOW(), interval #{key}
         day)
-        AND device.DEVICENUMBER IN
+        AND equipment.DEVICENUMBER IN
         <foreach item="item" index="index" collection="value" open="("
                  separator="," close=")">
             #{item}
@@ -44,17 +44,17 @@
     </select>
 
     <select id="vehicleCheckOverview" resultType="java.lang.Integer">
-        SELECT COUNT(1) FROM vehicle WHERE ANNUALSURVEYDATE &lt; SYSDATE() AND
-        vehicle.ID IN
+        SELECT COUNT(1) FROM automobile WHERE ANNUALSURVEYDATE &lt; SYSDATE() AND
+        automobile.ID IN
         <foreach item="item" index="index" collection="list" open="("
                  separator="," close=")">
             #{item}
         </foreach>
     </select>
     <select id="vehicleCheckOverviewDays" resultType="java.lang.Integer">
-        SELECT COUNT(1) FROM vehicle WHERE ANNUALSURVEYDATE BETWEEN NOW() AND
+        SELECT COUNT(1) FROM automobile WHERE ANNUALSURVEYDATE BETWEEN NOW() AND
         date_add(NOW(), interval #{key} day) AND
-        vehicle.ID IN
+        automobile.ID IN
         <foreach item="item" index="index" collection="value" open="("
                  separator="," close=")">
             #{item}
@@ -62,16 +62,16 @@
     </select>
 
     <select id="vehicleMaintainOverview" resultType="java.lang.Integer">
-        SELECT COUNT(1) FROM vehicle WHERE NEXTMAINTAINDATE &lt; SYSDATE() AND
-        vehicle.ID IN
+        SELECT COUNT(1) FROM automobile WHERE NEXTMAINTAINDATE &lt; SYSDATE() AND
+        automobile.ID IN
         <foreach item="item" index="index" collection="list" open="("
                  separator="," close=")">
             #{item}
         </foreach>
     </select>
     <select id="vehicleMaintainOverviewDays" resultType="java.lang.Integer">
-        SELECT COUNT(1) FROM vehicle WHERE NEXTMAINTAINDATE BETWEEN NOW() AND
-        date_add(NOW(), interval #{key} day) AND vehicle.ID IN
+        SELECT COUNT(1) FROM automobile WHERE NEXTMAINTAINDATE BETWEEN NOW() AND
+        date_add(NOW(), interval #{key} day) AND automobile.ID IN
         <foreach item="item" index="index" collection="value" open="("
                  separator="," close=")">
             #{item}
@@ -128,9 +128,9 @@
         A.PLATECOLOR,
         A.INSTALLDATE, A.ANNUALSURVEYDATE, A.MARKER, A.REMARK,
         D.NAME AS
-        MOTORCADE, E.SERVICESTARTDATE, E.SERVICEENDDATE FROM vehicle
+        MOTORCADE, E.SERVICESTARTDATE, E.SERVICEENDDATE FROM automobile
         AS A LEFT
-        JOIN device AS B ON A.DEVICEID=B.ID LEFT JOIN simcard AS C ON
+        JOIN equipment AS B ON A.DEVICEID=B.ID LEFT JOIN simcard AS C ON
         B.SIMCARDID=C.ID LEFT JOIN motorcade AS D ON A.MOTORCADEID=D.ID LEFT
         JOIN user AS E ON B.ID=E.ID WHERE E.SERVICEENDDATE &lt; SYSDATE() AND
         A.ID IN
@@ -144,9 +144,9 @@
         A.PLATECOLOR,
         A.INSTALLDATE, A.ANNUALSURVEYDATE, A.MARKER, A.REMARK,
         D.NAME AS
-        MOTORCADE, E.SERVICESTARTDATE, E.SERVICEENDDATE FROM vehicle
+        MOTORCADE, E.SERVICESTARTDATE, E.SERVICEENDDATE FROM automobile
         AS A LEFT
-        JOIN device AS B ON A.DEVICEID=B.ID LEFT JOIN simcard AS C ON
+        JOIN equipment AS B ON A.DEVICEID=B.ID LEFT JOIN simcard AS C ON
         B.SIMCARDID=C.ID LEFT JOIN motorcade AS D ON A.MOTORCADEID=D.ID LEFT
         JOIN user AS E ON B.ID=E.ID WHERE E.SERVICEENDDATE BETWEEN NOW() AND
         date_add(NOW(), interval #{key} day)
@@ -161,7 +161,7 @@
         A.PLATECOLOR,
         A.INSTALLDATE, A.NEXTMAINTAINDATE, A.MARKER, A.REMARK,
         D.NAME AS
-        MOTORCADE FROM vehicle AS A LEFT JOIN device AS B ON
+        MOTORCADE FROM automobile AS A LEFT JOIN equipment AS B ON
         A.DEVICEID=B.ID
         LEFT JOIN simcard AS C ON B.SIMCARDID=C.ID LEFT JOIN
         motorcade AS D ON
@@ -178,7 +178,7 @@
         A.PLATECOLOR,
         A.INSTALLDATE, A.NEXTMAINTAINDATE, A.MARKER, A.REMARK,
         D.NAME AS
-        MOTORCADE FROM vehicle AS A LEFT JOIN device AS B ON
+        MOTORCADE FROM automobile AS A LEFT JOIN equipment AS B ON
         A.DEVICEID=B.ID
         LEFT JOIN simcard AS C ON B.SIMCARDID=C.ID LEFT JOIN
         motorcade AS D ON
@@ -196,7 +196,7 @@
         A.PLATECOLOR,
         A.INSTALLDATE, A.ANNUALSURVEYDATE, A.MARKER, A.REMARK,
         D.NAME AS
-        MOTORCADE FROM vehicle AS A LEFT JOIN device AS B ON
+        MOTORCADE FROM automobile AS A LEFT JOIN equipment AS B ON
         A.DEVICEID=B.ID
         LEFT JOIN simcard AS C ON B.SIMCARDID=C.ID LEFT JOIN
         motorcade AS D ON
@@ -213,7 +213,7 @@
         A.PLATECOLOR,
         A.INSTALLDATE, A.ANNUALSURVEYDATE, A.MARKER, A.REMARK,
         D.NAME AS
-        MOTORCADE FROM vehicle AS A LEFT JOIN device AS B ON
+        MOTORCADE FROM automobile AS A LEFT JOIN equipment AS B ON
         A.DEVICEID=B.ID
         LEFT JOIN simcard AS C ON B.SIMCARDID=C.ID LEFT JOIN
         motorcade AS D ON

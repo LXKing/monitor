@@ -34,6 +34,7 @@ window.center = {
         var height = $(".l-layout-center").height();
         var pageId = 'replay' + deviceNumber;
         if (center.centerPages.isTabItemExist(pageId)) {
+            // 如果当前已打开该车page
             center.centerPages.selectTabItem(pageId);
         } else {
             center.centerPages.addTabItem({
@@ -43,7 +44,7 @@ window.center = {
                 // showClose : false,
                 height: height - 27
             });
-            // replay.reset(deviceNumber, plateNumber);
+            // replay.repparentarentset(deviceNumber, plateNumber);
         }
     },
     queryAlarm: function (deviceNumber, plateNumber) {

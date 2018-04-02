@@ -57,28 +57,28 @@
         LIMIT 1
     </delete>
     <delete id="deleteRoleAuthorize">
-        DELETE FROM roleauthorize
+        DELETE FROM role_permission
         WHERE ROLEID = #{0}
     </delete>
     <select id="authorizes" resultType="java.lang.String">
         SELECT PERMISSIONID
         FROM
-        roleauthorize
+        role_permission
         WHERE ROLEID = #{0}
     </select>
 
     <select id="authorize">
-        INSERT INTO roleauthorize(COMPANYID, ROLEID, PERMISSIONID) VALUES
+        INSERT INTO role_permission(COMPANYID, ROLEID, PERMISSIONID) VALUES
         <foreach collection="list" item="item" separator=",">
             (#{item.key},#{item.value.key},#{item.value.value})
         </foreach>
     </select>
 
     <delete id="clreanupAuthorize">
-        DELETE FROM roleauthorize
+        DELETE FROM role_permission
         WHERE COMPANYID = #{0} AND
         PERMISSIONID NOT IN (SELECT PERMISSIONID
-        FROM companyauthorize
+        FROM company_permission
         WHERE
         COMPANYID = #{0})
     </delete>

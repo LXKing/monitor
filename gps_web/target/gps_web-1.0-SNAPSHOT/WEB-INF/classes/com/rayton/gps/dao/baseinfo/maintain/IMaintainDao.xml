@@ -4,7 +4,7 @@
     <select id="queryPageCount" resultType="java.lang.Integer">
         SELECT COUNT(1)
         FROM
-        maintain AS A INNER JOIN vehicle AS B ON A.VEHICLEID = B.ID
+        maintain AS A INNER JOIN automobile AS B ON A.VEHICLEID = B.ID
         WHERE
         A.COMPANYID = #{0} AND B.PLATENUMBER LIKE CONCAT('%', #{1}, '%') AND
         A.DONEDATE BETWEEN #{2} AND #{3}
@@ -21,7 +21,7 @@
         A.USERNAME,
         B.PLATENUMBER
         FROM maintain AS A INNER JOIN
-        vehicle AS B ON
+        automobile AS B ON
         A.VEHICLEID = B.ID
         WHERE A.COMPANYID = #{0} AND B.PLATENUMBER
         LIKE
@@ -41,7 +41,7 @@
         #{userId}, #{userName}, SYSDATE())
     </insert>
     <update id="updateNextMaintainDate">
-        UPDATE vehicle
+        UPDATE automobile
         SET NEXTMAINTAINDATE = #{1}
         WHERE
         ID = #{0}
@@ -85,7 +85,7 @@
         A.USERNAME,
         A.EDITTIME
         FROM maintain AS A
-        INNER JOIN vehicle AS B ON
+        INNER JOIN automobile AS B ON
         A.VEHICLEID = B.ID
         WHERE A.ID = #{0}
         LIMIT 1

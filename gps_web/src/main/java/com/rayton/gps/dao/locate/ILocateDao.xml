@@ -44,12 +44,12 @@
         A.REMARK,
         A.INSTALLDATE,
         A.ANNUALSURVEYDATE
-        FROM vehicle AS A INNER
+        FROM automobile AS A INNER
         JOIN company AS B ON A.COMPANYID = B.ID
         INNER
         JOIN motorcade AS C ON
         A.MOTORCADEID = C.ID
-        INNER JOIN device AS D ON
+        INNER JOIN equipment AS D ON
         A.DEVICEID = D.ID
         WHERE
         A.ID = #{0}
@@ -63,10 +63,10 @@
         A.IDNUMBER,
         B.EMAIL,
         B.REMARK
-        FROM owner AS
+        FROM automobile_owner AS
         A
         INNER JOIN user AS B ON A.ID = B.ID
-        INNER JOIN vehicleinowner AS C ON
+        INNER JOIN automobile_automobile_owner AS C ON
         A.ID = C.OWNERID
         WHERE C.VEHICLEID = #{0}
     </select>
@@ -80,12 +80,12 @@
         DRIVINGLICENSENUMBER,
         DRIVINGLICENSEEXPIRYDATE,
         REMARK
-        FROM driver AS A INNER JOIN vehicleindriver AS B ON A.ID = B.DRIVERID
+        FROM driver AS A INNER JOIN automobile_driveer AS B ON A.ID = B.DRIVERID
         WHERE B.VEHICLEID = #{0}
     </select>
     <insert id="saveMultimediaEventReport"
             parameterType="com.rayton.gps.dao.locate.MultimediaEventReportDto">
-        INSERT INTO multimediaeventreport (ID, DEVICENUMBER,
+        INSERT INTO multimedia_event_report (ID, DEVICENUMBER,
         TIME, MEDIAID,
         MEDIATYPE, FORMATTYPE, EVENTTYPE, CHANNELID, READED)
         VALUES (#{id}, #{number}, #{time},
@@ -96,7 +96,7 @@
             resultType="com.rayton.gps.dao.locate.MultimediaEventReportDto">
         SELECT ID, DEVICENUMBER, TIME, MEDIAID, FORMATTYPE, EVENTTYPE,
         CHANNELID
-        FROM multimediaeventreport WHERE READED=0 AND DEVICENUMBER IN
+        FROM multimedia_event_report WHERE READED=0 AND DEVICENUMBER IN
         <foreach item="item" index="index" collection="list" open="("
                  separator="," close=")">
             #{item}
@@ -104,14 +104,14 @@
         ORDER BY TIME
     </select>
     <update id="readMultmediaEventReport">
-        UPDATE multimediaeventreport
+        UPDATE multimedia_event_report
         SET
         READED = 1, USERID = #{1}, USERNAME = #{2}, USERTIME = NOW()
         WHERE ID = #{0}
         LIMIT 1
     </update>
     <insert id="saveMultimediaRetrieval">
-        REPLACE INTO multimediaretrieval
+        REPLACE INTO multimedia_retrieval
         (DEVICENUMBER, TIME, MEDIAID,
         MEDIATYPE, EVENTTYPE, CHANNELID, LNG, LAT, ALT, SPEED,
         ANGLE, ALARMS,
@@ -127,18 +127,18 @@
     </insert>
     <select id="getEventReportDescription" resultType="java.lang.String">
         SELECT CONTENT
-        FROM eventmenu
+        FROM event_menu
         WHERE DEVICENUMBER = #{0} AND EVENTID = #{1}
         LIMIT 1
     </select>
     <insert id="saveDeviceEventReport" parameterType="com.rayton.gps.dao.locate.DeviceEventReportDto">
         INSERT INTO
-        eventreport (ID, DEVICENUMBER, TIME, EVENTID, CONTENT, READED)
+        event_report (ID, DEVICENUMBER, TIME, EVENTID, CONTENT, READED)
         VALUES
         (#{id}, #{number}, NOW(), #{eventId}, #{content}, 0)
     </insert>
     <update id="readDeviceEventReport">
-        UPDATE eventreport
+        UPDATE event_report
         SET
         READED = 1, USERID = #{1}, USERNAME = #{2}, USERTIME = NOW()
         WHERE
@@ -146,7 +146,7 @@
         LIMIT 1
     </update>
     <select id="loadUnreadDeviceEvent" resultType="com.rayton.gps.dao.locate.DeviceEventReportDto">
-        SELECT ID, DEVICENUMBER, TIME, EVENTID, CONTENT FROM eventreport WHERE
+        SELECT ID, DEVICENUMBER, TIME, EVENTID, CONTENT FROM event_report WHERE
         READED=0 AND
         DEVICENUMBER IN
         <foreach item="item" index="index" collection="list" open="("
@@ -157,12 +157,12 @@
     </select>
     <insert id="saveUpgradeResultReport" parameterType="com.rayton.gps.dao.locate.UpgradeResultReportDto">
         INSERT INTO
-        upgradereport (ID, DEVICENUMBER, TIME, `TYPE`, RESULT, READED)
+        update_report (ID, DEVICENUMBER, TIME, `TYPE`, RESULT, READED)
         VALUES
         (#{id}, #{number}, NOW(), #{type}, #{result}, 0)
     </insert>
     <select id="loadUnreadDeviceUpgradeResultReport" resultType="com.rayton.gps.dao.locate.UpgradeResultReportDto">
-        SELECT ID, DEVICENUMBER, TIME, `TYPE`, RESULT FROM upgradereport WHERE
+        SELECT ID, DEVICENUMBER, TIME, `TYPE`, RESULT FROM update_report WHERE
         READED=0 AND
         DEVICENUMBER IN
         <foreach item="item" index="index" collection="list" open="("
@@ -172,7 +172,7 @@
         ORDER BY TIME
     </select>
     <update id="readDeviceUpgradeResultReport">
-        UPDATE upgradereport
+        UPDATE update_report
         SET
         READED = 1, USERID = #{1}, USERNAME = #{2}, USERTIME = NOW()
         WHERE

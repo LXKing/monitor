@@ -78,7 +78,7 @@
         LIMIT 1
     </delete>
     <insert id="createSectionPoint">
-        INSERT INTO sectionpoint(SECTIONID, LAT, LNG, `INDEX`) VALUES
+        INSERT INTO route_inflection_point(SECTIONID, LAT, LNG, `INDEX`) VALUES
         <foreach collection="list" item="item" separator=",">
             (#{item.sectionId},#{item.lat},#{item.lng},#{item.index})
         </foreach>
@@ -90,13 +90,13 @@
         LNG,
         SECTIONID,
         `INDEX`
-        FROM sectionpoint
+        FROM route_inflection_point
         WHERE SECTIONID = #{0}
         ORDER BY
         `INDEX`
     </select>
     <delete id="deleteSectionPoint">
-        DELETE FROM sectionpoint
+        DELETE FROM route_inflection_point
         WHERE SECTIONID = #{0}
     </delete>
     <select id="existOutId" resultType="java.lang.Boolean">

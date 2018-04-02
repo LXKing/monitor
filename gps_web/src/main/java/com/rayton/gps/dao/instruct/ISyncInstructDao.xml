@@ -23,11 +23,11 @@
         USER,
         SENDTIME
         FROM
-        areaindevicelog
+        equipment_region_log
         WHERE ACKTIME IS NULL
     </select>
     <update id="updateLog">
-        UPDATE areaindevicelog
+        UPDATE equipment_region_log
         SET ACKTIME = NOW()
         WHERE
         ID = #{0}

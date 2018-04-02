@@ -4,7 +4,7 @@
     <select id="queryPageCount" resultType="java.lang.Integer">
         SELECT COUNT(1)
         FROM
-        vehicle AS A LEFT JOIN device AS
+        automobile AS A LEFT JOIN equipment AS
         B ON A.DEVICEID = B.ID
         LEFT JOIN simcard
         AS C ON B.SIMCARDID = C.ID
@@ -56,8 +56,8 @@
         A.VINPIC
 
 
-        FROM vehicle AS A LEFT JOIN
-        device AS B ON A.DEVICEID = B.ID
+        FROM automobile AS A LEFT JOIN
+        equipment AS B ON A.DEVICEID = B.ID
         LEFT JOIN simcard AS C ON
         B.SIMCARDID = C.ID
         LEFT JOIN motorcade AS D ON
@@ -74,7 +74,7 @@
         LIMIT #{2}, #{3}
     </select>
     <insert id="create" parameterType="com.rayton.gps.dao.baseinfo.vehicle.Vehicle">
-        INSERT INTO vehicle (ID,
+        INSERT INTO automobile (ID,
         COMPANYID, MOTORCADEID, DEVICEID, PLATENUMBER,
         PLATECOLOR,
         VEHICLECOLOR, VEHICLETYPE, VEHICLEVOLTAGE, CARRYTYPE,
@@ -146,7 +146,7 @@
         )
     </insert>
     <update id="update" parameterType="com.rayton.gps.dao.baseinfo.vehicle.Vehicle">
-        UPDATE vehicle
+        UPDATE automobile
         SET
         COMPANYID = #{companyId}, MOTORCADEID = #{motorcadeId},
         DEVICEID = #{deviceId}, PLATENUMBER = #{plateNumber},
@@ -190,15 +190,15 @@
         LIMIT 1
     </update>
     <delete id="deleteVehicleInOwner">
-        DELETE FROM vehicleinowner
+        DELETE FROM automobile_automobile_owner
         WHERE VEHICLEID = #{0}
     </delete>
     <delete id="deleteVehicleInDriver">
-        DELETE FROM vehicleindriver
+        DELETE FROM automobile_driveer
         WHERE VEHICLEID = #{0}
     </delete>
     <delete id="delete">
-        DELETE FROM vehicle
+        DELETE FROM automobile
         WHERE ID = #{0}
         LIMIT 1
     </delete>
@@ -249,8 +249,8 @@
         A.LICENSEEXAMINATIONPERIOD,
         A.VEHICLEPIC,
         A.VINPIC
-        FROM vehicle AS A LEFT
-        JOIN device AS
+        FROM automobile AS A LEFT
+        JOIN equipment AS
         B ON A.DEVICEID = B.ID
         LEFT JOIN motorcade AS C ON
         A.MOTORCADEID = C.ID
@@ -259,21 +259,21 @@
     </select>
     <select id="exist" resultType="java.lang.Boolean">
         SELECT COUNT(1)
-        FROM vehicle
+        FROM automobile
         WHERE
         PLATENUMBER = #{0}
         LIMIT 1
     </select>
     <select id="existOutId" resultType="java.lang.Boolean">
         SELECT COUNT(1)
-        FROM vehicle
+        FROM automobile
         WHERE PLATENUMBER = #{0} AND ID != #{1}
         LIMIT 1
     </select>
     <select id="searchPageCount" resultType="java.lang.Integer">
         SELECT COUNT(1)
         FROM
-        vehicle AS A LEFT JOIN device AS B ON A.DEVICEID = B.ID
+        automobile AS A LEFT JOIN equipment AS B ON A.DEVICEID = B.ID
         LEFT JOIN simcard
         AS C ON B.SIMCARDID = C.ID
         WHERE A.COMPANYID = #{0} AND
@@ -292,7 +292,7 @@
         A.REMARK,
         D.NAME AS MOTORCADE
         FROM
-        vehicle AS A LEFT JOIN device AS B ON A.DEVICEID = B.ID
+        automobile AS A LEFT JOIN equipment AS B ON A.DEVICEID = B.ID
         LEFT JOIN
         simcard AS C ON B.SIMCARDID = C.ID
         LEFT JOIN motorcade AS D ON
@@ -316,24 +316,24 @@
         B.IDTYPE,
         B.IDNUMBER
         FROM user A
-        INNER JOIN owner B ON
+        INNER JOIN automobile_owner B ON
         A.ID
         = B.ID
         INNER JOIN
-        vehicleinowner C ON A.ID
+        automobile_automobile_owner C ON A.ID
         = C.OWNERID
         WHERE
         C.VEHICLEID
         = #{0}
     </select>
     <insert id="addOwners">
-        REPLACE INTO vehicleinowner( VEHICLEID,OWNERID) VALUES
+        REPLACE INTO automobile_automobile_owner( VEHICLEID,OWNERID) VALUES
         <foreach collection="list" item="item" separator=",">
             (#{item.key},#{item.value})
         </foreach>
     </insert>
     <delete id="removeOwner">
-        DELETE FROM vehicleinowner
+        DELETE FROM automobile_automobile_owner
         WHERE OWNERID = #{1} AND
         VEHICLEID = #{0}
         LIMIT 1
@@ -348,24 +348,24 @@
         REMARK
         FROM driver AS A
         INNER JOIN
-        vehicleindriver AS B ON A.ID = B.DRIVERID
+        automobile_driveer AS B ON A.ID = B.DRIVERID
         WHERE
         B.VEHICLEID = #{0}
     </select>
     <insert id="addDrivers">
-        REPLACE INTO vehicleindriver(VEHICLEID,DRIVERID ) VALUES
+        REPLACE INTO automobile_driveer(VEHICLEID,DRIVERID ) VALUES
         <foreach collection="list" item="item" separator=",">
             (#{item.key},#{item.value})
         </foreach>
     </insert>
     <delete id="removeDriver">
-        DELETE FROM vehicleindriver
+        DELETE FROM automobile_driveer
         WHERE DRIVERID = #{1} AND
         VEHICLEID = #{0}
         LIMIT 1
     </delete>
     <update id="resetMarker">
-        UPDATE vehicle
+        UPDATE automobile
         SET MARKER = #{1}
         WHERE MARKER = #{0}
     </update>

@@ -3,9 +3,9 @@
 <mapper namespace="com.rayton.gps.dao.baseinfo.areaInDevice.IAreaInDeviceDao">
     <select id="assignedPageVehiclesCount" resultType="java.lang.Integer">
         SELECT COUNT(1)
-        FROM areaindevice AS A INNER JOIN device AS B ON
+        FROM equipment_region AS A INNER JOIN equipment AS B ON
         A.DEVICENUMBER = B.DEVICENUMBER
-        LEFT JOIN vehicle AS C ON
+        LEFT JOIN automobile AS C ON
         B.ID = C.DEVICEID
         WHERE AREAID = #{0} AND AREATYPE = #{1}
     </select>
@@ -17,9 +17,9 @@
         A.TIME,
         C.PLATENUMBER
         FROM
-        areaindevice AS A INNER JOIN device AS B ON
+        equipment_region AS A INNER JOIN equipment AS B ON
         A.DEVICENUMBER = B.DEVICENUMBER
-        LEFT JOIN vehicle AS C ON
+        LEFT JOIN automobile AS C ON
         B.ID = C.DEVICEID
         WHERE AREAID = #{0} AND AREATYPE = #{1}
         ORDER BY A.TIME
@@ -27,17 +27,17 @@
         #{2}, #{3}
     </select>
     <insert id="addVehicle">
-        REPLACE areaindevice
+        REPLACE equipment_region
         SET
         DEVICENUMBER = #{0}, AREAID = #{1}, AREATYPE = #{2}, TIME = NOW()
     </insert>
     <delete id="removeVehicle">
-        DELETE FROM areaindevice
+        DELETE FROM equipment_region
         WHERE DEVICENUMBER = #{0} AND
         AREAID = #{1} AND AREATYPE = #{2}
     </delete>
     <insert id="log">
-        INSERT INTO areaindevicelog (ID, DEVICENUMBER, AREAID,
+        INSERT INTO equipment_region_log (ID, DEVICENUMBER, AREAID,
         AREATYPE, `ACTION`,
         UNID, USER, SENDTIME) VALUES (#{0}, #{1}, #{2},
         #{3}, #{4}, #{5}, #{6}, NOW())
@@ -45,16 +45,16 @@
     <select id="findDevice" resultType="java.lang.String">
         SELECT DEVICENUMBER
         FROM
-        areaindevice
+        equipment_region
         WHERE AREAID = #{0} AND AREATYPE = #{1}
     </select>
     <delete id="deleteAreaInDevice">
-        DELETE FROM areaindevice
+        DELETE FROM equipment_region
         WHERE AREAID = #{0} AND
         AREATYPE = #{1}
     </delete>
     <delete id="deleteAreaInMaplayer">
-        DELETE FROM areainmaplayer
+        DELETE FROM map_layer_cover
         WHERE AREAID = #{0} AND
         AREATYPE = #{1}
     </delete>

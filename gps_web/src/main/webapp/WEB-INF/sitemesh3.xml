@@ -6,6 +6,7 @@
     <mapping path="/" exclue="true"/>
     <mapping path="/login" exclue="true"/>   <!-- 登录页面不用修饰-->
     <mapping path="*.panel" exclue="true"/>
+    <mapping path="/track.test" exclue="true"/>
 
     <content-processor>
         <tag-rule-bundle class="com.rayton.gps.tag.ExtHtmlTagRuleBundle"/>

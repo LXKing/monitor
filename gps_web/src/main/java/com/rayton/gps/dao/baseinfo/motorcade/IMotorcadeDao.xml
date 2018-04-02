@@ -90,7 +90,7 @@
     </select>
     <select id="hasVehicle" resultType="java.lang.Boolean">
         SELECT COUNT(1)
-        FROM vehicle
+        FROM automobile
         WHERE MOTORCADEID = #{0}
         LIMIT 1
     </select>

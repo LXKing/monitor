@@ -34,13 +34,19 @@ window.webMap.createMap = function (name) {
     var initializing = false;
     webMap.Class = function () {
     };
+    // 大佬，我js渣
     webMap.Class.extend = function (prop) {
         var _super = this.prototype;
         initializing = true;
+        // this == webMap.Class
         var prototype = new this();
         initializing = false;
+        // 对象{}用 for in 循环，把属性加进prototype
         for (var name in prop) {
-            prototype[name] = typeof prop[name] == "function" && typeof _super[name] == "function" ? (function (name, fn) {
+            // 区分函数和别的
+            prototype[name] =
+                typeof prop[name] == "function" && typeof _super[name] == "function" ?
+                    (function (name, fn) {
                 return function () {
                     var tmp = this._super;
 
@@ -53,13 +59,18 @@ window.webMap.createMap = function (name) {
             })(name, prop[name]) : prop[name];
         }
 
+        // 每次返回一个新的函数Class
         function Class() {
             if (!initializing && this.init)
+                // 666
                 this.init.apply(this, arguments);
         }
-
+        // 重写原型
+        // 想起当年学js，老子也是挖了很久的，不过现在忘得差不多了
         Class.prototype = prototype;
         Class.prototype.constructor = Class;
+        // 严格模式被禁止 就是自身啦 不准确的说，是webMap.Class.extend的引用
+        // 用于引用该函数的函数体内当前正在执行的函数
         Class.extend = arguments.callee;
         return Class;
     };
@@ -227,6 +238,7 @@ window.webMap.googleInfoWindow = window.webMap.infoWindow.extend({
 });
 
 // 标注
+// 把init加进函数原型
 window.webMap.marker = webMap.Class.extend({
     init: function (config) {
     }
@@ -265,6 +277,7 @@ window.webMap.baiduMarker = window.webMap.marker.extend({
     closeInfoWindow: function () {
         this.marker.closeInfoWindow();
     },
+    // 在上面的匿名函数里 this.init.apply(this, arguments);
     init: function (config) {
         var me = this;
         this.map = config.map;
@@ -287,7 +300,8 @@ window.webMap.baiduMarker = window.webMap.marker.extend({
             icon: icon,
             enableClicking: this.enableClicking,
             rotation: this.allowRotate === true ? this.data.d : 0
-        }); // 创建标注
+        });
+        // 创建标注
 
         if (this.zIndex) {
             this.marker.setZIndex(this.zIndex);
@@ -305,6 +319,7 @@ window.webMap.baiduMarker = window.webMap.marker.extend({
     refresh: function () {
         var iconSetting = gpsDataParser.parseIcon(this.data);
         var icon = this.marker.getIcon();
+        // 设置图标
         icon.setImageUrl(iconSetting.url);
         icon.setImageOffset(new BMap.Size(-iconSetting.offset, 0));
         this.marker.setIcon(icon);
@@ -568,7 +583,9 @@ window.webMap.baiduMap = window.webMap.map.extend({
                 me.mapObject = new BMap.Map(me.name, {
                     enableMapClick: false
                 });
+                // 要创建地图起始点和显示级别
                 me.mapObject.centerAndZoom(new BMap.Point(104.822339, 37.839088), 5);
+                // 添加单个控件
                 me.mapObject.addControl(new BMap.NavigationControl());
                 me.mapObject.addControl(new BMap.ScaleControl());
                 me.mapObject.addControl(new BMap.OverviewMapControl());
@@ -615,9 +632,11 @@ window.webMap.baiduMap = window.webMap.map.extend({
             data: null,
             timeout: 5000,
             beforeSend: function () {
-
+                console.log("ddffffff")
             },
-            success: function (json) {// 客户端jquery预先定义好的callback函数,成功获取跨域服务器上的json数据后,会动态执行这个callback函数
+            success: function (json) {
+                // 客户端jquery预先定义好的callback函数,
+                // 成功获取跨域服务器上的json数据后,会动态执行这个callback函数
                 var point = new BMap.Point(json[0].x, json[0].y);
                 callback(point, context);
             },
@@ -632,6 +651,8 @@ window.webMap.baiduMap = window.webMap.map.extend({
         });
     },
     translate: function (points, index, callback, context) {
+
+
         if (points.length <= 0) {
             callback && callback(points, context);
             return;
@@ -671,6 +692,8 @@ window.webMap.baiduMap = window.webMap.map.extend({
                     me.translate(points, index, callback, context);
                 else
                     callback && callback(points, context);
+
+
             },
             complete: function (XMLHttpRequest, textStatus) {
 

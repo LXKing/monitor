@@ -90,7 +90,7 @@
         B.NAME,
         '圆形区域' AS AREATYPE
         FROM alarm AS A
-        INNER JOIN circle AS
+        INNER JOIN circle_region AS
         B ON A.OVAREAID = B.ID
         WHERE
         A.DEVICENUMBER = #{0} AND A.GPSTIME BETWEEN
@@ -103,7 +103,7 @@
         '矩形区域' AS AREATYPE
         FROM alarm AS A
         INNER
-        JOIN rectangle
+        JOIN rectangle_region
         AS B ON A.OVAREAID = B.ID
         WHERE A.DEVICENUMBER = #{0} AND
         A.GPSTIME BETWEEN
@@ -120,7 +120,7 @@
         alarm AS A
         INNER
         JOIN
-        polygon AS B ON A.OVAREAID = B.ID
+        polygon_region AS B ON A.OVAREAID = B.ID
         WHERE
         A.DEVICENUMBER = #{0} AND
         A.GPSTIME

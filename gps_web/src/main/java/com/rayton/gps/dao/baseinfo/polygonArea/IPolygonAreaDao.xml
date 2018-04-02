@@ -4,7 +4,7 @@
     <select id="queryPageCount" resultType="java.lang.Integer">
         SELECT COUNT(1)
         FROM
-        polygon
+        polygon_region
         WHERE COMPANYID = #{0} AND NAME LIKE CONCAT('%', #{1}, '%')
     </select>
     <select id="queryPageDetail" resultType="com.rayton.gps.dao.baseinfo.polygonArea.PolygonAreaInfo">
@@ -13,7 +13,7 @@
         NAME,
         DEVICECATCH,
         REMARK
-        FROM polygon
+        FROM polygon_region
         WHERE COMPANYID = #{0} AND NAME LIKE
         CONCAT('%', #{1}, '%')
         ORDER BY NAME
@@ -22,7 +22,7 @@
     <select id="searchPageCount" resultType="java.lang.Integer">
         SELECT COUNT(1)
         FROM
-        polygon
+        polygon_region
         WHERE COMPANYID = #{0} AND NAME LIKE CONCAT('%', #{1}, '%')
     </select>
     <select id="searchPageDetail" resultType="com.rayton.gps.dao.baseinfo.polygonArea.PolygonAreaInfo">
@@ -31,7 +31,7 @@
         NAME,
         DEVICECATCH,
         REMARK
-        FROM polygon
+        FROM polygon_region
         WHERE COMPANYID = #{0} AND NAME LIKE
         CONCAT('%', #{1}, '%')
         ORDER BY NAME
@@ -39,7 +39,7 @@
     </select>
     <insert id="create" useGeneratedKeys="true" keyProperty="id"
             parameterType="com.rayton.gps.dao.baseinfo.polygonArea.PolygonArea">
-        INSERT INTO polygon (COMPANYID,
+        INSERT INTO polygon_region (COMPANYID,
         NAME, DEVICECATCH, FLAG, MAXSPEED,
         OVERSPEEDSECONDS, STARTTIME,
         ENDTIME, REMARK) VALUES (#{companyId}, #{name}, #{deviceCatch},
@@ -60,12 +60,12 @@
         ENDTIME,
         REMARK,
         EDITTIME
-        FROM polygon
+        FROM polygon_region
         WHERE ID = #{)0}
         LIMIT 1
     </select>
     <update id="update" parameterType="com.rayton.gps.dao.baseinfo.polygonArea.PolygonArea">
-        UPDATE polygon
+        UPDATE polygon_region
         SET
         COMPANYID = #{companyId}, NAME = #{name}, DEVICECATCH = #{deviceCatch},
         FLAG = #{flag}, MAXSPEED = #{maxSpeed},
@@ -76,12 +76,12 @@
         LIMIT 1
     </update>
     <delete id="delete">
-        DELETE FROM polygon
+        DELETE FROM polygon_region
         WHERE ID = #{0}
         LIMIT 1
     </delete>
     <insert id="createPolygonPoint">
-        INSERT INTO polygonpoint(PID, LAT, LNG) VALUES
+        INSERT INTO polygon_vertex(PID, LAT, LNG) VALUES
         <foreach collection="list" item="item" separator=",">
             (#{item.key},#{item.value.lat},#{item.value.lng})
         </foreach>
@@ -91,23 +91,23 @@
         LAT,
         LNG
         FROM
-        polygonpoint
+        polygon_vertex
         WHERE PID = #{0}
     </select>
     <delete id="deletePolygonPoint">
-        DELETE FROM polygonpoint
+        DELETE FROM polygon_vertex
         WHERE PID = #{0}
     </delete>
     <select id="exist" resultType="java.lang.Boolean">
         SELECT COUNT(1)
-        FROM polygon
+        FROM polygon_region
         WHERE
         NAME = #{0} AND COMPANYID = #{1}
         LIMIT 1
     </select>
     <select id="existOutId" resultType="java.lang.Boolean">
         SELECT COUNT(1)
-        FROM polygon
+        FROM polygon_region
         WHERE NAME = #{0} AND COMPANYID = #{1} AND ID != #{2}
         LIMIT 1
     </select>

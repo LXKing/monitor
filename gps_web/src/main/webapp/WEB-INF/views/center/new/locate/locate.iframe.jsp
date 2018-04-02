@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="com.rayton.gps.cache.AuthorizeCache" %>
 <%@ page session="false" contentType="text/html; charset=utf-8" %>
 <!DOCTYPE HTML>
 <html>
@@ -15,9 +16,9 @@
             src="<%=request.getContextPath()%>/resources/js/datalog.js"></script>
     <script type="text/javascript"
             src="<%=request.getContextPath()%>/resources/js/center/locate.js"></script>
-    <link href="${ctx}/resources/new/css/zTreeStyle.css" rel="stylesheet"/>
-    <link href="${ctx}/resources/new/js/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="${ctx}/resources/new/css/Maincss.css" rel="stylesheet"/>
+    <link href="${ctx}/resources/new/css/zTreeStyle.css" rel="stylesheet" />
+    <link href="${ctx}/resources/new/js/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="${ctx}/resources/new/css/Maincss.css" rel="stylesheet" />
 
 </head>
 <body>
@@ -32,7 +33,7 @@
                     <img src="${ctx}/resources/new/image/directory.png"/>
                     <img src="${ctx}/resources/new/image/Double_right.png"/>
                     <div style="float: right;padding-right: 10px;">
-                        <span class="shuaxin">刷新 </span> <img src="${ctx}/resources/new/image/refresh.png"/>
+                        <span class="shuaxin">刷新 </span>  <img src="${ctx}/resources/new/image/refresh.png"/>
                     </div>
                 </div>
                 <div class="search">
@@ -40,7 +41,7 @@
                     <input type="text" class="form-control" placeholder="车牌号v设备号">
                 </div>
             </div>
-            <ul id="myTab" class="nav nav-tabs navlefthead">
+            <ul id="myTab" class="nav nav-tabs navlefthead" >
                 <li class="active">
                     <a href="#All" data-toggle="tab">
                         全部120
@@ -108,15 +109,15 @@
             <!-- 上面-->
             <div class="Rightbody_top">
                 <div class="btn-group btn-group-sm ">
-                    <button type="button">查看区域车辆 <img src="${ctx}/resources/new/image/smallcar.png"/></button>
-                    <button type="button">默认视野 <img src="${ctx}/resources/new/image/eyes.png"/></button>
-                    <button type="button">刷新地图 <img src="${ctx}/resources/new/image/refresh.png"/></button>
-                    <button type="button">全屏 <img src="${ctx}/resources/new/image/foursurface.png"/></button>
-                    <button type="button">工具 <img src="${ctx}/resources/new/image/pliers.png"/></button>
-                    <button type="button">设置 <img src="${ctx}/resources/new/image/srtting.png"/></button>
-                    <button type="button">打印地图 <img src="${ctx}/resources/new/image/ditudayin.png"/></button>
-                    <button type="button">位置服务 <img src="${ctx}/resources/new/image/weizhifuwu.png"/></button>
-                    <button type="button">预留</button>
+                    <button type="button" >查看区域车辆 <img src="${ctx}/resources/new/image/smallcar.png"/></button>
+                    <button type="button" >默认视野 <img src="${ctx}/resources/new/image/eyes.png"/></button>
+                    <button type="button" >刷新地图 <img src="${ctx}/resources/new/image/refresh.png"/></button>
+                    <button type="button" >全屏 <img src="${ctx}/resources/new/image/foursurface.png"/></button>
+                    <button type="button" >工具 <img src="${ctx}/resources/new/image/pliers.png"/></button>
+                    <button type="button" >设置 <img src="${ctx}/resources/new/image/srtting.png"/></button>
+                    <button type="button" >打印地图 <img src="${ctx}/resources/new/image/ditudayin.png"/></button>
+                    <button type="button" >位置服务 <img src="${ctx}/resources/new/image/weizhifuwu.png"/></button>
+                    <button type="button" >预留</button>
                 </div>
             </div>
             <!-- 嵌套地图-->
@@ -130,20 +131,19 @@
                 </div>
                 <div class="bottomhead">
                     <small>车机状态</small>
-                    <img src="${ctx}/resources/new/image/srtting.png"/>
+                    <img src="${ctx}/resources/new/image/srtting.png" />
                     <img src="${ctx}/resources/new/image/V.png"/>
                     <small>全部 120</small>
                     <small>在线70</small>
                     <small>异常80</small>
                 </div>
                 <div class="bottomb">
-                    <table id="finishingTask" data-toggle="table" data-pagination="true" data-side-pagination="client"
-                           data-page-number="1" data-page-size="3"
-                           data-striped=true;
+                    <table id="finishingTask" data-toggle="table"  data-pagination="true" data-side-pagination="client" data-page-number="1" data-page-size="3"
+                           data-striped =true;
                     >
-                        <thead>
+                        <thead >
                         <tr>
-                            <th data-field="id" style="display: none" class="noneid">id</th>
+                            <th  data-field="id" style="display: none" class="noneid">id</th>
                             <th data-field="name"> 名称</th>
                             <th data-field="city">城市</th>
                             <th data-field="youbian">邮编</th>

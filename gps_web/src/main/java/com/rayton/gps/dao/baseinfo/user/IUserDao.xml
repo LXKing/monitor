@@ -126,11 +126,11 @@
         WHERE USERID = #{0}
     </delete>
     <delete id="deleteMaplayer">
-        DELETE FROM maplayer
+        DELETE FROM map_layer
         WHERE USERID = #{0}
     </delete>
     <delete id="deleteTextmessage">
-        DELETE FROM textmessage
+        DELETE FROM text_message
         WHERE USERID = #{0}
     </delete>
     <delete id="deleteUser">
@@ -254,19 +254,19 @@
         WHERE
         COMPANYID = #{1}) AS T
         INNER
-        JOIN usermonitor AS M ON T.ID = M.TARGETID
+        JOIN user_monitor AS M ON T.ID = M.TARGETID
         WHERE M.USERID = #{0}
         ORDER BY
         T.`TYPE`, T.NAME
     </select>
     <select id="addMonitors">
-        REPLACE INTO usermonitor(USERID, TARGETID) VALUES
+        REPLACE INTO user_monitor(USERID, TARGETID) VALUES
         <foreach collection="list" item="item" separator=",">
             (#{item.key},#{item.value})
         </foreach>
     </select>
     <delete id="removeMonitor">
-        DELETE FROM usermonitor
+        DELETE FROM user_monitor
         WHERE USERID = #{0} AND
         TARGETID = #{1}
         LIMIT 1
@@ -276,18 +276,18 @@
         A.ID,
         A.NAME,
         A.REMARK
-        FROM role AS A INNER JOIN roleinuser AS B ON
+        FROM role AS A INNER JOIN user_role AS B ON
         A.ID = B.ROLEID
         WHERE B.USERID = #{0}
     </select>
     <select id="addRoles">
-        REPLACE INTO roleinuser(USERID, ROLEID) VALUES
+        REPLACE INTO user_role(USERID, ROLEID) VALUES
         <foreach collection="list" item="item" separator=",">
             (#{item.key},#{item.value})
         </foreach>
     </select>
     <delete id="removeRole">
-        DELETE FROM roleinuser
+        DELETE FROM user_role
         WHERE USERID = #{0} AND
         ROLEID = #{1}
         LIMIT 1
@@ -295,12 +295,12 @@
     <select id="getUserOptions" resultType="java.lang.String">
         SELECT USERVALUE
         FROM
-        useroptions
+        user_setting
         WHERE USERID = #{0} AND USERKEY = #{1}
         LIMIT 1
     </select>
     <insert id="saveUserOptions">
-        REPLACE INTO useroptions (USERID, USERKEY, USERVALUE)
+        REPLACE INTO user_setting (USERID, USERKEY, USERVALUE)
         VALUES (#{0}, #{1}, #{2})
     </insert>
 </mapper>

@@ -7,7 +7,7 @@
         NAME,
         VISIBLE,
         REMARK
-        FROM maplayer
+        FROM map_layer
         WHERE USERID = #{0} AND NAME LIKE
         CONCAT('%', #{1}, '%')
     </select>
@@ -17,11 +17,11 @@
         NAME,
         VISIBLE,
         REMARK
-        FROM maplayer
+        FROM map_layer
         WHERE ID = #{0}
     </select>
     <insert id="create" parameterType="com.rayton.gps.dao.baseinfo.mapLayer.MapLayerDto">
-        INSERT INTO maplayer (ID,
+        INSERT INTO map_layer (ID,
         COMPANYID, USERID, NAME, VISIBLE, REMARK) VALUES
         (#{id}, #{companyId},
         #{userId}, #{name},
@@ -36,12 +36,12 @@
         VISIBLE,
         REMARK,
         EDITTIME
-        FROM maplayer
+        FROM map_layer
         WHERE ID = #{0}
         LIMIT 1
     </select>
     <update id="update" parameterType="com.rayton.gps.dao.baseinfo.mapLayer.MapLayerDto">
-        UPDATE maplayer
+        UPDATE map_layer
         SET
         COMPANYID = #{companyId}, USERID = #{userId}, NAME = #{name},
         VISIBLE = #{visible}, REMARK = #{remark}
@@ -51,60 +51,60 @@
         LIMIT 1
     </update>
     <delete id="delete">
-        DELETE FROM maplayer
+        DELETE FROM map_layer
         WHERE ID = #{0}
         LIMIT 1
     </delete>
     <delete id="deleteAreaInMaplayer">
-        DELETE FROM areainmaplayer
+        DELETE FROM map_layer_cover
         WHERE MAPLAYERID = #{0}
     </delete>
     <insert id="addAreas">
-        REPLACE INTO areainmaplayer(MAPLAYERID, AREAID, AREATYPE) VALUES
+        REPLACE INTO map_layer_cover(MAPLAYERID, AREAID, AREATYPE) VALUES
         <foreach collection="list" item="item" separator=",">
             (#{item.key},#{item.value.key},#{item.value.value})
         </foreach>
     </insert>
     <delete id="removeArea">
-        DELETE FROM areainmaplayer
+        DELETE FROM map_layer_cover
         WHERE MAPLAYERID = #{0} AND
         AREAID = #{1} AND AREATYPE = #{2}
     </delete>
     <select id="getCircleAreas" resultType="java.lang.Long">
         SELECT AREAID
         FROM
-        areainmaplayer
+        map_layer_cover
         WHERE MAPLAYERID = #{0} AND AREATYPE = 1
     </select>
     <select id="getRectangleAreas" resultType="java.lang.Long">
         SELECT AREAID
         FROM
-        areainmaplayer
+        map_layer_cover
         WHERE MAPLAYERID = #{0} AND AREATYPE = 2
     </select>
     <select id="getPolygonAreas" resultType="java.lang.Long">
         SELECT AREAID
         FROM
-        areainmaplayer
+        map_layer_cover
         WHERE
         MAPLAYERID = #{0} AND AREATYPE = 3
     </select>
     <select id="getRouteAreas" resultType="java.lang.Long">
         SELECT AREAID
         FROM
-        areainmaplayer
+        map_layer_cover
         WHERE
         MAPLAYERID = #{0} AND AREATYPE = 4
     </select>
     <select id="getPois" resultType="java.lang.Long">
         SELECT AREAID
         FROM
-        areainmaplayer
+        map_layer_cover
         WHERE
         MAPLAYERID = #{0} AND AREATYPE = 100
     </select>
     <update id="setVisible">
-        UPDATE maplayer
+        UPDATE map_layer
         SET VISIBLE = #{1}
         WHERE ID = #{0}
         LIMIT

@@ -5,7 +5,6 @@
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="gps_web" />
-          <element id="module-output" name="monitor" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: org.springframework:spring-context:4.0.9.RELEASE" />

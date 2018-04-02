@@ -4,14 +4,14 @@
     <select id="queryPageCount" resultType="java.lang.Integer">
         SELECT COUNT(1)
         FROM user
-        A INNER JOIN owner B ON A.ID = B.ID
+        A INNER JOIN automobile_owner B ON A.ID = B.ID
         WHERE
         (B.OWNERNAME LIKE
         CONCAT('%', #{1}, '%') OR A.PHONE LIKE CONCAT('%', #{1}, '%')) AND
         A.COMPANYID = #{0}
     </select>
 
-    <!-- 删除了user owner 的phone  冲突-->
+    <!-- 删除了user automobile_owner 的phone  冲突-->
     <select id="queryPageDetail" resultType="com.rayton.gps.dao.baseinfo.owner.OwnerInfo">
         SELECT
         A.ID,
@@ -28,12 +28,12 @@
 
         B.CONTACT,
         B.REGISTRATIONDATE,
-        B.PHONE,
+
         B.FAX,
         B.BUSSINESSAGENT
 
         FROM user A
-        INNER JOIN owner B ON A.ID
+        INNER JOIN automobile_owner B ON A.ID
         = B.ID
         WHERE
         (B.OWNERNAME LIKE CONCAT('%', #{1}, '%') OR A.PHONE
@@ -43,19 +43,19 @@
     </select>
 
     <insert id="create" parameterType="com.rayton.gps.dao.baseinfo.owner.Owner">
-        INSERT INTO owner (ID,
+        INSERT INTO automobile_owner (ID,
         COMPANYID, OWNERNAME, IDTYPE, IDNUMBER,
 
         CONTACT,
         REGISTRATIONDATE,
-        PHONE,
+
         FAX,
         BUSSINESSAGENT) VALUES (#{id}, #{companyId},
         #{ownerName}, #{idType}, #{idNumber}
 
         , #{CONTACT},
         #{REGISTRATIONDATE},
-        #{PHONE},
+
         #{FAX},
         #{BUSSINESSAGENT}
 
@@ -63,7 +63,7 @@
     </insert>
 
     <update id="update" parameterType="com.rayton.gps.dao.baseinfo.owner.Owner">
-        UPDATE owner
+        UPDATE automobile_owner
         SET
         COMPANYID = #{companyId}, OWNERNAME = #{ownerName}, IDTYPE = #{idType},
         IDNUMBER = #{idNumber},
@@ -71,7 +71,7 @@
 
         CONTACT = #{CONTACT},
         REGISTRATIONDATE = #{REGISTRATIONDATE},
-        PHONE = #{PHONE},
+
         FAX = #{FAX},
         BUSSINESSAGENT = #{BUSSINESSAGENT}
         WHERE ID = #{id}
@@ -80,13 +80,13 @@
     </update>
 
     <delete id="delete">
-        DELETE FROM owner
+        DELETE FROM automobile_owner
         WHERE ID = #{0}
         LIMIT 1
     </delete>
 
     <delete id="deleteVehicleInOwner">
-        DELETE FROM vehicleinowner
+        DELETE FROM automobile_automobile_owner
         WHERE OWNERID = #{0}
     </delete>
 
@@ -102,11 +102,11 @@
 
         CONTACT,
         REGISTRATIONDATE,
-        PHONE,
+
         FAX,
         BUSSINESSAGENT
         FROM
-        owner
+        automobile_owner
         WHERE ID = #{0}
         LIMIT 1
     </select>
@@ -114,7 +114,7 @@
     <select id="hasVehicle" resultType="java.lang.Boolean">
         SELECT COUNT(1)
         FROM
-        vehicleinowner
+        automobile_automobile_owner
         WHERE OWNERID = #{0}
         LIMIT 1
     </select>
@@ -132,25 +132,25 @@
         D.NAME AS
         MOTORCADE
         FROM
-        vehicle AS A INNER JOIN device AS B ON A.DEVICEID = B.ID
+        automobile AS A INNER JOIN equipment AS B ON A.DEVICEID = B.ID
         INNER JOIN
         simcard AS C ON B.SIMCARDID = C.ID
         INNER JOIN motorcade AS D
         ON
         A.MOTORCADEID = D.ID
-        INNER JOIN vehicleinowner AS E ON
+        INNER JOIN automobile_automobile_owner AS E ON
         A.ID = E.VEHICLEID
         WHERE E.OWNERID = #{0}
         ORDER BY A.PLATENUMBER
     </select>
     <select id="addVehicles">
-        REPLACE INTO vehicleinowner(OWNERID, VEHICLEID) VALUES
+        REPLACE INTO automobile_automobile_owner(OWNERID, VEHICLEID) VALUES
         <foreach collection="list" item="item" separator=",">
             (#{item.key},#{item.value})
         </foreach>
     </select>
     <delete id="removeVehicle">
-        DELETE FROM vehicleinowner
+        DELETE FROM automobile_automobile_owner
         WHERE OWNERID = #{0} AND
         VEHICLEID = #{1}
         LIMIT 1

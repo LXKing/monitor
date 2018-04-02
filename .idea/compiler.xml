@@ -14,7 +14,7 @@
         <module name="gps_web" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="1.8">
       <module name="generator" target="1.8" />
       <module name="gps_common" target="1.8" />
       <module name="gps_dao" target="1.8" />

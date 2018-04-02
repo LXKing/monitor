@@ -146,6 +146,7 @@
                             </table>
                         </div>
                     </div>
+                </div>
             </fieldset>
         </div>
     </div>

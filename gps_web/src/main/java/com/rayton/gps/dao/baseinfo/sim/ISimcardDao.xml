@@ -101,7 +101,7 @@
     <select id="assignedDevice" resultType="java.lang.String">
         SELECT DEVICENUMBER
         FROM
-        device
+        equipment
         WHERE SIMCARDID = #{0}
         LIMIT 1
     </select>
@@ -182,7 +182,7 @@
         FROM
         simcard
         WHERE ID NOT IN (SELECT SIMCARDID
-        FROM device
+        FROM equipment
         WHERE
         COMPANYID = #{0}) AND COMPANYID = #{0} AND PHONENUMBER LIKE
         CONCAT('%', #{1}, '%')
@@ -204,7 +204,7 @@
         simcard
         WHERE ID NOT
         IN (SELECT SIMCARDID
-        FROM device
+        FROM equipment
         WHERE
         COMPANYID = #{0}) AND
         COMPANYID = #{0} AND PHONENUMBER LIKE CONCAT('%', #{1}, '%')

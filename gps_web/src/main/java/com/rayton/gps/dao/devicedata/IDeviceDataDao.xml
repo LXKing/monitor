@@ -3,7 +3,7 @@
 <mapper namespace="com.rayton.gps.dao.devicedata.IDeviceDataDao">
     <select id="queryMultimediaEventReportPageCount" resultType="java.lang.Integer">
         SELECT COUNT(1)
-        FROM multimediaeventreport
+        FROM multimedia_event_report
         WHERE DEVICENUMBER = #{0} AND
         TIME BETWEEN #{1} AND #{2}
     </select>
@@ -18,7 +18,7 @@
         FORMATTYPE,
         EVENTTYPE,
         CHANNELID
-        FROM multimediaeventreport
+        FROM multimedia_event_report
         WHERE
         DEVICENUMBER = #{0} AND TIME
         BETWEEN #{1} AND #{2}
@@ -28,7 +28,7 @@
     </select>
     <select id="queryMultimediaDataRetrievalPageCount" resultType="java.lang.Integer">
         SELECT COUNT(1)
-        FROM multimediaretrieval
+        FROM multimedia_retrieval
         WHERE DEVICENUMBER = #{0} AND
         TIME
         BETWEEN #{1} AND #{2}
@@ -36,7 +36,7 @@
     <select id="queryMultimediaDataRetrievalPageDetail"
             resultType="com.rayton.gps.dao.locate.MultimediaRetrievalDto">
         SELECT *
-        FROM multimediaretrieval
+        FROM multimedia_retrieval
         WHERE DEVICENUMBER = #{0} AND TIME
         BETWEEN #{1} AND #{2}
         ORDER BY TIME
@@ -44,7 +44,7 @@
     </select>
     <select id="queryDeviceEventReportPageCount" resultType="java.lang.Integer">
         SELECT COUNT(1)
-        FROM eventreport
+        FROM event_report
         WHERE DEVICENUMBER = #{0} AND TIME BETWEEN
         #{1} AND
         #{2}
@@ -56,7 +56,7 @@
         TIME,
         EVENTID,
         CONTENT
-        FROM eventreport
+        FROM event_report
         WHERE
         DEVICENUMBER = #{0} AND TIME BETWEEN #{1} AND #{2}
         ORDER BY TIME
@@ -65,7 +65,7 @@
     </select>
     <select id="queryDeviceUpgradeResultReportPageCount" resultType="java.lang.Integer">
         SELECT COUNT(1)
-        FROM upgradereport
+        FROM update_report
         WHERE DEVICENUMBER = #{0} AND TIME
         BETWEEN #{1} AND #{2}
     </select>
@@ -78,7 +78,7 @@
         `TYPE`,
         RESULT
         FROM
-        upgradereport
+        update_report
         WHERE
         DEVICENUMBER = #{0} AND TIME BETWEEN #{1} AND #{2}
         ORDER BY

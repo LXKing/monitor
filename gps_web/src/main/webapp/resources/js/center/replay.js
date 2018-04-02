@@ -489,9 +489,11 @@ window.replay = {
             if (width > 100)
                 width = 100;
             var ratioText = width + '%';
+            // 下载进度
             $('#divProcess > div').css('width', ratioText);
         }
         if (replay.tracks.length >= replay.trackCount) {
+            // 完成
             replay.downloadCompleted();
             $('#divReplayMapControl #divProcess').hide();
             $('#divReplayMapControl #txtProcess').attr('max', replay.tracks.length - 1);
@@ -1194,6 +1196,7 @@ window.replay = {
     },
     download: function (number, start, end, pageIndex, pageSize) {
         replay.playStatus = 'loading';
+
         // 对时间需要计算
         $.post('../replay/load', {
             number: number,
@@ -1203,6 +1206,7 @@ window.replay = {
             pageSize: pageSize
         }, function (list) {
             if (list && list.length > 0) {
+                console.log(" mmm");
                 replay.webMap.translate(list, 0, function () {
                     replay.pageIndex++;
                     replay.tracks = replay.tracks.concat(list);
@@ -1259,6 +1263,7 @@ window.replay = {
         $('#divReplayMapControl #txtProcess').hide();
         replay.resetSpeedChart();
     },
+    // 播放
     play: function () {
         if (replay.tracks && replay.tracks.length <= 0)
             return;
@@ -1284,6 +1289,7 @@ window.replay = {
                     allowRotate: replay.vehicle.rotate === 1,
                     infoWindow: replay.infoWindow
                 });
+                // 操作标志
                 marker.openInfoWindow();
             } else {
                 marker.data = row;
@@ -1333,9 +1339,12 @@ $(function () {
         initValue: endDate.toDateTimeString("yyyy-MM-dd hh:mm")
     });
 
+    // 点击载入轨迹
     $('#divReplayMapControl #btnReplayDownloadTracks').click(function () {
+
         if ($(this).hasClass('mon-slice'))
             return;
+
         replay.tracks = [];
         replay.pageIndex = 1;
         var dates = replay.selectDate();
@@ -1363,6 +1372,7 @@ $(function () {
             replay.download(replay.deviceNumber, startDate, endDate, 1, replay.pageSize);
         });
     });
+    // 点击播放
     $('#divReplayMapControl #btnRelayStart').click(function () {
         if ($(this).hasClass('mon-slice'))
             return;

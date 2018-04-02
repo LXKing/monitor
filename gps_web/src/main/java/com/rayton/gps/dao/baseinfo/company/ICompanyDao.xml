@@ -53,7 +53,7 @@
     </insert>
 
     <insert id="assignAdminRole">
-        INSERT INTO roleinuser (USERID, ROLEID) VALUES (#{0},
+        INSERT INTO user_role (USERID, ROLEID) VALUES (#{0},
                                                         #{1})
     </insert>
     <select id="fetch" resultType="com.rayton.gps.dao.baseinfo.company.Company">
@@ -93,10 +93,10 @@
         LIMIT 1
     </update>
 
-    <delete id="deleteCircle">DELETE FROM circle
+    <delete id="deleteCircle">DELETE FROM circle_region
     WHERE COMPANYID = #{0}
     </delete>
-    <delete id="deleteDevice">DELETE FROM device
+    <delete id="deleteDevice">DELETE FROM equipment
     WHERE COMPANYID = #{0}
     </delete>
     <delete id="deleteDriver">DELETE FROM driver
@@ -108,7 +108,7 @@
     <delete id="deleteMaintain">DELETE FROM maintain
     WHERE COMPANYID = #{0}
     </delete>
-    <delete id="deleteMaplayer">DELETE FROM maplayer
+    <delete id="deleteMaplayer">DELETE FROM map_layer
     WHERE COMPANYID = #{0}
     </delete>
     <delete id="deleteMotorcade">DELETE FROM motorcade
@@ -120,19 +120,19 @@
     <delete id="deletePoi">DELETE FROM poi
     WHERE COMPANYID = #{0}
     </delete>
-    <delete id="deletePolygon">DELETE FROM polygon
+    <delete id="deletePolygon">DELETE FROM polygon_region
     WHERE COMPANYID = #{0}
     </delete>
-    <delete id="deleteRectangle">DELETE FROM rectangle
+    <delete id="deleteRectangle">DELETE FROM rectangle_region
     WHERE COMPANYID = #{0}
     </delete>
     <delete id="deleteRole">DELETE FROM role
     WHERE COMPANYID = #{0}
     </delete>
-    <delete id="deleteRoleinuser">DELETE FROM roleinuser
+    <delete id="deleteRoleinuser">DELETE FROM user_role
     WHERE USERID = #{0}
     </delete>
-    <delete id="deleteRoleauthorize">DELETE FROM roleauthorize
+    <delete id="deleteRoleauthorize">DELETE FROM role_permission
     WHERE COMPANYID = #{0}
     </delete>
     <delete id="deleteRoute">DELETE FROM route
@@ -141,47 +141,47 @@
     <delete id="deleteSimcard">DELETE FROM simcard
     WHERE COMPANYID = #{0}
     </delete>
-    <delete id="deleteVehicle">DELETE FROM vehicle
+    <delete id="deleteVehicle">DELETE FROM automobile
     WHERE COMPANYID = #{0}
     </delete>
     <delete id="deleteCompany">DELETE FROM company
     WHERE ID = #{0}
     LIMIT 1
     </delete>
-    <delete id="deleteCompanyauthorize">DELETE FROM companyauthorize
+    <delete id="deleteCompanyauthorize">DELETE FROM company_permission
     WHERE COMPANYID = #{0}
     </delete>
     <delete id="deleteUser">DELETE FROM user
     WHERE COMPANYID = #{0}
     </delete>
 
-    <delete id="deleteAdminAuthorize">DELETE FROM roleauthorize
+    <delete id="deleteAdminAuthorize">DELETE FROM role_permission
     WHERE ROLEID = #{0}
     </delete>
 
     <select id="authorizes" resultType="java.lang.String">
         SELECT PERMISSIONID
         FROM
-            companyauthorize
+            company_permission
         WHERE COMPANYID = #{0}
     </select>
     <select id="assignCompanyAuthorize">
-        INSERT INTO companyauthorize(COMPANYID, PERMISSIONID) VALUES
+        INSERT INTO company_permission(COMPANYID, PERMISSIONID) VALUES
         <foreach collection="list" item="item" separator=",">
             (#{item.key},#{item.value})
         </foreach>
     </select>
     <select id="assingAdminAuthorize">
-        INSERT INTO roleauthorize(COMPANYID, ROLEID, PERMISSIONID) VALUES
+        INSERT INTO role_permission(COMPANYID, ROLEID, PERMISSIONID) VALUES
         <foreach collection="list" item="item" separator=",">
             (#{item.key},#{item.key},#{item.value})
         </foreach>
     </select>
     <delete id="cleanRoleauthorize">
-        DELETE FROM roleauthorize
+        DELETE FROM role_permission
         WHERE COMPANYID = #{0} AND
               PERMISSIONID NOT IN (SELECT PERMISSIONID
-                                   FROM companyauthorize
+                                   FROM company_permission
                                    WHERE
                                        COMPANYID = #{0})
     </delete>
@@ -194,17 +194,17 @@
 
 
     <insert id="createPermission" parameterType="com.rayton.gps.dao.security.Permission">
-        INSERT INTO companyauthorize (COMPANYID, PERMISSIONID, name, pid)
+        INSERT INTO company_permission (COMPANYID, PERMISSIONID, name, pid)
         VALUES (#{COMPANYID}, #{id}, #{name}, #{pid})
     </insert>
     <delete id="deletePermission" parameterType="com.rayton.gps.dao.security.Permission">
-        DELETE FROM companyauthorize
+        DELETE FROM company_permission
         WHERE PERMISSIONID = #{id}
     </delete>
 
 
     <update id="updatePermission" parameterType="com.rayton.gps.dao.security.Permission">
-        UPDATE companyauthorize
+        UPDATE company_permission
         SET COMPANYID = #{COMPANYID}, PERMISSIONID = #{id}, name = #{name}, pid = #{pid}
     </update>
 

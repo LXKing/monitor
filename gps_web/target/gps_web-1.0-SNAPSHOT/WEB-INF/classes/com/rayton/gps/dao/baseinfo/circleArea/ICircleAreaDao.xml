@@ -4,7 +4,7 @@
     <select id="queryPageCount" resultType="java.lang.Integer">
         SELECT COUNT(1)
         FROM
-        circle
+        circle_region
         WHERE COMPANYID = #{0} AND NAME LIKE CONCAT('%', #{1}, '%')
     </select>
     <select id="queryPageDetail" resultType="com.rayton.gps.dao.baseinfo.circleArea.CircleAreaInfo">
@@ -16,7 +16,7 @@
         LNG,
         RADIUS,
         REMARK
-        FROM circle
+        FROM circle_region
         WHERE
         COMPANYID = #{0}
         AND NAME LIKE CONCAT('%', #{1}, '%')
@@ -26,7 +26,7 @@
     <select id="searchPageCount" resultType="java.lang.Integer">
         SELECT COUNT(1)
         FROM
-        circle
+        circle_region
         WHERE COMPANYID = #{0} AND NAME LIKE
         CONCAT('%', #{1}, '%')
     </select>
@@ -39,7 +39,7 @@
         LNG,
         RADIUS,
         REMARK
-        FROM circle
+        FROM circle_region
         WHERE
         COMPANYID = #{0}
         AND NAME LIKE CONCAT('%', #{1}, '%')
@@ -48,7 +48,7 @@
     </select>
 
     <insert id="create" parameterType="com.rayton.gps.dao.baseinfo.circleArea.CircleArea">
-        INSERT INTO circle (COMPANYID,
+        INSERT INTO circle_region (COMPANYID,
         NAME, DEVICECATCH, FLAG, LAT, LNG, RADIUS,
         MAXSPEED, OVERSPEEDSECONDS,
         STARTTIME, ENDTIME, REMARK) VALUES (#{companyId}, #{name},
@@ -58,7 +58,7 @@
         #{endTime}, #{remark})
     </insert>
     <update id="update" parameterType="com.rayton.gps.dao.baseinfo.circleArea.CircleArea">
-        UPDATE circle
+        UPDATE circle_region
         SET
         COMPANYID = #{companyId}, NAME = #{name}, DEVICECATCH = #{deviceCatch},
         FLAG = #{flag}, LAT = #{lat}, LNG = #{lng}, RADIUS = #{radius},
@@ -83,32 +83,32 @@
         ENDTIME,
         REMARK,
         EDITTIME
-        FROM circle
+        FROM circle_region
         WHERE ID = #{0}
         LIMIT 1
     </select>
     <delete id="delete">
-        DELETE FROM circle
+        DELETE FROM circle_region
         WHERE ID = #{0}
         LIMIT 1
     </delete>
     <delete id="deleteAreaInDevice">
-        DELETE FROM areaindevice
+        DELETE FROM equipment_region
         WHERE AREAID = #{0}
     </delete>
     <delete id="deleteAreaInMaplayer">
-        DELETE FROM areainmaplayer
+        DELETE FROM map_layer_cover
         WHERE AREAID = #{0}
     </delete>
     <select id="existOutId" resultType="java.lang.Boolean">
         SELECT COUNT(1)
-        FROM circle
+        FROM circle_region
         WHERE NAME = #{0} AND COMPANYID = #{1} AND ID != #{2}
         LIMIT 1
     </select>
     <select id="exist" resultType="java.lang.Boolean">
         SELECT COUNT(1)
-        FROM circle
+        FROM circle_region
         WHERE
         NAME = #{0} AND COMPANYID = #{1}
         LIMIT 1

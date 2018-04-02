@@ -6,6 +6,9 @@
 </head>
 <body>
 <H2>提示:</H2>
-<span class="error"> <%=request.getAttribute("error")%></span>
+<span class="error">
+    <%--<%=request.getAttribute("error")%>--%>
+ <p>${error}</p>
+</span>
 </body>
 </html>

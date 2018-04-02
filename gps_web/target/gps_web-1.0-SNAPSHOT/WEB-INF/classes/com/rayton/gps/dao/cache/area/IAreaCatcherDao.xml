@@ -6,7 +6,7 @@
         A.DEVICENUMBER,
         A.AREAID,
         A.AREATYPE
-        FROM areaindevice AS A INNER JOIN circle AS B ON
+        FROM equipment_region AS A INNER JOIN circle_region AS B ON
         A.AREAID = B.ID
         WHERE B.DEVICECATCH = 0
     </select>
@@ -15,7 +15,7 @@
         A.DEVICENUMBER,
         A.AREAID,
         A.AREATYPE
-        FROM areaindevice AS A INNER JOIN rectangle AS B
+        FROM equipment_region AS A INNER JOIN rectangle_region AS B
         ON A.AREAID = B.ID
         WHERE B.DEVICECATCH = 0
     </select>
@@ -24,7 +24,7 @@
         A.DEVICENUMBER,
         A.AREAID,
         A.AREATYPE
-        FROM areaindevice AS A INNER JOIN polygon AS B ON
+        FROM equipment_region AS A INNER JOIN polygon_region AS B ON
         A.AREAID = B.ID
         WHERE B.DEVICECATCH = 0
     </select>
@@ -33,14 +33,14 @@
         A.DEVICENUMBER,
         A.AREAID,
         A.AREATYPE
-        FROM areaindevice AS A INNER JOIN route AS B ON
+        FROM equipment_region AS A INNER JOIN route AS B ON
         A.AREAID = B.ID
         WHERE B.DEVICECATCH = 0
     </select>
     <select id="getSectionIds" resultType="java.lang.Long">
         SELECT SECTIONID
         FROM
-        routesection
+        route_section
         WHERE
         ROUTEID = #{0}
     </select>

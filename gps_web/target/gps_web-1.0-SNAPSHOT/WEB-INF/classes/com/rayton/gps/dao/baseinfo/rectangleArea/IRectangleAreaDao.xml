@@ -4,7 +4,7 @@
     <select id="queryPageCount" resultType="java.lang.Integer">
         SELECT COUNT(1)
         FROM
-        rectangle
+        rectangle_region
         WHERE COMPANYID = #{0} AND NAME LIKE CONCAT('%', #{1}, '%')
     </select>
     <select id="queryPageDetail" resultType="com.rayton.gps.dao.baseinfo.rectangleArea.RectangleAreaInfo">
@@ -18,7 +18,7 @@
         BRLNG,
         REMARK
         FROM
-        rectangle
+        rectangle_region
         WHERE
         COMPANYID = #{0} AND NAME LIKE CONCAT('%', #{1}, '%')
         ORDER BY NAME
@@ -28,7 +28,7 @@
     <select id="searchPageCount" resultType="java.lang.Integer">
         SELECT COUNT(1)
         FROM
-        rectangle
+        rectangle_region
         WHERE COMPANYID = #{0} AND NAME LIKE CONCAT('%', #{1}, '%')
     </select>
     <select id="searchPageDetail" resultType="com.rayton.gps.dao.baseinfo.rectangleArea.RectangleAreaInfo">
@@ -42,7 +42,7 @@
         BRLNG,
         REMARK
         FROM
-        rectangle
+        rectangle_region
         WHERE
         COMPANYID = #{0} AND NAME LIKE CONCAT('%', #{1}, '%')
         ORDER BY NAME
@@ -51,7 +51,7 @@
     </select>
     <insert id="create" parameterType="com.rayton.gps.dao.baseinfo.rectangleArea.RectangleArea">
         INSERT INTO
-        rectangle (COMPANYID, NAME, DEVICECATCH, FLAG, ULLAT, ULLNG,
+        rectangle_region (COMPANYID, NAME, DEVICECATCH, FLAG, ULLAT, ULLNG,
         BRLAT,
         BRLNG, MAXSPEED, OVERSPEEDSECONDS, STARTTIME, ENDTIME, REMARK)
         VALUES (#{companyId}, #{name}, #{deviceCatch}, #{flag}, #{ullat},
@@ -77,12 +77,12 @@
         REMARK,
         EDITTIME
         FROM
-        rectangle
+        rectangle_region
         WHERE ID = #{0}
         LIMIT 1
     </select>
     <update id="update" parameterType="com.rayton.gps.dao.baseinfo.rectangleArea.RectangleArea">
-        UPDATE rectangle
+        UPDATE rectangle_region
         SET
         COMPANYID = #{companyId}, NAME = #{name}, DEVICECATCH = #{deviceCatch},
         FLAG = #{flag},
@@ -95,21 +95,21 @@
         LIMIT 1
     </update>
     <delete id="delete">
-        DELETE FROM rectangle
+        DELETE FROM rectangle_region
         WHERE ID = #{0}
         LIMIT 1
     </delete>
     <select id="existOutId" resultType="java.lang.Boolean">
         SELECT COUNT(1)
         FROM
-        rectangle
+        rectangle_region
         WHERE NAME = #{0} AND COMPANYID = #{1} AND ID !=
         #{2}
         LIMIT 1
     </select>
     <select id="exist" resultType="java.lang.Boolean">
         SELECT COUNT(1)
-        FROM rectangle
+        FROM rectangle_region
         WHERE NAME = #{0} AND COMPANYID = #{1}
         LIMIT 1
     </select>

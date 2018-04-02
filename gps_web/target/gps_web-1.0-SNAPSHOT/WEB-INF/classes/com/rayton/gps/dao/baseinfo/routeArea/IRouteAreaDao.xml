@@ -78,7 +78,7 @@
         LIMIT 1
     </delete>
     <delete id="deleteRouteSection">
-        DELETE FROM routesection
+        DELETE FROM route_section
         WHERE ROUTEID = #{0}
     </delete>
     <select id="exist" resultType="java.lang.Boolean">
@@ -100,18 +100,18 @@
         NAME,
         REMARK
         FROM section
-        INNER JOIN routesection ON
-        section.ID = routesection.SECTIONID
-        WHERE routesection.ROUTEID = #{0}
+        INNER JOIN route_section ON
+        section.ID = route_section.SECTIONID
+        WHERE route_section.ROUTEID = #{0}
     </select>
     <insert id="addSections">
-        REPLACE INTO routesection(ROUTEID, SECTIONID) VALUES
+        REPLACE INTO route_section(ROUTEID, SECTIONID) VALUES
         <foreach collection="list" item="item" separator=",">
             (#{item.key},#{item.value})
         </foreach>
     </insert>
     <delete id="removeSection">
-        DELETE FROM routesection
+        DELETE FROM route_section
         WHERE ROUTEID = #{0} AND
         SECTIONID = #{1}
         LIMIT 1

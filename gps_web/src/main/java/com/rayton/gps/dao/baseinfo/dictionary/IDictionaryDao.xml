@@ -64,4 +64,18 @@
         WHERE ID = #{0}
         LIMIT 1
     </update>
+
+    <select id="getKindNum"  >
+        SELECT MAX(KIND)
+        FROM
+        dictionary
+
+    </select>
+
+
+    <insert id="createDic" parameterType="com.rayton.gps.dao.baseinfo.dictionary.DictionaryItem">
+        INSERT INTO dictionary (PID,
+        KIND, NAME, CODE, `INDEX`) VALUES (#{pid}, #{kind}, #{name}, #{code},
+        #{index})
+    </insert>
 </mapper>

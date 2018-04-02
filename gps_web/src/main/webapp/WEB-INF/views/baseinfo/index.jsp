@@ -22,7 +22,7 @@
     $(document).ready(function () {
         setTimeout(function () {
             $("#catalog").css("width", "200px");
-        }, 100);
+        }, 1000);
 
         setTimeout(function () {
             $(".l-layout-left").css("top", "100px").css("width", "282px");
