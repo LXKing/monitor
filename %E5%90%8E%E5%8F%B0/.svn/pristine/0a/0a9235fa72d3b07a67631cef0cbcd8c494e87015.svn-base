@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rayton.gps.dao.baseinfo.company.ICompanyDao">
+    <select id="queryPageCount" resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM user
+        A
+        INNER JOIN company B ON A.ID = B.ID
+        WHERE
+        (B.FULLNAME LIKE
+        CONCAT('%', #{1}, '%') OR
+        B.SHORTNAME LIKE CONCAT('%', #{1}, '%')) AND
+        A.PID = #{0}
+    </select>
+    <select id="queryPageDetail" resultType="com.rayton.gps.dao.baseinfo.company.CompanyInfo">
+        SELECT
+        A.ID,
+        A.`ENABLE`,
+        A.SERVICESTARTDATE,
+        A.SERVICEENDDATE,
+        A.CREATETIME,
+        A.REMARK,
+        B.FULLNAME,
+        B.SHORTNAME,
+        B.OFFICEADDRESS,
+        B.ONDUTYPHONE,
+        B.ONDUTYPHONE
+        FROM user A
+        INNER
+        JOIN company B ON A.ID = B.ID
+        WHERE (B.FULLNAME LIKE
+        CONCAT('%', #{1}, '%') OR B.SHORTNAME
+        LIKE CONCAT('%', #{1}, '%')) AND
+        A.PID = #{0}
+        LIMIT #{2}, #{3}
+    </select>
+
+    <insert id="create" parameterType="com.rayton.gps.dao.baseinfo.company.Company">
+        INSERT INTO company (ID,
+        FULLNAME, SHORTNAME, ORGANCODE, REGISTDATE,
+        CORPORATION, ONDUTYPHONE,
+        OFFICEADDRESS, REGISTADDRESS, PARENTVISIBLE)
+        VALUES (#{id},
+        #{fullName}, #{shortName}, #{organCode}, #{registDate},
+        #{corporation}, #{ondutyPhone}, #{officeAddress}, #{registAddress},
+        #{parentVisible})
+    </insert>
+
+    <insert id="createAdminRole" parameterType="com.rayton.gps.dao.baseinfo.role.Role">
+        INSERT INTO role (ID,
+        COMPANYID, NAME, REMARK) VALUES (#{id}, #{companyId}, #{name},
+        #{remark})
+    </insert>
+
+    <insert id="assignAdminRole">
+        INSERT INTO user_role (USERID, ROLEID) VALUES (#{0},
+        #{1})
+    </insert>
+    <select id="fetch" resultType="com.rayton.gps.dao.baseinfo.company.Company">
+        SELECT
+        ID,
+        FULLNAME,
+        SHORTNAME,
+        ORGANCODE,
+        CORPORATION,
+        ONDUTYPHONE,
+        OFFICEADDRESS,
+        EDITTIME,
+        REGISTDATE,
+        REGISTADDRESS,
+        PARENTVISIBLE
+        FROM
+        company
+        WHERE ID = #{0}
+        LIMIT 1
+    </select>
+
+    <update id="update" parameterType="com.rayton.gps.dao.baseinfo.company.Company">
+        UPDATE company
+        SET
+        FULLNAME =
+        #{fullName}, SHORTNAME = #{shortName}, ORGANCODE =
+        #{organCode},
+        REGISTDATE =
+        #{registDate}, CORPORATION = #{corporation},
+        ONDUTYPHONE =
+        #{ondutyPhone}, OFFICEADDRESS = #{officeAddress},
+        REGISTADDRESS
+        =
+        #{registAddress}, PARENTVISIBLE = #{parentVisible}
+        WHERE ID = #{id} AND
+        EDITTIME = #{editTime}
+        LIMIT 1
+    </update>
+
+    <delete id="deleteCircle">DELETE FROM circle_region
+        WHERE COMPANYID = #{0}
+    </delete>
+    <delete id="deleteDevice">DELETE FROM equipment
+        WHERE COMPANYID = #{0}
+    </delete>
+    <delete id="deleteDriver">DELETE FROM driver
+        WHERE COMPANYID = #{0}
+    </delete>
+    <delete id="deleteLog">DELETE FROM log
+        WHERE COMPANYID = #{0}
+    </delete>
+    <delete id="deleteMaintain">DELETE FROM maintain
+        WHERE COMPANYID = #{0}
+    </delete>
+    <delete id="deleteMaplayer">DELETE FROM map_layer
+        WHERE COMPANYID = #{0}
+    </delete>
+    <delete id="deleteMotorcade">DELETE FROM motorcade
+        WHERE COMPANYID = #{0}
+    </delete>
+    <delete id="deleteOwner">DELETE FROM automobile_owner
+        WHERE COMPANYID = #{0}
+    </delete>
+    <delete id="deletePoi">DELETE FROM point_of_interest
+        WHERE COMPANYID = #{0}
+    </delete>
+    <delete id="deletePolygon">DELETE FROM polygon_region
+        WHERE COMPANYID = #{0}
+    </delete>
+    <delete id="deleteRectangle">DELETE FROM rectangle_region
+        WHERE COMPANYID = #{0}
+    </delete>
+    <delete id="deleteRole">DELETE FROM role
+        WHERE COMPANYID = #{0}
+    </delete>
+    <delete id="deleteRoleinuser">DELETE FROM user_role
+        WHERE USERID = #{0}
+    </delete>
+    <delete id="deleteRoleauthorize">DELETE FROM role_permission
+        WHERE COMPANYID = #{0}
+    </delete>
+    <delete id="deleteRoute">DELETE FROM route
+        WHERE COMPANYID = #{0}
+    </delete>
+    <delete id="deleteSimcard">DELETE FROM simcard
+        WHERE COMPANYID = #{0}
+    </delete>
+    <delete id="deleteVehicle">DELETE FROM automobile
+        WHERE COMPANYID = #{0}
+    </delete>
+    <delete id="deleteCompany">DELETE FROM company
+        WHERE ID = #{0}
+        LIMIT 1
+    </delete>
+    <delete id="deleteCompanyauthorize">DELETE FROM company_permission
+        WHERE COMPANYID = #{0}
+    </delete>
+    <delete id="deleteUser">DELETE FROM user
+        WHERE COMPANYID = #{0}
+    </delete>
+
+    <delete id="deleteAdminAuthorize">DELETE FROM role_permission
+        WHERE ROLEID = #{0}
+    </delete>
+
+    <select id="authorizes" resultType="java.lang.String">
+        SELECT PERMISSIONID
+        FROM
+        company_permission
+        WHERE COMPANYID = #{0}
+    </select>
+    <select id="assignCompanyAuthorize">
+        INSERT INTO company_permission(COMPANYID, PERMISSIONID) VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.key},#{item.value})
+        </foreach>
+    </select>
+    <select id="assingAdminAuthorize">
+        INSERT INTO role_permission(COMPANYID, ROLEID, PERMISSIONID) VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.key},#{item.key},#{item.value})
+        </foreach>
+    </select>
+    <delete id="cleanRoleauthorize">
+        DELETE FROM role_permission
+        WHERE COMPANYID = #{0} AND
+        PERMISSIONID NOT IN (SELECT PERMISSIONID
+        FROM company_permission
+        WHERE
+        COMPANYID = #{0})
+    </delete>
+
+    <select id="hasSub">SELECT 1
+        FROM user
+        WHERE PID = #{0}
+        LIMIT 1
+    </select>
+
+
+    <insert id="createPermission" parameterType="com.rayton.gps.dao.security.Permission">
+        INSERT INTO company_permission (COMPANYID, PERMISSIONID, name, pid)
+        VALUES (#{COMPANYID}, #{id}, #{name}, #{pid})
+    </insert>
+    <delete id="deletePermission" parameterType="com.rayton.gps.dao.security.Permission">
+        DELETE FROM company_permission
+        WHERE PERMISSIONID = #{id}
+    </delete>
+
+
+    <update id="updatePermission" parameterType="com.rayton.gps.dao.security.Permission">
+        UPDATE company_permission
+        SET COMPANYID = #{COMPANYID}, PERMISSIONID = #{id}, name = #{name}, pid = #{pid}
+    </update>
+
+
+</mapper>

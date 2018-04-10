@@ -1,0 +1,6 @@
+package com.rayton.gps.service;
+
+public class ShiroRealm {
+
+
+}
