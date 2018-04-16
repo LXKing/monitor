@@ -141,7 +141,7 @@ public class RouteAreaService {
 
 
     @RequiresPermissions("baseinfo.routeArea.create")
-    @Log(id = "baseinfo.routeArea.create", pid = "baseinfo.routeArea", name = "创建新的路线")
+    @Log(name = "创建新的路线")
     @Transactional
     public void create(RouteArea routeArea) {
         // RouteAreaDto dto = new RouteAreaDto();
@@ -175,7 +175,7 @@ public class RouteAreaService {
 
 
     @RequiresPermissions("baseinfo.routeArea.update")
-    @Log(id = "baseinfo.routeArea.update", pid = "baseinfo.routeArea", name = "修改路线")
+    @Log(name = "修改路线")
     @Transactional
     public void update(String unid, String user, RouteArea routeArea) {
         RouteArea old = routeAreaDao.fetch(routeArea.getId());
@@ -244,7 +244,7 @@ public class RouteAreaService {
 
 
     @RequiresPermissions("baseinfo.routeArea.delete")
-    @Log(id = "baseinfo.routeArea.delete", pid = "baseinfo.routeArea", name = "删除路线")
+    @Log(name = "删除路线")
     @Transactional
     public void delete(String unid, String user, long id) {
         RouteArea route = routeAreaDao.fetch(id);
@@ -318,7 +318,7 @@ public class RouteAreaService {
 
 
     @RequiresPermissions("baseinfo.routeArea.addSections")
-    @Log(id = "baseinfo.routeArea.addSections", pid = "baseinfo.routeArea", name = "路线绑定路段")
+    @Log(name = "路线绑定路段")
     @Transactional
     public void addSections(long routeId, List<Long> list) {
         List<KeyValue> rows = new ArrayList<KeyValue>();
@@ -334,7 +334,7 @@ public class RouteAreaService {
 
 
     @RequiresPermissions("baseinfo.routeArea.removeSection")
-    @Log(id = "baseinfo.routeArea.removeSection", pid = "baseinfo.routeArea", name = "路线解除路段")
+    @Log(name = "路线解除路段")
     @Transactional
     public void removeSection(long routeId, long sectionId) {
         routeAreaDao.removeSection(routeId, sectionId);
@@ -355,7 +355,7 @@ public class RouteAreaService {
 
 
     @RequiresPermissions("baseinfo.routeArea.addVehicles")
-    @Log(id = "baseinfo.routeArea.addVehicles", pid = "baseinfo.routeArea", name = "路线绑定车辆")
+    @Log(name = "路线绑定车辆")
     @Transactional
     public void addVehicles(String unid, String user, long routeAreaId, List<String> numbers) {
         RouteArea route = routeAreaDao.fetch(routeAreaId);
@@ -383,7 +383,7 @@ public class RouteAreaService {
     }
 
     @RequiresPermissions("baseinfo.routeArea.removeVehicle")
-    @Log(id = "baseinfo.routeArea.removeVehicle", pid = "baseinfo.routeArea", name = "路线解除车辆")
+    @Log(name = "路线解除车辆")
     @Transactional
     public void removeVehicle(String unid, String user, long routeAreaId, String number) {
         RouteArea route = routeAreaDao.fetch(routeAreaId);

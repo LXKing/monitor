@@ -105,7 +105,7 @@ public class PolygonAreaService {
 
 
     @RequiresPermissions("baseinfo.polygonArea.create")
-    @Log(id = "baseinfo.polygonArea.create", pid = "baseinfo.polygonArea", name = "创建新的多边形区域")
+    @Log(name = "创建新的多边形区域")
     @Transactional
     public void create(PolygonArea polygonArea) {
         // PolygonAreaDto dto = new PolygonAreaDto();
@@ -156,7 +156,7 @@ public class PolygonAreaService {
     }
 
     @RequiresPermissions("baseinfo.polygonArea.update")
-    @Log(id = "baseinfo.polygonArea.update", pid = "baseinfo.polygonArea", name = "修改多边形区域")
+    @Log(name = "修改多边形区域")
     @Transactional
     public void update(String unid, String user, PolygonArea polygonArea) {
         PolygonArea old = polygonAreaDao.fetch(polygonArea.getId());
@@ -242,7 +242,7 @@ public class PolygonAreaService {
     }
 
     @RequiresPermissions("baseinfo.polygonArea.delete")
-    @Log(id = "baseinfo.polygonArea.delete", pid = "baseinfo.polygonArea", name = "删除多边形区域")
+    @Log(name = "删除多边形区域")
     @Transactional
     public void delete(String unid, String user, long id) {
         PolygonArea polygon = polygonAreaDao.fetch(id);
@@ -304,7 +304,7 @@ public class PolygonAreaService {
      * 绑定车辆
      */
     @RequiresPermissions("baseinfo.polygonArea.addVehicles")
-    @Log(id = "baseinfo.polygonArea.addVehicles", pid = "baseinfo.polygonArea", name = "多边形区域绑定车辆")
+    @Log(name = "多边形区域绑定车辆")
     @Transactional
     public void addVehicles(String unid, String user, long polygonAreaId, List<String> numbers) {
         PolygonArea polygon = polygonAreaDao.fetch(polygonAreaId);
@@ -335,7 +335,7 @@ public class PolygonAreaService {
      * 解除车辆
      */
     @RequiresPermissions("baseinfo.polygonArea.removeVehicle")
-    @Log(id = "baseinfo.polygonArea.removeVehicle", pid = "baseinfo.polygonArea", name = "多边形区域解除车辆")
+    @Log(name = "多边形区域解除车辆")
     @Transactional
     public void removeVehicle(String unid, String user, long polygonAreaId, String number) {
         PolygonArea polygon = polygonAreaDao.fetch(polygonAreaId);

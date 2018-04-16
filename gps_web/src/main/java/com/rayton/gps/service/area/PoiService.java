@@ -6,13 +6,12 @@ import com.rayton.gps.dao.baseinfo.areaInDevice.IAreaInDeviceDao;
 import com.rayton.gps.dao.baseinfo.poi.IPoiDao;
 import com.rayton.gps.dao.baseinfo.poi.Poi;
 import com.rayton.gps.dao.baseinfo.poi.PoiInfo;
+import com.rayton.gps.util.Errors;
 import com.rayton.gps.util.enums.AreaKinds;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.rayton.gps.util.Errors;
-
 
 import java.util.List;
 
@@ -60,7 +59,7 @@ public class PoiService {
 
 
     @RequiresPermissions("baseinfo.poi.create")
-    @Log(id = "baseinfo.poi.create", pid = "baseinfo.poi", name = "创建新的兴趣点")
+    @Log(name = "创建新的兴趣点")
     @Transactional
     public void create(Poi poi) {
 
@@ -69,7 +68,7 @@ public class PoiService {
     }
 
     @RequiresPermissions("baseinfo.poi.update")
-    @Log(id = "baseinfo.poi.update", pid = "baseinfo.poi", name = "更新兴趣点")
+    @Log(name = "更新兴趣点")
     @Transactional
     public void update(Poi poi) {
 
@@ -87,7 +86,7 @@ public class PoiService {
     }
 
     @RequiresPermissions("baseinfo.poi.delete")
-    @Log(id = "baseinfo.poi.delete", pid = "baseinfo.poi", name = "删除兴趣点")
+    @Log(name = "删除兴趣点")
     @Transactional
     public void delete(long id) {
         poiDao.delete(id);

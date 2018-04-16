@@ -91,7 +91,7 @@ public class SectionAreaService {
 
 
     @RequiresPermissions("baseinfo.sectionArea.create")
-    @Log(id = "baseinfo.sectionArea.create", pid = "baseinfo.sectionArea", name = "创建新的路段")
+    @Log(name = "创建新的路段")
     @Transactional
     public void create(SectionArea sectionArea) {
         // SectionAreaDto dto = new SectionAreaDto();
@@ -161,7 +161,7 @@ public class SectionAreaService {
 
 
     @RequiresPermissions("baseinfo.sectionArea.update")
-    @Log(id = "baseinfo.sectionArea.update", pid = "baseinfo.sectionArea", name = "修改路段")
+    @Log(name = "修改路段")
     @Transactional
     public void update(SectionArea sectionArea) {
         // SectionAreaDto dto = new SectionAreaDto();
@@ -202,7 +202,7 @@ public class SectionAreaService {
 
 
     @RequiresPermissions("baseinfo.sectionArea.delete")
-    @Log(id = "baseinfo.sectionArea.delete", pid = "baseinfo.sectionArea", name = "删除路段")
+    @Log(name = "删除路段")
     @Transactional
     public void delete(long id) {
         sectionAreaDao.delete(id);

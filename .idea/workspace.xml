@@ -17,94 +17,22 @@
     <option name="MAKE_PROJECT_ON_SAVE" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="MapLayerController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/MapLayerController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-8496">
-              <caret line="36" column="28" lean-forward="true" selection-start-line="36" selection-start-column="28" selection-end-line="36" selection-end-column="28" />
-              <folding>
-                <element signature="e#1556#1557#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WebUtil.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/util/WebUtil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="8" column="27" lean-forward="false" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AssociationCache.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/cache/AssociationCache.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1041">
-              <caret line="91" column="0" lean-forward="true" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AreaCatcherCache.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/cache/AreaCatcherCache.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4013">
-              <caret line="26" column="13" lean-forward="false" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LocateService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/LocateService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1454">
-              <caret line="616" column="10" lean-forward="true" selection-start-line="616" selection-start-column="10" selection-end-line="616" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LocateController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/LocateController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="551">
-              <caret line="187" column="33" lean-forward="false" selection-start-line="187" selection-start-column="19" selection-end-line="187" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
       <file leaf-file-name="AlarmController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/AlarmController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="411">
-              <caret line="51" column="7" lean-forward="true" selection-start-line="51" selection-start-column="7" selection-end-line="51" selection-end-column="7" />
+            <state relative-caret-position="385">
+              <caret line="105" column="0" lean-forward="true" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StatisticsService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/StatisticsService.java">
+      <file leaf-file-name="application.yml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/application.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1388">
-              <caret line="940" column="0" lean-forward="true" selection-start-line="940" selection-start-column="0" selection-end-line="940" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ReplayController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/ReplayController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+            <state relative-caret-position="198">
+              <caret line="6" column="23" lean-forward="true" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -116,6 +44,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -128,9 +57,32 @@
       <find>Optional</find>
       <find>ResponseE</find>
       <find>ServiceMethod</find>
+      <find>Log</find>
+      <find>, HttpServletRequest request</find>
+      <find>request.setAttribute</find>
+      <find>request.getAttribute</find>
+      <find>href</find>
+      <find>src</find>
+      <find>.js&quot;</find>
+      <find>.css&quot;</find>
+      <find>.jpg&quot;</find>
+      <find>.png&quot;</find>
+      <find>query</find>
+      <find>/locate/groupVehicles</find>
+      <find>&lt;%=request.getContextPath()%&gt;/resources</find>
+      <find>tubiaoyuan</find>
+      <find>lixiandian</find>
+      <find>http</find>
     </findStrings>
     <replaceStrings>
       <replace>Log</replace>
+      <replace>th:href</replace>
+      <replace>th:src</replace>
+      <replace>.js}&quot;</replace>
+      <replace>.css}&quot;</replace>
+      <replace>.jpg}&quot;</replace>
+      <replace>@{/static</replace>
+      <replace>.png}&quot;</replace>
     </replaceStrings>
   </component>
   <component name="GradleLocalSettings">
@@ -141,57 +93,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/gps_web/src/main/webapp/WEB-INF/view/index.jsp" />
-        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/GpsWebApplication.java" />
-        <option value="$PROJECT_DIR$/gps_web/src/test/java/com/rayton/gps/GpsWebApplicationTests.java" />
-        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/util/JsonMapper.java" />
-        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/util/RSA.java" />
-        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/TestController.java" />
-        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/util/WebUtil.java" />
-        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/export/PdfEvent.java" />
-        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/export/PdfView.java" />
-        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/StatisticsController.java" />
-        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/export/ExcelView.java" />
-        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/util/WebObjectMapper.java" />
-        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/util/CookieUtil.java" />
-        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/dao/cache/area/PolygonAreaCatcher.java" />
-        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/dao/cache/area/RouteAreaCatcher.java" />
-        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/cache/AreaCatcherCache.java" />
-        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/exception/Try.java" />
-        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/configuration/PropertiesListenerConfig.java" />
-        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/configuration/SwaggerConfig.java" />
-        <option value="$PROJECT_DIR$/gps_web/src/main/resources/application.yml" />
-        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/cache/SynchronizerCache.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/dao/security/IdentityDto.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/area/SectionAreaController.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/util/IconUtil.java" />
         <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/area/PoiController.java" />
-        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/package-info.java" />
-        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/area/PoiService.java" />
-        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/util/Errors.java" />
-        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/DeviceService.java" />
-        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/RoleService.java" />
-        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/util/KeyValue.java" />
-        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/MapLayerService.java" />
-        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/SecurityService.java" />
-        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/HomeController.java" />
-        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/area/CircleAreaService.java" />
-        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/area/RectangleAreaService.java" />
-        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/area/PolygonAreaService.java" />
-        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/area/RouteAreaService.java" />
-        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/area/SectionAreaService.java" />
-        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/UserService.java" />
-        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/VehicleService.java" />
-        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/OwnerService.java" />
-        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/DriverService.java" />
-        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/CompanyService.java" />
-        <option value="$PROJECT_DIR$/gps_web/pom.xml" />
-        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/DictionaryService.java" />
-        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/MotorcadeService.java" />
-        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/SimcardService.java" />
-        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/MaintainService.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/dao/Page.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/dao/IconDao.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/dao/icon/Icon.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/exception/GlobalExceptionResolver.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/VehicleController.java" />
         <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/MarkerController.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/util/enums/MarkerType.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/dao/baseinfo/MarkerFileInfo.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/dao/icon/IconDao.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/IconService.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/UserController.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/MarkerService.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/test/java/com/rayton/gps/GpsWebApplicationTests.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/resources/mapping/IconDao.xml" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/StatisticsController.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/SimcardController.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/RoleController.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/ReplayController.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/model/ResponseEntity2.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/model/ResponseEntityWrapper.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/OwnerController.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/OverviewController.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/MotorcadeController.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/MapOptionController.java" />
         <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/MapLayerController.java" />
-        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/StatisticsService.java" />
-        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/cache/AssociationCache.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/LogController.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/ObdController.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/TripController.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/FaultController.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/InstructController.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/CenterController.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/CommonContorller.java" />
         <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/LocateController.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/DeviceController.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/CompanyController.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/DictionaryController.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/baseInfo/BaseInfoController.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/DriverController.java" />
+        <option value="$PROJECT_DIR$/gps_web/pom.xml" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/resources/static/css/site.css" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/resources/templates/index.html" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/resources/templates/login.html" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/HomeController.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/resources/static/js/Main.js" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/AlarmController.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/resources/application.yml" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/configuration/ShiroConfig.java" />
       </list>
     </option>
   </component>
@@ -269,7 +221,6 @@
     <panes>
       <pane id="PackagesPane" />
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -331,7 +282,7 @@
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="rayton" type="462c0819:PsiDirectoryNode" />
               <item name="gps" type="462c0819:PsiDirectoryNode" />
-              <item name="cache" type="462c0819:PsiDirectoryNode" />
+              <item name="configuration" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="monitor" type="b2602c69:ProjectViewProjectNode" />
@@ -342,16 +293,75 @@
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="rayton" type="462c0819:PsiDirectoryNode" />
               <item name="gps" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="monitor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gps_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="monitor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gps_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="monitor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gps_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="monitor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gps_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="monitor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gps_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="rayton" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="monitor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gps_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="rayton" type="462c0819:PsiDirectoryNode" />
+              <item name="gps" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="monitor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gps_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="rayton" type="462c0819:PsiDirectoryNode" />
+              <item name="gps" type="462c0819:PsiDirectoryNode" />
+              <item name="GpsWebApplicationTests" type="1a9f42e2:ClassTreeNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="editor.preferences.import" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.language" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
@@ -368,13 +378,15 @@
     <property name="RequestMappingsPanelWidth2" value="75" />
     <property name="RequestMappingsPanelOrder2" value="2" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/userdemo-master/userdemo-master" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/ll/l/rayton_gps" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\huangzhike\Desktop\mmp\gps_web\src\main\webapp\WEB-INF\view" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\project\monitor\gps_web\src\main\resources\static" />
       <recent name="C:\Users\huangzhike\Desktop\mmp\gps_web\src\main\java\com\rayton\gps\controller" />
       <recent name="C:\Users\huangzhike\Desktop\mmp\gps_web\src\main\java\com\rayton\gps" />
     </key>
@@ -554,71 +566,89 @@
       <workItem from="1523350832921" duration="4706000" />
       <workItem from="1523358499580" duration="821000" />
       <workItem from="1523406840149" duration="26881000" />
+      <workItem from="1523493465512" duration="24440000" />
+      <workItem from="1523579436042" duration="5438000" />
+      <workItem from="1523586085488" duration="15600000" />
+      <workItem from="1523623481975" duration="4924000" />
+      <workItem from="1523686320436" duration="6444000" />
+      <workItem from="1523783058229" duration="1940000" />
+      <workItem from="1523843562377" duration="2899000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="GpsWebApplicationTests_contextLoads - 2018.04.10 at 09h 00m 31s.xml">
+    <history-entry file="GpsWebApplicationTests_contextLoads - 2018.04.12 at 14h 36m 11s.xml">
       <configuration name="GpsWebApplicationTests.contextLoads" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="GpsWebApplicationTests_contextLoads - 2018.04.10 at 09h 07m 32s.xml">
+    <history-entry file="GpsWebApplicationTests_contextLoads - 2018.04.12 at 14h 37m 45s.xml">
       <configuration name="GpsWebApplicationTests.contextLoads" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="GpsWebApplicationTests_contextLoads - 2018.04.10 at 09h 17m 22s.xml">
+    <history-entry file="GpsWebApplicationTests_contextLoads - 2018.04.12 at 15h 36m 14s.xml">
       <configuration name="GpsWebApplicationTests.contextLoads" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="GpsWebApplicationTests_contextLoads - 2018.04.10 at 11h 37m 22s.xml">
+    <history-entry file="GpsWebApplicationTests_contextLoads - 2018.04.13 at 10h 36m 20s.xml">
       <configuration name="GpsWebApplicationTests.contextLoads" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="GpsWebApplicationTests_contextLoads - 2018.04.10 at 11h 39m 42s.xml">
+    <history-entry file="GpsWebApplicationTests_contextLoads - 2018.04.13 at 10h 37m 35s.xml">
       <configuration name="GpsWebApplicationTests.contextLoads" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="GpsWebApplicationTests_contextLoads - 2018.04.10 at 11h 41m 11s.xml">
+    <history-entry file="GpsWebApplicationTests_contextLoads - 2018.04.13 at 10h 38m 47s.xml">
       <configuration name="GpsWebApplicationTests.contextLoads" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="GpsWebApplicationTests_contextLoads - 2018.04.10 at 11h 51m 41s.xml">
+    <history-entry file="GpsWebApplicationTests_contextLoads - 2018.04.13 at 10h 40m 04s.xml">
       <configuration name="GpsWebApplicationTests.contextLoads" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="GpsWebApplicationTests_contextLoads - 2018.04.10 at 14h 06m 39s.xml">
+    <history-entry file="GpsWebApplicationTests_contextLoads - 2018.04.13 at 10h 41m 22s.xml">
       <configuration name="GpsWebApplicationTests.contextLoads" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="GpsWebApplicationTests_contextLoads - 2018.04.10 at 18h 17m 14s.xml">
+    <history-entry file="GpsWebApplicationTests_contextLoads - 2018.04.13 at 10h 50m 50s.xml">
+      <configuration name="GpsWebApplicationTests.contextLoads" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GpsWebApplicationTests_contextLoads - 2018.04.13 at 10h 52m 31s.xml">
       <configuration name="GpsWebApplicationTests.contextLoads" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="56148000" />
+    <option name="totallyTimeSpent" value="117833000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295325" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5834254" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4104903" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4198895" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23541667" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24678111" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295325" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299356" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3524862" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -634,419 +664,511 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/package-info.java">
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="9" column="1" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="9" selection-end-column="1" />
-          <folding />
+        <state relative-caret-position="411">
+          <caret line="188" column="11" lean-forward="true" selection-start-line="188" selection-start-column="2" selection-end-line="188" selection-end-column="42" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/5.0.4.RELEASE/spring-context-5.0.4.RELEASE.jar!/org/springframework/validation/Errors.class">
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/LogController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
-          <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+          <caret line="8" column="15" lean-forward="false" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/ObdController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="8" column="15" lean-forward="false" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/TripController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="8" column="15" lean-forward="false" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/TestController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/InstructController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="735">
+          <caret line="64" column="15" lean-forward="false" selection-start-line="64" selection-start-column="15" selection-end-line="64" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.5.RELEASE/spring-web-5.0.5.RELEASE.jar!/org/springframework/web/bind/annotation/PostMapping.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/SimcardController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="99" column="42" lean-forward="true" selection-start-line="99" selection-start-column="5" selection-end-line="99" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/model/ResponseEntityWrapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="13" column="52" lean-forward="false" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/DictionaryController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4830">
+          <caret line="156" column="20" lean-forward="false" selection-start-line="156" selection-start-column="20" selection-end-line="156" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/area/CircleAreaController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4235">
+          <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/util/Errors.java">
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/area/PoiController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="3" column="7" lean-forward="true" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
+        <state relative-caret-position="245">
+          <caret line="27" column="13" lean-forward="false" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/area/PolygonAreaController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="26" column="13" lean-forward="false" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/area/PoiService.java">
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/export/ExcelView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-79">
-          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="2065">
+          <caret line="110" column="15" lean-forward="false" selection-start-line="110" selection-start-column="12" selection-end-line="110" selection-end-column="15" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/DeviceService.java">
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/DeviceDataController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="163" column="38" lean-forward="false" selection-start-line="163" selection-start-column="22" selection-end-line="163" selection-end-column="38" />
+        <state relative-caret-position="140">
+          <caret line="25" column="11" lean-forward="false" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
           <folding>
-            <element signature="imports" expanded="false" />
+            <element signature="e#1305#1328#0" expanded="false" />
+            <element signature="e#1476#1512#0" expanded="false" />
+            <element signature="method#menus#0;class#DeviceDataController#0" expanded="false" />
+            <element signature="e#9673#9725#0" expanded="false" />
+            <element signature="e#9907#9991#0" expanded="false" />
+            <element signature="method#queryMultimedia#0;class#DeviceDataController#0" expanded="false" />
+            <element signature="method#getMultimedia#0;class#DeviceDataController#0" expanded="false" />
+            <element signature="e#10683#10740#0" expanded="false" />
+            <element signature="e#10937#11032#0" expanded="false" />
+            <element signature="method#multimediaEventReport#0;class#DeviceDataController#0" expanded="false" />
+            <element signature="e#11383#11444#0" expanded="false" />
+            <element signature="e#11655#11748#0" expanded="false" />
+            <element signature="method#multimediaRetrieval#1;class#DeviceDataController#0" expanded="false" />
+            <element signature="e#12099#12158#0" expanded="false" />
+            <element signature="e#12360#12451#0" expanded="false" />
+            <element signature="method#deviceEventReport#1;class#DeviceDataController#0" expanded="false" />
+            <element signature="e#12795#12862#0" expanded="false" />
+            <element signature="e#13090#13189#0" expanded="false" />
+            <element signature="method#deviceUpgradeResultReport#1;class#DeviceDataController#0" expanded="false" />
+            <element signature="method#pickupMultmedia#0;class#DeviceDataController#0" expanded="false" />
+            <element signature="e#14034#14071#0" expanded="false" />
+            <element signature="e#14951#15008#0" expanded="false" />
+            <element signature="e#15207#15290#0" expanded="false" />
+            <element signature="method#querydrivingRecorder#0;class#DeviceDataController#0" expanded="false" />
+            <element signature="e#15482#15540#0" expanded="false" />
+            <element signature="e#15741#15831#0" expanded="false" />
+            <element signature="method#queryAccidentDoubtLog#0;class#DeviceDataController#0" expanded="false" />
+            <element signature="e#16177#16227#0" expanded="false" />
+            <element signature="e#16404#16486#0" expanded="false" />
+            <element signature="method#queryPowerLog#0;class#DeviceDataController#0" expanded="false" />
+            <element signature="e#16836#16888#0" expanded="false" />
+            <element signature="e#17071#17155#0" expanded="false" />
+            <element signature="method#queryTimeoutLog#0;class#DeviceDataController#0" expanded="false" />
+            <element signature="e#17489#17543#0" expanded="false" />
+            <element signature="e#17732#17818#0" expanded="false" />
+            <element signature="method#queryParameterLog#0;class#DeviceDataController#0" expanded="false" />
+            <element signature="e#18156#18206#0" expanded="false" />
+            <element signature="e#18384#18466#0" expanded="false" />
+            <element signature="method#queryLoginLog#0;class#DeviceDataController#0" expanded="false" />
+            <element signature="e#18816#18872#0" expanded="false" />
+            <element signature="e#19065#19153#0" expanded="false" />
+            <element signature="method#querySpeedStatusLog#0;class#DeviceDataController#0" expanded="false" />
+            <element signature="e#19495#19546#0" expanded="false" />
+            <element signature="e#19724#19807#0" expanded="false" />
+            <element signature="method#queryLocateLog#0;class#DeviceDataController#0" expanded="false" />
+            <element signature="e#20160#20210#0" expanded="false" />
+            <element signature="e#20385#20467#0" expanded="false" />
+            <element signature="method#querySpeedLog#0;class#DeviceDataController#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/websocket/SystemWebSocketHandler.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/5.0.5.RELEASE/spring-context-5.0.5.RELEASE.jar!/org/springframework/validation/BindingResult.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3789">
+        <state relative-caret-position="140">
+          <caret line="7" column="25" lean-forward="true" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/DriverController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4760">
+          <caret line="159" column="40" lean-forward="false" selection-start-line="159" selection-start-column="40" selection-end-line="159" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/MapLayerController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="127" column="37" lean-forward="false" selection-start-line="127" selection-start-column="4" selection-end-line="127" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/MaintainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/FaultController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="8" column="15" lean-forward="false" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/gpsparser.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/js/bootstrap/css/bootstrap-table.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/js/js/locate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/js/js/Main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1575">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/LocateController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="56" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+          <folding>
+            <element signature="e#1214#1251#0" expanded="false" />
+            <element signature="e#2042#2090#0" expanded="false" />
+            <element signature="e#2262#2742#0" expanded="false" />
+            <element signature="e#2754#2797#0" expanded="false" />
+            <element signature="docComment;method#devices#0;class#LocateController#0" expanded="false" />
+            <element signature="e#3722#3794#0" expanded="false" />
+            <element signature="method#devices#0;class#LocateController#0" expanded="false" />
+            <element signature="e#3965#4036#0" expanded="false" />
+            <element signature="method#latests#0;class#LocateController#0" expanded="false" />
+            <element signature="e#4193#4241#0" expanded="false" />
+            <element signature="method#vehicleInfo#0;class#LocateController#0" expanded="false" />
+            <element signature="e#4596#4649#0" expanded="false" />
+            <element signature="method#loadUnreadMultimediaEvent#0;class#LocateController#0" expanded="false" />
+            <element signature="e#4955#5011#0" expanded="false" />
+            <element signature="method#readMultmediaEventReport#0;class#LocateController#0" expanded="false" />
+            <element signature="e#5403#5411#0" expanded="false" />
+            <element signature="e#5703#5752#0" expanded="false" />
+            <element signature="method#loadUnreadDeviceEvent#0;class#LocateController#0" expanded="false" />
+            <element signature="e#6024#6077#0" expanded="false" />
+            <element signature="method#readDeviceEventReport#0;class#LocateController#0" expanded="false" />
+            <element signature="e#6442#6450#0" expanded="false" />
+            <element signature="e#6739#6802#0" expanded="false" />
+            <element signature="method#loadUnreadDeviceUpgradeResultReport#0;class#LocateController#0" expanded="false" />
+            <element signature="e#7102#7163#0" expanded="false" />
+            <element signature="method#readDeviceUpgradeResultReport#0;class#LocateController#0" expanded="false" />
+            <element signature="class#7561:7665" expanded="false" />
+            <element signature="initializer##0;class#7561:7665" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/css/site.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="943">
+          <caret line="513" column="1" lean-forward="false" selection-start-line="513" selection-start-column="1" selection-end-line="513" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/aop/LogAspect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1365">
+          <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-starter-parent/2.0.1.RELEASE/spring-boot-starter-parent-2.0.1.RELEASE.pom">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-7992">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/util/KeyValue.java">
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/configuration/PropertiesListenerConfig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="3" column="23" lean-forward="false" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
+        <state relative-caret-position="-597">
+          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/RoleService.java">
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/configuration/SpringWebMvcConfig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="153" column="33" lean-forward="false" selection-start-line="153" selection-start-column="33" selection-end-line="153" selection-end-column="33" />
+        <state relative-caret-position="420">
+          <caret line="14" column="1" lean-forward="true" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/MapLayerService.java">
+    <entry file="file://$MAVEN_REPOSITORY$/net/sourceforge/nekohtml/nekohtml/1.9.22/nekohtml-1.9.22.pom">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="27" column="13" lean-forward="false" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
-          <folding />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/MarkerService.java">
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/configuration/DruidDBConfig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/SecurityService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="185" column="9" lean-forward="true" selection-start-line="185" selection-start-column="9" selection-end-line="185" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/dao/baseinfo/MonitorInfoDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="5" column="3" lean-forward="false" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/dao/baseinfo/MarkerFileInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="6" column="14" lean-forward="false" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/dao/baseinfo/MonitorInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/dao/locate/GroupVehicle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="53" column="15" lean-forward="false" selection-start-line="53" selection-start-column="15" selection-end-line="53" selection-end-column="15" />
-          <folding>
-            <element signature="e#958#959#0" expanded="false" />
-            <element signature="e#985#986#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/area/CircleAreaService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="84" column="41" lean-forward="false" selection-start-line="84" selection-start-column="41" selection-end-line="84" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/area/RectangleAreaService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="164" column="39" lean-forward="true" selection-start-line="164" selection-start-column="39" selection-end-line="164" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/area/PolygonAreaService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="182" column="39" lean-forward="false" selection-start-line="182" selection-start-column="39" selection-end-line="182" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/area/RouteAreaService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="195" column="39" lean-forward="false" selection-start-line="195" selection-start-column="39" selection-end-line="195" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/area/SectionAreaService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="641">
-          <caret line="214" column="0" lean-forward="true" selection-start-line="214" selection-start-column="0" selection-end-line="214" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/UserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="126" column="42" lean-forward="false" selection-start-line="126" selection-start-column="42" selection-end-line="126" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/VehicleService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="119" column="42" lean-forward="false" selection-start-line="119" selection-start-column="42" selection-end-line="119" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/DriverService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="67" column="41" lean-forward="false" selection-start-line="67" selection-start-column="41" selection-end-line="67" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/model/replay/Track.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="4" column="9" lean-forward="true" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/model/baseinfo/AdminMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="3" column="13" lean-forward="false" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/model/baseinfo/CompanyModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="14" column="8" lean-forward="true" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/validator/hibernate-validator/6.0.7.Final/hibernate-validator-6.0.7.Final.jar!/org/hibernate/validator/constraints/NotEmpty.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-140">
-          <caret line="23" column="10" lean-forward="false" selection-start-line="23" selection-start-column="10" selection-end-line="23" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-validator/5.1.2.Final/hibernate-validator-5.1.2.Final.jar!/org/hibernate/validator/constraints/NotEmpty.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="29" column="26" lean-forward="false" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/OwnerService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-93">
-          <caret line="136" column="41" lean-forward="false" selection-start-line="136" selection-start-column="41" selection-end-line="136" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/model/replay/CountTracks.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="70">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/model/ExistKey.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="70">
-          <caret line="2" column="18" lean-forward="false" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/model/Login.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1019">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/DictionaryService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="85" column="43" lean-forward="false" selection-start-line="85" selection-start-column="43" selection-end-line="85" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/MotorcadeService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="89" column="41" lean-forward="false" selection-start-line="89" selection-start-column="41" selection-end-line="89" selection-end-column="41" />
+        <state relative-caret-position="245">
+          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gps_web/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="35">
-          <caret line="1" column="23" lean-forward="false" selection-start-line="1" selection-start-column="23" selection-end-line="1" selection-end-column="23" />
+        <state relative-caret-position="751">
+          <caret line="96" column="19" lean-forward="false" selection-start-line="96" selection-start-column="19" selection-end-line="96" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/SimcardService.java">
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/templates/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="123" column="43" lean-forward="false" selection-start-line="123" selection-start-column="43" selection-end-line="123" selection-end-column="43" />
-          <folding />
+        <state relative-caret-position="226">
+          <caret line="23" column="7" lean-forward="false" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
+          <folding>
+            <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/HomeController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-954">
-          <caret line="175" column="8" lean-forward="true" selection-start-line="175" selection-start-column="8" selection-end-line="175" selection-end-column="8" />
+        <state relative-caret-position="35">
+          <caret line="195" column="20" lean-forward="false" selection-start-line="195" selection-start-column="20" selection-end-line="195" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/MaintainService.java">
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/js/Main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1409">
-          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/CompanyService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="652">
-          <caret line="163" column="40" lean-forward="false" selection-start-line="163" selection-start-column="40" selection-end-line="163" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/MaintainController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2354">
-          <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/MarkerController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1330">
-          <caret line="33" column="17" lean-forward="true" selection-start-line="33" selection-start-column="17" selection-end-line="33" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/GpsWebApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="33" column="13" lean-forward="false" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/ReplayController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/StatisticsService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1388">
-          <caret line="940" column="0" lean-forward="true" selection-start-line="940" selection-start-column="0" selection-end-line="940" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/util/WebUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="8" column="27" lean-forward="false" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/MapLayerController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8496">
-          <caret line="36" column="28" lean-forward="true" selection-start-line="36" selection-start-column="28" selection-end-line="36" selection-end-column="28" />
+        <state relative-caret-position="751">
+          <caret line="112" column="95" lean-forward="false" selection-start-line="112" selection-start-column="95" selection-end-line="112" selection-end-column="95" />
           <folding>
-            <element signature="e#1556#1557#0" expanded="true" />
+            <marker date="1523691749363" expanded="true" signature="3515:3560" ph="..." />
+            <marker date="1523691749363" expanded="true" signature="5107:5144" ph="..." />
+            <marker date="1523691749363" expanded="true" signature="7958:7995" ph="..." />
+            <marker date="1523691749363" expanded="true" signature="12603:12639" ph="..." />
+            <marker date="1523691749363" expanded="true" signature="15136:15145" ph="..." />
+            <marker date="1523691749363" expanded="true" signature="17838:17891" ph="..." />
+            <marker date="1523691749363" expanded="true" signature="18456:18467" ph="..." />
+            <marker date="1523691749363" expanded="true" signature="22387:22409" ph="..." />
+            <marker date="1523691749363" expanded="true" signature="22440:22463" ph="..." />
+            <marker date="1523691749363" expanded="true" signature="22559:22597" ph="..." />
+            <marker date="1523691749363" expanded="true" signature="23711:23771" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/cache/AreaCatcherCache.java">
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4013">
-          <caret line="26" column="13" lean-forward="false" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+        <state relative-caret-position="296">
+          <caret line="877" column="17" lean-forward="false" selection-start-line="877" selection-start-column="17" selection-end-line="877" selection-end-column="17" />
+          <folding>
+            <element signature="n#style#0;n#section#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#section#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#1;n#div#0;n#section#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#section#0;n#section#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="e#36648#38328#0" expanded="false" />
+            <element signature="e#38371#39781#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/test/java/com/rayton/gps/GpsWebApplicationTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/cache/AssociationCache.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/java/lang/Object.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1041">
-          <caret line="91" column="0" lean-forward="true" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
+        <state relative-caret-position="282">
+          <caret line="36" column="13" lean-forward="false" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.5.RELEASE/spring-web-5.0.5.RELEASE.jar!/org/springframework/http/ResponseEntity.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="22" column="35" lean-forward="false" selection-start-line="22" selection-start-column="27" selection-end-line="22" selection-end-column="35" />
+          <folding>
+            <element signature="method#ResponseEntity#2;class#ResponseEntity#0" expanded="false" />
+            <element signature="method#ResponseEntity#3;class#ResponseEntity#0" expanded="false" />
+            <element signature="method#ResponseEntity#4;class#ResponseEntity#0" expanded="false" />
+            <element signature="method#getStatusCode#0;class#ResponseEntity#0" expanded="false" />
+            <element signature="method#getStatusCodeValue#0;class#ResponseEntity#0" expanded="false" />
+            <element signature="method#equals#0;class#ResponseEntity#0" expanded="false" />
+            <element signature="method#toString#0;class#ResponseEntity#0" expanded="false" />
+            <element signature="method#status#0;class#ResponseEntity#0" expanded="false" />
+            <element signature="method#ok#1;class#ResponseEntity#0" expanded="false" />
+            <element signature="method#created#0;class#ResponseEntity#0" expanded="false" />
+            <element signature="class#DefaultBuilder#0;class#ResponseEntity#0" expanded="false" />
+            <element signature="method#header#0;class#DefaultBuilder#0;class#ResponseEntity#0" expanded="false" />
+            <element signature="method#headers#0;class#DefaultBuilder#0;class#ResponseEntity#0" expanded="false" />
+            <element signature="method#allow#0;class#DefaultBuilder#0;class#ResponseEntity#0" expanded="false" />
+            <element signature="method#contentLength#0;class#DefaultBuilder#0;class#ResponseEntity#0" expanded="false" />
+            <element signature="method#contentType#0;class#DefaultBuilder#0;class#ResponseEntity#0" expanded="false" />
+            <element signature="method#eTag#0;class#DefaultBuilder#0;class#ResponseEntity#0" expanded="false" />
+            <element signature="method#lastModified#0;class#DefaultBuilder#0;class#ResponseEntity#0" expanded="false" />
+            <element signature="method#location#0;class#DefaultBuilder#0;class#ResponseEntity#0" expanded="false" />
+            <element signature="method#cacheControl#0;class#DefaultBuilder#0;class#ResponseEntity#0" expanded="false" />
+            <element signature="method#varyBy#0;class#DefaultBuilder#0;class#ResponseEntity#0" expanded="false" />
+            <element signature="method#body#0;class#DefaultBuilder#0;class#ResponseEntity#0" expanded="false" />
+            <element signature="class#BodyBuilder#0;class#ResponseEntity#0" expanded="false" />
+            <element signature="class#HeadersBuilder#0;class#ResponseEntity#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/CompanyController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4760">
+          <caret line="159" column="30" lean-forward="false" selection-start-line="159" selection-start-column="30" selection-end-line="159" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/CommonContorller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-315">
+          <caret line="21" column="48" lean-forward="false" selection-start-line="21" selection-start-column="48" selection-end-line="21" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/CenterController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="16" column="35" lean-forward="false" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/DeviceController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4305">
+          <caret line="146" column="29" lean-forward="true" selection-start-line="146" selection-start-column="29" selection-end-line="146" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/baseInfo/BaseInfoController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-9014">
+          <caret line="30" column="25" lean-forward="false" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/AlarmController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="51" column="7" lean-forward="true" selection-start-line="51" selection-start-column="7" selection-end-line="51" selection-end-column="7" />
+        <state relative-caret-position="385">
+          <caret line="105" column="0" lean-forward="true" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/LocateService.java">
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/configuration/AppConfig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1454">
-          <caret line="616" column="10" lean-forward="true" selection-start-line="616" selection-start-column="10" selection-end-line="616" selection-end-column="10" />
+        <state relative-caret-position="282">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/LocateController.java">
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/configuration/BeanConfig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="187" column="33" lean-forward="false" selection-start-line="187" selection-start-column="19" selection-end-line="187" selection-end-column="33" />
+        <state relative-caret-position="245">
+          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/util/MD5.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/configuration/ShiroConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="94" column="0" lean-forward="true" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="6" column="23" lean-forward="true" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
           <folding />
         </state>
       </provider>

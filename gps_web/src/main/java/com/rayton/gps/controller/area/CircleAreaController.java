@@ -2,7 +2,7 @@ package com.rayton.gps.controller.area;
 
 import com.rayton.gps.aop.Log;
 import com.rayton.gps.dao.baseinfo.circleArea.CircleArea;
-import com.rayton.gps.dao.security.IdentifyDto;
+import com.rayton.gps.dao.security.IdentityDto;
 import com.rayton.gps.service.area.CircleAreaService;
 import com.rayton.gps.util.JsonMapper;
 import com.rayton.gps.util.WebUtil;
@@ -27,7 +27,7 @@ public class CircleAreaController {
 
 
     @RequiresPermissions("baseinfo.circleArea")
-    @Log(id = "baseinfo.circleArea", pid = "baseinfo", prefix = "打开", name = "圆形区域", suffix = "页面")
+    @Log(name = "打开圆形区域页面")
     @RequestMapping("/circleArea/circleArea.iframe")
     public String index() {
         return "/baseinfo/circleArea/circleArea.iframe";
@@ -37,7 +37,7 @@ public class CircleAreaController {
     @ResponseBody
     public Object query(@RequestParam String filter, @RequestParam int pageIndex, @RequestParam int pageSize,
                         HttpServletRequest request) throws Exception {
-        IdentifyDto identity = (IdentifyDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
+        IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         return circleAreaService.query(identity.getCompanyId(), filter, pageIndex, pageSize);
     }
 
@@ -45,7 +45,7 @@ public class CircleAreaController {
     @ResponseBody
     public Object search(@RequestParam(required = false) String filter, @RequestParam int pageIndex, @RequestParam
             int pageSize, HttpServletRequest request) {
-        IdentifyDto identity = (IdentifyDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
+        IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         filter = filter == null ? "" : filter;
         try {
             return circleAreaService.search(identity.getCompanyId(), filter, pageIndex, pageSize);
@@ -69,7 +69,7 @@ public class CircleAreaController {
             return "/baseinfo/circleArea/create.form";
 
         try {
-            IdentifyDto identity = (IdentifyDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
+            IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
             circleArea.setCompanyId(identity.getCompanyId());
             circleAreaService.create(circleArea);
             WebUtil.success(r);
@@ -94,7 +94,7 @@ public class CircleAreaController {
             return "/baseinfo/circleArea/edit.form";
 
         try {
-            IdentifyDto identity = (IdentifyDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
+            IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
             circleAreaService.update(identity.getUnid(), identity.getName(), circleArea);
             WebUtil.success(r);
         } catch (Exception ex) {
@@ -107,7 +107,7 @@ public class CircleAreaController {
     @RequestMapping(value = "/circleArea/delete", method = RequestMethod.POST)
     public String delete(@RequestParam long id, HttpServletRequest request, RedirectAttributes r) {
         try {
-            IdentifyDto identity = (IdentifyDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
+            IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
             circleAreaService.delete(identity.getUnid(), identity.getName(), id);
             WebUtil.success(r);
         } catch (Exception ex) {
@@ -120,7 +120,7 @@ public class CircleAreaController {
     @RequestMapping(value = "/circleArea/exist", method = RequestMethod.POST)
     public void exists(@RequestParam String name, @RequestParam(required = false) Long id, @RequestParam boolean
             checkId, HttpServletRequest request, HttpServletResponse response) throws Exception {
-        IdentifyDto identity = (IdentifyDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
+        IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         if (checkId) {
             response.getWriter().print(!circleAreaService.exist(name, identity.getCompanyId(), id));
         } else {
@@ -139,7 +139,7 @@ public class CircleAreaController {
     public String addVehicles(@RequestParam long circleAreaId, @RequestParam String vehicles, HttpServletRequest
             request, RedirectAttributes r) {
         try {
-            IdentifyDto identity = (IdentifyDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
+            IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
             List<String> list = JsonMapper.toObject(vehicles, List.class, String.class);
             circleAreaService.addVehicles(identity.getUnid(), identity.getName(), circleAreaId, list);
             WebUtil.success(r);
@@ -154,7 +154,7 @@ public class CircleAreaController {
     public String removeSection(@RequestParam long circleAreaId, @RequestParam String number, HttpServletRequest
             request, RedirectAttributes r) {
         try {
-            IdentifyDto identity = (IdentifyDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
+            IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
             circleAreaService.removeVehicle(identity.getUnid(), identity.getName(), circleAreaId, number);
             WebUtil.success(r);
         } catch (Exception ex) {

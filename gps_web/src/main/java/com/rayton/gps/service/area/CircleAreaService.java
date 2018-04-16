@@ -62,7 +62,7 @@ public class CircleAreaService {
     }
 
     @RequiresPermissions("baseinfo.circleArea.create")
-    @Log(id = "baseinfo.circleArea.create", pid = "baseinfo.circleArea", name = "创建圆形区域")
+    @Log(name = "创建圆形区域")
     @Transactional
     public void create(CircleArea circleArea) {
 
@@ -71,7 +71,7 @@ public class CircleAreaService {
     }
 
     @RequiresPermissions("baseinfo.circleArea.update")
-    @Log(id = "baseinfo.circleArea.update", pid = "baseinfo.circleArea", name = "修改圆形区域")
+    @Log(name = "修改圆形区域")
     @Transactional
     public void update(String unid, String user, CircleArea circleArea) {
         CircleArea old = circleAreaDao.fetch(circleArea.getId());
@@ -140,7 +140,7 @@ public class CircleAreaService {
     }
 
     @RequiresPermissions("baseinfo.circleArea.delete")
-    @Log(id = "baseinfo.circleArea.delete", pid = "baseinfo.circleArea", name = "删除圆形区域")
+    @Log(name = "删除圆形区域")
     @Transactional
     public void delete(String unid, String user, long id) {
         CircleArea circle = circleAreaDao.fetch(id);
@@ -205,7 +205,7 @@ public class CircleAreaService {
      */
 
     @RequiresPermissions("baseinfo.circleArea.addVehicles")
-    @Log(id = "baseinfo.circleArea.addVehicles", pid = "baseinfo.circleArea", name = "圆形区域绑定车辆")
+    @Log(name = "圆形区域绑定车辆")
     @Transactional
     public void addVehicles(String unid, String user, long circleAreaId, List<String> numbers) {
         CircleArea circle = circleAreaDao.fetch(circleAreaId);
@@ -236,7 +236,7 @@ public class CircleAreaService {
      * 解除车辆
      */
     @RequiresPermissions("baseinfo.circleArea.removeVehicle")
-    @Log(id = "baseinfo.circleArea.removeVehicle", pid = "baseinfo.circleArea", name = "圆形区域解除车辆")
+    @Log(name = "圆形区域解除车辆")
     @Transactional
     public void removeVehicle(String unid, String user, long circleAreaId, String number) {
         CircleArea circle = circleAreaDao.fetch(circleAreaId);

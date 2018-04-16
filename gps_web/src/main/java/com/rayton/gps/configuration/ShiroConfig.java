@@ -50,15 +50,15 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/", "anon");
         filterChainDefinitionMap.put("/code.verify", "anon");
 
-        filterChainDefinitionMap.put("/resources/** ", "anon");
-        // filterChainDefinitionMap.put("/**", "user");
+        filterChainDefinitionMap.put("/static/** ", "anon");
+        filterChainDefinitionMap.put("/**", "user");
         // filterChainDefinitionMap.put("/example/admin", "authc,roles[admin]");
         // filterChainDefinitionMap.put("/example/admin", "authc,perms[admin:view:*]");
 
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 
 
-        logger.debug("Shiro拦截器工厂类注入成功");
+        logger.warn("Shiro拦截器工厂类注入成功");
         return shiroFilterFactoryBean;
     }
 
@@ -96,6 +96,7 @@ public class ShiroConfig {
     @Bean
     public ShiroRealm myShiroRealm() {
         ShiroRealm myShiroRealm = new ShiroRealm();
+        myShiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());
         return myShiroRealm;
     }
 

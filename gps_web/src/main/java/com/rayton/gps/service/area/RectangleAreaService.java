@@ -89,7 +89,7 @@ public class RectangleAreaService {
 
 
     @RequiresPermissions("baseinfo.rectangleArea.create")
-    @Log(id = "baseinfo.rectangleArea.create", pid = "baseinfo.rectangleArea", name = "创建新的矩形区域")
+    @Log(name = "创建新的矩形区域")
     @Transactional
     public void create(RectangleArea rectangleArea) {
         // RectangleAreaDto dto = new RectangleAreaDto();
@@ -135,7 +135,7 @@ public class RectangleAreaService {
 
 
     @RequiresPermissions("baseinfo.rectangleArea.update")
-    @Log(id = "baseinfo.rectangleArea.update", pid = "baseinfo.rectangleArea", name = "修改矩形区域")
+    @Log(name = "修改矩形区域")
     @Transactional
     public void update(String unid, String user, RectangleArea rectangleArea) {
         RectangleArea old = rectangleAreaDao.fetch(rectangleArea.getId());
@@ -210,7 +210,7 @@ public class RectangleAreaService {
 
 
     @RequiresPermissions("baseinfo.rectangleArea.delete")
-    @Log(id = "baseinfo.rectangleArea.delete", pid = "baseinfo.rectangleArea", name = "删除矩形区域")
+    @Log(name = "删除矩形区域")
     @Transactional
     public void delete(String unid, String user, long id) {
         RectangleArea rectangle = rectangleAreaDao.fetch(id);
@@ -267,7 +267,7 @@ public class RectangleAreaService {
 
 
     @RequiresPermissions("baseinfo.rectangleArea.addVehicles")
-    @Log(id = "baseinfo.rectangleArea.addVehicles", pid = "baseinfo.rectangleArea", name = "矩形区域绑定车辆")
+    @Log(name = "矩形区域绑定车辆")
     @Transactional
     public void addVehicles(String unid, String user, long rectangleAreaId, List<String> numbers) {
         RectangleArea rectangle = rectangleAreaDao.fetch(rectangleAreaId);
@@ -296,7 +296,7 @@ public class RectangleAreaService {
 
 
     @RequiresPermissions("baseinfo.rectangleArea.removeVehicle")
-    @Log(id = "baseinfo.rectangleArea.removeVehicle", pid = "baseinfo.rectangleArea", name = "矩形区域解除车辆")
+    @Log(name = "矩形区域解除车辆")
     @Transactional
     public void removeVehicle(String unid, String user, long rectangleAreaId, String number) {
         RectangleArea rectangle = rectangleAreaDao.fetch(rectangleAreaId);
