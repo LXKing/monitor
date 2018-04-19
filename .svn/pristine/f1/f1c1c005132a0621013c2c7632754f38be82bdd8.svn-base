@@ -1,0 +1,112 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.rayton.gps.configuration.DruidDBConfig",
+      "name": "spring.datasource",
+      "type": "com.rayton.gps.configuration.DruidDBConfig"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.rayton.gps.configuration.DruidDBConfig",
+      "name": "spring.datasource.driver-class-name",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.rayton.gps.configuration.DruidDBConfig",
+      "name": "spring.datasource.filters",
+      "description": "配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.rayton.gps.configuration.DruidDBConfig",
+      "defaultValue": 0,
+      "name": "spring.datasource.initial-size",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.rayton.gps.configuration.DruidDBConfig",
+      "defaultValue": 0,
+      "name": "spring.datasource.max-active",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.rayton.gps.configuration.DruidDBConfig",
+      "defaultValue": 0,
+      "name": "spring.datasource.max-open-prepared-statements",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.rayton.gps.configuration.DruidDBConfig",
+      "defaultValue": 0,
+      "name": "spring.datasource.max-wait",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.rayton.gps.configuration.DruidDBConfig",
+      "defaultValue": 0,
+      "name": "spring.datasource.min-evictable-idle-time-millis",
+      "description": "配置一个连接在池中最小生存的时间，单位是毫秒",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.rayton.gps.configuration.DruidDBConfig",
+      "defaultValue": 0,
+      "name": "spring.datasource.min-idle",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.rayton.gps.configuration.DruidDBConfig",
+      "name": "spring.datasource.password",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.rayton.gps.configuration.DruidDBConfig",
+      "defaultValue": false,
+      "name": "spring.datasource.pool-prepared-statements",
+      "description": "打开PSCache，并且指定每个连接上PSCache的大小",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "com.rayton.gps.configuration.DruidDBConfig",
+      "defaultValue": false,
+      "name": "spring.datasource.test-on-borrow",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "com.rayton.gps.configuration.DruidDBConfig",
+      "defaultValue": false,
+      "name": "spring.datasource.test-on-return",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "com.rayton.gps.configuration.DruidDBConfig",
+      "defaultValue": false,
+      "name": "spring.datasource.test-while-idle",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "com.rayton.gps.configuration.DruidDBConfig",
+      "defaultValue": 0,
+      "name": "spring.datasource.time-between-eviction-runs-millis",
+      "description": "配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.rayton.gps.configuration.DruidDBConfig",
+      "name": "spring.datasource.url",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.rayton.gps.configuration.DruidDBConfig",
+      "name": "spring.datasource.username",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.rayton.gps.configuration.DruidDBConfig",
+      "name": "spring.datasource.validation-query",
+      "type": "java.lang.String"
+    }
+  ]
+}
