@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rayton.gps.dao.ViewportDao">
+    <!-- Viewport的resultMap,column是给数据库列起的别名,它对应property类的属性-->
+    <resultMap id="result_Viewport_Map" type="com.rayton.gps.dao.Viewport">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="lng" jdbcType="DECIMAL" property="lng" />
+        <result column="level" jdbcType="VARCHAR" property="level" />
+        <result column="alt" jdbcType="DECIMAL" property="alt" />
+        <result column="userId" jdbcType="VARCHAR" property="userId" />
+    </resultMap>
+
+	   <!-- Assist用于辅助工具类setRequires设置的条件,${req.require}表示列名,#{req.value}表示值它是防SQL注入的 -->
+    <sql id="Assist">
+        <where>
+            <foreach collection="require" item="req" separator=" ">
+                ${req.require} 
+                <if test="req.value != null"> #{req.value}</if> 
+                <if test="req.values != null">
+                    <foreach collection="req.values" item="val" separator=","> 
+                        #{val} 
+                    </foreach> 
+                </if> 
+                <if test="req.suffix != null"> ${req.suffix}</if> 
+            </foreach>
+        </where>
+    </sql>
+
+	   <!-- updateAssist用于更新数据的使用它拓展自Assist,用于辅助工具类setRequires设置的条件,${req.require}表示列名,#{req.value}表示值它是防SQL注入的 -->
+    <sql id="updateAssist">
+        <where>
+            <foreach collection="assist.require" item="req" separator=" ">
+                ${req.require} 
+                <if test="req.value != null"> #{req.value}</if> 
+                <if test="req.values != null">
+                    <foreach collection="req.values" item="val" separator=","> 
+                        #{val} 
+                    </foreach> 
+                </if> 
+                <if test="req.suffix != null"> ${req.suffix}</if> 
+            </foreach>
+        </where>
+    </sql>
+
+    <!-- 数据库中表名为:viewport的列名,as前是数据库的列明,as后是列的别名用于映射成实体类中的属性,需要注意的是别名必须与resultMap中的column别名一致 -->
+    <sql id="viewport_Column">
+        viewport.id as id
+        ,viewport.lng as lng
+        ,viewport.level as level
+        ,viewport.alt as alt
+        ,viewport.userId as userId
+    </sql>
+
+    <!--获得类名为:Viewport对应的数据库表的数据总行数 -->
+    <select id="getViewportRowCount" parameterType="com.rayton.gps.util.Assist" resultType="java.lang.Long">
+        select count(id) from viewport
+        <if test="require!=null"><include refid="Assist" /></if>
+    </select>
+    <!-- 获得类名为:Viewport对应数据库中表的数据集合 -->
+    <select id="selectViewport" parameterType="com.rayton.gps.util.Assist"  resultMap="result_Viewport_Map">
+        select  <if test="distinct !=null">${distinct}</if>
+        <choose>
+            <when test="resultColumn!=null">${resultColumn}</when>
+            <otherwise>
+        <include refid="viewport_Column" /> 
+            </otherwise>
+        </choose>
+        from viewport
+        <choose>
+            <when test="rowSize ==null">
+                <if test="require!=null">
+                    <include refid="Assist" />
+                </if>
+                <if test="order !=null">${order}</if>
+            </when>
+            <otherwise>
+                inner join
+                (
+                SELECT id as primary_key FROM viewport
+                <if test="require!=null">
+                    <include refid="Assist" />
+                </if>
+                <if test="order !=null">${order}</if>
+                <choose>
+                    <when test="startRow !=null and rowSize !=null">LIMIT #{startRow,jdbcType=INTEGER},#{rowSize,jdbcType=INTEGER} </when>
+                    <when test="rowSize !=null">LIMIT #{rowSize,jdbcType=INTEGER}</when>
+                 </choose>
+                 ) as tmp
+                 on tmp.primary_key=viewport.id
+            </otherwise>
+        </choose>
+    </select> 
+
+    <!-- 获得一个Viewport对象,以参数Viewport对象中不为空的属性作为条件进行查询-->
+    <select id="selectViewportByObj" parameterType="com.rayton.gps.dao.Viewport" resultMap="result_Viewport_Map">
+        select 
+            <include refid="viewport_Column" /> 
+        from viewport
+        <where>
+            <if test="userId != null "> and viewport.userId = #{userId,jdbcType=VARCHAR}</if>
+            <if test="alt != null "> and viewport.alt = #{alt,jdbcType=DECIMAL}</if>
+            <if test="level != null "> and viewport.level = #{level,jdbcType=VARCHAR}</if>
+            <if test="lng != null "> and viewport.lng = #{lng,jdbcType=DECIMAL}</if>
+            <if test="id != null "> and viewport.id = #{id,jdbcType=INTEGER}</if>
+        </where>
+    </select> 
+
+    <!-- 通过Viewport的id获得对应数据库中表的数据对象-->
+    <select id="selectViewportById" parameterType="java.lang.Integer" resultMap="result_Viewport_Map">
+        select 
+            <include refid="viewport_Column" /> 
+        from viewport
+        where viewport.id = #{id,jdbcType=INTEGER}
+    </select> 
+
+    <!-- 将Viewport插入到对应数据库的表中,包括属性值为null的数据-->
+
+    <insert id="insertViewport" parameterType="com.rayton.gps.dao.Viewport">
+        insert into viewport(id,lng,level,alt,userId) 
+        values(#{id,jdbcType=INTEGER},#{lng,jdbcType=DECIMAL},#{level,jdbcType=VARCHAR},#{alt,jdbcType=DECIMAL},#{userId,jdbcType=VARCHAR})
+    </insert>
+
+    <!-- 将Viewport中属性值不为null的数据,插入到对应数据库的表中-->
+    <insert id="insertNonEmptyViewport" parameterType="com.rayton.gps.dao.Viewport">
+        insert into viewport
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="lng != null">lng,</if>
+            <if test="level != null">level,</if>
+            <if test="alt != null">alt,</if>
+            <if test="userId != null">userId,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null"> #{id,jdbcType=INTEGER},</if>
+            <if test="lng != null"> #{lng,jdbcType=DECIMAL},</if>
+            <if test="level != null"> #{level,jdbcType=VARCHAR},</if>
+            <if test="alt != null"> #{alt,jdbcType=DECIMAL},</if>
+            <if test="userId != null"> #{userId,jdbcType=VARCHAR},</if>
+        </trim>
+    </insert>
+
+    <!-- 将Viewport批量插入到对应数据库的表中-->
+    <insert id="insertViewportByBatch" parameterType="ArrayList">
+        insert into viewport(id,lng,level,alt,userId) values
+        <foreach collection="list" item="item" index="index" separator="," >
+            (#{item.id,jdbcType=INTEGER},#{item.lng,jdbcType=DECIMAL},#{item.level,jdbcType=VARCHAR},#{item.alt,jdbcType=DECIMAL},#{item.userId,jdbcType=VARCHAR})
+        </foreach>
+    </insert>
+
+    <!-- 通过Viewport的id将数据库表中对应的数据删除-->
+    <delete id="deleteViewportById" parameterType="java.lang.Integer">
+        delete from viewport
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <!-- 通过辅助工具Assist中的条件将Viewport对应的数据库表的数据删除-->
+    <delete id="deleteViewport" parameterType="com.rayton.gps.util.Assist">
+        delete from viewport
+        <if test="require!=null"><include refid="Assist" /></if>
+    </delete>
+
+    <!-- 通过Viewport的id将Viewport的数据更新到数据库中对应的表,包括值null的数据-->
+    <update id="updateViewportById" parameterType="com.rayton.gps.dao.Viewport">
+        update viewport set
+            lng=#{lng,jdbcType=DECIMAL}
+            ,level=#{level,jdbcType=VARCHAR}
+            ,alt=#{alt,jdbcType=DECIMAL}
+            ,userId=#{userId,jdbcType=VARCHAR}
+        where id=#{id,jdbcType=INTEGER}
+    </update>
+
+    <!-- 通过Viewport的id将Viewport中属性值不为null的数据更新到数据库对应的表中-->
+    <update id="updateNonEmptyViewportById" parameterType="com.rayton.gps.dao.Viewport">
+        update viewport
+        <set>
+            <if test="lng != null">
+                lng=#{lng,jdbcType=DECIMAL},
+            </if>
+            <if test="level != null">
+                level=#{level,jdbcType=VARCHAR},
+            </if>
+            <if test="alt != null">
+                alt=#{alt,jdbcType=DECIMAL},
+            </if>
+            <if test="userId != null">
+                userId=#{userId,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id=#{id,jdbcType=INTEGER}
+    </update>
+
+    <!-- 通过辅助工具Assist中的条件将Viewport中的数据更新到数据库对应的表中,包括值为null的数据-->
+    <update id="updateViewport" parameterType="map">
+        update viewport
+        <set>
+                id=#{enti.id,jdbcType=INTEGER},
+                lng=#{enti.lng,jdbcType=DECIMAL},
+                level=#{enti.level,jdbcType=VARCHAR},
+                alt=#{enti.alt,jdbcType=DECIMAL},
+                userId=#{enti.userId,jdbcType=VARCHAR},
+        </set>
+        <if test="assist.require!=null"><include refid="updateAssist" /></if>
+    </update>
+
+    <!-- 通过辅助工具Assist中的条件将Viewport中属性值不为null的数据更新到数据库对应的表中-->
+    <update id="updateNonEmptyViewport" parameterType="map">
+        update viewport
+        <set>
+            <if test="enti.id != null">
+                id=#{enti.id,jdbcType=INTEGER},
+            </if>
+            <if test="enti.lng != null">
+                lng=#{enti.lng,jdbcType=DECIMAL},
+            </if>
+            <if test="enti.level != null">
+                level=#{enti.level,jdbcType=VARCHAR},
+            </if>
+            <if test="enti.alt != null">
+                alt=#{enti.alt,jdbcType=DECIMAL},
+            </if>
+            <if test="enti.userId != null">
+                userId=#{enti.userId,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="assist.require!=null"><include refid="updateAssist" /></if>
+    </update>
+
+</mapper>
