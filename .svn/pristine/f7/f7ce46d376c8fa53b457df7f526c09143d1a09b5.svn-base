@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rayton.gps.dao.instruct.ISyncInstructDao">
+    <resultMap type="com.rayton.gps.dao.instruct.DeviceInAreaInfoDto"
+               id="DeviceInAreaInfoDtoMap">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="DEVICENUMBER" property="deviceNumber" jdbcType="VARCHAR"/>
+        <result column="AREAID" property="areaId" jdbcType="INTEGER"/>
+        <result column="AREATYPE" property="areaType" jdbcType="TINYINT"/>
+        <result column="ACTION" property="action" jdbcType="TINYINT"/>
+        <result column="UNID" property="unid" jdbcType="VARCHAR"/>
+        <result column="USER" property="user" jdbcType="VARCHAR"/>
+        <result column="SENDTIME" property="sendTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <select id="loadUnfinishedAreaInDevice" resultMap="DeviceInAreaInfoDtoMap">
+        SELECT
+        ID,
+        DEVICENUMBER,
+        AREAID,
+        AREATYPE,
+        `ACTION`,
+        UNID,
+        USER,
+        SENDTIME
+        FROM
+        areaindevicelog
+        WHERE ACKTIME IS NULL
+    </select>
+    <update id="updateLog">
+        UPDATE areaindevicelog
+        SET ACKTIME = NOW()
+        WHERE
+        ID = #{0}
+    </update>
+</mapper>

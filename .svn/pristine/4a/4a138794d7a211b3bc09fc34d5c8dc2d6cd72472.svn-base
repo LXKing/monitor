@@ -1,4 +1,0 @@
-mmp.x.app.InvalidParam=参数无效！{0}
-mmp.x.app.no.auth.operate=无权限做此操作! {0}
-mmp.x.app.cannot.found.data.to.continue=无法找到对应的数据以继续执行! {0}
-mmp.x.app.send.mail.error=发送邮件出错! {0}

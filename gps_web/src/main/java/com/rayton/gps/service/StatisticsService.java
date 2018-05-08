@@ -318,10 +318,14 @@ public class StatisticsService {
         Map<String, Integer> result = godpDao.historyOnlineTimeStatistics(numbers, start, end);
         for (Entry<String, Integer> entry : result.entrySet()) {
             HistoryOnlineTimeCount count = links.get(entry.getKey());
-            count.setMust(count.getMust() + base);
-            count.setReal(count.getReal() + entry.getValue() / 60);
-            count.setOnlineRate((count.getReal() * 1.0f) / (count.getMust() <= 0 ? 1 : count.getMust()) * 100);
-            count.setOfflineRate(100 - count.getOnlineRate());
+            if (entry.getValue() != null && count.getReal() != null && count.getMust() != null) {
+
+                count.setMust(count.getMust() + base);
+                count.setReal(count.getReal() + entry.getValue() / 60);
+                count.setOnlineRate((count.getReal() * 1.0f) / (count.getMust() <= 0 ? 1 : count.getMust()) * 100);
+                count.setOfflineRate(100 - count.getOnlineRate());
+            }
+
         }
         return rows;
     }
@@ -372,10 +376,13 @@ public class StatisticsService {
         Map<String, Integer> result = godpDao.historyOnlineTimeStatistics(numbers, start, end);
         for (Entry<String, Integer> entry : result.entrySet()) {
             HistoryOnlineTimeCount count = links.get(entry.getKey());
-            count.setMust(count.getMust() + base);
-            count.setReal(count.getReal() + entry.getValue() / 60);
-            count.setOnlineRate((count.getReal() * 1.0f) / (count.getMust() <= 0 ? 1 : count.getMust()) * 100);
-            count.setOfflineRate(100 - count.getOnlineRate());
+            if (count != null && count.getMust() != null && entry.getValue() != null && count.getReal() != null) {
+                count.setMust(count.getMust() + base);
+                count.setReal(count.getReal() + entry.getValue() / 60);
+                count.setOnlineRate((count.getReal() * 1.0f) / (count.getMust() <= 0 ? 1 : count.getMust()) * 100);
+                count.setOfflineRate(100 - count.getOnlineRate());
+            }
+
         }
         return page;
     }
@@ -477,10 +484,12 @@ public class StatisticsService {
         Map<String, Integer> result = godpDao.historyOnlineTimeStatistics(pageNumbers, start, end);
         for (Entry<String, Integer> entry : result.entrySet()) {
             HistoryOnlineTimeDetail count = links.get(entry.getKey());
-            count.setMust(base);
-            count.setReal(entry.getValue() / 60);
-            count.setOnlineRate((count.getReal() * 1.0f / (base <= 0 ? 1 : base)) * 100);
-            count.setOfflineRate(100 - count.getOnlineRate());
+            if (count != null && count.getMust() != null && entry.getValue() != null && count.getReal() != null) {
+                count.setMust(base);
+                count.setReal(entry.getValue() / 60);
+                count.setOnlineRate((count.getReal() * 1.0f / (base <= 0 ? 1 : base)) * 100);
+                count.setOfflineRate(100 - count.getOnlineRate());
+            }
         }
         return page;
 
@@ -941,10 +950,10 @@ public class StatisticsService {
 
             allDevices.stream().filter(monitorTarget -> monitorTarget.getPid().equals(mo.getId())).forEach
                     (monitorTarget -> {
-                numbers.add(monitorTarget.getDeviceNumber());
-                // 放入关系表
-                links.put(monitorTarget.getDeviceNumber(), count);
-            });
+                        numbers.add(monitorTarget.getDeviceNumber());
+                        // 放入关系表
+                        links.put(monitorTarget.getDeviceNumber(), count);
+                    });
             // for (MonitorTarget device : allDevices) {
             //     if (device.getPid().equals(mo.getId())) {
             //         numbers.add(device.getDeviceNumber());

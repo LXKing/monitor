@@ -116,12 +116,13 @@ public class ExcelView extends AbstractXlsView {
             // setText(cell, title);
         }
 
+        Row headerRow=  sheet.createRow(index++);
         for (int i = 0; i < headers.length; i++) { // 设置标题
             String header = headers[i];
             // HSSFCell cell = getCell(sheet, index, i);
             // // cell.setCellStyle(headerStyle);
             // setText(cell, header);
-            sheet.createRow(index++).createCell(i).setCellValue(header);
+            headerRow.createCell(i).setCellValue(header);
         }
 
         // HSSFCellStyle contentStyle = workbook.createCellStyle(); // 内容样式

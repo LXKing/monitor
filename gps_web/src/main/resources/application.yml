@@ -4,9 +4,11 @@ server:
 spring:
     datasource:
         name: dev
-#        url: jdbc:mysql://192.168.1.252:3306/gpsdb2?useUnicode=true&amp;characterEncoding=utf-8&amp;allowMultiQueries=true
+#        url: jdbc:mysql://192.168.1.252:3306/monitordb2?useUnicode=true&amp;characterEncoding=utf-8&amp;allowMultiQueries=true
+#        url: jdbc:mysql://47.106.89.88:3306/monitordb?useUnicode=true&amp;characterEncoding=utf-8&amp;allowMultiQueries=true
+#        url: jdbc:mysql://localhost:3306/monitordb2?useUnicode=true&amp;characterEncoding=utf-8&amp;allowMultiQueries=true
         url: jdbc:mysql://localhost:3306/monitordb?useUnicode=true&amp;characterEncoding=utf-8&amp;allowMultiQueries=true
-#        url: jdbc:mysql://localhost:3306/gpsdb?useUnicode=true&amp;characterEncoding=utf-8&amp;allowMultiQueries=true
+#        url: jdbc:mysql://47.106.89.88:3306/monitordb?useUnicode=true&amp;characterEncoding=utf-8&amp;allowMultiQueries=true
         username: root
 #        password: RayTon
 #        password: abc123
@@ -72,7 +74,8 @@ pagehelper:
 
 AppConfig:
 #    godpPortal: http://192.168.1.252:801/godp/api
-    godpPortal: http://60.205.226.132:8081/godp/api
+#    godpPortal: http://60.205.226.132:8081/godp/api
+    godpPortal: http://192.168.1.252:801/godp-1.0.0/api
 #    godpPortal: http://47.106.89.88:801/godp/api
     godpUser: rayton
 #    godpUser: bgjt

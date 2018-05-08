@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rayton.gps.dao.baseinfo.role.IRoleDao">
+    <select id="list" resultType="com.rayton.gps.dao.baseinfo.role.Role">
+        SELECT
+        ID,
+        NAME,
+        REMARK
+        FROM role
+        WHERE NAME != '企业管理员' AND COMPANYID = #{param1}
+    </select>
+
+    <select id="exist" resultType="java.lang.Boolean">
+        SELECT COUNT(1)
+        FROM role
+        WHERE
+        NAME = #{param1} AND COMPANYID = #{param2}
+        LIMIT 1
+    </select>
+    <select id="existOutId" resultType="java.lang.Boolean">
+        SELECT COUNT(1)
+        FROM role
+        WHERE NAME = #{param1} AND COMPANYID = #{param2} AND ID != #{param3}
+        LIMIT 1
+    </select>
+
+    <insert id="create" parameterType="com.rayton.gps.dao.baseinfo.role.Role">
+        INSERT INTO role (ID,
+        COMPANYID, NAME, REMARK) VALUES (#{id}, #{companyId}, #{name},
+        #{remark})
+    </insert>
+
+    <select id="fetch" resultType="com.rayton.gps.dao.baseinfo.role.Role">
+        SELECT
+        ID,
+        COMPANYID,
+        NAME,
+        REMARK,
+        EDITTIME
+        FROM role
+        WHERE ID = #{param1}
+        LIMIT 1
+    </select>
+
+    <update id="update" parameterType="com.rayton.gps.dao.baseinfo.role.Role">
+        UPDATE role
+        SET
+        COMPANYID = #{companyId}, NAME = #{name}, REMARK = #{remark}
+        WHERE ID = #{id}
+        AND EDITTIME = #{editTime}
+        LIMIT
+        1
+    </update>
+    <delete id="deleteRole">
+        DELETE FROM role
+        WHERE ID = #{param1}
+        LIMIT 1
+    </delete>
+    <delete id="deleteRoleAuthorize">
+        DELETE FROM role_permission
+        WHERE ROLEID = #{param1}
+    </delete>
+    <select id="authorizes" resultType="java.lang.String">
+        SELECT PERMISSIONID
+        FROM
+        role_permission
+        WHERE ROLEID = #{param1}
+    </select>
+
+    <select id="authorize">
+        INSERT INTO role_permission(COMPANYID, ROLEID, PERMISSIONID) VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.key},#{item.value.key},#{item.value.value})
+        </foreach>
+    </select>
+
+    <delete id="clreanupAuthorize">
+        DELETE FROM role_permission
+        WHERE COMPANYID = #{param1} AND
+        PERMISSIONID NOT IN (SELECT PERMISSIONID
+        FROM company_permission
+        WHERE
+        COMPANYID = #{param1})
+    </delete>
+</mapper>

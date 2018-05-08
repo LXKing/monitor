@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rayton.gps.dao.baseinfo.driver.IDriverDao">
+    <select id="queryPageCount" resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM
+        driver
+        WHERE (NAME LIKE CONCAT('%', #{param2}, '%') OR PHONE LIKE
+        CONCAT('%', #{param2}, '%') OR
+        DRIVINGLICENSENUMBER LIKE CONCAT('%', #{param2}, '%'))
+        AND COMPANYID = #{param1}
+    </select>
+    <select id="queryPageDetail" resultType="com.rayton.gps.dao.baseinfo.driver.DriverInfo">
+        SELECT
+        ID,
+        NAME,
+        SEX,
+        PHONE,
+        DRIVINGLICENSENUMBER,
+        REMARK,
+
+
+       EDITTIME,
+        REGISTRATIONDATE,
+        PERMITCODE,
+        EMERGENCYCONTACTA,
+        EMERGENCYCONTACTB
+
+
+        FROM driver
+        WHERE
+        (NAME LIKE
+        CONCAT('%', #{param2}, '%') OR PHONE LIKE CONCAT('%', #{param2}, '%') OR
+        DRIVINGLICENSENUMBER LIKE CONCAT('%', #{param2}, '%')) AND
+        COMPANYID = #{param1}
+        LIMIT #{param3}, #{param4}
+    </select>
+    <insert id="create" parameterType="com.rayton.gps.dao.baseinfo.driver.Driver">
+        INSERT INTO driver (ID,
+        COMPANYID, NAME, SEX, PHONE, IDTYPE, IDNUMBER,
+        DRIVINGLICENSENUMBER,
+        REMARK, DRIVINGLICENSEEXPIRYDATE,
+
+        REGISTRATIONDATE,
+        PERMITCODE,
+        EMERGENCYCONTACTA,
+        EMERGENCYCONTACTB
+
+        ) VALUES (
+        #{id}, #{companyId},
+        #{name}, #{sex}, #{phone}, #{idType}, #{idNumber},
+        #{drivingLicenseNumber}, #{remark}, #{drivingLicenseExpiryDate},
+
+        #{REGISTRATIONDATE},
+        #{PERMITCODE},
+        #{EMERGENCYCONTACTA},
+        #{EMERGENCYCONTACTB}
+
+
+        )
+    </insert>
+    <update id="update" parameterType="com.rayton.gps.dao.baseinfo.driver.Driver">
+        UPDATE driver
+        SET
+        COMPANYID = #{companyId}, NAME = #{name}, SEX = #{sex}, PHONE = #{phone},
+        IDTYPE = #{idType}, IDNUMBER = #{idNumber},
+        DRIVINGLICENSENUMBER = #{drivingLicenseNumber}, REMARK = #{remark},
+        DRIVINGLICENSEEXPIRYDATE = #{drivingLicenseExpiryDate},
+
+
+        REGISTRATIONDATE = #{REGISTRATIONDATE},
+        PERMITCODE = #{PERMITCODE},
+        EMERGENCYCONTACTA = #{EMERGENCYCONTACTA},
+        EMERGENCYCONTACTB = #{EMERGENCYCONTACTB}
+
+        WHERE ID = #{id} AND
+        EDITTIME = #{editTime}
+        LIMIT 1
+    </update>
+    <delete id="deleteVehicleInDriver">
+        DELETE FROM automobile_driveer
+        WHERE DRIVERID = #{param1}
+    </delete>
+    <delete id="delete">
+        DELETE FROM driver
+        WHERE ID = #{param1}
+        LIMIT 1
+    </delete>
+    <select id="fetch" resultType="com.rayton.gps.dao.baseinfo.driver.Driver">
+        SELECT
+        ID,
+        COMPANYID,
+        NAME,
+        SEX,
+        PHONE,
+        IDTYPE,
+        IDNUMBER,
+        DRIVINGLICENSENUMBER,
+        REMARK,
+        EDITTIME,
+        DRIVINGLICENSEEXPIRYDATE,
+
+
+        REGISTRATIONDATE,
+        PERMITCODE,
+        EMERGENCYCONTACTA,
+        EMERGENCYCONTACTB
+        FROM driver
+        WHERE ID = #{param1}
+        LIMIT 1
+    </select>
+    <select id="assignedVehicles" resultType="com.rayton.gps.dao.baseinfo.vehicle.VehicleInfoDto">
+        SELECT
+        A.ID,
+        B.DEVICENUMBER,
+        C.PHONENUMBER,
+        A.PLATENUMBER,
+        A.PLATECOLOR,
+        A.INSTALLDATE,
+        A.ANNUALSURVEYDATE,
+        A.REMARK,
+        D.NAME AS
+        MOTORCADE
+        FROM
+        automobile AS A INNER JOIN equipment AS B ON A.DEVICEID = B.ID
+        INNER JOIN
+        simcard AS C ON B.SIMCARDID = C.ID
+        INNER JOIN motorcade AS D
+        ON
+        A.MOTORCADEID = D.ID
+        INNER JOIN automobile_driveer AS E ON
+        A.ID = E.VEHICLEID
+        WHERE E.DRIVERID = #{param1}
+        ORDER BY A.PLATENUMBER
+    </select>
+
+    <insert id="addVehicles">
+        REPLACE INTO automobile_driveer(DRIVERID, VEHICLEID) VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.key},#{item.value})
+        </foreach>
+    </insert>
+    <delete id="removeVehicle">
+        DELETE FROM automobile_driveer
+        WHERE DRIVERID = #{param1} AND
+        VEHICLEID = #{param2}
+        LIMIT 1
+    </delete>
+</mapper>

@@ -1,0 +1,26 @@
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ page session="false" contentType="text/html; charset=utf-8" %>
+<html>
+<head>
+    <title><sitemesh:write property='title'/></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<span>历史轨迹</span>
+  <div class="container" class="row-fluid">
+   <div class="sidebar-scroll" tabindex="5000" style="overflow: hidden; outline: none;">
+
+   </div>
+      <div class="main-content">
+     <div class="container-fluid">
+
+     </div>
+      </div>
+  </div>
+
+
+</body>
+</html>

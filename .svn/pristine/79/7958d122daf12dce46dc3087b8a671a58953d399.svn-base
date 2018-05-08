@@ -1,0 +1,385 @@
+/*公共头部开始*/
+header {
+  height: 80px;
+}
+header .left_logo {
+  width: 20%;
+  height: 100%;
+  background-color: #0469a1;
+  padding-top: 15px;
+}
+header .right_tools {
+  width: 80%;
+  height: 100%;
+}
+header .right_tools nav {
+  width: 60%;
+  height: 100%;
+  background-color: #0469a1;
+  float: left;
+}
+header .right_tools nav ul {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 15px;
+}
+header .right_tools nav ul li {
+  color: #fff;
+}
+header .right_tools nav ul li img {
+  display: block;
+}
+header .right_tools nav ul li span {
+  font-size: 12px;
+  display: none;
+}
+header .right_tools nav ul li:hover span {
+  display: block;
+}
+header .right_tools .user-info {
+  width: 40%;
+  height: 100%;
+  background-color: #0469a1;
+  float: left;
+}
+header .right_tools .user-info .weather_msg {
+  width: 70%;
+  height: 80px;
+}
+header .right_tools .user-info .login_user {
+  width: 30%;
+  height: 40px;
+  line-height: 40px;
+  font-size: 12px;
+}
+header .right_tools .user-info .login_user a {
+  float: left;
+  color: #fff;
+  text-decoration: none;
+}
+header .right_tools .user-info .login_user a:nth-child(1) {
+  padding: 0 40px 0px 18px;
+}
+header .right_tools .user-info .login_user a:nth-child(3) {
+  padding: 0 40px 0px 5px;
+}
+/*公共头部结束*/
+/*选项卡*/
+.link-select {
+  width: 100%;
+  height: 40px;
+  position: absolute;
+  left: 0;
+  top: 80px;
+}
+/*侧边，地图，底部---开始*/
+.content_box {
+  width: 100%;
+  background-color: white;
+  position: absolute;
+  left: 0;
+  top: 120px;
+  overflow: hidden;
+}
+.content_box section {
+  float: left;
+}
+.content_box .car-info_box {
+  width: 100%;
+  height: 100%;
+}
+.content_box .car-info_box .car-info {
+  width: 20%;
+  height: 90%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: scroll;
+}
+.content_box .car-info_box .car-info .car-info-header {
+  width: 100%;
+  height: 5%;
+  background-color: #e8e6e7;
+  color: #2670d3;
+}
+.content_box .car-info_box .car-info .car-info-header .cih_small {
+  width: 256px;
+  height: 24px;
+  line-height: 24px;
+  background-color: #e8e6e7;
+}
+.content_box .car-info_box .car-info .car-info-search {
+  width: 100%;
+  height: 5%;
+  background-color: #9f9d9e;
+  color: #fff;
+}
+.content_box .car-info_box .car-info .car-info-search .cis_small {
+  width: 256px;
+  height: 24px;
+  line-height: 24px;
+  background-color: #9f9d9e;
+}
+.content_box .car-info_box .car-info .car-info-search .cis_small span:nth-child(1) {
+  width: 50px;
+  float: left;
+}
+.content_box .car-info_box .car-info .car-info-search .cis_small span:nth-child(3) {
+  width: 50px;
+  float: left;
+}
+.content_box .car-info_box .car-info .car-info-search .cis_small input:nth-child(5) {
+  float: left;
+  width: 60px;
+  height: 20px;
+  border-radius: 7px;
+  text-indent: 5px;
+  color: #000;
+}
+.content_box .car-info_box .car-info .car-info-search .cis_small i {
+  float: left;
+}
+.content_box .car-info_box .car-info .car-lists {
+  width: 100%;
+  height: 90%;
+  background-color: #eee;
+}
+.content_box .car-info_box .car-info .car-lists .am_header {
+  width: 256px;
+  height: 41px;
+  line-height: 41px;
+  background-color: #eee;
+  color: #2670d3;
+  font-size: 12px;
+}
+.content_box .car-info_box .car-status {
+  width: 20%;
+  height: 10%;
+  background-color: #2670d3;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}
+.content_box .car-info_box .car-status .cs_top {
+  width: 256px;
+  height: 50%;
+  background-color: #2670d3;
+}
+.content_box .car-info_box .car-status .cs_top span {
+  width: 33.33%;
+}
+.content_box .car-info_box .car-status .cs_bottom {
+  width: 256px;
+  height: 50%;
+  border-top: 1px solid #fff;
+  background-color: #2670d3;
+}
+.content_box .car-info_box .car-status .cs_bottom span {
+  width: 33.33%;
+}
+.content_box .map-info {
+  width: 79.5%;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  left: 20.5%;
+  top: 0;
+}
+.content_box .map-info .map-contents {
+  width: 100%;
+  height: 100%;
+  background-color: chartreuse;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.content_box .map-info .mc_all {
+  width: 100%;
+  height: 30%;
+  position: absolute;
+  left: 0;
+  top: 70%;
+}
+.content_box .map-info .mc_all .map-car-message {
+  width: 100%;
+  height: 25px;
+  line-height: 25px;
+  background-color: #0469a1;
+}
+.content_box .map-info .mc_all .map-car-message .mcm_1 {
+  padding: 0px 35px 0 5px;
+}
+.content_box .map-info .mc_all .map-car-message .mcm_2 {
+  padding: 0px 640px 0 0px;
+}
+.content_box .map-info .mc_all .map-car-message .mcm_3 ul {
+  clear: both;
+}
+.content_box .map-info .mc_all .map-car-message .mcm_3 ul li {
+  float: right;
+}
+.content_box .map-info .mc_all .map-car-details {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  color: #2670d3;
+  position: absolute;
+  left: 0;
+  top: 25px;
+  overflow: scroll;
+}
+.content_box .map-info .mc_all .map-car-details .con {
+  display: none;
+}
+.content_box .map-info .mc_all .map-car-details .con table {
+  width: 100%;
+  text-align: center;
+}
+.content_box .map-info .mc_all .map-car-info {
+  width: 100%;
+  height: 25px;
+  background-color: #2670d3;
+  display: flex;
+  justify-content: flex-start;
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.content_box .map-info .mc_all .map-car-info a:nth-child(1) {
+  margin-left: 20px;
+  border-radius: 0 0 0 90px;
+}
+.content_box .map-info .mc_all .map-car-info a {
+  text-decoration: none;
+  padding: 5px 30px 0 30px;
+  border: 1px solid #eee;
+  background-image: radial-gradient(at center, #fff, grey);
+}
+.content_box .map-info .mc_all .map-car-info .current {
+  background-image: radial-gradient(at center, #fff, #fff);
+}
+/*侧边，地图，底部---结束*/
+
+
+/*MISS劳*/
+.ztree div.diy span {
+  line-height: 30px;
+  vertical-align: middle;
+}
+
+.ztree div.diy {
+  height: 100%;
+  width:57px;
+  line-height: 30px;
+  /*  border-left: 1px solid #eeeeee; */
+  text-align: center;
+  display: inline-block;
+  box-sizing: border-box;
+  color: #6c6c6c;
+  font-family: "SimSun";
+  font-size: 12px;
+  /*  overflow: hidden; */
+  color: #208DEE;
+}
+
+.ztree div.diy:first-child {
+  text-align: left;
+  /*  text-indent: 10px; */
+  border-left: none;
+}
+
+.ztree .head {
+
+}
+
+.ztree .head div.diy {
+  /*    border-top: none;
+     border-right: 1px solid #CDD2D4; */
+  color: #000;
+  font-weight:600;
+  font-family: "Microsoft YaHei";
+  padding-left: 30px;
+}
+.libuoonton input[type="button"]{
+  margin-left: 10px;
+  padding-left: 8px;
+  background: #9ABEFB;
+  padding-right: 8px;
+  border-radius: 6px;
+  border: none;
+  color: #fff;
+}
+#libuoonton{
+  margin-left: 12% !important;
+}
+.nav_ul>ul>li input {
+  background: none;
+  border: none;
+}
+.nav_ul{
+  margin-left: 20%;
+  background: #40A3C5;
+  height: 25px;
+  width: 570px;
+  position: absolute;
+  top: 0px;
+}
+.nav_ul>ul>li {
+  margin-left: 20px;
+  float: left;
+  padding: 2px;
+  border-radius: 10px;
+  margin-top: 4px;
+
+}
+#locateMap{
+  width: 100% !important;
+  height: 100% !important;
+}
+.ul_tool_li li{
+  padding-top: 2px;
+  font-size: 13px;
+  cursor: pointer;
+}
+.ul_tool_li {
+  background: #40A3C5;
+  display: none;
+  width: 26px;
+}
+.BMapLabel{
+  padding: 0px !important;
+  border: none !important;
+}
+.mon_button{
+  background: #f9f9f9;
+  border-top: 1px solid #c9c9c9;
+  color: #1A8BD7;
+  height: 55px;
+  width: 100%;
+}
+.mon_button span{
+  margin-left: 10px;
+}
+.panel{
+  position: absolute;
+  top: 40px;
+  right: 0;
+}
+.panel-heading{
+  background: #028AD6;
+  height: 30px;
+}
+.navlefthead{
+  font-size: 14px;
+  /* height: 48px; */
+  /* padding-left: 16px; */
+
+  padding-top: 10px;
+
+}
+
+#myTabContent{
+  height: 65%;
+  overflow: auto;
+}

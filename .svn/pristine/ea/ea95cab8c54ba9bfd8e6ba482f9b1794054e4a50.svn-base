@@ -1,0 +1,473 @@
+/*MISS劳*/
+.ztree div.diy span {
+    line-height: 30px;
+    vertical-align: middle;
+}
+
+.ztree div.diy {
+    height: 100%;
+    width: 57px;
+
+    text-align: center;
+    display: inline-block;
+    box-sizing: border-box;
+    color: #6c6c6c;
+    font-family: "SimSun";
+    font-size: 12px;
+
+    color: #208DEE;
+
+    text-align: left;
+    text-overflow: ellipsis;
+
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-left: 15px;
+}
+
+.ztree div.diy:first-child {
+    text-align: left;
+    /*  text-indent: 10px; */
+    border-left: none;
+}
+
+.ztree .head {
+
+}
+
+.ztree li #treeDemo_1_a{
+
+}
+#treeDemo_4_span{
+
+}
+/*.ztree .head div.diy {
+    !*    border-top: none;
+       border-right: 1px solid #CDD2D4; *!
+    color: #000;
+    font-weight:600;
+    font-family: "Microsoft YaHei";
+    padding-left: 30px;
+}*/
+.libuoonton input[type="button"]{
+    margin-left: 20px;
+    padding-left: 8px;
+    background: #81C47F;
+    padding-right: 8px;
+    border-radius: 6px;
+    border: none;
+    color: #fff;
+}
+.iconinfo a img{width:30px;}
+#libuoonton{
+    margin-left: 12% !important;
+
+}
+.nav_ul>ul>li input {
+    background: none;
+    border: none;
+}
+.nav_ul{
+    background: #40A3C5;
+    height: 28px;
+    min-width: 65em;
+    width: 100%;
+    /* min-width: 61em; */
+    margin-left: 40%;
+    background-color: #00ade1ad;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+.nav_ul ul{
+    height:100%;
+}
+
+.nav_ul>ul>li {
+    /* margin-left: 20px; */
+    margin-left: 1%;
+    float: left;
+    /* margin-top: 2px; */
+    padding-left: 9px;
+    /* background: #fff; */
+    height: 100%;
+}
+
+.nav_ul>ul>li>div{
+    padding-top: 4px;
+}
+
+#locateMap{
+    width: 100% !important;
+    height: 100% !important;
+}
+.ul_tool_li li{
+    padding-top: 2px;
+    font-size: 14px;
+    cursor: pointer;
+    width: 60px;
+    text-align: center;
+    background: #00ade1ad;
+}
+.ul_tool_li {
+    /* background: #40A3C5;*/
+    display: none;
+    width: 26px;
+    position: absolute;
+}
+.BMapLabel{
+    padding: 0px !important;
+    border: none !important;
+}
+.mon_button{
+    background: #f9f9f9;
+    border-top: 1px solid #c9c9c9;
+    color: #1A8BD7;
+    height: 55px;
+    width: 100%;
+}
+.mon_button span{
+    margin-left: 10px;
+}
+.panel{
+    position: absolute;
+    top: 40px;
+    width: 340px;
+    height: 320px;
+    right:0px;
+}
+.panel-heading{
+    background: #028AD6;
+    height: 28px;
+}
+.navlefthead{
+    font-size: 14px;
+    /* height: 48px; */
+    /* padding-left: 16px; */
+
+    padding-top: 10px;
+
+}
+
+#myTabContent{
+    position: absolute;
+    top: 50px;
+    width: 100%;
+    height: 270px;
+}
+#myTab li{
+    z-index: 999;
+    float: left;
+    width: 74px;
+    margin-left: 24px;
+    margin-top: 2px;
+    border-right: 1px solid;
+}
+#myTab li a{
+    padding: 0px 0px 0px 20px !important;
+    color: #fff;
+}
+#myTab{
+    width: 100%;
+    background: #63B6E6;
+    height: 22px;
+}
+.map_uldiv{
+    width: 50%;
+    height:0px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+
+}
+.anchorBL span{
+    display: none !important;
+}
+.noprint{visibility:hidden}
+.iconinfo{position: absolute;  bottom:20px;}
+.iconinfo a{display: block;margin-top: 10px;}
+.panel-body{
+    width: 100%;
+    height: 292px;
+    overflow: auto;
+    background: #fff;
+}
+.anchorBL a{
+    display: none;
+}
+#home{
+    background: #fff;
+    color: #555;
+}
+.Tab_spanone{
+    margin-left: 10px;
+    display: inline-block;
+}
+.Tab_spanone select{
+    width: 75px;
+
+    padding: 0px 0px 2px 0px;
+    margin-top: 4px;
+}
+.tab_Table{
+    overflow: auto;
+    /* width: 340px; */
+    height: 240px;
+    background: #fff;
+}
+
+/*横竖滚动条交角*/
+::-webkit-scrollbar-corner {
+    background-color: #A1D1E8;
+}
+/*横竖滚动条交角图案*/
+::-webkit-resizer {
+    /*background-image: url(/public/img/resizer-inactive.png);*/
+    background-repeat: no-repeat;
+    background-position: bottom right;
+}
+/*!*鼠标滑过滑动条*!
+::-webkit-scrollbar-thumb:hover{
+    background-color:#A1D1E8;
+}*/
+.offline{
+    background: #fff;
+}
+.online{
+
+    background: #fff;
+}
+.Locat{
+    position: absolute;
+    top: 40px;
+    width: 325px;
+
+    right: 0%;
+}
+#myTabLocat{
+    width: 100%;
+    background: #4DACE2;
+    height: 22px;
+}
+#myTabLocat li{
+    float: left;
+    font-size: 10px;
+
+    padding: 2px 6px 0px 6px;
+}
+#myTabLocat li a{
+    padding: 2px 0px 0px 5px !important;
+    color: #fff;
+}
+#myTabLoacat>div{
+    background: #fff;
+    color: #555;
+    height: 100%;
+    overflow: auto;
+}
+#myTabLoacat{
+    height: 100%;
+    background: #fff;
+}
+#myTabContent>div{
+    color: #555;
+    background: #fff;
+    height: 100%;
+}
+.active{
+    background: #fff;
+
+}
+.active a{
+    color: #4CADEE !important;
+    background-color: #fff !important;
+    border-top: 1px solid #EDEDED;
+}
+.vt{
+    vertical-align: top;
+}
+
+.nav_ul>ul>li img:nth-child(2){
+    width: 15px;
+    position: relative;
+    bottom: 2px;
+    height: 15px;
+
+
+}
+.nav_ul img:nth-child(1)
+{
+}
+.nav_ul_line{
+    height: 18px;
+    width: 1px;
+    background: #A1A1A1;
+    display: inline-block;
+    height: 15px;
+    width: 1px;
+    background: #A1A1A1;
+    display: inline-block;
+    position: relative;
+    top: 2px;
+    left: 6px;
+    background: #fff;
+}
+.noneid{
+    display: none;
+}
+.BMap_pop img{
+    min-width: 10px;
+}
+
+.fixed-table-container{
+    border: none
+;
+}
+.table-condensed{
+    border: 0px solid transparent !important;
+}
+#finishingTask{
+    overflow: scroll; color: #058AD9;
+}
+.swich{
+    color: #c9c9c9;
+}
+.Tab_spanonelocat{
+    margin-left: 15px;
+    display: inline-block;
+}
+.Tab_spanonelocat select{
+    width: 100px;
+    padding: 0px 0px 2px 0px;
+    margin-top: 4px;
+}
+.kouspan{
+    height: 10px;
+    width: 10px;
+    border: 2px solid #BFBFBF;
+    background: #fff;
+    position: relative;
+    left: 10px;
+
+}
+.tableLocal{
+    width: 100%;
+}
+.tableLocal thead{
+    width: 100%;
+    height:30px;
+    color: #fff;
+    border-spacing: 0;
+    background: #4DAEE1;
+}
+.layui-upload-list>input{
+    color: #0C0C0C;
+}
+.layui-upload-list>img{
+    width: 34px;
+    height: 33px;
+    margin-left: 50% -35px;
+    margin: 0 auto;
+    vertical-align: middle;
+    position: relative;
+    left: 50%;
+    margin-left: -26px;
+}
+#locat_Data tr td{
+    text-align: center;
+}
+.form_font div dl{
+    color: #fff;
+}
+.iconbigshow{
+    position: relative;top:8px;left: 8px;
+    color: #6C96D3;
+}
+.iconbigshowna{
+    color: #0489D6;
+    position: relative;
+    top:45px;
+    right:25px;
+
+}
+.BMap_shadow div img{
+    display: none   ;
+}
+.mapright{
+    right: 0px;
+}
+.iconbigsp{
+    position:relative;top: 0px;left: 20px;font-size: 15px;color:#2E87FF
+}
+.iconbigspload{
+    position:relative;top: 0px;font-size: 15px;color:#2E87FF;right: 75px;
+}
+#content_data tr{
+    cursor: pointer;
+}
+.widthmin{
+    width: 20px !important;
+}
+.nav_ul li:hover{
+    background: #227DAF;
+}
+#content_data tr:hover{
+    background-color: #FFDECF !important;
+}
+.level1 {
+
+ }
+.level2{
+
+}
+.level0>li{
+     padding-left: 18px;
+ }
+.level1>li{
+    padding-left: 18px;
+}
+.level2>li{
+    padding-left: 18px;
+}
+/*
+#container_ .content_box-1 .car-info_box .car-info .car-lists .cl_info .am_header{
+    min-width: 326px;
+    !* max-width: 370px; *!
+    height: 41px;
+    line-height: 41px;
+    background-color: #f1f1f1;
+    color: #2670d3;
+    !* font-size: 12px; *!
+    !* position: relative; *!
+    !* top: 25px; *!
+    !* left: 0px; *!
+    !* margin-left: 10px; *!
+    position: relative;
+    text-align: left;
+    //MISS劳
+        min-width: 318px;
+    max-width: 100%;
+    height: 41px;
+    line-height: 41px;
+    background-color: #f1f1f1;
+    color: #2670d3;
+    font-size: 12px;
+}
+#container_ .content_box-1 .car-info_box .car-info .car-lists .cl_info .am_header span{
+    margin-left: 20px;
+    !* text-align: center; *!
+    width: 20px;
+ }
+#container_ .content_box-1 .car-info_box .car-info .car-lists .cl_info .am_header span:nth-child(1){
+    margin-left: 25px;
+}
+#container_ .content_box-1 .car-info_box .car-info .car-lists .cl_info .am_header span:nth-child(5){
+    margin-left: 44px;
+}
+#container_ .content_box-1 .car-info_box .car-info .car-lists .cl_info .tree_class{
+    width: 100%;
+    background-color: #fff;
+    !* margin-top: 15px; *!
+    position: relative;
+
+}*/

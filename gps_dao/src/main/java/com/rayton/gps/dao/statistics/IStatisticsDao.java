@@ -7,7 +7,7 @@ public interface IStatisticsDao {
 
     boolean historyOnlineOffline(String number, Date start, Date end);
 
-    int historyOnlineTime(String number, Date start, Date end);
+    Integer historyOnlineTime(String number, Date start, Date end);
 
     List<MileageOilDto> mileageOilRecords(String number, Date start, Date end);
 }

@@ -8,8 +8,8 @@ public class HistoryOnlineTimeCount {
     private String motorcade;
     private Date start;
     private Date end;
-    private int must;
-    private int real;
+    private Integer must;
+    private Integer real;
     private float onlineRate;
     private float offlineRate = 100;
 
@@ -52,19 +52,19 @@ public class HistoryOnlineTimeCount {
         this.end = end;
     }
 
-    public int getMust() {
+    public Integer getMust() {
         return must;
     }
 
-    public void setMust(int must) {
+    public void setMust(Integer must) {
         this.must = must;
     }
 
-    public int getReal() {
+    public Integer getReal() {
         return real;
     }
 
-    public void setReal(int real) {
+    public void setReal(Integer real) {
         this.real = real;
     }
 

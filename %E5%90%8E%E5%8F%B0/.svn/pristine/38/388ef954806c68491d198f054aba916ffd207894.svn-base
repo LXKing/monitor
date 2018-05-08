@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.edata.godp.dao.flow.IFlowDao">
-    <select id="load" resultType="com.rayton.gps.dao.flow.FlowDto">
-        SELECT * FROM flow WHERE NUMBER =
-        #{0} AND GPSTIME BETWEEN #{1} AND #{2} ORDER BY
-        GPSTIME
-    </select>
-</mapper>

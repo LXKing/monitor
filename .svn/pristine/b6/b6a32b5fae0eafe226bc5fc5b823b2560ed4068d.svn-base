@@ -1,0 +1,1327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/gps_web/src/main/resources/static/js/js/locate.js" line="932" mnemonic="8" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" readonly="true" id="c222c51e-a023-47dc-8545-5562953c40ae" name="Default" comment="" />
+    <ignored path="$PROJECT_DIR$/gps_dao/target/" />
+    <ignored path="$PROJECT_DIR$/gps_web/target/" />
+    <ignored path="$PROJECT_DIR$/gps_common/target/" />
+    <ignored path="$PROJECT_DIR$/gps_domain/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
+    <option name="PARALLEL_COMPILATION" value="true" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/templates/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-4222">
+              <caret line="334" column="46" lean-forward="false" selection-start-line="334" selection-start-column="41" selection-end-line="334" selection-end-column="46" />
+              <folding>
+                <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#1;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#section#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#0;n#div#0;n#section#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#1;n#div#0;n#section#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#style#0;n#div#2;n#div#0;n#section#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#div#0;n#div#2;n#div#0;n#section#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#1;n#div#0;n#div#2;n#div#0;n#section#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#thead#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#2;n#div#0;n#section#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#2;n#div#0;n#section#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#3;n#div#0;n#section#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#div#3;n#div#0;n#section#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#style#0;n#span#0;n#div#0;n#div#3;n#div#0;n#section#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#1;n#div#0;n#div#3;n#div#0;n#section#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#div#0;n#div#0;n#section#1;n#section#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#1;n#div#0;n#section#1;n#section#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#section#1;n#section#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#table#0;n#div#0;n#div#1;n#section#1;n#section#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="e#29858#31917#0" expanded="false" />
+                <element signature="e#32787#34358#0" expanded="false" />
+                <element signature="e#34401#35811#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/js/Main.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-351">
+              <caret line="117" column="31" lean-forward="true" selection-start-line="117" selection-start-column="31" selection-end-line="117" selection-end-column="31" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="n#!!doc;n#addDiyDom#0" expanded="false" />
+                <element signature="n#!!doc;n#Treedata#0" expanded="false" />
+                <element signature="n#!!block;n#Treedata#0" expanded="false" />
+                <element signature="n#!!block;n#fromdevices#0" expanded="false" />
+                <element signature="n#!!block;n#fromfleet#0" expanded="false" />
+                <element signature="e#9130#9412#0" expanded="false" />
+                <element signature="n#!!block;n#carlist#0" expanded="false" />
+                <element signature="n#!!block;n#convertor#0" expanded="false" />
+                <element signature="n#!!block;n#ranging#0" expanded="false" />
+                <element signature="n#!!block;n#amplification#0" expanded="false" />
+                <element signature="n#!!block;n#narrow#0" expanded="false" />
+                <element signature="n#!!block;n#Print_map#0" expanded="false" />
+                <element signature="n#!!block;n#default_view#0" expanded="false" />
+                <element signature="n#!!block;n#Refreshmap#0" expanded="false" />
+                <element signature="n#!!block;n#Full_screen#0" expanded="false" />
+                <element signature="n#!!block;n#cutDiv#0" expanded="false" />
+                <element signature="n#!!doc;n#dataTreedian#0" expanded="false" />
+                <element signature="n#!!block;n#dataTreedian#0" expanded="false" />
+                <element signature="n#!!block;n#timer#0" expanded="false" />
+                <element signature="n#!!block;n#beforeClick#0" expanded="false" />
+                <element signature="e#14693#14710#0" expanded="false" />
+                <element signature="n#!!block;n#guiji#0" expanded="false" />
+                <element signature="n#!!block;n#huifang#0" expanded="false" />
+                <element signature="n#!!block;n#LushuorthJS#0" expanded="false" />
+                <element signature="e#17654#17667#0" expanded="false" />
+                <element signature="n#!!block;n#timedCount#0" expanded="false" />
+                <element signature="e#17828#17881#0" expanded="false" />
+                <element signature="n#!!block;n#chushudataadd#0" expanded="false" />
+                <element signature="n#!!block;n#Setcenter#0" expanded="false" />
+                <element signature="n#!!block;n#bit_Change_location#0" expanded="false" />
+                <element signature="n#!!block;n#mobileflashing#0" expanded="false" />
+                <element signature="n#!!block;n#showpoint#0" expanded="false" />
+                <element signature="n#!!block;n#libutton#0" expanded="false" />
+                <element signature="n#!!block;n#areacar#0" expanded="false" />
+                <element signature="n#!!block;n#printmap#0" expanded="false" />
+                <element signature="e#22232#22257#0" expanded="false" />
+                <element signature="n#!!block;n#showGpsinfo#0" expanded="false" />
+                <element signature="e#22432#22803#0" expanded="false" />
+                <element signature="e#24504#24792#0" expanded="false" />
+                <element signature="n#!!doc;n#addClickHandler#0" expanded="false" />
+                <element signature="n#!!block;n#addClickHandler#0" expanded="false" />
+                <element signature="n#!!doc;n#openInfo#0" expanded="false" />
+                <element signature="n#!!block;n#openInfo#0" expanded="false" />
+                <element signature="n#!!doc;n#Page#0" expanded="false" />
+                <element signature="n#!!block;n#Page#0" expanded="false" />
+                <element signature="n#!!doc;n#penlarareacar#0" expanded="false" />
+                <element signature="n#!!block;n#penlarareacar#0" expanded="false" />
+                <element signature="n#!!block;n#Drag_the#0" expanded="false" />
+                <element signature="n#!!block;n#Drag_thes#0" expanded="false" />
+                <element signature="n#!!block;n#Locationservice#0" expanded="false" />
+                <marker date="1524193165584" expanded="true" signature="4010:4055" ph="..." />
+                <marker date="1524193165584" expanded="true" signature="5607:5644" ph="..." />
+                <marker date="1524193165584" expanded="true" signature="8336:8373" ph="..." />
+                <marker date="1524193165584" expanded="true" signature="13068:13104" ph="..." />
+                <marker date="1524193165584" expanded="true" signature="15635:15644" ph="..." />
+                <marker date="1524193165584" expanded="true" signature="18383:18436" ph="..." />
+                <marker date="1524193165584" expanded="true" signature="19001:19012" ph="..." />
+                <marker date="1524193165584" expanded="true" signature="22874:22896" ph="..." />
+                <marker date="1524193165584" expanded="true" signature="22927:22950" ph="..." />
+                <marker date="1524193165584" expanded="true" signature="23046:23084" ph="..." />
+                <marker date="1524193165584" expanded="true" signature="23963:24023" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/css/cg/index.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1183">
+              <caret line="862" column="9" lean-forward="true" selection-start-line="862" selection-start-column="9" selection-end-line="862" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bootstrap-table.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/js/bootstrap/css/bootstrap-table.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-305">
+              <caret line="28" column="24" lean-forward="true" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="locate.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/js/js/locate.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="233">
+              <caret line="939" column="0" lean-forward="false" selection-start-line="939" selection-start-column="0" selection-end-line="939" selection-end-column="0" />
+              <folding>
+                <element signature="e#5270#5624#0" expanded="false" />
+                <element signature="e#5658#6651#0" expanded="false" />
+                <element signature="e#7505#8409#0" expanded="false" />
+                <element signature="e#8448#12579#0" expanded="false" />
+                <element signature="e#12689#20571#0" expanded="false" />
+                <element signature="e#26445#32949#0" expanded="false" />
+                <element signature="e#33027#34421#0" expanded="false" />
+                <element signature="e#35612#35722#0" expanded="false" />
+                <element signature="n#!!block;n#zhenshi#0" expanded="false" />
+                <element signature="n#!!block;n#marker#0" expanded="false" />
+                <element signature="n#!!block;n#biaozhu#0" expanded="false" />
+                <marker date="1524196742146" expanded="true" signature="7641:7663" ph="..." />
+                <marker date="1524196742146" expanded="true" signature="7731:7754" ph="..." />
+                <marker date="1524196742146" expanded="true" signature="7974:8012" ph="..." />
+                <marker date="1524196742146" expanded="true" signature="8590:8612" ph="..." />
+                <marker date="1524196742146" expanded="true" signature="9527:9533" ph="&amp;nbsp;" />
+                <marker date="1524196742146" expanded="true" signature="9533:9539" ph="&amp;nbsp;" />
+                <marker date="1524196742146" expanded="true" signature="9866:9872" ph="&amp;nbsp;" />
+                <marker date="1524196742146" expanded="true" signature="9872:9878" ph="&amp;nbsp;" />
+                <marker date="1524196742146" expanded="true" signature="10211:10221" ph="..." />
+                <marker date="1524196742146" expanded="true" signature="10429:10440" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tab.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/js/tab.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="794">
+              <caret line="112" column="49" lean-forward="true" selection-start-line="112" selection-start-column="49" selection-end-line="112" selection-end-column="49" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tablecolor.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/js/tablecolor.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="19">
+              <caret line="1" column="13" lean-forward="false" selection-start-line="1" selection-start-column="2" selection-end-line="1" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="HTML File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>aut</find>
+      <find>.tab_Table</find>
+      <find>refresh</find>
+      <find>::-webkit-scrollbar-thumb</find>
+      <find>areacar()</find>
+      <find>fixed-table-container</find>
+      <find>bootstrap-table</find>
+      <find>.fixed-table-body</find>
+      <find>plug</find>
+      <find>clear</find>
+      <find>lanquan</find>
+      <find>.nav_ul</find>
+      <find>map_uldiv</find>
+      <find>统计分析</find>
+      <find>extend</find>
+      <find>::-webkit-scrollbar</find>
+      <find>.fixed-table-container</find>
+      <find>thead</find>
+      <find>.table.table-no-bordered &gt; tbody &gt; tr &gt; td</find>
+      <find>navInit</find>
+      <find>tabHandler</find>
+      <find>td</find>
+      <find>target</find>
+      <find>#058AD9</find>
+      <find>myTabContent</find>
+      <find>#058AD9 !important</find>
+      <find>data</find>
+      <find>updatecolor</find>
+      <find>addDiyDom</find>
+      <find>finishingTask</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>Log</replace>
+      <replace>th:href</replace>
+      <replace>th:src</replace>
+      <replace>.js}&quot;</replace>
+      <replace>.css}&quot;</replace>
+      <replace>.jpg}&quot;</replace>
+      <replace>@{/static</replace>
+      <replace>.png}&quot;</replace>
+    </replaceStrings>
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/dao/icon/IconDao.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/IconService.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/UserController.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/MarkerService.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/test/java/com/rayton/gps/GpsWebApplicationTests.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/resources/mapping/IconDao.xml" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/StatisticsController.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/SimcardController.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/RoleController.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/ReplayController.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/model/ResponseEntity2.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/model/ResponseEntityWrapper.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/OwnerController.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/OverviewController.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/MotorcadeController.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/MapOptionController.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/MapLayerController.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/LogController.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/ObdController.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/TripController.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/FaultController.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/InstructController.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/CenterController.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/CommonContorller.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/LocateController.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/DeviceController.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/CompanyController.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/DictionaryController.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/baseInfo/BaseInfoController.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/DriverController.java" />
+        <option value="$PROJECT_DIR$/gps_web/pom.xml" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/resources/templates/login.html" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/controller/HomeController.java" />
+        <option value="$MAVEN_REPOSITORY$/org/apache/shiro/shiro-core/1.3.2/shiro-core-1.3.2.jar!/org/apache/shiro/realm/AuthenticatingRealm.class" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/configuration/ShiroConfig.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/godp/GodpDao.java" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/resources/static/css/site.css" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/resources/static/js/bootstrap/css/bootstrap.css" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/resources/static/js/bootstrap/css/bootstrap.min.css" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/resources/static/js/bootstrap/css/bootstrap-table.min.css" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/resources/static/css/cg/common.css" />
+        <option value="$PROJECT_DIR$/gps_web/target/classes/application.yml" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/resources/static/css/cg/bootstrap.min.css" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/resources/application.yml" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/resources/static/js/bootstrap/css/bootstrap-table.css" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/resources/static/js/js/tablecolor.js" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/resources/static/js/Main.js" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/resources/templates/index.html" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/resources/static/js/js/locate.js" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/resources/static/css/cg/index.css" />
+        <option value="$PROJECT_DIR$/gps_web/src/main/resources/static/js/tablecolor.js" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBowerSettings">
+    <node-interpreter value="project" />
+    <bower-package value="" />
+    <bower.json value="" />
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+        <option name="lookForNested" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="493" />
+    <option name="y" value="59" />
+    <option name="width" value="1376" />
+    <option name="height" value="745" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>SQL</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>SQL</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages ProjectPane="false" />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="monitor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gps_web" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="monitor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gps_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="monitor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gps_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="monitor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gps_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="monitor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gps_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="monitor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gps_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="monitor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gps_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="monitor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gps_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+              <item name="image" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="monitor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gps_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="image" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="monitor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gps_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="monitor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gps_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="bootstrap" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="monitor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gps_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="monitor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gps_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="monitor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gps_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="monitor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gps_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="monitor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gps_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="gps" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="settings.editor.selected.configurable" value="project.propCompiler" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
+    <property name="node.js.path.for.package.stylelint" value="project" />
+    <property name="node.js.selected.package.stylelint" value="" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth2" value="75" />
+    <property name="RequestMappingsPanelOrder2" value="2" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\Company\runxunyitong\raytong_gps2\monitor\gps_web\src\main\resources\static\css\image" />
+      <recent name="G:\Company\runxunyitong\raytong_gps2\monitor\gps_web\src\main\resources\static" />
+      <recent name="G:\Company\runxunyitong\raytong_gps2\monitor\gps_web\src\main\resources\static\js" />
+      <recent name="G:\Company\runxunyitong\raytong_gps2\monitor\gps_web\src\main\resources\static\image" />
+      <recent name="G:\Company\runxunyitong\raytong_gps2\monitor\gps_web\src\main\resources\static\css\cg" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="G:\Company\runxunyitong\raytong_gps2\monitor\gps_web\src\main\resources\static\js" />
+      <recent name="G:\Company\runxunyitong\raytong_gps2\monitor\gps_web\src\main\resources\static\js\jquery" />
+      <recent name="C:\Users\huangzhike\Desktop\mmp\gps_web\src\main\webapp\WEB-INF\view" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.GpsWebApplication">
+    <configuration name="GpsWebApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.rayton.gps.GpsWebApplication" />
+      <module name="gps_web" />
+      <envs />
+    </configuration>
+    <configuration name="GpsWebApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.rayton.gps.GpsWebApplication" />
+      <module name="gps_web" />
+      <envs />
+    </configuration>
+    <configuration name="GpsWebApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.rayton.gps.exception.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="gps_web" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.rayton.gps" />
+      <option name="MAIN_CLASS_NAME" value="com.rayton.gps.GpsWebApplicationTests" />
+      <option name="METHOD_NAME" value="contextLoads" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <module />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file id="idea.log" enabled="true" />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+    </configuration>
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="Spring Boot.GpsWebApplication" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.GpsWebApplicationTests.contextLoads" />
+    </list>
+    <recent_temporary>
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="JUnit.GpsWebApplicationTests.contextLoads" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration" cleanupOnStartRun="true">
+    <configuration>C:\Users\Dregsr\AppData\Roaming\Subversion</configuration>
+    <supportedVersion>125</supportedVersion>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c222c51e-a023-47dc-8545-5562953c40ae" name="Default" comment="" />
+      <created>1523264901958</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1523264901958</updated>
+      <workItem from="1523264903688" duration="642000" />
+      <workItem from="1523266534913" duration="3689000" />
+      <workItem from="1523320943697" duration="19409000" />
+      <workItem from="1523350832921" duration="4706000" />
+      <workItem from="1523358499580" duration="821000" />
+      <workItem from="1523406840149" duration="26881000" />
+      <workItem from="1523493465512" duration="24440000" />
+      <workItem from="1523579436042" duration="5438000" />
+      <workItem from="1523586085488" duration="15600000" />
+      <workItem from="1523623481975" duration="4924000" />
+      <workItem from="1523686320436" duration="6444000" />
+      <workItem from="1523783058229" duration="1940000" />
+      <workItem from="1523843562377" duration="534000" />
+      <workItem from="1523844588960" duration="715000" />
+      <workItem from="1523845347872" duration="19855000" />
+      <workItem from="1523924811202" duration="1092000" />
+      <workItem from="1523955984587" duration="1350000" />
+      <workItem from="1524010246521" duration="163000" />
+      <workItem from="1524011411773" duration="513000" />
+      <workItem from="1524011944329" duration="741000" />
+      <workItem from="1524013064029" duration="207000" />
+      <workItem from="1524013397614" duration="28299000" />
+      <workItem from="1524098033142" duration="13952000" />
+      <workItem from="1524117210915" duration="15358000" />
+      <workItem from="1524184048872" duration="13612000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="GpsWebApplicationTests_contextLoads - 2018.04.12 at 14h 36m 11s.xml">
+      <configuration name="GpsWebApplicationTests.contextLoads" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GpsWebApplicationTests_contextLoads - 2018.04.12 at 14h 37m 45s.xml">
+      <configuration name="GpsWebApplicationTests.contextLoads" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GpsWebApplicationTests_contextLoads - 2018.04.12 at 15h 36m 14s.xml">
+      <configuration name="GpsWebApplicationTests.contextLoads" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GpsWebApplicationTests_contextLoads - 2018.04.13 at 10h 36m 20s.xml">
+      <configuration name="GpsWebApplicationTests.contextLoads" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GpsWebApplicationTests_contextLoads - 2018.04.13 at 10h 37m 35s.xml">
+      <configuration name="GpsWebApplicationTests.contextLoads" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GpsWebApplicationTests_contextLoads - 2018.04.13 at 10h 38m 47s.xml">
+      <configuration name="GpsWebApplicationTests.contextLoads" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GpsWebApplicationTests_contextLoads - 2018.04.13 at 10h 40m 04s.xml">
+      <configuration name="GpsWebApplicationTests.contextLoads" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GpsWebApplicationTests_contextLoads - 2018.04.13 at 10h 41m 22s.xml">
+      <configuration name="GpsWebApplicationTests.contextLoads" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GpsWebApplicationTests_contextLoads - 2018.04.13 at 10h 50m 50s.xml">
+      <configuration name="GpsWebApplicationTests.contextLoads" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GpsWebApplicationTests_contextLoads - 2018.04.13 at 10h 52m 31s.xml">
+      <configuration name="GpsWebApplicationTests.contextLoads" configurationId="JUnit" />
+    </history-entry>
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="211325000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28881988" sideWeight="0.15885799" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24534161" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295325" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.58229816" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5120773" sideWeight="0.841142" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30030257" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295325" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299356" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.072981365" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28881988" sideWeight="0.15885799" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24534161" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295325" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.58229816" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27173913" sideWeight="0.841142" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19765739" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295325" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299356" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.072981365" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/LocateService.java</url>
+          <line>42</line>
+          <properties />
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/LocateService.java</url>
+          <line>48</line>
+          <properties />
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/gps_web/src/main/java/com/rayton/gps/service/LocateService.java</url>
+          <line>52</line>
+          <properties />
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="19" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/image/xiaouser.png" />
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/image/xiaxia.png" />
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/image/zaixian.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/image/weixian.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/image/webwxgetmsgimg (3).jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/image/tushu.png" />
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/image/warn_click.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/image/t_2.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/image/statistics.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/image/smallcar.png" />
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/image/siji.png" />
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/image/srtting.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/image/shuaxin.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/image/shezhi.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/image/shuangxia.png" />
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/image/Operation.png" />
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/image/More_functions.png" />
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/image/m_3.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/image/maplist_init.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/image/message_init.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/image/message_click.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/image/search_small.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/image/search_big.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/image/search.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/image/Signaling.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/image/ziquan.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/css/cg/bootstrap.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="61" column="0" lean-forward="true" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/image/新建文本文档.txt" />
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/image/weizhifuwu.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/image/whileprint.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/image/whiletool.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/image/whilev.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/image/whitecar.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/image/t_1.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/image/report.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/image/pliers.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/image/xiaoche.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/image/video_init.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/image/xiaoxi.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/image/xiaohungdeng.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/image/refresh.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/js/bootstrap/css/bootstrap-table.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/js/bootstrap/css/bootstrap-table.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-305">
+          <caret line="28" column="24" lean-forward="true" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-883">
+          <caret line="9" column="25" lean-forward="true" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/js/js/Main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2223">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4222">
+          <caret line="334" column="46" lean-forward="false" selection-start-line="334" selection-start-column="41" selection-end-line="334" selection-end-column="46" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#1;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#section#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#0;n#div#0;n#section#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#1;n#div#0;n#section#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#section#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#2;n#div#0;n#section#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#1;n#div#0;n#div#2;n#div#0;n#section#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#thead#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#2;n#div#0;n#section#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#2;n#div#0;n#section#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#3;n#div#0;n#section#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#div#3;n#div#0;n#section#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#3;n#div#0;n#section#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#1;n#div#0;n#div#3;n#div#0;n#section#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#div#0;n#div#0;n#section#1;n#section#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#1;n#div#0;n#section#1;n#section#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#section#1;n#section#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#div#0;n#div#1;n#section#1;n#section#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#29858#31917#0" expanded="false" />
+            <element signature="e#32787#34358#0" expanded="false" />
+            <element signature="e#34401#35811#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/js/tab.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="794">
+          <caret line="112" column="49" lean-forward="true" selection-start-line="112" selection-start-column="49" selection-end-line="112" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/js/Main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-351">
+          <caret line="117" column="31" lean-forward="true" selection-start-line="117" selection-start-column="31" selection-end-line="117" selection-end-column="31" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc;n#addDiyDom#0" expanded="false" />
+            <element signature="n#!!doc;n#Treedata#0" expanded="false" />
+            <element signature="n#!!block;n#Treedata#0" expanded="false" />
+            <element signature="n#!!block;n#fromdevices#0" expanded="false" />
+            <element signature="n#!!block;n#fromfleet#0" expanded="false" />
+            <element signature="e#9130#9412#0" expanded="false" />
+            <element signature="n#!!block;n#carlist#0" expanded="false" />
+            <element signature="n#!!block;n#convertor#0" expanded="false" />
+            <element signature="n#!!block;n#ranging#0" expanded="false" />
+            <element signature="n#!!block;n#amplification#0" expanded="false" />
+            <element signature="n#!!block;n#narrow#0" expanded="false" />
+            <element signature="n#!!block;n#Print_map#0" expanded="false" />
+            <element signature="n#!!block;n#default_view#0" expanded="false" />
+            <element signature="n#!!block;n#Refreshmap#0" expanded="false" />
+            <element signature="n#!!block;n#Full_screen#0" expanded="false" />
+            <element signature="n#!!block;n#cutDiv#0" expanded="false" />
+            <element signature="n#!!doc;n#dataTreedian#0" expanded="false" />
+            <element signature="n#!!block;n#dataTreedian#0" expanded="false" />
+            <element signature="n#!!block;n#timer#0" expanded="false" />
+            <element signature="n#!!block;n#beforeClick#0" expanded="false" />
+            <element signature="e#14693#14710#0" expanded="false" />
+            <element signature="n#!!block;n#guiji#0" expanded="false" />
+            <element signature="n#!!block;n#huifang#0" expanded="false" />
+            <element signature="n#!!block;n#LushuorthJS#0" expanded="false" />
+            <element signature="e#17654#17667#0" expanded="false" />
+            <element signature="n#!!block;n#timedCount#0" expanded="false" />
+            <element signature="e#17828#17881#0" expanded="false" />
+            <element signature="n#!!block;n#chushudataadd#0" expanded="false" />
+            <element signature="n#!!block;n#Setcenter#0" expanded="false" />
+            <element signature="n#!!block;n#bit_Change_location#0" expanded="false" />
+            <element signature="n#!!block;n#mobileflashing#0" expanded="false" />
+            <element signature="n#!!block;n#showpoint#0" expanded="false" />
+            <element signature="n#!!block;n#libutton#0" expanded="false" />
+            <element signature="n#!!block;n#areacar#0" expanded="false" />
+            <element signature="n#!!block;n#printmap#0" expanded="false" />
+            <element signature="e#22232#22257#0" expanded="false" />
+            <element signature="n#!!block;n#showGpsinfo#0" expanded="false" />
+            <element signature="e#22432#22803#0" expanded="false" />
+            <element signature="e#24504#24792#0" expanded="false" />
+            <element signature="n#!!doc;n#addClickHandler#0" expanded="false" />
+            <element signature="n#!!block;n#addClickHandler#0" expanded="false" />
+            <element signature="n#!!doc;n#openInfo#0" expanded="false" />
+            <element signature="n#!!block;n#openInfo#0" expanded="false" />
+            <element signature="n#!!doc;n#Page#0" expanded="false" />
+            <element signature="n#!!block;n#Page#0" expanded="false" />
+            <element signature="n#!!doc;n#penlarareacar#0" expanded="false" />
+            <element signature="n#!!block;n#penlarareacar#0" expanded="false" />
+            <element signature="n#!!block;n#Drag_the#0" expanded="false" />
+            <element signature="n#!!block;n#Drag_thes#0" expanded="false" />
+            <element signature="n#!!block;n#Locationservice#0" expanded="false" />
+            <marker date="1524193165584" expanded="true" signature="4010:4055" ph="..." />
+            <marker date="1524193165584" expanded="true" signature="5607:5644" ph="..." />
+            <marker date="1524193165584" expanded="true" signature="8336:8373" ph="..." />
+            <marker date="1524193165584" expanded="true" signature="13068:13104" ph="..." />
+            <marker date="1524193165584" expanded="true" signature="15635:15644" ph="..." />
+            <marker date="1524193165584" expanded="true" signature="18383:18436" ph="..." />
+            <marker date="1524193165584" expanded="true" signature="19001:19012" ph="..." />
+            <marker date="1524193165584" expanded="true" signature="22874:22896" ph="..." />
+            <marker date="1524193165584" expanded="true" signature="22927:22950" ph="..." />
+            <marker date="1524193165584" expanded="true" signature="23046:23084" ph="..." />
+            <marker date="1524193165584" expanded="true" signature="23963:24023" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/js/js/locate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="939" column="0" lean-forward="false" selection-start-line="939" selection-start-column="0" selection-end-line="939" selection-end-column="0" />
+          <folding>
+            <element signature="e#5270#5624#0" expanded="false" />
+            <element signature="e#5658#6651#0" expanded="false" />
+            <element signature="e#7505#8409#0" expanded="false" />
+            <element signature="e#8448#12579#0" expanded="false" />
+            <element signature="e#12689#20571#0" expanded="false" />
+            <element signature="e#26445#32949#0" expanded="false" />
+            <element signature="e#33027#34421#0" expanded="false" />
+            <element signature="e#35612#35722#0" expanded="false" />
+            <element signature="n#!!block;n#zhenshi#0" expanded="false" />
+            <element signature="n#!!block;n#marker#0" expanded="false" />
+            <element signature="n#!!block;n#biaozhu#0" expanded="false" />
+            <marker date="1524196742146" expanded="true" signature="7641:7663" ph="..." />
+            <marker date="1524196742146" expanded="true" signature="7731:7754" ph="..." />
+            <marker date="1524196742146" expanded="true" signature="7974:8012" ph="..." />
+            <marker date="1524196742146" expanded="true" signature="8590:8612" ph="..." />
+            <marker date="1524196742146" expanded="true" signature="9527:9533" ph="&amp;nbsp;" />
+            <marker date="1524196742146" expanded="true" signature="9533:9539" ph="&amp;nbsp;" />
+            <marker date="1524196742146" expanded="true" signature="9866:9872" ph="&amp;nbsp;" />
+            <marker date="1524196742146" expanded="true" signature="9872:9878" ph="&amp;nbsp;" />
+            <marker date="1524196742146" expanded="true" signature="10211:10221" ph="..." />
+            <marker date="1524196742146" expanded="true" signature="10429:10440" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/css/cg/index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1183">
+          <caret line="862" column="9" lean-forward="true" selection-start-line="862" selection-start-column="9" selection-end-line="862" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_web/src/main/resources/static/js/tablecolor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="1" column="13" lean-forward="false" selection-start-line="1" selection-start-column="2" selection-end-line="1" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="Copyright.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

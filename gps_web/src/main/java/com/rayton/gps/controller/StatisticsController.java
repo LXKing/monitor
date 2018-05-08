@@ -3,6 +3,7 @@ package com.rayton.gps.controller;
 import com.rayton.gps.aop.Log;
 import com.rayton.gps.common.DateFormats;
 import com.rayton.gps.common.ObjectId;
+import com.rayton.gps.dao.Page;
 import com.rayton.gps.dao.security.IdentityDto;
 import com.rayton.gps.dao.security.OperateLog;
 import com.rayton.gps.dao.statistics.*;
@@ -33,16 +34,22 @@ public class StatisticsController {
     @Autowired
     private SecurityService securityService;
 
-    @RequiresPermissions("statistics")
+    @GetMapping("statistics")
     @Log(name = "打开统计分析页面")
     @RequestMapping("/statistics")
-    public String index() {
-        return "/statistics/index";
+    public ModelAndView index() {
+
+        IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("statistics");
+        modelAndView.addObject("name", identity.getName());
+        return modelAndView;
+        // return "/statistics/index";
     }
 
-    @RequestMapping(value = "/statistics/menus", method = RequestMethod.POST)
+    @GetMapping(value = "/statistics/menus")
     @ResponseBody
-    public Object menus(HttpServletRequest request) throws Exception {
+    public Object menus() throws Exception {
 
         ArrayList<AdminMenu> menus = new ArrayList<AdminMenu>();
 
@@ -58,7 +65,7 @@ public class StatisticsController {
             menuHistoryOnlineOffline.setId(ObjectId.next());
             menuHistoryOnlineOffline.setPid(menuTeamOperationDataAnalysis.getId());
             menuHistoryOnlineOffline.setText("历史上线率统计");
-            menuHistoryOnlineOffline.setUrl("statistics/historyOnlineOffline.iframe");
+            menuHistoryOnlineOffline.setUrl("/statistics/historyOnlineOfflineCount");
             menuHistoryOnlineOffline.setLeaf(true);
             menus.add(menuHistoryOnlineOffline);
             count++;
@@ -69,7 +76,7 @@ public class StatisticsController {
             menuHistoryOnlineTime.setId(ObjectId.next());
             menuHistoryOnlineTime.setPid(menuTeamOperationDataAnalysis.getId());
             menuHistoryOnlineTime.setText("历史在线率统计");
-            menuHistoryOnlineTime.setUrl("statistics/historyOnlineTime.iframe");
+            menuHistoryOnlineTime.setUrl("/statistics/historyOnlineTimeCount");
             menuHistoryOnlineTime.setLeaf(true);
             menus.add(menuHistoryOnlineTime);
             count++;
@@ -80,7 +87,7 @@ public class StatisticsController {
             menuCurrentVehileOnline.setId(ObjectId.next());
             menuCurrentVehileOnline.setPid(menuTeamOperationDataAnalysis.getId());
             menuCurrentVehileOnline.setText("当前在线率统计");
-            menuCurrentVehileOnline.setUrl("statistics/currentOnlineOffline.iframe");
+            menuCurrentVehileOnline.setUrl("/statistics/currentOnlineOfflineCount");
             menuCurrentVehileOnline.setLeaf(true);
             menus.add(menuCurrentVehileOnline);
             count++;
@@ -91,7 +98,7 @@ public class StatisticsController {
             menuMileageOil.setId(ObjectId.next());
             menuMileageOil.setPid(menuTeamOperationDataAnalysis.getId());
             menuMileageOil.setText("行驶里程及油耗");
-            menuMileageOil.setUrl("statistics/mileageOil.iframe");
+            menuMileageOil.setUrl("/statistics/mileageOilCount");
             menuMileageOil.setLeaf(true);
             menus.add(menuMileageOil);
             count++;
@@ -102,7 +109,7 @@ public class StatisticsController {
             menuVehicleAlarm.setId(ObjectId.next());
             menuVehicleAlarm.setPid(menuTeamOperationDataAnalysis.getId());
             menuVehicleAlarm.setText("车辆警情统计");
-            menuVehicleAlarm.setUrl("statistics/vehicleAlarm.iframe");
+            menuVehicleAlarm.setUrl("/statistics/vehicleAlarmCount");
             menuVehicleAlarm.setLeaf(true);
             menus.add(menuVehicleAlarm);
             count++;
@@ -122,7 +129,7 @@ public class StatisticsController {
             menuVehicleFatigueDriving.setId(ObjectId.next());
             menuVehicleFatigueDriving.setPid(menuDrivingBehaviorAnalysis.getId());
             menuVehicleFatigueDriving.setText("车辆疲劳驾驶");
-            menuVehicleFatigueDriving.setUrl("statistics/vehicleFatigueDriving.iframe");
+            menuVehicleFatigueDriving.setUrl("/statistics/vehicleFatigueDrivingCount");
             menuVehicleFatigueDriving.setLeaf(true);
             menus.add(menuVehicleFatigueDriving);
             count++;
@@ -133,7 +140,7 @@ public class StatisticsController {
             menuVehicleOverspeed.setId(ObjectId.next());
             menuVehicleOverspeed.setPid(menuDrivingBehaviorAnalysis.getId());
             menuVehicleOverspeed.setText("非区域超速统计");
-            menuVehicleOverspeed.setUrl("statistics/vehicleOverspeed.iframe");
+            menuVehicleOverspeed.setUrl("/statistics/vehicleOverspeedCount");
             menuVehicleOverspeed.setLeaf(true);
             menus.add(menuVehicleOverspeed);
             count++;
@@ -144,7 +151,7 @@ public class StatisticsController {
             menuSectionOverspeed.setId(ObjectId.next());
             menuSectionOverspeed.setPid(menuDrivingBehaviorAnalysis.getId());
             menuSectionOverspeed.setText("车辆路段超速");
-            menuSectionOverspeed.setUrl("statistics/sectionOverspeed.iframe");
+            menuSectionOverspeed.setUrl("/statistics/sectionOverspeedCount");
             menuSectionOverspeed.setLeaf(true);
             menus.add(menuSectionOverspeed);
             count++;
@@ -155,7 +162,7 @@ public class StatisticsController {
             menuAreaOverspeed.setId(ObjectId.next());
             menuAreaOverspeed.setPid(menuDrivingBehaviorAnalysis.getId());
             menuAreaOverspeed.setText("车辆区域超速");
-            menuAreaOverspeed.setUrl("statistics/areaOverspeed.iframe");
+            menuAreaOverspeed.setUrl("/statistics/areaOverspeedCount");
             menuAreaOverspeed.setLeaf(true);
             menus.add(menuAreaOverspeed);
             count++;
@@ -166,7 +173,7 @@ public class StatisticsController {
             menuTimeoutParking.setId(ObjectId.next());
             menuTimeoutParking.setPid(menuDrivingBehaviorAnalysis.getId());
             menuTimeoutParking.setText("车辆停车超时");
-            menuTimeoutParking.setUrl("statistics/timeoutParking.iframe");
+            menuTimeoutParking.setUrl("/statistics/timeoutParkingCount");
             menuTimeoutParking.setLeaf(true);
             menus.add(menuTimeoutParking);
             count++;
@@ -177,7 +184,7 @@ public class StatisticsController {
             menuRouteDeviation.setId(ObjectId.next());
             menuRouteDeviation.setPid(menuDrivingBehaviorAnalysis.getId());
             menuRouteDeviation.setText("路线偏离统计");
-            menuRouteDeviation.setUrl("statistics/routeDeviation.iframe");
+            menuRouteDeviation.setUrl("/statistics/routeDeviationCount");
             menuRouteDeviation.setLeaf(true);
             menus.add(menuRouteDeviation);
             count++;
@@ -188,7 +195,7 @@ public class StatisticsController {
             menuAreaIO.setId(ObjectId.next());
             menuAreaIO.setPid(menuDrivingBehaviorAnalysis.getId());
             menuAreaIO.setText("进出区域统计");
-            menuAreaIO.setUrl("statistics/areaIo.iframe");
+            menuAreaIO.setUrl("/statistics/areaIoCount");
             menuAreaIO.setLeaf(true);
             menus.add(menuAreaIO);
             count++;
@@ -208,7 +215,7 @@ public class StatisticsController {
             menuOperationLog.setId(ObjectId.next());
             menuOperationLog.setPid(menuLogs.getId());
             menuOperationLog.setText("操作日志");
-            menuOperationLog.setUrl("statistics/operateLog.iframe");
+            menuOperationLog.setUrl("/statistics/operateLog");
             menuOperationLog.setLeaf(true);
             menus.add(menuOperationLog);
             count++;
@@ -223,28 +230,26 @@ public class StatisticsController {
 
     @RequiresPermissions("statistics.historyOnlineOffline")
     @Log(name = "打开历史上线率统计页面")
-    @RequestMapping(value = "/statistics/historyOnlineOffline.iframe", method = RequestMethod.GET)
+    @GetMapping(value = "/statistics/historyOnlineOffline.iframe")
     public String historyVehicleOnlineIframe() {
         return "/statistics/team/historyOnlineOffline.iframe";
     }
 
-    @RequestMapping(value = "/statistics/historyOnlineOfflineCount", method = RequestMethod.POST)
+    @PostMapping(value = "/statistics/historyOnlineOfflineCount")
     @ResponseBody
-    public Object historyOnlineOfflineCount(@RequestParam String motorcade, @RequestParam Date start, @RequestParam
-            Date end, @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
+    public Object historyOnlineOfflineCount(@RequestParam String motorcade, @RequestParam Date start, @RequestParam Date end, @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        return statisticsService.historyOnlineOfflineCount(identity.getId(), motorcade, start, end, pageIndex,
-                pageSize);
+
+        Page<HistoryOnlineOfflineCount> page=  statisticsService.historyOnlineOfflineCount(identity.getId(), motorcade, start, end, pageIndex, pageSize);
+
+        return page;
+
     }
 
-    @RequestMapping(value = "/statistics/historyOnlineOfflineCountExport", method = RequestMethod.POST)
-    public ModelAndView historyOnlineOfflineCountExport(@RequestParam String motorcade, @RequestParam Date start,
-                                                        @RequestParam Date end, @RequestParam String type,
-                                                        HttpServletRequest request, HttpServletResponse response)
-            throws Exception {
+    @PostMapping(value = "/statistics/historyOnlineOfflineCountExport")
+    public ModelAndView historyOnlineOfflineCountExport(@RequestParam String motorcade, @RequestParam Date start, @RequestParam Date end, @RequestParam String type, HttpServletRequest request, HttpServletResponse response) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        List<HistoryOnlineOfflineCount> list = statisticsService.historyOnlineOfflineCount(identity.getId(),
-                motorcade, start, end);
+        List<HistoryOnlineOfflineCount> list = statisticsService.historyOnlineOfflineCount(identity.getId(), motorcade, start, end);
 
         Map<String, Object> map = new Hashtable<String, Object>();
         map.put("fileName", "HistoryOnlineOfflineCount");
@@ -267,7 +272,10 @@ public class StatisticsController {
             rows.add(row);
         }
         map.put("list", rows);
-        return this.export(type, map);
+        View view = type.equals("pdf") ? new PdfView() : new ExcelView();
+        ModelAndView modelAndView = new ModelAndView(view, map);
+        return modelAndView;
+//        return this.export(type, map);
         // if (type.equals("pdf")) {
         //     PdfView pdfView = new PdfView();
         //     return new ModelAndView(pdfView, map);
@@ -277,24 +285,17 @@ public class StatisticsController {
         // }
     }
 
-    @RequestMapping(value = "/statistics/historyOnlineOfflineDetail", method = RequestMethod.POST)
+    @PostMapping(value = "/statistics/historyOnlineOfflineDetail")
     @ResponseBody
-    public Object historyOnlineOfflineDetail(@RequestParam String motorcadeId, @RequestParam String motorcade,
-                                             @RequestParam Date start, @RequestParam Date end, @RequestParam int
-                                                         pageIndex, @RequestParam int pageSize, HttpServletRequest
-                                                         request) throws Exception {
+    public Object historyOnlineOfflineDetail(@RequestParam String motorcadeId, @RequestParam String motorcade, @RequestParam Date start, @RequestParam Date end, @RequestParam int pageIndex, @RequestParam int pageSize, HttpServletRequest request) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        return statisticsService.historyOnlineOfflineDetail(identity.getId(), motorcadeId, motorcade, start, end,
-                pageIndex, pageSize);
+        return statisticsService.historyOnlineOfflineDetail(identity.getId(), motorcadeId, motorcade, start, end, pageIndex, pageSize);
     }
 
-    @RequestMapping(value = "/statistics/historyOnlineOfflineDetailExport", method = RequestMethod.POST)
-    public ModelAndView historyOnlineOfflineDetailExport(@RequestParam String motorcadeId, @RequestParam String
-            motorcade, @RequestParam Date start, @RequestParam Date end, @RequestParam String type,
-                                                         HttpServletRequest request) throws Exception {
+    @PostMapping(value = "/statistics/historyOnlineOfflineDetailExport")
+    public ModelAndView historyOnlineOfflineDetailExport(@RequestParam String motorcadeId, @RequestParam String motorcade, @RequestParam Date start, @RequestParam Date end, @RequestParam String type, HttpServletRequest request) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        List<HistoryOnlineOfflineDetail> detail = statisticsService.historyOnlineOfflineDetail(identity.getId(),
-                motorcadeId, motorcade, start, end);
+        List<HistoryOnlineOfflineDetail> detail = statisticsService.historyOnlineOfflineDetail(identity.getId(), motorcadeId, motorcade, start, end);
         Map<String, Object> map = new Hashtable<String, Object>();
         map.put("fileName", "HistoryOnlineOfflineDetail");
         map.put("title", "车辆历史上线率明细");
@@ -333,19 +334,15 @@ public class StatisticsController {
 
     @RequestMapping(value = "/statistics/historyOnlineTimeCount", method = RequestMethod.POST)
     @ResponseBody
-    public Object historyOnlineTimeCount(@RequestParam String motorcade, @RequestParam Date start, @RequestParam Date
-            end, @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
+    public Object historyOnlineTimeCount(@RequestParam String motorcade, @RequestParam Date start, @RequestParam Date end, @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         return statisticsService.historyOnlineTimeCount(identity.getId(), motorcade, start, end, pageIndex, pageSize);
     }
 
     @RequestMapping(value = "/statistics/historyOnlineTimeCountExport", method = RequestMethod.POST)
-    public ModelAndView historyOnlineTimeCountExport(@RequestParam String motorcade, @RequestParam Date start,
-                                                     @RequestParam Date end, @RequestParam String type,
-                                                     HttpServletRequest request) throws Exception {
+    public ModelAndView historyOnlineTimeCountExport(@RequestParam String motorcade, @RequestParam Date start, @RequestParam Date end, @RequestParam String type, HttpServletRequest request) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        List<HistoryOnlineTimeCount> counts = statisticsService.historyOnlineTimeCount(identity.getId(), motorcade,
-                start, end);
+        List<HistoryOnlineTimeCount> counts = statisticsService.historyOnlineTimeCount(identity.getId(), motorcade, start, end);
         Map<String, Object> map = new Hashtable<String, Object>();
         map.put("fileName", "HistoryOnlineOfflineCount");
         map.put("title", "车辆历史在线率统计");
@@ -379,22 +376,15 @@ public class StatisticsController {
 
     @RequestMapping(value = "/statistics/historyOnlineTimeDetail", method = RequestMethod.POST)
     @ResponseBody
-    public Object historyOnlineTimeDetail(@RequestParam String motorcadeId, @RequestParam String motorcade,
-                                          @RequestParam Date start, @RequestParam Date end, @RequestParam int
-                                                      pageIndex, @RequestParam int pageSize, HttpServletRequest
-                                                      request) throws Exception {
+    public Object historyOnlineTimeDetail(@RequestParam String motorcadeId, @RequestParam String motorcade, @RequestParam Date start, @RequestParam Date end, @RequestParam int pageIndex, @RequestParam int pageSize, HttpServletRequest request) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        return statisticsService.historyOnlineTimeDetail(identity.getId(), motorcadeId, motorcade, start, end,
-                pageIndex, pageSize);
+        return statisticsService.historyOnlineTimeDetail(identity.getId(), motorcadeId, motorcade, start, end, pageIndex, pageSize);
     }
 
     @RequestMapping(value = "/statistics/historyOnlineTimeDetailExport", method = RequestMethod.POST)
-    public ModelAndView historyOnlineTimeDetailExport(@RequestParam String motorcadeId, @RequestParam String
-            motorcade, @RequestParam Date start, @RequestParam Date end, @RequestParam String type,
-                                                      HttpServletRequest request) throws Exception {
+    public ModelAndView historyOnlineTimeDetailExport(@RequestParam String motorcadeId, @RequestParam String motorcade, @RequestParam Date start, @RequestParam Date end, @RequestParam String type, HttpServletRequest request) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        List<HistoryOnlineTimeDetail> counts = statisticsService.historyOnlineTimeDetail(identity.getId(),
-                motorcadeId, motorcade, start, end);
+        List<HistoryOnlineTimeDetail> counts = statisticsService.historyOnlineTimeDetail(identity.getId(), motorcadeId, motorcade, start, end);
         Map<String, Object> map = new Hashtable<String, Object>();
         map.put("fileName", "HistoryOnlineTimeDetail");
         map.put("title", "车辆历史在线率明细");
@@ -437,18 +427,15 @@ public class StatisticsController {
 
     @PostMapping(value = "/statistics/currentOnlineOfflineCount")
     @ResponseBody
-    public Object currentOnlineOfflineCount(@RequestParam String motorcade, @RequestParam int pageIndex,
-                                            @RequestParam int pageSize) throws Exception {
+    public Object currentOnlineOfflineCount(@RequestParam String motorcade, @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         return statisticsService.currentOnlineOfflineCount(identity.getId(), motorcade, pageIndex, pageSize);
     }
 
     @PostMapping(value = "/statistics/currentOnlineOfflineCountExport")
-    public ModelAndView currentOnlineOfflineCountExport(@RequestParam String motorcade, @RequestParam String type)
-            throws Exception {
+    public ModelAndView currentOnlineOfflineCountExport(@RequestParam String motorcade, @RequestParam String type) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        List<CurrentOnlineOfflineCount> counts = statisticsService.currentOnlineOfflineCount(identity.getId(),
-                motorcade);
+        List<CurrentOnlineOfflineCount> counts = statisticsService.currentOnlineOfflineCount(identity.getId(), motorcade);
         Map<String, Object> map = new Hashtable<String, Object>();
         map.put("fileName", "CurrentOnlineOfflineCount");
         map.put("title", "车辆当前在线率统计");
@@ -481,20 +468,15 @@ public class StatisticsController {
 
     @PostMapping(value = "/statistics/currentOnlineOfflineDetail")
     @ResponseBody
-    public Object currentOnlineOfflineDetail(@RequestParam String motorcadeId, @RequestParam String motorcade,
-                                             @RequestParam int pageIndex, @RequestParam int pageSize,
-                                             HttpServletRequest request) throws Exception {
+    public Object currentOnlineOfflineDetail(@RequestParam String motorcadeId, @RequestParam String motorcade, @RequestParam int pageIndex, @RequestParam int pageSize, HttpServletRequest request) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        return statisticsService.currentOnlineOfflineDetail(identity.getId(), motorcadeId, motorcade, pageIndex,
-                pageSize);
+        return statisticsService.currentOnlineOfflineDetail(identity.getId(), motorcadeId, motorcade, pageIndex, pageSize);
     }
 
     @PostMapping(value = "/statistics/currentOnlineOfflineDetailExport")
-    public ModelAndView currentOnlineOfflineDetailExport(@RequestParam String motorcadeId, @RequestParam String
-            motorcade, @RequestParam String type) throws Exception {
+    public ModelAndView currentOnlineOfflineDetailExport(@RequestParam String motorcadeId, @RequestParam String motorcade, @RequestParam String type) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        List<CurrentOnlineOfflineDetail> counts = statisticsService.currentOnlineOfflineDetail(identity.getId(),
-                motorcadeId, motorcade);
+        List<CurrentOnlineOfflineDetail> counts = statisticsService.currentOnlineOfflineDetail(identity.getId(), motorcadeId, motorcade);
         Map<String, Object> map = new Hashtable<String, Object>();
         map.put("fileName", "CurrentOnlineOfflineDetail");
         map.put("title", "车辆当前在线率明细");
@@ -531,15 +513,13 @@ public class StatisticsController {
 
     @PostMapping(value = "/statistics/mileageOilCount")
     @ResponseBody
-    public Object mileageOilCount(@RequestParam String motorcade, @RequestParam int pageIndex, @RequestParam int
-            pageSize, @RequestParam Date start, @RequestParam Date end) throws Exception {
+    public Object mileageOilCount(@RequestParam String motorcade, @RequestParam int pageIndex, @RequestParam int pageSize, @RequestParam Date start, @RequestParam Date end) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         return statisticsService.mileageOilCount(identity.getId(), motorcade, start, end, pageIndex, pageSize);
     }
 
     @PostMapping(value = "/statistics/mileageOilCountExport")
-    public ModelAndView mileageOilCountExport(@RequestParam String motorcade, @RequestParam Date start, @RequestParam
-            Date end, @RequestParam String type) throws Exception {
+    public ModelAndView mileageOilCountExport(@RequestParam String motorcade, @RequestParam Date start, @RequestParam Date end, @RequestParam String type) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         List<MileageOilCount> counts = statisticsService.mileageOilCount(identity.getId(), motorcade, start, end);
         Map<String, Object> map = new Hashtable<String, Object>();
@@ -574,21 +554,15 @@ public class StatisticsController {
 
     @PostMapping(value = "/statistics/mileageOilDetail")
     @ResponseBody
-    public Object mileageOilDetail(@RequestParam String motorcadeId, @RequestParam String motorcade, @RequestParam
-            Date start, @RequestParam Date end, @RequestParam int pageIndex, @RequestParam int pageSize,
-                                   HttpServletRequest request) throws Exception {
+    public Object mileageOilDetail(@RequestParam String motorcadeId, @RequestParam String motorcade, @RequestParam Date start, @RequestParam Date end, @RequestParam int pageIndex, @RequestParam int pageSize, HttpServletRequest request) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        return statisticsService.mileageOilDetail(identity.getId(), motorcadeId, motorcade, start, end, pageIndex,
-                pageSize);
+        return statisticsService.mileageOilDetail(identity.getId(), motorcadeId, motorcade, start, end, pageIndex, pageSize);
     }
 
     @PostMapping(value = "/statistics/mileageOilDetailExport")
-    public ModelAndView mileageOilDetailExport(@RequestParam String motorcadeId, @RequestParam String motorcade,
-                                               @RequestParam Date start, @RequestParam Date end, @RequestParam String
-                                                           type) throws Exception {
+    public ModelAndView mileageOilDetailExport(@RequestParam String motorcadeId, @RequestParam String motorcade, @RequestParam Date start, @RequestParam Date end, @RequestParam String type) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        List<MileageOilDetail> details = statisticsService.mileageOilDetail(identity.getId(), motorcadeId, motorcade,
-                start, end);
+        List<MileageOilDetail> details = statisticsService.mileageOilDetail(identity.getId(), motorcadeId, motorcade, start, end);
         Map<String, Object> map = new Hashtable<String, Object>();
         map.put("fileName", "MileageOilDetail");
         map.put("title", "行驶里程及油耗明细");
@@ -629,23 +603,19 @@ public class StatisticsController {
 
     @PostMapping(value = "/statistics/vehicleAlarmCount")
     @ResponseBody
-    public Object vehicleAlarmCount(@RequestParam String motorcade, @RequestParam int pageIndex, @RequestParam int
-            pageSize, @RequestParam Date start, @RequestParam Date end) throws Exception {
+    public Object vehicleAlarmCount(@RequestParam String motorcade, @RequestParam int pageIndex, @RequestParam int pageSize, @RequestParam Date start, @RequestParam Date end) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         return statisticsService.vehicleAlarmCount(identity.getId(), motorcade, start, end, pageIndex, pageSize);
     }
 
     @PostMapping(value = "/statistics/vehicleAlarmCountExport")
-    public ModelAndView vehicleAlarmCountExport(@RequestParam String motorcade, @RequestParam Date start,
-                                                @RequestParam Date end, @RequestParam String type, HttpServletRequest
-                                                            request) throws Exception {
+    public ModelAndView vehicleAlarmCountExport(@RequestParam String motorcade, @RequestParam Date start, @RequestParam Date end, @RequestParam String type, HttpServletRequest request) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         List<VehicleAlarmCount> counts = statisticsService.vehicleAlarmCount(identity.getId(), motorcade, start, end);
         Map<String, Object> map = new Hashtable<String, Object>();
         map.put("fileName", "VehicleAlarmCount");
         map.put("title", "车辆警情统计");
-        map.put("headers", new String[]{"车队", "非区域超速次数", "区域内超速次数", "路段超速次数", "疲劳驾驶次数", "超时停车次数", "路线偏离次数", "开始时间",
-                "结束时间"});
+        map.put("headers", new String[]{"车队", "非区域超速次数", "区域内超速次数", "路段超速次数", "疲劳驾驶次数", "超时停车次数", "路线偏离次数", "开始时间", "结束时间"});
         map.put("widths", new float[]{20f, 10f, 10f, 10f, 10f, 10f, 10f, 10f, 10f});
         List<List<String>> rows = new ArrayList<List<String>>();
         for (VehicleAlarmCount count : counts) {
@@ -675,26 +645,19 @@ public class StatisticsController {
 
     @PostMapping(value = "/statistics/vehicleAlarmDetail")
     @ResponseBody
-    public Object vehicleAlarmDetail(@RequestParam String motorcadeId, @RequestParam String motorcade, @RequestParam
-            Date start, @RequestParam Date end, @RequestParam int pageIndex, @RequestParam int pageSize,
-                                     HttpServletRequest request) throws Exception {
+    public Object vehicleAlarmDetail(@RequestParam String motorcadeId, @RequestParam String motorcade, @RequestParam Date start, @RequestParam Date end, @RequestParam int pageIndex, @RequestParam int pageSize, HttpServletRequest request) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        return statisticsService.vehicleAlarmDetail(identity.getId(), motorcadeId, motorcade, start, end, pageIndex,
-                pageSize);
+        return statisticsService.vehicleAlarmDetail(identity.getId(), motorcadeId, motorcade, start, end, pageIndex, pageSize);
     }
 
     @PostMapping(value = "/statistics/vehicleAlarmDetailExport")
-    public ModelAndView vehicleAlarmDetailExport(@RequestParam String motorcadeId, @RequestParam String motorcade,
-                                                 @RequestParam Date start, @RequestParam Date end, @RequestParam
-                                                             String type) throws Exception {
+    public ModelAndView vehicleAlarmDetailExport(@RequestParam String motorcadeId, @RequestParam String motorcade, @RequestParam Date start, @RequestParam Date end, @RequestParam String type) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        List<VehicleAlarmDetail> details = statisticsService.vehicleAlarmDetail(identity.getId(), motorcadeId,
-                motorcade, start, end);
+        List<VehicleAlarmDetail> details = statisticsService.vehicleAlarmDetail(identity.getId(), motorcadeId, motorcade, start, end);
         Map<String, Object> map = new Hashtable<String, Object>();
         map.put("fileName", "VehicleAlarmDetail");
         map.put("title", "车辆警情明细");
-        map.put("headers", new String[]{"车队", "车牌号", "非区域超速次数", "区域内超速次数", "路段超速次数", "疲劳驾驶次数", "超时停车次数", "路线偏离次数",
-                "开始时间", "结束时间"});
+        map.put("headers", new String[]{"车队", "车牌号", "非区域超速次数", "区域内超速次数", "路段超速次数", "疲劳驾驶次数", "超时停车次数", "路线偏离次数", "开始时间", "结束时间"});
         map.put("widths", new float[]{10f, 10f, 10f, 10f, 10f, 10f, 10f, 10f, 10f, 10f});
         List<List<String>> rows = new ArrayList<List<String>>();
         for (VehicleAlarmDetail detail : details) {
@@ -733,21 +696,15 @@ public class StatisticsController {
 
     @PostMapping(value = "/statistics/vehicleFatigueDrivingCount")
     @ResponseBody
-    public Object vehicleFatigueDrivingCount(@RequestParam String motorcade, @RequestParam int pageIndex,
-                                             @RequestParam int pageSize, @RequestParam Date start, @RequestParam Date
-                                                         end) throws Exception {
+    public Object vehicleFatigueDrivingCount(@RequestParam String motorcade, @RequestParam int pageIndex, @RequestParam int pageSize, @RequestParam Date start, @RequestParam Date end) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        return statisticsService.vehicleFatigueDrivingCount(identity.getId(), motorcade, start, end, pageIndex,
-                pageSize);
+        return statisticsService.vehicleFatigueDrivingCount(identity.getId(), motorcade, start, end, pageIndex, pageSize);
     }
 
     @PostMapping(value = "/statistics/vehicleFatigueDrivingCountExport")
-    public ModelAndView vehicleFatigueDrivingCountExport(@RequestParam String motorcade, @RequestParam Date start,
-                                                         @RequestParam Date end, @RequestParam String type,
-                                                         HttpServletRequest request) throws Exception {
+    public ModelAndView vehicleFatigueDrivingCountExport(@RequestParam String motorcade, @RequestParam Date start, @RequestParam Date end, @RequestParam String type, HttpServletRequest request) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        List<VehicleFatigueDrivingCount> counts = statisticsService.vehicleFatigueDrivingCount(identity.getId(),
-                motorcade, start, end);
+        List<VehicleFatigueDrivingCount> counts = statisticsService.vehicleFatigueDrivingCount(identity.getId(), motorcade, start, end);
         Map<String, Object> map = new Hashtable<String, Object>();
         map.put("fileName", "VehicleFatigueDrivingCount");
         map.put("title", "车辆疲劳驾驶统计");
@@ -778,22 +735,15 @@ public class StatisticsController {
 
     @PostMapping(value = "/statistics/vehicleFatigueDrivingDetail")
     @ResponseBody
-    public Object vehicleFatigueDrivingDetail(@RequestParam String motorcadeId, @RequestParam String motorcade,
-                                              @RequestParam Date start, @RequestParam Date end, @RequestParam int
-                                                          pageIndex, @RequestParam int pageSize, HttpServletRequest
-                                                          request) throws Exception {
+    public Object vehicleFatigueDrivingDetail(@RequestParam String motorcadeId, @RequestParam String motorcade, @RequestParam Date start, @RequestParam Date end, @RequestParam int pageIndex, @RequestParam int pageSize, HttpServletRequest request) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        return statisticsService.vehicleFatigueDrivingDetail(identity.getId(), motorcadeId, motorcade, start, end,
-                pageIndex, pageSize);
+        return statisticsService.vehicleFatigueDrivingDetail(identity.getId(), motorcadeId, motorcade, start, end, pageIndex, pageSize);
     }
 
     @PostMapping(value = "/statistics/vehicleFatigueDrivingDetailExport")
-    public ModelAndView vehicleFatigueDrivingDetailExport(@RequestParam String motorcadeId, @RequestParam String
-            motorcade, @RequestParam Date start, @RequestParam Date end, @RequestParam String type,
-                                                          HttpServletRequest request) throws Exception {
+    public ModelAndView vehicleFatigueDrivingDetailExport(@RequestParam String motorcadeId, @RequestParam String motorcade, @RequestParam Date start, @RequestParam Date end, @RequestParam String type, HttpServletRequest request) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        List<VehicleFatigueDrivingDetail> details = statisticsService.vehicleFatigueDrivingDetail(identity.getId(),
-                motorcadeId, motorcade, start, end);
+        List<VehicleFatigueDrivingDetail> details = statisticsService.vehicleFatigueDrivingDetail(identity.getId(), motorcadeId, motorcade, start, end);
         Map<String, Object> map = new Hashtable<String, Object>();
         map.put("fileName", "VehicleFatigueDrivingDetail");
         map.put("title", "车辆疲劳驾驶明细");
@@ -833,19 +783,15 @@ public class StatisticsController {
 
     @PostMapping(value = "/statistics/vehicleOverspeedCount")
     @ResponseBody
-    public Object vehicleOverspeedCount(@RequestParam String motorcade, @RequestParam int pageIndex, @RequestParam
-            int pageSize, @RequestParam Date start, @RequestParam Date end) throws Exception {
+    public Object vehicleOverspeedCount(@RequestParam String motorcade, @RequestParam int pageIndex, @RequestParam int pageSize, @RequestParam Date start, @RequestParam Date end) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         return statisticsService.vehicleOverspeedCount(identity.getId(), motorcade, start, end, pageIndex, pageSize);
     }
 
     @PostMapping(value = "/statistics/vehicleOverspeedCountExport")
-    public ModelAndView vehicleOverspeedCountExport(@RequestParam String motorcade, @RequestParam Date start,
-                                                    @RequestParam Date end, @RequestParam String type,
-                                                    HttpServletRequest request) throws Exception {
+    public ModelAndView vehicleOverspeedCountExport(@RequestParam String motorcade, @RequestParam Date start, @RequestParam Date end, @RequestParam String type, HttpServletRequest request) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        List<VehicleOverspeedCount> counts = statisticsService.vehicleOverspeedCount(identity.getId(), motorcade,
-                start, end);
+        List<VehicleOverspeedCount> counts = statisticsService.vehicleOverspeedCount(identity.getId(), motorcade, start, end);
         Map<String, Object> map = new Hashtable<String, Object>();
         map.put("fileName", "VehicleOverspeedCount");
         map.put("title", "车辆非区域超速统计");
@@ -875,22 +821,15 @@ public class StatisticsController {
 
     @PostMapping(value = "/statistics/vehicleOverspeedDetail")
     @ResponseBody
-    public Object vehicleOverspeedDetail(@RequestParam String motorcadeId, @RequestParam String motorcade,
-                                         @RequestParam Date start, @RequestParam Date end, @RequestParam int
-                                                     pageIndex, @RequestParam int pageSize, HttpServletRequest
-                                                     request) throws Exception {
+    public Object vehicleOverspeedDetail(@RequestParam String motorcadeId, @RequestParam String motorcade, @RequestParam Date start, @RequestParam Date end, @RequestParam int pageIndex, @RequestParam int pageSize, HttpServletRequest request) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        return statisticsService.vehicleOverspeedDetail(identity.getId(), motorcadeId, motorcade, start, end,
-                pageIndex, pageSize);
+        return statisticsService.vehicleOverspeedDetail(identity.getId(), motorcadeId, motorcade, start, end, pageIndex, pageSize);
     }
 
     @PostMapping(value = "/statistics/vehicleOverspeedDetailExport")
-    public ModelAndView vehicleOverspeedDetailExport(@RequestParam String motorcadeId, @RequestParam String
-            motorcade, @RequestParam Date start, @RequestParam Date end, @RequestParam String type,
-                                                     HttpServletRequest request) throws Exception {
+    public ModelAndView vehicleOverspeedDetailExport(@RequestParam String motorcadeId, @RequestParam String motorcade, @RequestParam Date start, @RequestParam Date end, @RequestParam String type, HttpServletRequest request) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        List<VehicleOverspeedDetail> details = statisticsService.vehicleOverspeedDetail(identity.getId(),
-                motorcadeId, motorcade, start, end);
+        List<VehicleOverspeedDetail> details = statisticsService.vehicleOverspeedDetail(identity.getId(), motorcadeId, motorcade, start, end);
         Map<String, Object> map = new Hashtable<String, Object>();
         map.put("fileName", "VehicleOverspeedDetail");
         map.put("title", "车辆非区域超速明细");
@@ -929,19 +868,15 @@ public class StatisticsController {
 
     @PostMapping(value = "/statistics/sectionOverspeedCount")
     @ResponseBody
-    public Object sectionOverspeedCount(@RequestParam String motorcade, @RequestParam int pageIndex, @RequestParam
-            int pageSize, @RequestParam Date start, @RequestParam Date end) throws Exception {
+    public Object sectionOverspeedCount(@RequestParam String motorcade, @RequestParam int pageIndex, @RequestParam int pageSize, @RequestParam Date start, @RequestParam Date end) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         return statisticsService.sectionOverspeedCount(identity.getId(), motorcade, start, end, pageIndex, pageSize);
     }
 
     @PostMapping(value = "/statistics/sectionOverspeedCountExport")
-    public ModelAndView sectionOverspeedCountExport(@RequestParam String motorcade, @RequestParam Date start,
-                                                    @RequestParam Date end, @RequestParam String type,
-                                                    HttpServletRequest request) throws Exception {
+    public ModelAndView sectionOverspeedCountExport(@RequestParam String motorcade, @RequestParam Date start, @RequestParam Date end, @RequestParam String type, HttpServletRequest request) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        List<SectionOverspeedCount> counts = statisticsService.sectionOverspeedCount(identity.getId(), motorcade,
-                start, end);
+        List<SectionOverspeedCount> counts = statisticsService.sectionOverspeedCount(identity.getId(), motorcade, start, end);
         Map<String, Object> map = new Hashtable<String, Object>();
         map.put("fileName", "SectionOverspeedCount");
         map.put("title", "车辆路段超速统计");
@@ -971,22 +906,15 @@ public class StatisticsController {
 
     @PostMapping(value = "/statistics/sectionOverspeedDetail")
     @ResponseBody
-    public Object sectionOverspeedDetail(@RequestParam String motorcadeId, @RequestParam String motorcade,
-                                         @RequestParam Date start, @RequestParam Date end, @RequestParam int
-                                                     pageIndex, @RequestParam int pageSize, HttpServletRequest
-                                                     request) throws Exception {
+    public Object sectionOverspeedDetail(@RequestParam String motorcadeId, @RequestParam String motorcade, @RequestParam Date start, @RequestParam Date end, @RequestParam int pageIndex, @RequestParam int pageSize, HttpServletRequest request) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        return statisticsService.sectionOverspeedDetail(identity.getId(), motorcadeId, motorcade, start, end,
-                pageIndex, pageSize);
+        return statisticsService.sectionOverspeedDetail(identity.getId(), motorcadeId, motorcade, start, end, pageIndex, pageSize);
     }
 
     @PostMapping(value = "/statistics/sectionOverspeedDetailExport")
-    public ModelAndView sectionOverspeedDetailExport(@RequestParam String motorcadeId, @RequestParam String
-            motorcade, @RequestParam Date start, @RequestParam Date end, @RequestParam String type,
-                                                     HttpServletRequest request) throws Exception {
+    public ModelAndView sectionOverspeedDetailExport(@RequestParam String motorcadeId, @RequestParam String motorcade, @RequestParam Date start, @RequestParam Date end, @RequestParam String type, HttpServletRequest request) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        List<SectionOverspeedDetail> details = statisticsService.sectionOverspeedDetail(identity.getId(),
-                motorcadeId, motorcade, start, end);
+        List<SectionOverspeedDetail> details = statisticsService.sectionOverspeedDetail(identity.getId(), motorcadeId, motorcade, start, end);
         Map<String, Object> map = new Hashtable<String, Object>();
         map.put("fileName", "SectionOverspeedDetail");
         map.put("title", "车辆路段超速明细");
@@ -1025,15 +953,13 @@ public class StatisticsController {
 
     @PostMapping(value = "/statistics/areaOverspeedCount")
     @ResponseBody
-    public Object areaOverspeedCount(@RequestParam String motorcade, @RequestParam int pageIndex, @RequestParam int
-            pageSize, @RequestParam Date start, @RequestParam Date end) throws Exception {
+    public Object areaOverspeedCount(@RequestParam String motorcade, @RequestParam int pageIndex, @RequestParam int pageSize, @RequestParam Date start, @RequestParam Date end) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         return statisticsService.areaOverspeedCount(identity.getId(), motorcade, start, end, pageIndex, pageSize);
     }
 
     @PostMapping(value = "/statistics/areaOverspeedCountExport")
-    public ModelAndView areaOverspeedCountExport(@RequestParam String motorcade, @RequestParam Date start,
-                                                 @RequestParam Date end, @RequestParam String type) throws Exception {
+    public ModelAndView areaOverspeedCountExport(@RequestParam String motorcade, @RequestParam Date start, @RequestParam Date end, @RequestParam String type) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         List<AreaOverspeedCount> counts = statisticsService.areaOverspeedCount(identity.getId(), motorcade, start, end);
         Map<String, Object> map = new Hashtable<String, Object>();
@@ -1065,21 +991,15 @@ public class StatisticsController {
 
     @PostMapping(value = "/statistics/areaOverspeedDetail")
     @ResponseBody
-    public Object areaOverspeedDetail(@RequestParam String motorcadeId, @RequestParam String motorcade, @RequestParam
-            Date start, @RequestParam Date end, @RequestParam int pageIndex, @RequestParam int pageSize,
-                                      HttpServletRequest request) throws Exception {
+    public Object areaOverspeedDetail(@RequestParam String motorcadeId, @RequestParam String motorcade, @RequestParam Date start, @RequestParam Date end, @RequestParam int pageIndex, @RequestParam int pageSize, HttpServletRequest request) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        return statisticsService.areaOverspeedDetail(identity.getId(), motorcadeId, motorcade, start, end, pageIndex,
-                pageSize);
+        return statisticsService.areaOverspeedDetail(identity.getId(), motorcadeId, motorcade, start, end, pageIndex, pageSize);
     }
 
     @PostMapping(value = "/statistics/areaOverspeedDetailExport")
-    public ModelAndView areaOverspeedDetailExport(@RequestParam String motorcadeId, @RequestParam String motorcade,
-                                                  @RequestParam Date start, @RequestParam Date end, @RequestParam
-                                                              String type) throws Exception {
+    public ModelAndView areaOverspeedDetailExport(@RequestParam String motorcadeId, @RequestParam String motorcade, @RequestParam Date start, @RequestParam Date end, @RequestParam String type) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        List<AreaOverspeedDetail> details = statisticsService.areaOverspeedDetail(identity.getId(), motorcadeId,
-                motorcade, start, end);
+        List<AreaOverspeedDetail> details = statisticsService.areaOverspeedDetail(identity.getId(), motorcadeId, motorcade, start, end);
         Map<String, Object> map = new Hashtable<String, Object>();
         map.put("fileName", "SectionOverspeedDetail");
         map.put("title", "车辆区域超速明细");
@@ -1118,19 +1038,15 @@ public class StatisticsController {
 
     @RequestMapping(value = "/statistics/timeoutParkingCount", method = RequestMethod.POST)
     @ResponseBody
-    public Object timeoutParkingCount(@RequestParam String motorcade, @RequestParam int pageIndex, @RequestParam int
-            pageSize, @RequestParam Date start, @RequestParam Date end) throws Exception {
+    public Object timeoutParkingCount(@RequestParam String motorcade, @RequestParam int pageIndex, @RequestParam int pageSize, @RequestParam Date start, @RequestParam Date end) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         return statisticsService.timeoutParkingCount(identity.getId(), motorcade, start, end, pageIndex, pageSize);
     }
 
     @PostMapping(value = "/statistics/timeoutParkingCountExport")
-    public ModelAndView timeoutParkingCountExport(@RequestParam String motorcade, @RequestParam Date start,
-                                                  @RequestParam Date end, @RequestParam String type,
-                                                  HttpServletRequest request) throws Exception {
+    public ModelAndView timeoutParkingCountExport(@RequestParam String motorcade, @RequestParam Date start, @RequestParam Date end, @RequestParam String type, HttpServletRequest request) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        List<TimeoutParkingCount> counts = statisticsService.timeoutParkingCount(identity.getId(), motorcade, start,
-                end);
+        List<TimeoutParkingCount> counts = statisticsService.timeoutParkingCount(identity.getId(), motorcade, start, end);
         Map<String, Object> map = new Hashtable<String, Object>();
         map.put("fileName", "TimeoutParkingCount");
         map.put("title", "车辆停车超时统计");
@@ -1160,21 +1076,15 @@ public class StatisticsController {
 
     @PostMapping(value = "/statistics/timeoutParkingDetail")
     @ResponseBody
-    public Object timeoutParkingDetail(@RequestParam String motorcadeId, @RequestParam String motorcade,
-                                       @RequestParam Date start, @RequestParam Date end, @RequestParam int pageIndex,
-                                       @RequestParam int pageSize) throws Exception {
+    public Object timeoutParkingDetail(@RequestParam String motorcadeId, @RequestParam String motorcade, @RequestParam Date start, @RequestParam Date end, @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        return statisticsService.timeoutParkingDetail(identity.getId(), motorcadeId, motorcade, start, end,
-                pageIndex, pageSize);
+        return statisticsService.timeoutParkingDetail(identity.getId(), motorcadeId, motorcade, start, end, pageIndex, pageSize);
     }
 
     @PostMapping(value = "/statistics/timeoutParkingDetailExport")
-    public ModelAndView timeoutParkingDetailExport(@RequestParam String motorcadeId, @RequestParam String motorcade,
-                                                   @RequestParam Date start, @RequestParam Date end, @RequestParam
-                                                               String type) throws Exception {
+    public ModelAndView timeoutParkingDetailExport(@RequestParam String motorcadeId, @RequestParam String motorcade, @RequestParam Date start, @RequestParam Date end, @RequestParam String type) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        List<TimeoutParkingDetail> details = statisticsService.timeoutParkingDetail(identity.getId(), motorcadeId,
-                motorcade, start, end);
+        List<TimeoutParkingDetail> details = statisticsService.timeoutParkingDetail(identity.getId(), motorcadeId, motorcade, start, end);
         Map<String, Object> map = new Hashtable<String, Object>();
         map.put("fileName", "TimeoutParkingDetail");
         map.put("title", "车辆停车超时明细");
@@ -1213,18 +1123,15 @@ public class StatisticsController {
 
     @PostMapping(value = "/statistics/routeDeviationCount")
     @ResponseBody
-    public Object routeDeviationCount(@RequestParam String motorcade, @RequestParam int pageIndex, @RequestParam int
-            pageSize, @RequestParam Date start, @RequestParam Date end) throws Exception {
+    public Object routeDeviationCount(@RequestParam String motorcade, @RequestParam int pageIndex, @RequestParam int pageSize, @RequestParam Date start, @RequestParam Date end) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         return statisticsService.routeDeviationCount(identity.getId(), motorcade, start, end, pageIndex, pageSize);
     }
 
     @PostMapping(value = "/statistics/routeDeviationCountExport")
-    public ModelAndView routeDeviationCountExport(@RequestParam String motorcade, @RequestParam Date start,
-                                                  @RequestParam Date end, @RequestParam String type) throws Exception {
+    public ModelAndView routeDeviationCountExport(@RequestParam String motorcade, @RequestParam Date start, @RequestParam Date end, @RequestParam String type) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        List<RouteDeviationCount> counts = statisticsService.routeDeviationCount(identity.getId(), motorcade, start,
-                end);
+        List<RouteDeviationCount> counts = statisticsService.routeDeviationCount(identity.getId(), motorcade, start, end);
         Map<String, Object> map = new Hashtable<String, Object>();
         map.put("fileName", "RouteDeviationCount");
         map.put("title", "车辆路线偏离统计");
@@ -1254,21 +1161,15 @@ public class StatisticsController {
 
     @PostMapping(value = "/statistics/routeDeviationDetail")
     @ResponseBody
-    public Object routeDeviationDetail(@RequestParam String motorcadeId, @RequestParam String motorcade,
-                                       @RequestParam Date start, @RequestParam Date end, @RequestParam int pageIndex,
-                                       @RequestParam int pageSize) throws Exception {
+    public Object routeDeviationDetail(@RequestParam String motorcadeId, @RequestParam String motorcade, @RequestParam Date start, @RequestParam Date end, @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        return statisticsService.routeDeviationDetail(identity.getId(), motorcadeId, motorcade, start, end,
-                pageIndex, pageSize);
+        return statisticsService.routeDeviationDetail(identity.getId(), motorcadeId, motorcade, start, end, pageIndex, pageSize);
     }
 
     @PostMapping(value = "/statistics/routeDeviationDetailExport")
-    public ModelAndView routeDeviationDetailExport(@RequestParam String motorcadeId, @RequestParam String motorcade,
-                                                   @RequestParam Date start, @RequestParam Date end, @RequestParam
-                                                               String type) throws Exception {
+    public ModelAndView routeDeviationDetailExport(@RequestParam String motorcadeId, @RequestParam String motorcade, @RequestParam Date start, @RequestParam Date end, @RequestParam String type) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        List<RouteDeviationDetail> details = statisticsService.routeDeviationDetail(identity.getId(), motorcadeId,
-                motorcade, start, end);
+        List<RouteDeviationDetail> details = statisticsService.routeDeviationDetail(identity.getId(), motorcadeId, motorcade, start, end);
         Map<String, Object> map = new Hashtable<String, Object>();
         map.put("fileName", "RouteDeviationDetail");
         map.put("title", "车辆路线偏离明细");
@@ -1307,15 +1208,13 @@ public class StatisticsController {
 
     @PostMapping(value = "/statistics/areaIoCount")
     @ResponseBody
-    public Object areaIoCount(@RequestParam String motorcade, @RequestParam int pageIndex, @RequestParam int
-            pageSize, @RequestParam Date start, @RequestParam Date end) throws Exception {
+    public Object areaIoCount(@RequestParam String motorcade, @RequestParam int pageIndex, @RequestParam int pageSize, @RequestParam Date start, @RequestParam Date end) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         return statisticsService.areaIoCount(identity.getId(), motorcade, start, end, pageIndex, pageSize);
     }
 
     @PostMapping(value = "/statistics/areaIoCountExport")
-    public ModelAndView areaIoCountExport(@RequestParam String motorcade, @RequestParam Date start, @RequestParam
-            Date end, @RequestParam String type) throws Exception {
+    public ModelAndView areaIoCountExport(@RequestParam String motorcade, @RequestParam Date start, @RequestParam Date end, @RequestParam String type) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         List<AreaIoCount> counts = statisticsService.areaIoCount(identity.getId(), motorcade, start, end);
         Map<String, Object> map = new Hashtable<String, Object>();
@@ -1347,21 +1246,15 @@ public class StatisticsController {
 
     @RequestMapping(value = "/statistics/areaIoDetail", method = RequestMethod.POST)
     @ResponseBody
-    public Object areaIoDetail(@RequestParam String motorcadeId, @RequestParam String motorcade, @RequestParam Date
-            start, @RequestParam Date end, @RequestParam int pageIndex, @RequestParam int pageSize,
-                               HttpServletRequest request) throws Exception {
+    public Object areaIoDetail(@RequestParam String motorcadeId, @RequestParam String motorcade, @RequestParam Date start, @RequestParam Date end, @RequestParam int pageIndex, @RequestParam int pageSize, HttpServletRequest request) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        return statisticsService.areaIoDetail(identity.getId(), motorcadeId, motorcade, start, end, pageIndex,
-                pageSize);
+        return statisticsService.areaIoDetail(identity.getId(), motorcadeId, motorcade, start, end, pageIndex, pageSize);
     }
 
     @RequestMapping(value = "/statistics/areaIoDetailExport", method = RequestMethod.POST)
-    public ModelAndView areaIoDetailExport(@RequestParam String motorcadeId, @RequestParam String motorcade,
-                                           @RequestParam Date start, @RequestParam Date end, @RequestParam String
-                                                       type) throws Exception {
+    public ModelAndView areaIoDetailExport(@RequestParam String motorcadeId, @RequestParam String motorcade, @RequestParam Date start, @RequestParam Date end, @RequestParam String type) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        List<AreaIoDetail> details = statisticsService.areaIoDetail(identity.getId(), motorcadeId, motorcade, start,
-                end);
+        List<AreaIoDetail> details = statisticsService.areaIoDetail(identity.getId(), motorcadeId, motorcade, start, end);
         Map<String, Object> map = new Hashtable<String, Object>();
         map.put("fileName", "AreaIoDetail");
         map.put("title", "车辆进出区域明细");
@@ -1412,15 +1305,13 @@ public class StatisticsController {
 
     @PostMapping(value = "/statistics/operateLog")
     @ResponseBody
-    public Object operateLog(@RequestParam String user, @RequestParam int pageIndex, @RequestParam int pageSize,
-                             @RequestParam Date start, @RequestParam Date end) throws Exception {
+    public Object operateLog(@RequestParam String user, @RequestParam int pageIndex, @RequestParam int pageSize, @RequestParam Date start, @RequestParam Date end) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         return statisticsService.operateLog(identity.getCompanyId(), user, start, end, pageIndex, pageSize);
     }
 
     @PostMapping(value = "/statistics/operateLogExport")
-    public ModelAndView operateLogExport(@RequestParam String user, @RequestParam Date start, @RequestParam Date end,
-                                         @RequestParam String type) throws Exception {
+    public ModelAndView operateLogExport(@RequestParam String user, @RequestParam Date start, @RequestParam Date end, @RequestParam String type) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         List<OperateLog> details = statisticsService.operateAllLog(identity.getCompanyId(), user, start, end);
         Map<String, Object> map = new Hashtable<String, Object>();
