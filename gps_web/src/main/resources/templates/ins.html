@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>mmp</title>
+
+    <link th:href="@{/static/lib/layui/css/layui.css}"
+          rel="stylesheet" type="text/css"/>
+    <style>
+
+
+        ::-webkit-scrollbar {
+            width: 14px;
+            height: 8px;
+            background-color: transparent;
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, .1);
+        }
+
+
+    </style>
+</head>
+
+<body>
+
+
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script th:src="@{/static/baseinfo/ins.js}"></script>
+<script th:src="@{/static/lib/layui/layui.all.js}"></script>
+<script>
+    $(function () {
+        instruct.showFeatures(120187322661);
+
+        // instruct.showFeatures(13311012700);
+
+    })
+
+</script>
+
+<script type="text/html" id="instructDetailsBar">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="det">详情</a>
+</script>
+</html>
