@@ -1,6 +1,6 @@
 .layui-form-select dl dd.layui-this {
     background-color: #0488d1;
-    color: #fff;
+    color: #fff!important;
 }
 .layui-laydate-footer span:hover {
     color: #0488d1 !important;

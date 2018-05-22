@@ -1045,7 +1045,7 @@ $(function () {
         },
 
         play: function () {
-
+            
             if (replay.tracks && replay.tracks.length <= 0)
                 return;
             if (replay.playtracks && replay.playtracks.length <= 0) {
@@ -1058,8 +1058,9 @@ $(function () {
 
             function move() {
                 clearTimeout(replay.timer);
-                if (replay.playStatus !== 'play')
+                if (replay.playStatus !== 'play'){
                     return;
+                }
                 if (me.index >= replay.playtracks.length) {
                     replay.playing();
                     console.log("sjl");
@@ -1068,6 +1069,9 @@ $(function () {
                     $("#driving_li").find(".iplay").removeClass("playing");
                     $("#driving_li").find(".iplay").attr("src", "./static/image/replay/click_bo.png");
                     replay.index = 0;
+                    // $("#dmMiddle").animate({"scrollTop": "0px"},1);
+                    // $(document).off("animate");
+                    $("#dmMiddle").stop(true);
                     return;
                 }
                 var marker = replay.vehicleMarker;
@@ -1100,11 +1104,10 @@ $(function () {
                 var count = me.index % replay.pagelength;
                 $("#map_list > tr:nth-child(" + count + ")").css("backgroundColor", "");
                 $("#map_list > tr:nth-child(" + (count + 1) + ")").css("backgroundColor", "#ffe8e0");
-                $("#dmMiddle").animate({"scrollTop": 14 * count});
-
+                $("#dmMiddle").animate({"scrollTop": 14 * count+'px'});
                 me.index++;
 
-                console.log("me.index % replay.pagelength" + me.index % replay.pagelength);
+                console.log("me.index % replay.pagelength" + me.index % replay.pagelength + "me.index:"+me.index+"replay.pagelength:"+replay.pagelength);
                 //  翻页
                 if (me.index % replay.pagelength == 0) {
 
@@ -1120,10 +1123,11 @@ $(function () {
             }
 
             replay.timer = setTimeout(move, replay.playAccelerate);
+
         },
 
 
-        playing: function () {
+        playing: function () {//进度条
             if (replay.index <= replay.playtracks.length) {
                 var ratio = replay.index / replay.playtracks.length;
 
@@ -1201,16 +1205,16 @@ $(function () {
 
 
         $(".dl_info ul").delegate("li", "click", function () {
-            var flag1 = $(this).css("height") == 170 + 'px';
-            var temp1 = $(this).css("height") == 210 + 'px';
+            var flag1 = $(this).css("height") == 200 + 'px';
+            var temp1 = $(this).css("height") == 245 + 'px';
             if (flag1) {
-                $(this).css("height", "210px").css("backgroundColor", "#ffe8e0").siblings("li").css("height", "170px").css("backgroundColor", "#f1f1f1");
+                $(this).css("height", "245px").css("backgroundColor", "#ffe8e0").siblings("li").css("height", "200px").css("backgroundColor", "#f1f1f1");
                 $(this).children(".drivingPro").css("display", "block");
                 $(this).siblings("li").children(".drivingPro").css("display", "none");
                 $(this).children(".drivingTime").css("display", "block");
                 $(this).siblings("li").children(".drivingTime").css("display", "none");
             } else if (temp1) {
-                $(this).css("height", "170px").css("backgroundColor", "#f1f1f1");
+                $(this).css("height", "200px").css("backgroundColor", "#f1f1f1");
                 $(this).children(".drivingPro").css("display", "none");
                 $(this).children(".drivingTime").css("display", "none");
             }

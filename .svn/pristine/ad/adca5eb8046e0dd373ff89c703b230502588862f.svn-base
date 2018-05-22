@@ -1,0 +1,913 @@
+.iplay {
+  position: relative;
+  left: 6px;
+  top: -3px;
+}
+
+img.deceleration, img.accelerate, span.speed {
+  position: relative;
+  left: 5px;
+  top: -2px;
+}
+
+.fuckP {
+  text-align: center;
+  background: #fff;
+  width: 55px;
+  height: 20px;
+  border: none
+}
+
+
+
+.driving_list {
+  width: 20%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.driving_list .dl_header {
+  width: 100%;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+}
+
+.driving_list .dl_header .dlh_b {
+  color: #fff;
+  background-color: #0488d1;
+}
+
+.driving_list .dl_header span {
+  width: 100%;
+  float: left;
+  background-color: #fff;
+}
+
+.driving_list .dis_dl {
+  display: none;
+}
+
+.driving_list .dla_all .dl_search_up {
+  width: 100%;
+  height: 25px;
+}
+
+.driving_list .dla_all .dl_search_up #cm_card {
+  width: 40%;
+  height: 25px;
+  line-height: 25px;
+  background-color: #fff;
+  color: #666;
+  position: relative;
+}
+
+.driving_list .dla_all .dl_search_up #cm_card input {
+  width: 100%;
+  height: 25px;
+  border: 1px solid #b7b7b7;
+  box-sizing: border-box;
+  border-radius: 6px;
+  color: #666;
+}
+
+.driving_list .dla_all .dl_search_up #cm_card #cm_cardwarper {
+  background-color: #fff;
+}
+
+.driving_list .dla_all .dl_search_up #cm_card #cm_cardwarper #pop {
+  border: 1px solid #0488d1;
+  padding: 0px;
+  position: absolute;
+  background-color: #fff;
+  z-index: 10;
+}
+
+.driving_list .dla_all .dl_search_up #cm_card #cm_cardwarper #pop ul {
+  list-style-type: none;
+  margin: 5px;
+  padding: 0px;
+}
+
+.driving_list .dla_all .dl_search_up .sl_day {
+  width: 40%;
+  height: 25px;
+}
+
+.driving_list .dla_all .dl_search_up .sl_day .layui-form-select .layui-input {
+  padding-right: 0px;
+  padding-left: 3px;
+  height: 25px;
+  color: #666;
+  background-color: #fff;
+}
+
+.driving_list .dla_all .dl_search_up .sl_day .layui-form-select .layui-edge {
+  right: 1px;
+  border-width: 5px;
+}
+
+.driving_list .dla_all .dl_search_up .sl_day .layui-form-select dl {
+  top: 25px;
+}
+
+.driving_list .dla_all .dl_search_up .sl_day .layui-anim {
+  width: 70px;
+  color: #000;
+}
+
+.driving_list .dla_all .dl_search_up .dl_cd {
+  width: 20%;
+  height: 25px;
+}
+
+.driving_list .dla_all .dl_search_up .dl_cd button {
+  background-color: #0488d1;
+  width: 100%;
+  height: 25px;
+}
+
+.driving_list .dla_all .dl_search_down {
+  width: 100%;
+  height: 25px;
+}
+
+.driving_list .dla_all .dl_search_down .start_date {
+  width: 48%;
+  height: 25px;
+  background-color: green;
+}
+
+.driving_list .dla_all .dl_search_down .start_date .layui-input {
+  height: 25px;
+  color: #666;
+}
+
+.driving_list .dla_all .dl_search_down .end_date {
+  width: 48%;
+  height: 25px;
+  background-color: pink;
+}
+
+.driving_list .dla_all .dl_search_down .end_date .layui-input {
+  height: 25px;
+  color: #666;
+}
+
+.driving_list .dla_all .dl_way {
+  height: 20px;
+  line-height: 20px;
+  color: #000;
+  padding-left: 3px;
+}
+
+.driving_list .dla_all .dl_select {
+  width: 100%;
+  height: 25px;
+  line-height: 25px;
+  color: #000;
+  text-align: center;
+}
+
+.driving_list .dla_all .dl_select span {
+  width: 15%;
+  border: 1px solid #b7b7b7;
+  box-sizing: border-box;
+  border-radius: 6px;
+  margin-left: 3px;
+}
+
+.driving_list .dla_all .dl_select .dl_s {
+  color: #fff;
+  background-color: #0488d1;
+}
+
+.driving_list .dla_all .dl_info {
+  height: 432px;
+  width: 100%;
+  overflow: scroll;
+}
+
+.driving_list .dla_all .dl_info .dli {
+  display: none;
+}
+
+.driving_list .dla_all .dl_info .driving_all ul {
+  width: 100%;
+}
+
+.driving_list .dla_all .dl_info .driving_all ul li {
+  width: 98%;
+  margin: auto 1%;
+  margin-top: 10px;
+  height: 200px;
+  background-color: #f1f1f1;
+  border: 1px solid #d6d5d5;
+  color: #666;
+  border-radius: 5px;
+  position: relative;
+}
+
+.driving_list .dla_all .dl_info .driving_all ul li .stTime {
+  width: 100%;
+  height: 20px;
+  line-height: 20px;
+  padding-left: 15px;
+  position: relative;
+}
+
+.driving_list .dla_all .dl_info .driving_all ul li .stTime::before {
+  content: '';
+  background: url(../../dc_file/image/qidong.png) no-repeat;
+  background-size: contain;
+  width: 13px;
+  height: 13px;
+  position: absolute;
+  left: 2px;
+  top: 2px;
+}
+
+.driving_list .dla_all .dl_info .driving_all ul li .stAdd {
+  text-align: center;
+}
+
+.driving_list .dla_all .dl_info .driving_all ul li .edTime {
+  width: 100%;
+  height: 20px;
+  line-height: 20px;
+  padding-left: 15px;
+  position: relative;
+}
+
+.driving_list .dla_all .dl_info .driving_all ul li .edTime::before {
+  content: '';
+  background: url(../../dc_file/image/zhongdian.png) no-repeat;
+  background-size: contain;
+  width: 13px;
+  height: 13px;
+  position: absolute;
+  left: 2px;
+  top: 2px;
+}
+
+.driving_list .dla_all .dl_info .driving_all ul li .edAdd {
+  text-align: center;
+}
+
+.driving_list .dla_all .dl_info .driving_all ul li .dataList {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  top: 137px;
+}
+
+.driving_list .dla_all .dl_info .driving_all ul li .dataList table {
+  width: 100%;
+}
+
+.driving_list .dla_all .dl_info .driving_all ul li .drivingPro {
+  width: 100%;
+  height: 15px;
+  line-height: 15px;
+  margin-top: 10px;
+  position: absolute;
+  bottom: 23px;
+}
+
+.driving_list .dla_all .dl_info .driving_all ul li .drivingPro span {
+  float: left;
+}
+
+.driving_list .dla_all .dl_info .driving_all ul li .drivingPro span:nth-child(1) {
+  width: 10%;
+}
+
+.driving_list .dla_all .dl_info .driving_all ul li .drivingPro span:nth-child(1) img {
+  background-size: contain;
+  width: 15px;
+  height: 15px;
+}
+
+.driving_list .dla_all .dl_info .driving_all ul li .drivingPro span:nth-child(2) {
+  width: 60%;
+}
+
+.driving_list .dla_all .dl_info .driving_all ul li .drivingPro span:nth-child(3) {
+  width: 10%;
+}
+
+.driving_list .dla_all .dl_info .driving_all ul li .drivingPro span:nth-child(3) img {
+  background-size: contain;
+  width: 15px;
+  height: 10px;
+}
+
+.driving_list .dla_all .dl_info .driving_all ul li .drivingPro span:nth-child(4) {
+  width: 10%;
+}
+
+.driving_list .dla_all .dl_info .driving_all ul li .drivingPro span:nth-child(4) img {
+  background-size: contain;
+  width: 15px;
+  height: 10px;
+}
+
+.driving_list .dla_all .dl_info .driving_all ul li .drivingPro span:nth-child(5) {
+  width: 10%;
+}
+
+.driving_list .dla_all .dl_info .driving_all ul li .drivingTime {
+  width: 100%;
+  height: 15px;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.driving_list .dla_all .dl_info .driving_dis ul {
+  width: 100%;
+}
+
+.driving_list .dla_all .dl_info .driving_dis ul li {
+  width: 98%;
+  margin: auto 1%;
+  margin-top: 10px;
+  height: 200px;
+  background-color: #f1f1f1;
+  border: 1px solid #d6d5d5;
+  color: #666;
+  border-radius: 5px;
+  position: relative;
+}
+
+.driving_list .dla_all .dl_info .driving_dis ul li .stTime {
+  width: 100%;
+  height: 20px;
+  line-height: 20px;
+  padding-left: 15px;
+  position: relative;
+}
+
+.driving_list .dla_all .dl_info .driving_dis ul li .stTime::before {
+  content: '';
+  background: url(../../dc_file/image/qidong.png) no-repeat;
+  background-size: contain;
+  width: 13px;
+  height: 13px;
+  position: absolute;
+  left: 2px;
+  top: 2px;
+}
+
+.driving_list .dla_all .dl_info .driving_dis ul li .stAdd {
+  text-align: center;
+}
+
+.driving_list .dla_all .dl_info .driving_dis ul li .edTime {
+  width: 100%;
+  height: 20px;
+  line-height: 20px;
+  padding-left: 15px;
+  position: relative;
+}
+
+.driving_list .dla_all .dl_info .driving_dis ul li .edTime::before {
+  content: '';
+  background: url(../../dc_file/image/zhongdian.png) no-repeat;
+  background-size: contain;
+  width: 13px;
+  height: 13px;
+  position: absolute;
+  left: 2px;
+  top: 2px;
+}
+
+.driving_list .dla_all .dl_info .driving_dis ul li .edAdd {
+  text-align: center;
+}
+
+.driving_list .dla_all .dl_info .driving_dis ul li .dataList {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  top: 137px;
+}
+
+.driving_list .dla_all .dl_info .driving_dis ul li .dataList table {
+  width: 100%;
+}
+
+.driving_list .dla_all .dl_info .driving_dis ul li .drivingPro {
+  width: 100%;
+  height: 15px;
+  line-height: 15px;
+  margin-top: 10px;
+  position: absolute;
+  bottom: 23px;
+}
+
+.driving_list .dla_all .dl_info .driving_dis ul li .drivingPro span {
+  float: left;
+}
+
+.driving_list .dla_all .dl_info .driving_dis ul li .drivingPro span:nth-child(1) {
+  width: 10%;
+}
+
+.driving_list .dla_all .dl_info .driving_dis ul li .drivingPro span:nth-child(1) img {
+  background-size: contain;
+  width: 15px;
+  height: 15px;
+}
+
+.driving_list .dla_all .dl_info .driving_dis ul li .drivingPro span:nth-child(2) {
+  width: 60%;
+}
+
+.driving_list .dla_all .dl_info .driving_dis ul li .drivingPro span:nth-child(3) {
+  width: 10%;
+}
+
+.driving_list .dla_all .dl_info .driving_dis ul li .drivingPro span:nth-child(3) img {
+  background-size: contain;
+  width: 15px;
+  height: 10px;
+}
+
+.driving_list .dla_all .dl_info .driving_dis ul li .drivingPro span:nth-child(4) {
+  width: 10%;
+}
+
+.driving_list .dla_all .dl_info .driving_dis ul li .drivingPro span:nth-child(4) img {
+  background-size: contain;
+  width: 15px;
+  height: 10px;
+}
+
+.driving_list .dla_all .dl_info .driving_dis ul li .drivingPro span:nth-child(5) {
+  width: 10%;
+}
+
+.driving_list .dla_all .dl_info .driving_dis ul li .drivingTime {
+  width: 100%;
+  height: 15px;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.driving_list .dla_all .dl_info .driving_stop {
+  width: 100%;
+  background-color: #f1f1f1;
+}
+
+.driving_list .dla_all .dl_info .driving_warn ul {
+  width: 100%;
+}
+
+.driving_list .dla_all .dl_info .driving_warn ul li {
+  width: 98%;
+  margin: auto 1%;
+  margin-top: 10px;
+  height: 200px;
+  background-color: #f1f1f1;
+  border: 1px solid #d6d5d5;
+  color: #666;
+  border-radius: 5px;
+  position: relative;
+}
+
+.driving_list .dla_all .dl_info .driving_warn ul li .stTime {
+  width: 100%;
+  height: 20px;
+  line-height: 20px;
+  padding-left: 15px;
+  position: relative;
+}
+
+.driving_list .dla_all .dl_info .driving_warn ul li .stTime::before {
+  content: '';
+  background: url(../../dc_file/image/qidong.png) no-repeat;
+  background-size: contain;
+  width: 13px;
+  height: 13px;
+  position: absolute;
+  left: 2px;
+  top: 2px;
+}
+
+.driving_list .dla_all .dl_info .driving_warn ul li .stAdd {
+  text-align: center;
+}
+
+.driving_list .dla_all .dl_info .driving_warn ul li .edTime {
+  width: 100%;
+  height: 20px;
+  line-height: 20px;
+  padding-left: 15px;
+  position: relative;
+}
+
+.driving_list .dla_all .dl_info .driving_warn ul li .edTime::before {
+  content: '';
+  background: url(../../dc_file/image/zhongdian.png) no-repeat;
+  background-size: contain;
+  width: 13px;
+  height: 13px;
+  position: absolute;
+  left: 2px;
+  top: 2px;
+}
+
+.driving_list .dla_all .dl_info .driving_warn ul li .edAdd {
+  text-align: center;
+}
+
+.driving_list .dla_all .dl_info .driving_warn ul li .dataList {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  top: 137px;
+}
+
+.driving_list .dla_all .dl_info .driving_warn ul li .dataList table {
+  width: 100%;
+}
+
+.driving_list .dla_all .dl_info .driving_warn ul li .drivingPro {
+  width: 100%;
+  height: 15px;
+  line-height: 15px;
+  margin-top: 10px;
+  position: absolute;
+  bottom: 23px;
+}
+
+.driving_list .dla_all .dl_info .driving_warn ul li .drivingPro span {
+  float: left;
+}
+
+.driving_list .dla_all .dl_info .driving_warn ul li .drivingPro span:nth-child(1) {
+  width: 10%;
+}
+
+.driving_list .dla_all .dl_info .driving_warn ul li .drivingPro span:nth-child(1) img {
+  background-size: contain;
+  width: 15px;
+  height: 15px;
+}
+
+.driving_list .dla_all .dl_info .driving_warn ul li .drivingPro span:nth-child(2) {
+  width: 60%;
+}
+
+.driving_list .dla_all .dl_info .driving_warn ul li .drivingPro span:nth-child(3) {
+  width: 10%;
+}
+
+.driving_list .dla_all .dl_info .driving_warn ul li .drivingPro span:nth-child(3) img {
+  background-size: contain;
+  width: 15px;
+  height: 10px;
+}
+
+.driving_list .dla_all .dl_info .driving_warn ul li .drivingPro span:nth-child(4) {
+  width: 10%;
+}
+
+.driving_list .dla_all .dl_info .driving_warn ul li .drivingPro span:nth-child(4) img {
+  background-size: contain;
+  width: 15px;
+  height: 10px;
+}
+
+.driving_list .dla_all .dl_info .driving_warn ul li .drivingPro span:nth-child(5) {
+  width: 10%;
+}
+
+.driving_list .dla_all .dl_info .driving_warn ul li .drivingTime {
+  width: 100%;
+  height: 15px;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.driving_list .dla_all .dl_info .driving_oversp ul {
+  width: 100%;
+}
+
+.driving_list .dla_all .dl_info .driving_oversp ul li {
+  width: 98%;
+  margin: auto 1%;
+  margin-top: 10px;
+  height: 200px;
+  background-color: #f1f1f1;
+  border: 1px solid #d6d5d5;
+  color: #666;
+  border-radius: 5px;
+  position: relative;
+}
+
+.driving_list .dla_all .dl_info .driving_oversp ul li .stTime {
+  width: 100%;
+  height: 20px;
+  line-height: 20px;
+  padding-left: 15px;
+  position: relative;
+}
+
+.driving_list .dla_all .dl_info .driving_oversp ul li .stTime::before {
+  content: '';
+  background: url(../../dc_file/image/qidong.png) no-repeat;
+  background-size: contain;
+  width: 13px;
+  height: 13px;
+  position: absolute;
+  left: 2px;
+  top: 2px;
+}
+
+.driving_list .dla_all .dl_info .driving_oversp ul li .stAdd {
+  text-align: center;
+}
+
+.driving_list .dla_all .dl_info .driving_oversp ul li .edTime {
+  width: 100%;
+  height: 20px;
+  line-height: 20px;
+  padding-left: 15px;
+  position: relative;
+}
+
+.driving_list .dla_all .dl_info .driving_oversp ul li .edTime::before {
+  content: '';
+  background: url(../../dc_file/image/zhongdian.png) no-repeat;
+  background-size: contain;
+  width: 13px;
+  height: 13px;
+  position: absolute;
+  left: 2px;
+  top: 2px;
+}
+
+.driving_list .dla_all .dl_info .driving_oversp ul li .edAdd {
+  text-align: center;
+}
+
+.driving_list .dla_all .dl_info .driving_oversp ul li .dataList {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  top: 137px;
+}
+
+.driving_list .dla_all .dl_info .driving_oversp ul li .dataList table {
+  width: 100%;
+}
+
+.driving_list .dla_all .dl_info .driving_oversp ul li .drivingPro {
+  width: 100%;
+  height: 15px;
+  line-height: 15px;
+  margin-top: 10px;
+  position: absolute;
+  bottom: 23px;
+}
+
+.driving_list .dla_all .dl_info .driving_oversp ul li .drivingPro span {
+  float: left;
+}
+
+.driving_list .dla_all .dl_info .driving_oversp ul li .drivingPro span:nth-child(1) {
+  width: 10%;
+}
+
+.driving_list .dla_all .dl_info .driving_oversp ul li .drivingPro span:nth-child(1) img {
+  background-size: contain;
+  width: 15px;
+  height: 15px;
+}
+
+.driving_list .dla_all .dl_info .driving_oversp ul li .drivingPro span:nth-child(2) {
+  width: 60%;
+}
+
+.driving_list .dla_all .dl_info .driving_oversp ul li .drivingPro span:nth-child(3) {
+  width: 10%;
+}
+
+.driving_list .dla_all .dl_info .driving_oversp ul li .drivingPro span:nth-child(3) img {
+  background-size: contain;
+  width: 15px;
+  height: 10px;
+}
+
+.driving_list .dla_all .dl_info .driving_oversp ul li .drivingPro span:nth-child(4) {
+  width: 10%;
+}
+
+.driving_list .dla_all .dl_info .driving_oversp ul li .drivingPro span:nth-child(4) img {
+  background-size: contain;
+  width: 15px;
+  height: 10px;
+}
+
+.driving_list .dla_all .dl_info .driving_oversp ul li .drivingPro span:nth-child(5) {
+  width: 10%;
+}
+
+.driving_list .dla_all .dl_info .driving_oversp ul li .drivingTime {
+  width: 100%;
+  height: 15px;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.driving_list .dla_all .dl_bottom {
+  width: 100%;
+  height: 15px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: #fff;
+}
+
+.driving_list .dla_all .dl_bottom .layui-laypage {
+  margin: 0;
+}
+
+.driving_list .dla_all .dl_bottom .layui-laypage a,
+.driving_list .dla_all .dl_bottom .layui-laypage span {
+  margin: 0;
+  height: 15px;
+  line-height: 15px;
+  padding: 0 1.5px;
+}
+
+.driving_list .dla_all .dl_bottom .layui-laypage select {
+  height: 15px;
+  line-height: 15px;
+  padding: 0;
+  border: none;
+}
+
+.driving_list .dla_all .dl_bottom .layui-laypage button,
+.driving_list .dla_all .dl_bottom .layui-laypage input {
+  height: 15px;
+  line-height: 15px;
+}
+
+.driving_list .dla_all .dl_bottom .layui-laypage .layui-laypage-curr .layui-laypage-em {
+  background-color: #00ade1;
+}
+
+.driving_list .dla_all .dl_bottom .layui-laypage-next em,
+.driving_list .dla_all .dl_bottom .layui-laypage-prev em {
+  /* font-family: Sim sun; */
+  font-size: 12px;
+}
+
+.driving_list .dla_all .dl_bottom .layui-laypage input {
+  display: inline-block;
+  width: 20px;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.box7_drag {
+  width: 0.1%;
+  background-color: #fff;
+  position: absolute;
+  left: 20%;
+  top: 0;
+}
+
+.box7_drag::before {
+  content: '';
+  background: url("../image/zuoyou.png") no-repeat;
+  background-size: contain;
+  display: inline-block;
+  width: 6px;
+  height: 50px;
+  position: absolute;
+  left: -3px;
+  top: 43%;
+}
+
+.driving_map {
+  width: 79.9%;
+  position: absolute;
+  left: 20.1%;
+  top: 0;
+}
+
+.driving_map .dm_top {
+  height: 418px;
+  color: #666;
+}
+
+.driving_map .dm_drag {
+  height: 1px;
+}
+
+.driving_map .dm_drag::before {
+  content: '';
+  background: url("../image/shangxia.png") no-repeat;
+  background-size: contain;
+  display: inline-block;
+  width: 50px;
+  height: 5px;
+  position: absolute;
+  left: 48%;
+}
+
+.driving_map .dm_middle {
+  height: 132px;
+  color: #000;
+  overflow: scroll;
+}
+
+.driving_map .dm_middle .con_7 {
+  display: none;
+}
+
+.driving_map .dm_middle .con_7 table {
+  width: 100%;
+  color: #666;
+  text-align: center;
+}
+
+.driving_map .dm_middle .con_7 table thead {
+  color: #fff;
+  background-color: #0488d1;
+}
+
+.driving_map .dm_middle .con_7 table tbody tr:nth-child(even) {
+  background-color: #e5e3e4;
+}
+
+.driving_map .dm_middle .con_7 table tbody tr:hover {
+  background-color: #ffe8e0;
+}
+
+.driving_map .dm_bottom {
+  width: 100%;
+  height: 15px;
+  background-color: #fff;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  clear: both;
+}
+
+.driving_map .dm_bottom .dm_span {
+  width: 10%;
+  float: left;
+  text-align: center;
+  color: #00ade1;
+  background-color: #fff;
+  border: 1px solid #0469a1;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.driving_map .dm_bottom .cur_dmb {
+  color: #fff;
+  background-color: #0488d1;
+}
+
+.driving_map .dm_bottom .paging {
+  float: right;
+  height: 15px;
+  width: 90%;
+  display: inline-block;
+}
+
+.driving_map .dm_bottom .paging .layui-laypage {
+  margin: 0;
+}
+
+.driving_map .dm_bottom .paging .layui-laypage a,
+.driving_map .dm_bottom .paging .layui-laypage span {
+  margin: 0;
+  height: 15px;
+  line-height: 15px;
+  padding: 0 5px;
+}
+
+.driving_map .dm_bottom .paging .layui-laypage select {
+  height: 15px;
+  line-height: 15px;
+  padding: 0;
+  border: none;
+}
+
+.driving_map .dm_bottom .paging .layui-laypage button,
+.driving_map .dm_bottom .paging .layui-laypage input {
+  height: 15px;
+  line-height: 15px;
+}
+
+.driving_map .dm_bottom .paging .layui-laypage .layui-laypage-curr .layui-laypage-em {
+  background-color: #00ade1;
+}

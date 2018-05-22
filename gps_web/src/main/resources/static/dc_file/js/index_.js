@@ -1,5 +1,4 @@
-//在线监控
-
+//公共部分开始---------------------------
 // 获取天气预报
 $(function () {
     /*先获取位置、再获取天气预报信息*/
@@ -56,7 +55,6 @@ $(function () {
     });
 });
 
-
 //导航选项卡切屏
 $(function(){
     (function () {
@@ -84,7 +82,7 @@ $(function(){
                 "selected": "static/dc_file/image/cars/car_shi.png",
                 "default": false,
                 "fix": false,
-                "disable":true
+                "disable":false
             }, {
                 "name": "统计分析",
                 "normal": "static/dc_file/image/think/think_kong.png",
@@ -108,7 +106,7 @@ $(function(){
                 "selected": "static/dc_file/image/report/report_shi.png",
                 "default": false,
                 "fix": false,
-                "disable":true
+                "disable":false
             }, {
                 "name": "行程管理",
                 "normal": "static/dc_file/image/history/history_kong.png",
@@ -163,21 +161,51 @@ $(function(){
                         break;
                     case "基础数据":
                         $("#container_ .content_box-2").css('display', 'block').siblings('div').css('display', 'none');
+                        if($("#container_ .content_box-2 iframe").length>0){
+                            return;
+                        }else {
+                            var iframe1 = "<iframe src=\"/admin\" style=\"width: 100%;height: 100%;border: none;vertical-align:top;\"></iframe>";
+                            $("#container_ .content_box-2").append(iframe1);
+                        }
                         break;
                     case "多车跟踪":
                         $("#container_ .content_box-3").css('display', 'block').siblings('div').css('display', 'none');
+                        if($("#container_ .content_box-3 iframe").length>0){
+                            return;
+                        }else {
+                            var iframe2 = "<iframe src=\"/multi\" style=\"width: 100%;height: 100%;border: none;vertical-align:top;\"></iframe>";
+                            $("#container_ .content_box-3").append(iframe2);
+                        }
                         break;
                     case "统计分析":
                         $("#container_ .content_box-4").css('display', 'block').siblings('div').css('display', 'none');
+                        if($("#container_ .content_box-4 iframe").length>0){
+                            return;
+                        }else {
+                            var iframe3 = "<iframe src=\"/statistics\" style=\"width: 100%;height: 100%;border: none;vertical-align:top;\"></iframe>";
+                            $("#container_ .content_box-4").append(iframe3);
+                        }
                         break;
                     case "运行管理":
                         $("#container_ .content_box-5").css('display', 'block').siblings('div').css('display', 'none');
                         break;
                     case "报表管理":
                         $("#container_ .content_box-6").css('display', 'block').siblings('div').css('display', 'none');
+                        if($("#container_ .content_box-6 iframe").length>0){
+                            return;
+                        }else {
+                            var iframe5 = "<iframe src=\"/report\" style=\"width: 100%;height: 100%;border: none;vertical-align:top;\"></iframe>";
+                            $("#container_ .content_box-6").append(iframe5);
+                        }
                         break;
                     case "行程管理":
                         $("#container_ .content_box-7").css('display', 'block').siblings('div').css('display', 'none');
+                        if($("#container_ .content_box-7 iframe").length>0){
+                            return;
+                        }else {
+                            var iframe6 = "<iframe src=\"/replay\" style=\"width: 100%;height: 100%;border: none;vertical-align:top;\"></iframe>";
+                            $("#container_ .content_box-7").append(iframe6);
+                        }
                         break;
                     case "信令管理":
                         $("#container_ .content_box-8").css('display', 'block').siblings('div').css('display', 'none');
@@ -200,7 +228,23 @@ $(function(){
     })();
 })
 
-// 切换车辆、地图列表（在线监控）
+// 监听下方内容高度（所有页）
+$(function () {
+    function mm() {
+        var s_h = $(window).height();
+        var top = $("#up_box").height();
+        var middle = $("#mid_box").height();
+        var all_H = $(window).height() - top - middle-1+'px';
+        $(".content_box-1,.content_box-2,.content_box-3,.content_box-4,.content_box-5,.content_box-6,.content_box-7,.content_box-8,.content_box-9,.content_box-10,.content_box-11").height(all_H);
+        // console.log(all_H);
+    }
+    mm();
+    $(window).resize(mm);
+});
+//公共部分结束----------------------------
+
+//在线监控开始 ---------------------------1
+// 切换车辆、地图列表
 $(function(){
     $(".car-info-header .cih_small span").click(function(){
         $(this).addClass("current_cm").css("color","#00ade1").siblings().css("color","#fff").removeClass("current_cm");
@@ -213,20 +257,7 @@ $(function(){
     })
 })
 
-// 切换车辆、地图列表（多车跟踪）
-$(function(){
-    $(".car-info-header3 .cih_small3 span").click(function(){
-        $(this).addClass("current_cm3").css("color","#00ade1").siblings().css("color","#fff").removeClass("current_cm3");
-        $(".car-info3>.dl3").eq($(this).index()).css('display','block').siblings('.dl3').css('display','none');
-        $(this).parent().parent().parent().css("overflow","visible");
-        if(($(this).index())==0){
-            // console.log(123);
-            $(this).parent().parent().parent().css("overflow","scroll");
-        }
-    })
-})
-
-// map_info左右拖拉（在线监控）
+// map_info左右拖拉
 $(function () {
     var x = '';
     var y = '';
@@ -235,44 +266,6 @@ $(function () {
     var boxLeft_b = $("#car-status")[0];
     var boxRight = $("#box_right")[0];
     $("#box_drag").mousedown(function (e) {
-        var iEvent = e || event;
-        var boxRightWidth = boxRight.offsetWidth;
-        var boxDragClientLeft = iEvent.clientX;
-        var boxDragWidth = boxDrag.offsetWidth;
-        var screenWidth = boxRightWidth + boxDragClientLeft + boxDragWidth;
-        if (iEvent.clientX < boxDrag.offsetLeft + 10) {
-            X = 'left';
-            boxDrag.style.cursor = 'ew-resize';
-        }
-        $(document).mousemove(function (e) {
-            var iEvent = e || event;
-            if (iEvent.clientX < 0 || iEvent.clientX > window.innerWidth*0.33) {
-                return;
-            }
-            console.log("screenwidth:" + screenWidth);
-            boxRight.style.width = boxRightWidth - (iEvent.clientX - boxDragClientLeft) - boxDragWidth + 'px';
-            boxRight.style.left = screenWidth - boxRight.offsetWidth + 'px';
-            boxLeft.style.width = screenWidth - (boxRightWidth - (iEvent.clientX - boxDragClientLeft)) + 'px';
-            boxLeft_b.style.width = screenWidth - (boxRightWidth - (iEvent.clientX - boxDragClientLeft)) + 'px';
-            boxDrag.style.left = screenWidth - boxRight.offsetWidth - boxDragWidth + 'px';
-            console.log('iEvent.clientX:' + iEvent.clientX);
-        })
-        $(document).mouseup(function () {
-            $(document).off("mousedown mousemove");
-        })
-        return false;
-    })
-});
-
-// map_info左右拖拉（多车跟踪）
-$(function () {
-    var x = '';
-    var y = '';
-    var boxDrag = $("#box_drag3")[0];
-    var boxLeft = $("#box_left3")[0];
-    var boxLeft_b = $("#car-status3")[0];
-    var boxRight = $("#box_right3")[0];
-    $("#box_drag3").mousedown(function (e) {
         var iEvent = e || event;
         var boxRightWidth = boxRight.offsetWidth;
         var boxDragClientLeft = iEvent.clientX;
@@ -320,10 +313,10 @@ $(function () {
             if (iEvent.clientY < window.innerHeight*0.5 || iEvent.clientY > window.innerHeight - 26) {
                 return;
             }
-            mapContent.style.height = iEvent.clientY - 105 + "px";
-            mapDrag.style.top = iEvent.clientY - 105 + "px";
-            mapStatus.style.top = iEvent.clientY - 105 + "px";
-            mapStatus.style.height = screenHeight - (iEvent.clientY - 105) + 'px';
+            mapContent.style.height = iEvent.clientY + 'px';
+            mapDrag.style.top = iEvent.clientY  + 'px' ;
+            mapStatus.style.top = iEvent.clientY + 'px';
+            mapStatus.style.height = screenHeight - iEvent.clientY + 'px';
             $(".map-car-details").css("height", $("#box_mc").height() - $(".map-car-message").height()-$("#bottom_box").height());
 
             console.log('iEvent.clientY:' + iEvent.clientY);
@@ -335,49 +328,19 @@ $(function () {
     })
 });
 
-// 监听下方内容高度（所有页）
-$(function () {
-    function mm() {
-        var s_h = $(window).height();
-        var top = $("#up_box").height();
-        var middle = $("#mid_box").height();
-        var all_H = $(window).height() - top - middle-1+'px';
-        $(".content_box-1,.content_box-2,.content_box-3,.content_box-4,.content_box-5,.content_box-6,.content_box-7,.content_box-8,.content_box-9,.content_box-10,.content_box-11").height(all_H);
-        // console.log(all_H);
-    }
-    mm();
-    $(window).resize(mm);
-});
-
 //监听车辆列表高度（在线监控）
 $(function(){
     function carI_h(){
         var s_h = $(document).height();
-        var top = $("#up_box").height();
-        var middle = $("#mid_box").height();
         var bottom0 = $(".car-info-header").height();
         var bottom = $(".car-status").height();
-        var c_h = $(document).height() - top - middle - bottom0 - bottom + 12 + 'px';
+        var c_h = s_h  - bottom0 - bottom + 12 + 'px';
         $(".dis_list").height(c_h);
     }
     carI_h();
     $(window).resize(carI_h);
 })
 
-//监听车辆列表高度（多车跟踪）
-$(function(){
-    function carI_h3(){
-        var s_h = $(document).height();
-        var top = $("#up_box").height();
-        var middle = $("#mid_box").height();
-        var bottom0 = $(".car-info-header3").height();
-        var bottom = $(".car-status3").height();
-        var c_h = $(document).height() - top - middle - bottom0 - bottom + 12 + 'px';
-        $(".dis_list3").height(c_h);
-    }
-    carI_h3();
-    $(window).resize(carI_h3);
-})
 // $(function(){
 //     function tree_h(){
 //         var s_h = $(document).height();
@@ -398,11 +361,116 @@ $(function(){
         var top = $("#up_box").height();
         var middle = $("#mid_box").height();
         var bottom = $(".car-status").height();
-        var m_h = $(document).height() - top - middle - bottom - 24 +'px';
+        var m_h = s_h - top - middle - bottom - 24 +'px';
         $(".map_list").height(m_h);
     }
     map_h();
     $(window).resize(map_h);
+})
+
+//监听车机状态详情高度（在线监控）
+$(function(){
+    function hh() {
+        var s_h = $(document).height();
+        var bottom = $("#box_map").height();
+        var all_H3 = s_h  - bottom;
+        $("#box_mc").height(all_H3);
+        $(".map-car-details").css("height", $("#box_mc").height() - $(".map-car-message").height()-$("#bottom_box").height());
+    }
+    hh();
+    $(window).resize(hh);
+});
+
+// 监听右侧宽度（在线监控）
+$(function () {
+    function nn() {
+        var s_w = $(document).width();
+        var left = $("#box_left").width();
+        var all_W = s_w - left-17+'px';
+        console.log(left);
+        $("#box_right").width(all_W);
+        // $("#box_right3").width(all_W);
+        // console.log(all_H);
+    }
+    nn();
+    $(window).resize(nn);
+});
+
+
+//底部tab栏（在线监控）
+$(function(){
+    $('.map-car-info>a').click(function(){
+        $(this).addClass('current').siblings().removeClass('current');
+        $('.map-car-details>div').eq($(this).index()).css('display','block').siblings('div').css('display','none');
+    })
+});
+//在线监控结束-----------------------
+
+//多车跟踪开始-----------------------3
+// 切换车辆、地图列表
+$(function(){
+    $(".car-info-header3 .cih_small3 span").click(function(){
+        $(this).addClass("current_cm3").css("color","#00ade1").siblings().css("color","#fff").removeClass("current_cm3");
+        $(".car-info3>.dl3").eq($(this).index()).css('display','block').siblings('.dl3').css('display','none');
+        $(this).parent().parent().parent().css("overflow","visible");
+        if(($(this).index())==0){
+            // console.log(123);
+            $(this).parent().parent().parent().css("overflow","scroll");
+        }
+    })
+})
+
+
+// map_info左右拖拉
+$(function () {
+    var x = '';
+    var y = '';
+    var boxDrag = $("#box_drag3")[0];
+    var boxLeft = $("#box_left")[0];
+    var boxLeft_b = $("#car-status")[0];
+    var boxRight = $("#box_right3")[0];
+    $("#box_drag3").mousedown(function (e) {
+        var iEvent = e || event;
+        var boxRightWidth = boxRight.offsetWidth;
+        var boxDragClientLeft = iEvent.clientX;
+        var boxDragWidth = boxDrag.offsetWidth;
+        var screenWidth = boxRightWidth + boxDragClientLeft + boxDragWidth;
+        if (iEvent.clientX < boxDrag.offsetLeft + 10) {
+            X = 'left';
+            boxDrag.style.cursor = 'ew-resize';
+        }
+        $(document).mousemove(function (e) {
+            var iEvent = e || event;
+            if (iEvent.clientX < 0 || iEvent.clientX > window.innerWidth*0.33) {
+                return;
+            }
+            console.log("screenwidth:" + screenWidth);
+            boxRight.style.width = boxRightWidth - (iEvent.clientX - boxDragClientLeft) - boxDragWidth + 'px';
+            boxRight.style.left = screenWidth - boxRight.offsetWidth + 'px';
+            boxLeft.style.width = screenWidth - (boxRightWidth - (iEvent.clientX - boxDragClientLeft)) + 'px';
+            boxLeft_b.style.width = screenWidth - (boxRightWidth - (iEvent.clientX - boxDragClientLeft)) + 'px';
+            boxDrag.style.left = screenWidth - boxRight.offsetWidth - boxDragWidth + 'px';
+            console.log('iEvent.clientX:' + iEvent.clientX);
+        })
+        $(document).mouseup(function () {
+            $(document).off("mousedown mousemove");
+        })
+        return false;
+    })
+});
+//监听车辆列表高度（多车跟踪）
+$(function(){
+    function carI_h3(){
+        var s_h = $(document).height();
+        var top = $("#up_box").height();
+        var middle = $("#mid_box").height();
+        var bottom0 = $(".car-info-header3").height();
+        var bottom = $(".car-status3").height();
+        var c_h = s_h - top - middle - bottom0 - bottom + 12 + 'px';
+        $(".dis_list3").height(c_h);
+    }
+    carI_h3();
+    $(window).resize(carI_h3);
 })
 
 //监听地图列表高度（多车跟踪）
@@ -412,68 +480,27 @@ $(function(){
         var top = $("#up_box").height();
         var middle = $("#mid_box").height();
         var bottom = $(".car-status3").height();
-        var m_h = $(document).height() - top - middle - bottom - 24 +'px';
+        var m_h = s_h - top - middle - bottom - 24 +'px';
         $(".map_list3").height(m_h);
     }
     map_h3();
     $(window).resize(map_h3);
 })
 
-//监听车机状态详情高度（在线监控）
-$(function(){
-    function hh() {
-        var s_h = $(window).innerHeight();
-        var top = $("#up_box").height();
-        var middle = $("#mid_box").height();
-        var bottom = $("#box_map").height();
-        var all_H3 = s_h - top - middle - bottom;
-        $("#box_mc").height(all_H3);
-        $(".map-car-details").css("height", $("#box_mc").height() - $(".map-car-message").height()-$("#bottom_box").height());
-    }
-    hh();
-    $(window).resize(hh);
-});
-
-//监听车机状态详情高度（多车跟踪）
-// $(function(){
-//     function hh3() {
-//         var s_h = $(window).innerHeight();
-//         var top = $("#up_box").height();
-//         var middle = $("#mid_box").height();
-//         var bottom = $("#box_map3").height();
-//         var all_H3 = s_h - top - middle - bottom;
-//         $("#box_mc3").height(all_H3);
-//         $(".map-car-details3").css("height", $("#box_mc3").height() - $(".map-car-message3").height()-$("#bottom_box3").height());
-//     }
-//     hh3();
-//     $(window).resize(hh3);
-// });
-
-// 监听右侧宽度（在线监控）
-$(function () {
-    function nn() {
-        var s_w = $(document).width();
-        var left = $("#box_left").width();
-        var all_W = s_w - left-17+'px';
-        $("#box_right").width(all_W);
-        // console.log(all_H);
-    }
-    nn();
-    $(window).resize(nn);
-});
-
 // 监听右侧宽度（多车跟踪）
-$(function () {
-    function nn3() {
-        var s_w = $(document).width();
-        var left = $("#box_left3").width();
-        var all_W = s_w - left-17+'px';
-        $("#box_right3").width(all_W);
-        // console.log(all_H);
-    }
-    nn3();
-    $(window).resize(nn3);
-});
+// $(function () {
+//     function nn3() {
+//         var s_w = $(document).width();
+//         var left0 = $("#box_left3").width();
+//         var all_W3 = s_w - left0-17+'px';
+//         console.log(left0);
+//         $("#box_right3").width(all_W3);
+//         console.log(all_W3);
+//         // $("#box.map3").width(all_W);
+//     }
+//     nn3();
+//     $(window).resize(nn3);
+// });
 
 //切换大小地图（多车跟踪）
 $(function () {
@@ -489,13 +516,23 @@ $(function () {
     })
 })
 
-//底部tab栏（在线监控）
-$(function(){
-    $('.map-car-info>a').click(function(){
-        $(this).addClass('current').siblings().removeClass('current');
-        $('.map-car-details>div').eq($(this).index()).css('display','block').siblings('div').css('display','none');
-    })
-});
+// 监听车机状态详情高度（多车跟踪）
+// $(function(){
+//     function hh3() {
+//         var s_h = $(document).height();
+//         var top = $("#up_box").height();
+//         var middle = $("#mid_box").height();
+//         var bottom = $("#box_map3").height();
+//         var bottom0 = $("#box_mc3").height();
+//         $("#box_map3").height(s_h - top - middle-bottom0);
+//         $("#box_mc3").height(s_h - top - middle - bottom);
+//         // $(".map-car-details3").css("height", $("#box_mc3").height() - $(".map-car-message3").height()-$("#bottom_box3").height());
+//         $(".map-car-details3").height($("#box_mc3").height() - $(".map-car-message3").height()-$("#bottom_box3").height());
+//     }
+//     hh3();
+//     $(window).resize(hh3);
+//
+// });
 
 //底部tab栏（多车跟踪）
 $(function(){
@@ -504,32 +541,29 @@ $(function(){
         $('.map-car-details3>div').eq($(this).index()).css('display','block').siblings('div').css('display','none');
     })
 });
+//多车跟踪结束-------------------
 
-//7、（历史轨迹）监听内容部分高度
-$(function(){
-    function bh_7(){
-        var b_h = $(document).height();
-        var top = $("#up_box").height();
-        var middle = $("#mid_box").height();
-        var all_H = b_h -top - middle;
-        $(".driving_map,.box7_drag,.driving_list").height(all_H);
-    }
-    bh_7();
-    $(window).resize(bh_7);
-})
+//7、（历史轨迹）------------------
+// 监听内容部分高度
+// $(function(){
+//     function bh_7(){
+//         var b_h = $(document).height();
+//         $(".driving_map,.box7_drag,.driving_list").height(b_h);
+//     }
+//     bh_7();
+//     $(window).resize(bh_7);
+// })
 
 // 监听左侧行程、停车等列表高度 1
 $(function(){
     function l_h7(){
         var b_h = $(document).height();
-        var top = $("#up_box").height();
-        var middle = $("#mid_box").height();
         var bottom0 = $(".dl_header").height();
         var bottom1 = $(".dl_search_up").height();
         var bottom2 = $(".dl_search_down").height();
         var bottom3 = $(".dl_way").height();
         var bottom4 = $(".dl_select").height();
-        var l_h = b_h -top - middle - bottom0 - bottom1 - bottom2 - bottom3 - bottom4;
+        var l_h = b_h - bottom0 - bottom1 - bottom2 - bottom3 - bottom4;
         $(".dl_info").height(l_h);
     }
     l_h7();
@@ -537,35 +571,47 @@ $(function(){
 })
 
 //监听左侧行程、停车等列表高度 2
-$(function(){
-    function l_h71(){
-        var b_h = $(document).height();
-        var top = $("#up_box").height();
-        var middle = $("#mid_box").height();
-        var bottom0 = $(".dl_header").height();
-        var bottom1 = $(".dl2_search_up").height();
-        var bottom2 = $(".dl2_search_down").height();
-        var bottom3 = $(".dl2_way").height();
-        var bottom4 = $(".dl2_select").height();
-        var l_h = b_h -top - middle - bottom0 - bottom1 - bottom2 - bottom3 - bottom4;
-        $(".dl2_info").height(l_h);
-    }
-    l_h71();
-    $(window).resize(l_h71);
-})
+// $(function(){
+//     function l_h71(){
+//         var b_h = $(document).height();
+//         var top = $("#up_box").height();
+//         var middle = $("#mid_box").height();
+//         var bottom0 = $(".dl_header").height();
+//         var bottom1 = $(".dl2_search_up").height();
+//         var bottom2 = $(".dl2_search_down").height();
+//         var bottom3 = $(".dl2_way").height();
+//         var bottom4 = $(".dl2_select").height();
+//         var l_h = b_h -top - middle - bottom0 - bottom1 - bottom2 - bottom3 - bottom4;
+//         $(".dl2_info").height(l_h);
+//     }
+//     l_h71();
+//     $(window).resize(l_h71);
+// })
 
 // 监听右侧轨迹详情高度
 $(function(){
     function dmt_h(){
-        var b_h = $(document).height();
-        var top = $("#up_box").height();
-        var middle = $("#mid_box").height();
-        var dmtH = b_h -top - middle - 148 + 'px';
+        var b_h = $("#driving_right").height();
+        var dm_bottom = $("#box_mc7").height();
+        var dmtH = b_h  - dm_bottom;
         $(".dm_top").height(dmtH);
+        $("#dmMiddle").css("height", $("#box_mc7").height() -$("#dmBottom").height());
     }
     dmt_h();
     $(window).resize(dmt_h);
 })
+
+// $(function(){
+//     function dmall_h(){
+//         var b_h = $(document).height();
+//         var dm_t = $("#dmTop").height();
+//         // var dm_bottom = $("#dmBottom").height();
+//         var dmallH = b_h  - dm_t;
+//         $("#box_mc7").height(dmallH);
+//     }
+//     dmall_h();
+//     $(window).resize(dmall_h);
+// })
 
 // $(function () {
 //        function dm_h() {
@@ -586,13 +632,13 @@ $(function(){
 // })
 //时间轴
 $(function () {
-    var s = new Date().toLocaleDateString();
-    s = s.replace(/\//g, "-");
-    var t = new Date().toTimeString();
-    t = t.substring(8, 0);
-    console.log(s + " " + t);
-    var st = s + " " + t;
-    $("#test5,#test6,#test7,#test8").val(st);
+    // var s = new Date().toLocaleDateString();
+    // s = s.replace(/\//g, "-");
+    // var t = new Date().toTimeString();
+    // t = t.substring(8, 0);
+    // console.log(s + " " + t);
+    // var st = s + " " + t;
+    // $("#test5,#test6,#test7,#test8").val(st);
 
 
     layui.use('laydate', function () {
@@ -673,6 +719,7 @@ $(function(){
 
 //上下拖拉（行程管理）
 $(function () {
+    // $("#dmDrag").css("top",$("#box_mc7").height()-3+'px');
     var dmTop = $("#dmTop")[0];
     var dmDrag = $("#dmDrag")[0];
     var dmMiddle = $("#dmMiddle")[0];
@@ -684,12 +731,14 @@ $(function () {
         dmDrag.style.cursor = 'ns-resize';
         $(document).mousemove(function (e) {
             var iEvent = e || event;
-            if (iEvent.clientY < window.innerHeight*0.5 || iEvent.clientY > window.innerHeight -20) {
+            if (iEvent.clientY < window.innerHeight*0.5 || iEvent.clientY > window.innerHeight -30) {
                 return;
             }
-            dmTop.style.height = iEvent.clientY - 105 + "px";
-            dmDrag.style.top = iEvent.clientY - 105 + "px";
-            dmMiddle.style.height = screenHeight - (iEvent.clientY - 105 ) + 'px';
+            dmTop.style.height = iEvent.clientY  + "px";
+            dmDrag.style.top = iEvent.clientY  + "px";
+            dmMiddle.style.height = screenHeight - iEvent.clientY  + 'px';
+            // $("#dmMiddle").css("height",$("#box_mc7").height()-$("#dmBottom").height());
+            // $("#dmDrag").css("top",$("#box_mc7").height()-3+'px');
             console.log(dmTop.style.height);
             console.log('iEvent.clientY:' + iEvent.clientY);
         })
@@ -733,39 +782,184 @@ $(function(){
 })
 
 
+//搜索框
+$(function () {
+    (function () {
+        $.ajax({
+            url: "/locate/groupVehicles", //请求地址
+            dataType: "json", //数据格式
+            data: {
+                force: false
+            },
+            type: "post", //请求方式
+            async: false, //是否异步请求
+            success: function (data) { //如何发送成功
+                datasour= data;
+                console.log(datasour);
+                var strs = [];
+                //    var aaa ={name:"设备号",pid:"0",id:10,open: true};
+                //    strs.push(aaa);
+                for(var i=0;i<datasour.length;i++){
+
+                    if(datasour[i].type==0){
+                        var bbb ={name:datasour[i].na+'—'+datasour[i].dn,pid:datasour[i].pid,id:datasour[i].id,type:datasour[i].type,open: true};
+                        strs.push(bbb);
+
+                    }else{
+                        var bbb ={name:datasour[i].na,pid:datasour[i].pid,id:datasour[i].id,type:datasour[i].type,open: true};
+                        strs.push(bbb);
+                    }
+                    //  console.log(datasour[i].dn);
+                }
+
+                console.log(strs);
+                $("#number").focus(function () {
+                    // if($("#number").val()==""){
+                    //     $(".ztree_0").remove();
+                    // }
+                    if($("#pop #treeDemo").length>0){
+                        return;
+                    }
+
+                    console.log(7788);
+                    var divDom0 = $("<div></div>").attr("id", "pop").css("width",$("#number").width()+$("#number").width());
+                    var input0 = "<input type=\"text\" placeholder=\"搜索设备号\" id=\"number0\">";
+                    var ulDom0 = "<ul id=\"treeDemo\" class=\"ztree_0\"></ul>";
+                    divDom0.append(input0);
+                    divDom0.append(ulDom0);
+                    $("#cm_cardwarper").append(divDom0);
+                    var setting = {
+                        data: {
+                            simpleData: {
+                                enable: true,
+                                idKey: "id",
+                                pIdKey: "pid",
+                                rootPId: 0
+                            }
+                        },
+                        callback: {
+                            onClick: zTree_onClick
+                        }
+                    };
+                    function zTree_onClick(event, treeId, treeNode) {
+                        if(treeNode.type==0){
+                            console.log(treeNode);
+                            var fr_tn = treeNode.name;
+                            console.log(fr_tn.substring(fr_tn.indexOf("—")+1));
+                            $("#number").val(fr_tn.substring(fr_tn.indexOf("—")+1));
+                            $("#pop").remove();
+
+                        }else{
+                            return;
+                        }
+
+                    }
+                    jQuery.fn.zTree.init(jQuery("#treeDemo"), setting,strs);
+                })
+                $("#cm_cardwarper").delegate("#number0","keyup",function () {
+                    $(".ztree_0").remove();
+                    console.log(7776);
+                    console.log(strs);
+                    var aaa = [];
+                    var t_value = $("#number0").val();
+                    if(t_value.length == 0) {
+                        $(".ztree_1").html("");
+                        return;
+                    }
+                    var fr_arr=[];
+                    for (var i = 0; i < strs.length; i++) {
+                        if (strs[i].name.indexOf(t_value) != -1) {
+                            fr_arr.push(strs[i]);
+                            console.log(fr_arr);
+                            for(var d in datasour){
+                                if(strs[i].pid==datasour[d].id){
+                                    datasour[d].name =datasour[d].na;
+                                    console.log(strs[i].pid);
+                                    console.log(datasour[d].id);
+                                    //其实错了
+                                    if(aaa.indexOf(datasour[d].id)==0){
+
+                                    }else{
+                                        console.log(datasour[d]);
+                                        datasour[d].open=true;
+                                        fr_arr.push(datasour[d]);
+                                        aaa.push(datasour[d].id);
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                    console.log(fr_arr);
+                    if (fr_arr.length > 0) {
+                        var ulDom = "<ul id=\"treeDemo\" class=\"ztree_1\"></ul>";
+                        $(".ztree_0").remove();
+                        $("#pop").append(ulDom);
+                        var setting = {
+                            data: {
+                                simpleData: {
+                                    enable: true,
+                                    idKey: "id",
+                                    pIdKey: "pid",
+                                    rootPId: 0
+                                }
+                            },
+                            callback: {
+                                onClick: zTree_onClick
+                            },
+                            view:{
+                                open:true
+                            }
+                        };
+                        function zTree_onClick(event, treeId, treeNode) {
+                            if(treeNode.type==0){
+                                console.log(treeNode);
+                                var fr_tn = treeNode.name;
+                                console.log(fr_tn.substring(fr_tn.indexOf("—")+1));
+                                $("#number").val(fr_tn.substring(fr_tn.indexOf("—")+1));
+                                $("#pop").remove();
+
+                            }else{
+                                return;
+                            }
+
+                        }
+                        console.log(fr_arr);
+                        jQuery.fn.zTree.init(jQuery("#treeDemo"), setting,fr_arr);
+                    }
+                })
+            }
+        })
+    })()
+})
+// 7(结束)-------------------------
 
 
 
 
 
-//左边栏点击状态列表(所有行程)
-// $(function(){
-//     $(".dl_info ul").on("li","click",function(){
-//         var flag1 = $(this).css("height")==140+'px';
-//         var temp1 = $(this).css("height")==170+'px';
-//         if(flag1){
-//             $(this).css("height","170px").css("backgroundColor","#ffe8e0").siblings("li").css("height","140px").css("backgroundColor","#f1f1f1");
-//             $(this).children(".drivingPro").css("display","block");
-//             $(this).siblings("li").children(".drivingPro").css("display","none");
-//             $(this).children(".drivingTime").css("display","block");
-//             $(this).siblings("li").children(".drivingPro").css("display","none");
-//         }else if(temp1){
-//             $(this).css("height","140px").css("backgroundColor","#f1f1f1");
-//             $(this).children(".drivingPro").css("display","none");
-//             $(this).children(".drivingTime").css("display","none");
-//         }
-//     })
-//     $(".dl_info ul li").delegate(".iplay","click",function(e){
-//         e.stopPropagation();
-//         console.log(123);
-//     })
-// $(".dl_info ul li").delegate("#qian0","click",function(e){
-//     e.stopPropagation();
-//     console.log(456);
-// })
-// })
 
-// 7(结束)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -42,17 +42,17 @@ window.cardriving={
     }
 }
 
-$(function(){
-         //创建地图 1
-    (function () {
-        setTimeout(function(){
-            webMap.events.onMapLoadCompleted['ft_map'] = cardriving.onMapLoaded;
-            webMap.createMap("ft_map");
-        }, 1200);
-    })()
-
-        // console.log(webMap);
-    })
+// $(function(){
+//          //创建地图 1
+//     // (function () {
+//     //     setTimeout(function(){
+//     //         webMap.events.onMapLoadCompleted['ft_map'] = cardriving.onMapLoaded;
+//     //         webMap.createMap("ft_map");
+//     //     }, 1200);
+//     // })()
+//
+//         // console.log(webMap);
+//     })
 
 // $(function () {
 //     //创建地图 2

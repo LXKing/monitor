@@ -6,7 +6,6 @@
 
 .ztree div.diy {
     height: 100%;
-    /* text-align: center; */
     display: inline-block;
     box-sizing: border-box;
     color: #6c6c6c;
@@ -17,11 +16,8 @@
     text-overflow: ellipsis;
     text-overflow: ellipsis;
     overflow: hidden;
-    margin-left: 3%;
-    /* min-width: 5%; */
-    /* max-width: 44px; */
-     min-width: 50px;
-     width: 15%;
+    margin-left: 5%;
+    width: 15%;
 }
 
 .ztree div.diy:first-child {
@@ -49,7 +45,7 @@
     padding-left: 30px;
 }*/
 .libuoonton input[type="button"]{
-    margin-left: 20px;
+    margin-left: 15px;
     padding-left: 8px;
     background: #81C47F;
     padding-right: 8px;
@@ -72,7 +68,7 @@
     min-width: 62em;
     width: 100%;
     /* min-width: 61em; */
-   /* margin-left: 40%;*/
+    /* margin-left: 40%;*/
     background-color: #00ade1ad;
     border-radius: 5px;
     margin-top: 10px;
@@ -219,7 +215,7 @@
     display: inline-block;
 }
 .Tab_spanone select{
-   padding: 1px !important;
+    padding: 1px !important;
     height: 20px;
 
     margin-top: 4px;
@@ -428,24 +424,25 @@
     cursor: pointer;
 }
 .widthmin{
-    width: 25px !important;
-    min-width: 25px !important;
+    min-width: 3% !important;
+    max-width: 11%;
+    margin-left: 5%;
 }
 .nav_ul li:hover{
     background: #036ba4;
 }
- #content_data tr:hover{
+#content_data tr:hover{
     background-color: #FFDECF !important;
 }
 .level1 {
 
- }
+}
 .level2{
 
 }
 .level0>li{
-     padding-left: 18px;
- }
+    padding-left: 18px;
+}
 .level1>li{
     padding-left: 18px;
 }
@@ -496,16 +493,17 @@
 }*/
 .am_header span{
     margin-right: 0px;
-    min-width: 36px;
+   /* min-width: 36px;*/
 }
 .am_header span:nth-child(1){
-    margin-left: 16px;
+    margin-left: 20px;
 }
 .mileage{
     min-width: 20px !important;
+    max-width: 12%;
 }
 .showhidden::before{
-display: none;
+    display: none;
 }
 .updateimage::before{
     content: '';
@@ -520,17 +518,50 @@ display: none;
     width: 58px;
     height: 50px;
     right: 5px;
-    bottom: 2px;
+    bottom: 8px;
     text-align: center;
     position: relative;
+    padding-top: 7px;
+}
+.showlabelspred{
+    width: 58px;
+    height: 50px;
+    right: 7px;
+    bottom: 8px;
+    text-align: center;
+    position: relative;
+    padding-top: 7px;
+    color: red !important;
 }
 
+
+.showlabelspENSB{
+    width: 58px;
+    height: 50px;
+    text-align: center;
+    position: relative;
+    top: 6px;
+    left: 5px;
+    padding-top: 7px;
+}
+.showlabelspENSBred{
+    width: 58px;
+    height: 50px;
+    text-align: center;
+    position: relative;
+    top: 6px;
+    left: 5px;
+    padding-top: 7px;
+
+}
+.showlabelspENSBred span{
+    color: red !important;
+}
 .labelsp{
     color: #4586F0;
     display: block;
     font-size: 20px;
     text-align: center;
-
     font-weight: 600;
     /* width: 0px; */
     height: 17px;
@@ -539,11 +570,14 @@ display: none;
     display: block;
     text-align: center;
     color: #7AABF2;
+    font-size: 12px;
+    -webkit-transform-origin-x: 0;
+    -webkit-transform: scale(0.80);
+    margin-left: 10px;
 }
 .labelna{
     position: relative;
     top: 6px;
-
     text-align: center;
 }
 .countdown{
@@ -551,7 +585,7 @@ display: none;
     position: absolute;
     top: 10px;
     left: 8px;
-    width: 100px;
+    width: 54px;
     height: 28px;
     text-align: center;
     background-color: #00ade1ad;
@@ -567,7 +601,7 @@ display: none;
 .val_ul_hidden{
     min-width: 32px;
     /*display: none;*/
-   /*width: 34px;*/
+    /*width: 34px;*/
 }
 .cissqucar{
     width: 100%;
@@ -670,7 +704,7 @@ display: none;
     background: #40A3C5;
     position: absolute;
     top: 10px;
-    left: 111px;
+    left: 64px;
     /* width: 29px; */
     height: 28px;
     text-align: center;
@@ -681,13 +715,13 @@ display: none;
     display: inline-block;
 }
 .choosetime select{
-     /* background: #40A3C5;*/
-     background-color: #00ade1ad;
-     background:none;
-     border: none;
- }
+    /* background: #40A3C5;*/
+    background-color: #00ade1ad;
+    background:none;
+    border: none;
+}
 .choosetime select option{
-      background: #40A3C5;
+    background: #40A3C5;
     background-color: #00ade1ad;
 
     border: none;
@@ -705,4 +739,23 @@ display: none;
     bottom: 3px;
     text-align: center;
     position: relative;
+}
+.ztreeonClickbackground{
+    background: #f1f3f5 !important;
+}
+div#rMenu {
+
+    position:absolute; visibility:hidden; top:0; text-align: left;padding:4px;
+
+    width: 100px;
+}
+div#rMenu a{
+    padding: 3px 15px 3px 15px;
+    background-color: #cad4e6;
+    vertical-align: middle;
+    display: block;
+}
+.divnema{
+    max-width: 20%;
+    min-width: 18%;
 }

@@ -88,4 +88,8 @@ public class GpsWebApplicationTests {
     private void throwsE() throws Exception {
         throw new Exception();
     }
+
+    public static void main(String[] args) {
+
+    }
 }

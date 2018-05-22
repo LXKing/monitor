@@ -4,14 +4,14 @@ server:
 spring:
     datasource:
         name: dev
-#        url: jdbc:mysql://192.168.1.252:3306/monitordb2?useUnicode=true&amp;characterEncoding=utf-8&amp;allowMultiQueries=true
+        url: jdbc:mysql://192.168.1.252:3306/monitordb2?useUnicode=true&amp;characterEncoding=utf-8&amp;allowMultiQueries=true
 #        url: jdbc:mysql://47.106.89.88:3306/monitordb?useUnicode=true&amp;characterEncoding=utf-8&amp;allowMultiQueries=true
-        url: jdbc:mysql://localhost:3306/monitordb2?useUnicode=true&amp;characterEncoding=utf-8&amp;allowMultiQueries=true
+#        url: jdbc:mysql://localhost:3306/monitordb2?useUnicode=true&amp;characterEncoding=utf-8&amp;allowMultiQueries=true
 #        url: jdbc:mysql://localhost:3306/monitordb?useUnicode=true&amp;characterEncoding=utf-8&amp;allowMultiQueries=true
 #        url: jdbc:mysql://47.106.89.88:3306/monitordb?useUnicode=true&amp;characterEncoding=utf-8&amp;allowMultiQueries=true
         username: root
-        password: RayTon
-#        password: abc123
+#        password: RayTon
+        password: abc123
 #        password: 123456
         # 使用druid数据源
         type: com.alibaba.druid.pool.DruidDataSource
