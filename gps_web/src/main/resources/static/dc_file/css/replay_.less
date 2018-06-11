@@ -27,48 +27,190 @@
     .dl_search_up{
       width: 100%;
       height: 25px;
-      // background-color: yellow;
-      #cm_card{
-        width: 40%;
-        height: 25px;
-        line-height: 25px;
-        background-color: #fff;
-        color: #666;
-        position: relative;
-        input{
-          width: 100%;
+      line-height: 25px;
+      margin-top: 5px;
+      .cis_small{
+        //min-width: 256px;
+        //max-width: 370px;
+        .ciss_l{
+          width: 20%;
           height: 25px;
-          border: 1px solid #b7b7b7;
-          box-sizing: border-box;
-          border-radius: 6px;
-          color: #666;
-        }
-        #cm_cardwarper{
-          background-color: #fff;
-          #pop {
-            border: 1px solid #0488d1;
-            padding: 0px;
-            position: absolute;
+          margin:0 2%;
+          border-radius: 5px;
+          .layui-input{
+            padding-left: 2px;
+          }
+          .layui-form-select .layui-input{
+            padding-right: 0px;
+            //background-color: #028ad6;
+            border-radius: 5px;
+            border: 1px solid #eee;
+            color: #666;
+          }
+          .layui-input, .layui-select, .layui-textarea{
+            height: 25px;
+          }
+          .layui-form-select dl{
+            top: 24px;
+            background-color: #00ade1;
+          }
+          .layui-form-select .layui-edge{
+            right: 0;
+          }
+          .layui-anim{
+            width: 243px;
+          }
+          .layui-form-select dl{
             background-color: #fff;
-            z-index: 10;
-            ul{
-              list-style-type: none;
-              margin: 5px;
-              padding: 0px;
+            dd{
+              color: #666;
             }
           }
         }
+        .ciss_m{
+          width: 20%;
+          height: 25px;
+          margin-right: 1%;
+          border-radius: 5px;
+          .layui-input{
+            padding-left: 2px;
+          }
+          .layui-form-select .layui-input{
+            padding-right: 0px;
+            //background-color: #028ad6;
+            border-radius: 5px;
+            border: 1px solid #eee;
+            color: #666;
+          }
+          .layui-input, .layui-select, .layui-textarea{
+            height: 25px;
+          }
+          .layui-form-select dl{
+            top: 24px;
+            background-color: #00ade1;
+          }
+          .layui-form-select .layui-edge{
+            right: 0;
+          }
+          .layui-anim{
+            width: 243px;
+          }
+          .layui-form-select dl{
+            background-color: #fff;
+            dd{
+              color: #666;
+            }
+          }
+        }
+        .ciss_lm{
+          width: 20%;
+          height: 25px;
+          margin-right: 1%;
+          border-radius: 5px;
+          .layui-input{
+            padding-left: 2px;
+          }
+          .layui-form-select .layui-input{
+            padding-right: 0px;
+            //background-color: #028ad6;
+            border-radius: 5px;
+            border: 1px solid #eee;
+            color: #666;
+          }
+          .layui-input, .layui-select, .layui-textarea{
+            height: 25px;
+          }
+          .layui-form-select dl{
+            top: 24px;
+            background-color: #00ade1;
+          }
+          .layui-form-select .layui-edge{
+            right: 0;
+          }
+          .layui-anim{
+            width: 125px;
+          }
+          .layui-form-select dl{
+            background-color: #fff;
+            dd{
+              color: #666;
+            }
+          }
+        }
+
+        .ciss_r{
+          //background-color: #028ad6;
+          //width: 50%;
+          //height: 24px;
+          //position: relative;
+            width: 30%;
+            height: 25px;
+            line-height: 25px;
+            background-color: #fff;
+            color: #666;
+            margin-left: 2%;
+            position: relative;
+            input{
+              width: 100%;
+              height: 25px;
+              border: 1px solid #eee;
+              box-sizing: border-box;
+              border-radius: 5px;
+              color: #666;
+            }
+            #cm_cardwarper{
+              background-color: #fff;
+              #pop {
+                border: 1px solid #0488d1;
+                padding: 0px;
+                position: absolute;
+                background-color: #fff;
+                z-index: 1001;
+                ul{
+                  list-style-type: none;
+                  margin: 5px;
+                  padding: 0px;
+                }
+              }
+            }
+          //input{
+          //  display: inline-block;
+          //  width: 100%;
+          //  height: 25px;
+          //  color: #666;
+          //  outline:none;
+          //  border: 1px solid #eee;
+          //  box-sizing: border-box;
+          //}
+        }
+        .ciss_r::after{
+          content: '';
+          background: url(../image/search_big.png) no-repeat;
+          background-size: contain;
+          width: 14px;
+          height: 25px;
+          position: absolute;
+          left: 88%;
+          top: 25%;
+        }
       }
+    }
+    .dl_search_down{
+      width: 100%;
+      height: 25px;
+      margin-top: 5px;
       .sl_day{
-        width: 40%;
+        width: 20%;
         height: 25px;
-        // background-color: orange;
+        border-radius: 5px;
+        margin: 0 2%;
         .layui-form-select .layui-input{
           padding-right:0px;
           padding-left: 3px;
           height: 25px;
           color:#666;
           background-color: #fff;
+          border-radius: 5px;
         }
 
         .layui-form-select .layui-edge{
@@ -76,6 +218,8 @@
           border-width: 5px;
         }
         .layui-form-select dl{
+          max-height: 331px!important;
+          overflow-y: visible!important;
           top: 25px;
         }
         .layui-anim{
@@ -83,45 +227,186 @@
           color: #000;
         }
       }
+      .start_date{
+        width: 30%;
+        height: 25px;
+        border-radius: 5px;
+        .layui-input{
+          height: 25px;
+          color:#666;
+          padding-left:0!important;
+          text-align: center;
+          border-radius: 5px;
+        }
+      }
+      .end_date{
+        width: 30%;
+        height: 25px;
+        border-radius: 5px;
+        margin-right:2%;
+        .layui-input{
+          height: 25px;
+          color:#666;
+          padding-left:0!important;
+          text-align: center;
+          border-radius: 5px;
+        }
+      }
+      .OP{
+        width: 11%;
+        height: 25px;
+        button{
+          background-color: #f2f9fc;
+          width: 100%;
+          height: 25px;
+          border-radius: 5px;
+          border:none;
+          color:#666;
+        }
+        button:hover{
+          opacity: .8;
+        }
+      }
+    }
+    .dl_way{
+      width:100%;
+      height: 25px;
+      line-height: 25px;
+      //overflow: hidden;
+      color: #000;
+      margin-top: 5px;
+      .some_way{
+        width: 35%;
+        margin-left: 2%;
+        span:nth-child(1){
+          width: 45%;
+          color: #666;
+        }
+        .c_day{
+          width: 22%;
+          margin-right: 2%;
+          .layui-input{
+            padding-left: 2px;
+          }
+          .layui-form-select .layui-input{
+            padding-right: 0px;
+            border-radius: 5px;
+            border: 1px solid #eee;
+            color: #666;
+            text-align: center;
+          }
+          .layui-form-select .layui-select-title .layui-edge{
+                display: none;
+          }
+          .layui-input, .layui-select, .layui-textarea{
+            height: 25px;
+          }
+          .layui-form-select dl{
+            top: 24px;
+            background-color: #00ade1;
+          }
+          .layui-form-select .layui-edge{
+            right: 0;
+          }
+          .layui-anim{
+            width: 65px;
+          }
+          .layui-form-select dl{
+            background-color: #fff;
+            dd{
+              color: #666;
+            }
+          }
+        }
+        .c_tag{
+          width: 24%;
+          .layui-input{
+            padding-left: 2px;
+          }
+          .layui-form-select .layui-input{
+            padding-right: 0px;
+            border-radius: 5px;
+            border: 1px solid #eee;
+            color: #666;
+            //text-align: center;
+          }
+          .layui-form-select .layui-select-title .layui-edge{
+            display: none;
+          }
+          .layui-input, .layui-select, .layui-textarea{
+            height: 25px;
+          }
+          .layui-form-select dl{
+            top: 24px;
+            background-color: #00ade1;
+          }
+          .layui-form-select .layui-edge{
+            right: 0;
+          }
+          .layui-anim{
+            width: 65px;
+          }
+          .layui-form-select dl{
+            background-color: #fff;
+            dd{
+              color: #666;
+            }
+          }
+        }
+      }
+      .st_car{
+        width: 25%;
+        //overflow: hidden;
+        span:nth-child(1){
+          width: 26%;
+          color: #666;
+        }
+        .st_cardata{
+          width: 26%;
+          height: 23px;
+          border:1px solid #eee;
+          border-radius: 5px;
+        }
+        span:nth-child(3){
+          width: 39%;
+          margin-left: 2%;
+          color: #666;
+
+        }
+      }
+      .sp_car{
+        width: 25%;
+        //overflow: hidden;
+        span:nth-child(1){
+          width: 26%;
+          color: #666;
+        }
+        .sp_cardata{
+          width: 26%;
+          height: 23px;
+          border:1px solid #eee;
+          border-radius: 5px;
+
+        }
+        span:nth-child(3){
+          width: 39%;
+          margin-left: 2%;
+          color: #666;
+        }
+      }
       .dl_cd{
-        width: 20%;
+        width: 11%;
         height: 25px;
         button{
           background-color: #0488d1;
           width: 100%;
           height: 25px;
+          border-radius: 5px;
+        }
+        button:hover{
+          opacity: .8;
         }
       }
-    }
-    .dl_search_down{
-      width: 100%;
-      height: 25px;
-      // background-color: purple;
-      .start_date{
-        width: 48%;
-        height: 25px;
-        background-color:green;
-        .layui-input{
-          height: 25px;
-          color:#666;
-        }
-      }
-      .end_date{
-        width: 48%;
-        height: 25px;
-        background-color: pink;
-        .layui-input{
-          height: 25px;
-          color:#666;
-        }
-      }
-    }
-    .dl_way{
-      height: 20px;
-      line-height: 20px;
-      // background-color: skyblue;
-      color: #000;
-      padding-left: 3px;
     }
     .dl_select{
       width: 100%;
@@ -129,18 +414,47 @@
       line-height: 25px;
       color: #000;
       text-align: center;
+      margin-top: 5px;
       span{
-        width: 15%;
+        width: 17%;
         // float: left;
         border: 1px solid #b7b7b7;
         box-sizing: border-box;
         border-radius: 6px;
         margin-left: 3px;
+        cursor: pointer;
+      }
+      span:nth-child(1){
+        width: 10%;
+      }
+      span:hover{
+        opacity: .6;
+      }
+      .outPut{
+        width: 15%;
+        border: 1px solid #b7b7b7;
+        box-sizing: border-box;
+        border-radius: 6px;
+        margin-right: 8px;
+        cursor: pointer;
+        background-color: #f2f9fc;
+        color:#666;
+      }
+      .outPut:hover{
+        opacity: .6;
       }
       .dl_s{
-        color:#fff;
-        background-color: #0488d1;
+        color:#666;
+        background-color: #f2f9fc;
       }
+    }
+    .overlay{
+      height: 12px;
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      display: none;
+      z-index: 999;
     }
     .dl_info{
       height: 432px;
@@ -157,42 +471,62 @@
             width: 98%;
             margin: auto 1%;
             margin-top: 10px;
-            height: 200px;
-            background-color: #f1f1f1;
+            height: 155px;
+            background-color: #fff;
             border:1px solid  #d6d5d5;
             color: #666;
             border-radius: 5px;
             position: relative;
-            .stTime{
-              width: 100%;
+            .allTime{
               height: 20px;
-              line-height: 20px;
-              padding-left: 15px;
-              position: relative;
-            }
-            .stTime::before{
-              content: '';
-              background: url(../../dc_file/image/qidong.png) no-repeat;
-              background-size: contain;
-              width: 13px;
-              height: 13px;
-              position: absolute;
-              left: 2px;
-              top: 2px;
+              margin-top: 5px;
+              margin-left:5px;
+              .stTime{
+                float: left;
+                width: 50%;
+                height: 20px;
+                line-height: 20px;
+                padding-left: 20px;
+                position: relative;
+              }
+              .stTime::before{
+                content: '';
+                background: url(../../dc_file/image/qidong.png) no-repeat;
+                background-size: contain;
+                width: 13px;
+                height: 13px;
+                position: absolute;
+                left: 2px;
+                top: 2px;
+              }
+              .edTime{
+                float: left;
+                height: 20px;
+                line-height: 20px;
+                padding-left: 20px;
+                position: relative;
+              }
+              .edTime::before{
+                content: '';
+                background: url(../../dc_file/image/zhongdian.png) no-repeat;
+                background-size: contain;
+                width: 13px;
+                height: 13px;
+                position: absolute;
+                left: 2px;
+                top: 2px;
+              }
             }
             .stAdd{
-              text-align: center;
-            }
-            .edTime{
-              width: 100%;
-              height: 20px;
-              line-height: 20px;
-              padding-left: 15px;
+              //text-align: center;
+              margin-top: 5px;
+              margin-left: 5px;
+              padding-left: 20px;
               position: relative;
             }
-            .edTime::before{
+            .stAdd::before{
               content: '';
-              background: url(../../dc_file/image/zhongdian.png) no-repeat;
+              background: url(../../dc_file/image/start.png) no-repeat;
               background-size: contain;
               width: 13px;
               height: 13px;
@@ -201,13 +535,27 @@
               top: 2px;
             }
             .edAdd{
-              text-align: center;
+              //text-align: center;
+              margin-top: 5px;
+              margin-left: 5px;
+              padding-left: 20px;
+              position: relative;
+            }
+            .edAdd::before{
+              content: '';
+              background: url(../../dc_file/image/The-end.png) no-repeat;
+              background-size: contain;
+              width: 13px;
+              height: 13px;
+              position: absolute;
+              left: 2px;
+              top: 2px;
             }
             .dataList{
               width: 100%;
               text-align: center;
               position: absolute;
-              top: 137px;
+              top: 108px;
               table{
                 width: 100%;
 
@@ -219,31 +567,47 @@
               line-height: 15px;
               margin-top: 10px;
               position: absolute;
-              bottom: 23px;
+              bottom: 20px;
               span{
                 float: left;
               }
-              span:nth-child(1){
-                width: 10%;
-                img{
-                  background-size: contain;
-                  width: 15px;
-                  height: 15px;
-                }
+              #fuckP:nth-child(1){
+                width: 8%;
+                height: 30px;
+                float: left;
+                border-radius: 50%;
+                position: relative;
+                top: -9px;
+                //border: 2px solid #0488d1;
+                color: #0488d1;
+                background-color: #0488d1;
+                transform: scale(0.8);
+                position: relative;
+              }
+              #fuckP:nth-child(1)::before{
+                content: '';
+                background: url(../../dc_file/image/tr.png) no-repeat;
+                background-size: contain;
+                width: 22px;
+                height: 22px;
+                position: absolute;
+                left: 2px;
+                top: 2px;
               }
               span:nth-child(2){
-                width: 60%;
-              }
-              span:nth-child(3){
                 width: 10%;
                 img{
                   background-size: contain;
-                  width: 15px;
-                  height: 10px;
+                  width: 24px;
+                  height: 24px;
                 }
               }
+              span:nth-child(3){
+                width: 55%;
+                margin-left: 5px;
+              }
               span:nth-child(4){
-                width: 10%;
+                width: 8%;
                 img{
                   background-size: contain;
                   width: 15px;
@@ -251,7 +615,16 @@
                 }
               }
               span:nth-child(5){
-                width: 10%;
+                width: 8%;
+                img{
+                  background-size: contain;
+                  width: 15px;
+                  height: 10px;
+                }
+              }
+              span:nth-child(6){
+                width: 4%;
+                padding-top: 1px;
               }
             }
             .drivingTime{
@@ -260,6 +633,10 @@
               text-align: center;
               margin-top: 5px;
             }
+          }
+          li:hover{
+            border:1px solid #bed5e2;
+            opacity: .8;
           }
         }
       }
@@ -270,42 +647,62 @@
             width: 98%;
             margin: auto 1%;
             margin-top: 10px;
-            height: 200px;
-            background-color: #f1f1f1;
+            height: 155px;
+            background-color: #fff;
             border:1px solid  #d6d5d5;
             color: #666;
             border-radius: 5px;
             position: relative;
-            .stTime{
-              width: 100%;
+            .allTime{
               height: 20px;
-              line-height: 20px;
-              padding-left: 15px;
-              position: relative;
-            }
-            .stTime::before{
-              content: '';
-              background: url(../../dc_file/image/qidong.png) no-repeat;
-              background-size: contain;
-              width: 13px;
-              height: 13px;
-              position: absolute;
-              left: 2px;
-              top: 2px;
+              margin-top: 5px;
+              margin-left:5px;
+              .stTime{
+                float: left;
+                width: 50%;
+                height: 20px;
+                line-height: 20px;
+                padding-left: 20px;
+                position: relative;
+              }
+              .stTime::before{
+                content: '';
+                background: url(../../dc_file/image/qidong.png) no-repeat;
+                background-size: contain;
+                width: 13px;
+                height: 13px;
+                position: absolute;
+                left: 2px;
+                top: 2px;
+              }
+              .edTime{
+                float: left;
+                height: 20px;
+                line-height: 20px;
+                padding-left: 20px;
+                position: relative;
+              }
+              .edTime::before{
+                content: '';
+                background: url(../../dc_file/image/zhongdian.png) no-repeat;
+                background-size: contain;
+                width: 13px;
+                height: 13px;
+                position: absolute;
+                left: 2px;
+                top: 2px;
+              }
             }
             .stAdd{
-              text-align: center;
-            }
-            .edTime{
-              width: 100%;
-              height: 20px;
-              line-height: 20px;
-              padding-left: 15px;
+              //text-align: center;
+              margin-top: 5px;
+              margin-left: 5px;
+              padding-left: 20px;
               position: relative;
             }
-            .edTime::before{
+            .stAdd::before{
               content: '';
-              background: url(../../dc_file/image/zhongdian.png) no-repeat;
+              background: url(../../dc_file/image/start.png) no-repeat;
               background-size: contain;
               width: 13px;
               height: 13px;
@@ -314,13 +711,27 @@
               top: 2px;
             }
             .edAdd{
-              text-align: center;
+              //text-align: center;
+              margin-top: 5px;
+              margin-left: 5px;
+              padding-left: 20px;
+              position: relative;
+            }
+            .edAdd::before{
+              content: '';
+              background: url(../../dc_file/image/The-end.png) no-repeat;
+              background-size: contain;
+              width: 13px;
+              height: 13px;
+              position: absolute;
+              left: 2px;
+              top: 2px;
             }
             .dataList{
               width: 100%;
               text-align: center;
               position: absolute;
-              top: 137px;
+              top: 108px;
               table{
                 width: 100%;
 
@@ -332,31 +743,46 @@
               line-height: 15px;
               margin-top: 10px;
               position: absolute;
-              bottom: 23px;
+              bottom: 20px;
               span{
                 float: left;
               }
-              span:nth-child(1){
-                width: 10%;
-                img{
-                  background-size: contain;
-                  width: 15px;
-                  height: 15px;
-                }
+              #fuckP:nth-child(1){
+                width: 8%;
+                height: 30px;
+                float: left;
+                border-radius: 50%;
+                position: relative;
+                top: -9px;
+                color: #0488d1;
+                background-color: #0488d1;
+                transform: scale(0.8);
+                position: relative;
+              }
+              #fuckP:nth-child(1)::before{
+                content: '';
+                background: url(../../dc_file/image/tr.png) no-repeat;
+                background-size: contain;
+                width: 22px;
+                height: 22px;
+                position: absolute;
+                left: 2px;
+                top: 2px;
               }
               span:nth-child(2){
-                width: 60%;
-              }
-              span:nth-child(3){
                 width: 10%;
                 img{
                   background-size: contain;
-                  width: 15px;
-                  height: 10px;
+                  width: 24px;
+                  height: 24px;
                 }
               }
+              span:nth-child(3){
+                width: 55%;
+                margin-left: 5px;
+              }
               span:nth-child(4){
-                width: 10%;
+                width: 8%;
                 img{
                   background-size: contain;
                   width: 15px;
@@ -364,7 +790,16 @@
                 }
               }
               span:nth-child(5){
-                width: 10%;
+                width: 8%;
+                img{
+                  background-size: contain;
+                  width: 15px;
+                  height: 10px;
+                }
+              }
+              span:nth-child(6){
+                width: 4%;
+                padding-top: 1px;
               }
             }
             .drivingTime{
@@ -373,236 +808,53 @@
               text-align: center;
               margin-top: 5px;
             }
+          }
+          li:hover{
+            border:1px solid #bed5e2;
+            opacity: .8;
+            //box-sizing: border-box;
+
           }
         }
       }
       .driving_stop{
         width: 100%;
-        background-color: #f1f1f1;
-
+        background-color: #fff;
+        margin-top: 8px;
+        tr{
+          td{
+            cursor: pointer;
+            div:hover{
+              opacity: .6;
+            }
+          }
+        }
       }
       .driving_warn{
-        ul{
-          width: 100%;
-          li{
-            width: 98%;
-            margin: auto 1%;
-            margin-top: 10px;
-            height: 200px;
-            background-color: #f1f1f1;
-            border:1px solid  #d6d5d5;
-            color: #666;
-            border-radius: 5px;
-            position: relative;
-            .stTime{
-              width: 100%;
-              height: 20px;
-              line-height: 20px;
-              padding-left: 15px;
-              position: relative;
-            }
-            .stTime::before{
-              content: '';
-              background: url(../../dc_file/image/qidong.png) no-repeat;
-              background-size: contain;
-              width: 13px;
-              height: 13px;
-              position: absolute;
-              left: 2px;
-              top: 2px;
-            }
-            .stAdd{
-              text-align: center;
-            }
-            .edTime{
-              width: 100%;
-              height: 20px;
-              line-height: 20px;
-              padding-left: 15px;
-              position: relative;
-            }
-            .edTime::before{
-              content: '';
-              background: url(../../dc_file/image/zhongdian.png) no-repeat;
-              background-size: contain;
-              width: 13px;
-              height: 13px;
-              position: absolute;
-              left: 2px;
-              top: 2px;
-            }
-            .edAdd{
-              text-align: center;
-            }
-            .dataList{
-              width: 100%;
-              text-align: center;
-              position: absolute;
-              top: 137px;
-              table{
-                width: 100%;
-
-              }
-            }
-            .drivingPro{
-              width: 100%;
-              height: 15px;
-              line-height: 15px;
-              margin-top: 10px;
-              position: absolute;
-              bottom: 23px;
-              span{
-                float: left;
-              }
-              span:nth-child(1){
-                width: 10%;
-                img{
-                  background-size: contain;
-                  width: 15px;
-                  height: 15px;
-                }
-              }
-              span:nth-child(2){
-                width: 60%;
-              }
-              span:nth-child(3){
-                width: 10%;
-                img{
-                  background-size: contain;
-                  width: 15px;
-                  height: 10px;
-                }
-              }
-              span:nth-child(4){
-                width: 10%;
-                img{
-                  background-size: contain;
-                  width: 15px;
-                  height: 10px;
-                }
-              }
-              span:nth-child(5){
-                width: 10%;
-              }
-            }
-            .drivingTime{
-              width: 100%;
-              height: 15px;
-              text-align: center;
-              margin-top: 5px;
+        color: #666;
+        margin-top: 8px;
+        .warn_car{
+          border-bottom: 1px solid #ccc;
+          margin-top: 5px;
+        }
+        tr{
+          td{
+            cursor: pointer;
+            .warn_car:hover{
+              opacity: .6;
             }
           }
         }
       }
       .driving_oversp{
-        ul{
-          width: 100%;
-          li{
-            width: 98%;
-            margin: auto 1%;
-            margin-top: 10px;
-            height: 200px;
-            background-color: #f1f1f1;
-            border:1px solid  #d6d5d5;
-            color: #666;
-            border-radius: 5px;
-            position: relative;
-            .stTime{
-              width: 100%;
-              height: 20px;
-              line-height: 20px;
-              padding-left: 15px;
-              position: relative;
-            }
-            .stTime::before{
-              content: '';
-              background: url(../../dc_file/image/qidong.png) no-repeat;
-              background-size: contain;
-              width: 13px;
-              height: 13px;
-              position: absolute;
-              left: 2px;
-              top: 2px;
-            }
-            .stAdd{
-              text-align: center;
-            }
-            .edTime{
-              width: 100%;
-              height: 20px;
-              line-height: 20px;
-              padding-left: 15px;
-              position: relative;
-            }
-            .edTime::before{
-              content: '';
-              background: url(../../dc_file/image/zhongdian.png) no-repeat;
-              background-size: contain;
-              width: 13px;
-              height: 13px;
-              position: absolute;
-              left: 2px;
-              top: 2px;
-            }
-            .edAdd{
-              text-align: center;
-            }
-            .dataList{
-              width: 100%;
-              text-align: center;
-              position: absolute;
-              top: 137px;
-              table{
-                width: 100%;
-
-              }
-            }
-            .drivingPro{
-              width: 100%;
-              height: 15px;
-              line-height: 15px;
-              margin-top: 10px;
-              position: absolute;
-              bottom: 23px;
-              span{
-                float: left;
-              }
-              span:nth-child(1){
-                width: 10%;
-                img{
-                  background-size: contain;
-                  width: 15px;
-                  height: 15px;
-                }
-              }
-              span:nth-child(2){
-                width: 60%;
-              }
-              span:nth-child(3){
-                width: 10%;
-                img{
-                  background-size: contain;
-                  width: 15px;
-                  height: 10px;
-                }
-              }
-              span:nth-child(4){
-                width: 10%;
-                img{
-                  background-size: contain;
-                  width: 15px;
-                  height: 10px;
-                }
-              }
-              span:nth-child(5){
-                width: 10%;
-              }
-            }
-            .drivingTime{
-              width: 100%;
-              height: 15px;
-              text-align: center;
-              margin-top: 5px;
+      }
+      .driving_status{
+        margin-top: 5px;
+        tr{
+          td{
+            .il_paking:hover{
+              opacity: .6;
+              cursor: pointer;
             }
           }
         }
@@ -652,585 +904,44 @@
 
     }
   }
-  .dlc_all{
-    //.dl2_search_up{
-    //    width: 100%;
-    //    height: 25px;
-    //    // background-color: yellow;
-    //    .cm1_card{
-    //        width: 40%;
-    //        height: 25px;
-    //        line-height: 25px;
-    //        // background-color: red;
-    //        input{
-    //            width: 100%;
-    //            height: 25px;
-    //            border: 1px solid #b7b7b7;
-    //            box-sizing: border-box;
-    //            border-radius: 6px;
-    //            color: #b7b7b7;
-    //
-    //        }
-    //    }
-    //    .sl1_day{
-    //        width: 40%;
-    //        height: 25px;
-    //        // background-color: orange;
-    //        .layui-form-select .layui-input{
-    //            padding-right:0px;
-    //            padding-left: 3px;
-    //            height: 25px;
-    //        }
-    //        .layui-form-select .layui-edge{
-    //            right: 1px;
-    //            border-width: 5px;
-    //        }
-    //        .layui-form-select dl{
-    //            top: 25px;
-    //        }
-    //        .layui-anim{
-    //            width: 70px;
-    //            color: #000;
-    //        }
-    //    }
-    //    .dl2_cd{
-    //        width: 20%;
-    //        height: 25px;
-    //        button{
-    //            width: 100%;
-    //            height: 25px;
-    //        }
-    //    }
-    //}
-    //.dl2_search_down{
-    //    width: 100%;
-    //    height: 25px;
-    //    // background-color: purple;
-    //    .start_date1{
-    //        width: 48%;
-    //        height: 25px;
-    //        background-color:green;
-    //        .layui-input{
-    //            height: 25px;
-    //        }
-    //    }
-    //    .end_date1{
-    //        width: 48%;
-    //        height: 25px;
-    //        background-color: pink;
-    //        .layui-input{
-    //            height: 25px;
-    //        }
-    //    }
-    //}
-    //.dl2_way{
-    //    height: 20px;
-    //    line-height: 20px;
-    //    // background-color: skyblue;
-    //    color: #000;
-    //    padding-left: 3px;
-    //}
-    //.dl2_select{
-    //    width: 100%;
-    //    height: 25px;
-    //    line-height: 25px;
-    //    color: #000;
-    //    text-align: center;
-    //    span{
-    //        width: 20%;
-    //        // float: left;
-    //        border: 1px solid #b7b7b7;
-    //        box-sizing: border-box;
-    //        border-radius: 6px;
-    //        margin-left: 3px;
-    //    }
-    //    .dl_s{
-    //        color:#fff;
-    //        background-color: #026aa1;
-    //    }
-    //}
-    //.dl2_info{
-    //    height: 432px;
-    //    width: 100%;
-    //    // background-color: orange;
-    //    overflow: scroll;
-    //    .dli{
-    //        display: none;
-    //    }
-    //    .driving_dis1{
-    //        ul{
-    //            width: 100%;
-    //            li{
-    //                width: 100%;
-    //                height: 140px;
-    //                background-color: #f1f1f1;
-    //                color: #666666;
-    //                .stTime{
-    //                    width: 100%;
-    //                    height: 20px;
-    //                    line-height: 20px;
-    //                    padding-left: 15px;
-    //                    position: relative;
-    //                }
-    //                .stTime::before{
-    //                    content: '';
-    //                    background: url(../image/qidong.png) no-repeat;
-    //                    background-size: contain;
-    //                    width: 13px;
-    //                    height: 13px;
-    //                    position: absolute;
-    //                    left: 2px;
-    //                    top: 2px;
-    //                }
-    //                .stAdd{
-    //                    text-align: center;
-    //                }
-    //                .edTime{
-    //                    width: 100%;
-    //                    height: 20px;
-    //                    line-height: 20px;
-    //                    padding-left: 15px;
-    //                    position: relative;
-    //                }
-    //                .edTime::before{
-    //                    content: '';
-    //                    background: url(../image/zhongdian.png) no-repeat;
-    //                    background-size: contain;
-    //                    width: 13px;
-    //                    height: 13px;
-    //                    position: absolute;
-    //                    left: 2px;
-    //                    top: 2px;
-    //                }
-    //                .edAdd{
-    //                    text-align: center;
-    //                }
-    //                .dataList{
-    //                    width: 100%;
-    //                    text-align: center;
-    //                    table{
-    //                        width: 100%;
-    //                    }
-    //                }
-    //                .drivingPro{
-    //                    width: 100%;
-    //                    height: 15px;
-    //                    line-height: 15px;
-    //                    span{
-    //                        float: left;
-    //                    }
-    //                    span:nth-child(1){
-    //                        width: 10%;
-    //                        img{
-    //                            background-size: contain;
-    //                            width: 15px;
-    //                            height: 15px;
-    //                        }
-    //                    }
-    //                    span:nth-child(2){
-    //                        width: 60%;
-    //                    }
-    //                    span:nth-child(3){
-    //                        width: 10%;
-    //                        img{
-    //                            background-size: contain;
-    //                            width: 15px;
-    //                            height: 10px;
-    //                        }
-    //                    }
-    //                    span:nth-child(4){
-    //                        width: 10%;
-    //                        img{
-    //                            background-size: contain;
-    //                            width: 15px;
-    //                            height: 10px;
-    //                        }
-    //                    }
-    //                    span:nth-child(5){
-    //                        width: 10%;
-    //                    }
-    //                }
-    //                .drivingTime{
-    //                    width: 100%;
-    //                    height: 15px;
-    //                    text-align: center;
-    //                }
-    //            }
-    //        }
-    //    }
-    //    .driving_stop1{
-    //        ul{
-    //            width: 100%;
-    //            li{
-    //                width: 100%;
-    //                height: 140px;
-    //                background-color: #f1f1f1;
-    //                color: #666666;
-    //                .stTime{
-    //                    width: 100%;
-    //                    height: 20px;
-    //                    line-height: 20px;
-    //                    padding-left: 15px;
-    //                    position: relative;
-    //                }
-    //                .stTime::before{
-    //                    content: '';
-    //                    background: url(../image/qidong.png) no-repeat;
-    //                    background-size: contain;
-    //                    width: 13px;
-    //                    height: 13px;
-    //                    position: absolute;
-    //                    left: 2px;
-    //                    top: 2px;
-    //                }
-    //                .stAdd{
-    //                    text-align: center;
-    //                }
-    //                .edTime{
-    //                    width: 100%;
-    //                    height: 20px;
-    //                    line-height: 20px;
-    //                    padding-left: 15px;
-    //                    position: relative;
-    //                }
-    //                .edTime::before{
-    //                    content: '';
-    //                    background: url(../image/zhongdian.png) no-repeat;
-    //                    background-size: contain;
-    //                    width: 13px;
-    //                    height: 13px;
-    //                    position: absolute;
-    //                    left: 2px;
-    //                    top: 2px;
-    //                }
-    //                .edAdd{
-    //                    text-align: center;
-    //                }
-    //                .dataList{
-    //                    width: 100%;
-    //                    text-align: center;
-    //                    table{
-    //                        width: 100%;
-    //                    }
-    //                }
-    //                .drivingPro{
-    //                    width: 100%;
-    //                    height: 15px;
-    //                    line-height: 15px;
-    //                    span{
-    //                        float: left;
-    //                    }
-    //                    span:nth-child(1){
-    //                        width: 10%;
-    //                        img{
-    //                            background-size: contain;
-    //                            width: 15px;
-    //                            height: 15px;
-    //                        }
-    //                    }
-    //                    span:nth-child(2){
-    //                        width: 60%;
-    //                    }
-    //                    span:nth-child(3){
-    //                        width: 10%;
-    //                        img{
-    //                            background-size: contain;
-    //                            width: 15px;
-    //                            height: 10px;
-    //                        }
-    //                    }
-    //                    span:nth-child(4){
-    //                        width: 10%;
-    //                        img{
-    //                            background-size: contain;
-    //                            width: 15px;
-    //                            height: 10px;
-    //                        }
-    //                    }
-    //                    span:nth-child(5){
-    //                        width: 10%;
-    //                    }
-    //                }
-    //                .drivingTime{
-    //                    width: 100%;
-    //                    height: 15px;
-    //                    text-align: center;
-    //                }
-    //            }
-    //        }
-    //    }
-    //    .driving_warn1{
-    //        ul{
-    //            width: 100%;
-    //            li{
-    //                width: 100%;
-    //                height: 140px;
-    //                background-color: #f1f1f1;
-    //                color: #666666;
-    //                .stTime{
-    //                    width: 100%;
-    //                    height: 20px;
-    //                    line-height: 20px;
-    //                    padding-left: 15px;
-    //                    position: relative;
-    //                }
-    //                .stTime::before{
-    //                    content: '';
-    //                    background: url(../image/qidong.png) no-repeat;
-    //                    background-size: contain;
-    //                    width: 13px;
-    //                    height: 13px;
-    //                    position: absolute;
-    //                    left: 2px;
-    //                    top: 2px;
-    //                }
-    //                .stAdd{
-    //                    text-align: center;
-    //                }
-    //                .edTime{
-    //                    width: 100%;
-    //                    height: 20px;
-    //                    line-height: 20px;
-    //                    padding-left: 15px;
-    //                    position: relative;
-    //                }
-    //                .edTime::before{
-    //                    content: '';
-    //                    background: url(../image/zhongdian.png) no-repeat;
-    //                    background-size: contain;
-    //                    width: 13px;
-    //                    height: 13px;
-    //                    position: absolute;
-    //                    left: 2px;
-    //                    top: 2px;
-    //                }
-    //                .edAdd{
-    //                    text-align: center;
-    //                }
-    //                .dataList{
-    //                    width: 100%;
-    //                    text-align: center;
-    //                    table{
-    //                        width: 100%;
-    //                    }
-    //                }
-    //                .drivingPro{
-    //                    width: 100%;
-    //                    height: 15px;
-    //                    line-height: 15px;
-    //                    span{
-    //                        float: left;
-    //                    }
-    //                    span:nth-child(1){
-    //                        width: 10%;
-    //                        img{
-    //                            background-size: contain;
-    //                            width: 15px;
-    //                            height: 15px;
-    //                        }
-    //                    }
-    //                    span:nth-child(2){
-    //                        width: 60%;
-    //                    }
-    //                    span:nth-child(3){
-    //                        width: 10%;
-    //                        img{
-    //                            background-size: contain;
-    //                            width: 15px;
-    //                            height: 10px;
-    //                        }
-    //                    }
-    //                    span:nth-child(4){
-    //                        width: 10%;
-    //                        img{
-    //                            background-size: contain;
-    //                            width: 15px;
-    //                            height: 10px;
-    //                        }
-    //                    }
-    //                    span:nth-child(5){
-    //                        width: 10%;
-    //                    }
-    //                }
-    //                .drivingTime{
-    //                    width: 100%;
-    //                    height: 15px;
-    //                    text-align: center;
-    //                }
-    //            }
-    //        }
-    //    }
-    //    .driving_oversp1{
-    //        ul{
-    //            width: 100%;
-    //            li{
-    //                width: 100%;
-    //                height: 140px;
-    //                background-color: #f1f1f1;
-    //                color: #666666;
-    //                .stTime{
-    //                    width: 100%;
-    //                    height: 20px;
-    //                    line-height: 20px;
-    //                    padding-left: 15px;
-    //                    position: relative;
-    //                }
-    //                .stTime::before{
-    //                    content: '';
-    //                    background: url(../image/qidong.png) no-repeat;
-    //                    background-size: contain;
-    //                    width: 13px;
-    //                    height: 13px;
-    //                    position: absolute;
-    //                    left: 2px;
-    //                    top: 2px;
-    //                }
-    //                .stAdd{
-    //                    text-align: center;
-    //                }
-    //                .edTime{
-    //                    width: 100%;
-    //                    height: 20px;
-    //                    line-height: 20px;
-    //                    padding-left: 15px;
-    //                    position: relative;
-    //                }
-    //                .edTime::before{
-    //                    content: '';
-    //                    background: url(../image/zhongdian.png) no-repeat;
-    //                    background-size: contain;
-    //                    width: 13px;
-    //                    height: 13px;
-    //                    position: absolute;
-    //                    left: 2px;
-    //                    top: 2px;
-    //                }
-    //                .edAdd{
-    //                    text-align: center;
-    //                }
-    //                .dataList{
-    //                    width: 100%;
-    //                    text-align: center;
-    //                    table{
-    //                        width: 100%;
-    //                    }
-    //                }
-    //                .drivingPro{
-    //                    width: 100%;
-    //                    height: 15px;
-    //                    line-height: 15px;
-    //                    span{
-    //                        float: left;
-    //                    }
-    //                    span:nth-child(1){
-    //                        width: 10%;
-    //                        img{
-    //                            background-size: contain;
-    //                            width: 15px;
-    //                            height: 15px;
-    //                        }
-    //                    }
-    //                    span:nth-child(2){
-    //                        width: 60%;
-    //                    }
-    //                    span:nth-child(3){
-    //                        width: 10%;
-    //                        img{
-    //                            background-size: contain;
-    //                            width: 15px;
-    //                            height: 10px;
-    //                        }
-    //                    }
-    //                    span:nth-child(4){
-    //                        width: 10%;
-    //                        img{
-    //                            background-size: contain;
-    //                            width: 15px;
-    //                            height: 10px;
-    //                        }
-    //                    }
-    //                    span:nth-child(5){
-    //                        width: 10%;
-    //                    }
-    //                }
-    //                .drivingTime{
-    //                    width: 100%;
-    //                    height: 15px;
-    //                    text-align: center;
-    //                }
-    //            }
-    //        }
-    //    }
-    //}
-    //.dl2_bottom{
-    //    width: 100%;
-    //    height: 15px;
-    //    // background-color: red;
-    //    position: absolute;
-    //    left: 0;
-    //    bottom: 0;
-    //    background-color: #fff;
-    //    .layui-laypage {
-    //        margin: 0;
-    //    }
-    //    .layui-laypage a, .layui-laypage span{
-    //        margin: 0;
-    //        height: 15px;
-    //        line-height: 15px;
-    //        padding: 0 1.5px;
-    //    }
-    //    .layui-laypage select{
-    //        height: 15px;
-    //        line-height: 15px;
-    //        padding: 0;
-    //        border: none;
-    //    }
-    //    .layui-laypage button, .layui-laypage input{
-    //        height: 15px;
-    //        line-height: 15px;
-    //    }
-    //    .layui-laypage .layui-laypage-curr .layui-laypage-em{
-    //        background-color: #00ade1;
-    //    }
-    //    .layui-laypage-next em, .layui-laypage-prev em {
-    //        /* font-family: Sim sun; */
-    //        font-size: 12px;
-    //    }
-    //    .layui-laypage input{
-    //        display: inline-block;
-    //        width: 20px;
-    //        margin: 0;
-    //        padding: 0;
-    //        text-align: center;
-    //    }
-    //}
-  }
 }
+
 .box7_drag{
   width: 0.1%;
   height: 100%;
   background-color: #fff;
   position: absolute;
+  z-index: 10;
   left: 20%;
-  top: 0;
 }
 .box7_drag::before{
   content:'';
-  background:url("./../image/zuoyou.png") no-repeat;
+  background:url("../../dc_file/image/close0.png") no-repeat;
   background-size: contain;
   display: inline-block;
-  width: 6px;
-  height: 50px;
+  width: 30px;
+  height: 43px;
   position: absolute;
-  left: -3px;
-  top: 43%;
+  left: 2px;
+  top: 40%;
+}
+.zy_drag::before{
+  content:'';
+  background:url("../../dc_file/image/open.png") no-repeat;
+  background-size: contain;
+  display: inline-block;
+  width: 30px;
+  height: 43px;
+  position: absolute;
+  left: 2px;
+  top: 40%;
 }
 .driving_map{
   width: 79.9%;
+      left: 20.1%;
   height: 100%;
   // background-color: orange;
   position: absolute;
-  left: 20.1%;
   top: 0;
   .dm_top{
     height: 69.9%;
@@ -1238,20 +949,22 @@
   }
   .dm_drag{
     width: 100%;
-    height: 0.5%;
-    background-color: #fff;
+    //height: 0.5%;
+    //background-color: #fff;
     z-index: 1000;
+    position: absolute;
+    //top: 69%;
   }
   .dm_drag::before{
     content:'';
-    background:url("./../image/shangxia.png") no-repeat;
+    background:url("../../dc_file/image/shangxia.png") no-repeat;
     background-size: contain;
     display: inline-block;
-    width: 50px;
-    height: 5px;
+    width: 45px;
+    height: 17px;
     position: absolute;
     left: 48%;
-     //top: -3px;
+    top: -17px;
   }
   .dm_mb{
     height: 29.6%;
@@ -1260,9 +973,9 @@
       width: 100%;
       color: #000;
       overflow: scroll;
-      //position: absolute;
-      //left: 0;
-      //bottom: 15px;
+      position: absolute;
+      left: 0;
+      bottom: 15px;
       .con_7{
         display: none;
         table{
@@ -1290,6 +1003,7 @@
     .dm_bottom{
       width: 100%;
       height: 15px;
+      line-height: 15px;
       background-color:#fff;
       position: absolute;
       left: 0;
@@ -1343,3 +1057,31 @@
   }
 
 }
+
+
+//@media screen and (min-width: 1080px){
+//  .driving_list{
+//    width: 20%;
+//  }
+//  .box7_drag{
+//    left: 20%;
+//  }
+//  .driving_map{
+//    width: 79.9%;
+//    left: 20.1%;
+//  }
+//}
+
+//@media screen and (min-width: 768px) and (max-width:1079px ){
+//  .driving_list{
+//    width: 28%;
+//  }
+//  .box7_drag{
+//    width: 0.1%;
+//    left: 28%;
+//  }
+//  .driving_map{
+//    width: 71.9%;
+//    left:28.1%;
+//  }
+//}

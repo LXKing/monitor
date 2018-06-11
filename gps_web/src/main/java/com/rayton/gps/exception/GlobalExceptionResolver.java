@@ -22,8 +22,7 @@ public class GlobalExceptionResolver implements HandlerExceptionResolver {
     private Logger log = Logger.getLogger(getClass());
 
     @Override
-    public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler,
-                                         Exception ex) {
+    public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
 
         ex.printStackTrace();
         // AJAX JSON

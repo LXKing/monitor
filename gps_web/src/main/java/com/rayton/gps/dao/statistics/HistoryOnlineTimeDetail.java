@@ -16,9 +16,7 @@ public class HistoryOnlineTimeDetail {
 
     @Override
     public String toString() {
-        return "HistoryOnlineTimeDetail{" + "motorcade='" + motorcade + '\'' + ", plateNumber='" + plateNumber + '\''
-                + ", deviceNumber='" + deviceNumber + '\'' + ", start=" + start + ", end=" + end + ", must=" + must +
-                ", real=" + real + ", onlineRate=" + onlineRate + ", offlineRate=" + offlineRate + '}';
+        return "HistoryOnlineTimeDetail{" + "motorcade='" + motorcade + '\'' + ", plateNumber='" + plateNumber + '\'' + ", deviceNumber='" + deviceNumber + '\'' + ", start=" + start + ", end=" + end + ", must=" + must + ", real=" + real + ", onlineRate=" + onlineRate + ", offlineRate=" + offlineRate + '}';
     }
 
     public String getMotorcade() {

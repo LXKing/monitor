@@ -22,10 +22,7 @@ public class InstructInfo {
 
     @Override
     public String toString() {
-        return "InstructInfo{" + "id='" + id + '\'' + ", deviceNumber='" + deviceNumber + '\'' + ", plateNumber='" +
-                plateNumber + '\'' + ", command='" + command + '\'' + ", name='" + name + '\'' + ", parameter='" +
-                parameter + '\'' + ", status=" + status + ", sendTime=" + sendTime + ", replyTime=" + replyTime + ", " +
-                "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "result='" + result + '\'' + '}';
+        return "InstructInfo{" + "id='" + id + '\'' + ", deviceNumber='" + deviceNumber + '\'' + ", plateNumber='" + plateNumber + '\'' + ", command='" + command + '\'' + ", name='" + name + '\'' + ", parameter='" + parameter + '\'' + ", status=" + status + ", sendTime=" + sendTime + ", replyTime=" + replyTime + ", " + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "result='" + result + '\'' + '}';
     }
 
     /**

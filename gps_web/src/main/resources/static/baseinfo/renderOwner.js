@@ -77,13 +77,13 @@ var renderOwner = function (url) {
 	<div class="layui-form-item layui-inline pane">
 		<label class="layui-form-label">服务开始时间</label>
 		<div class="layui-input-block">
-			<input type="text" name="serviceStartDate" id="serviceStartDate" placeholder="请输入" autocomplete="off" class="layui-input">
+			<input type="text" name="serviceStartDate" id="serviceStartDate"  required lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
 		</div>
 	</div>
 	<div class="layui-form-item layui-inline pane">
 		<label class="layui-form-label">服务结束时间</label>
 		<div class="layui-input-block">
-			<input type="text" name="serviceEndDate" id="serviceEndDate" placeholder="请输入" autocomplete="off" class="layui-input">
+			<input type="text" name="serviceEndDate" id="serviceEndDate" required lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
 		</div>
 	</div>
 	<div class="layui-form-item pane">
@@ -142,13 +142,22 @@ var renderOwner = function (url) {
                 {field: 'ownerName', title: '姓名', sort: true},
 
                 {field: 'phone', title: '电话', sort: true},
-                {field: 'createTime', title: '开户时间', sort: true},
+                {
+                    field: 'createTime', title: '开户时间', sort: true
+
+                },
                 {field: 'enable', title: '启用否', sort: true},
                 {field: 'idNumber', title: '证件编号', sort: true},
                 {field: 'idType', title: '证件类型', sort: true},
                 {field: 'remark', title: '说明', sort: true},
-                {field: 'serviceEndDate', title: '服务结束时间', sort: true},
-                {field: 'serviceStartDate', title: '服务开始时间', sort: true},
+                {
+                    field: 'serviceEndDate', title: '服务结束时间', sort: true
+
+                },
+                {
+                    field: 'serviceStartDate', title: '服务开始时间', sort: true
+
+                },
                 {fixed: 'right', align: 'center', minWidth: 200, toolbar: '#renderOwnerBar'}
             ]
         ]
@@ -272,10 +281,17 @@ var renderOwner = function (url) {
                                 size: "sm"
                                 , cols: [[ // 表头
 
-                                    {field: 'annualSurveyDate', title: '年检日期'}
+                                    {
+                                        field: 'annualSurveyDate', title: '年检日期'
+
+                                    }
 
                                     , {field: 'deviceNumber', title: '设备号'}
-                                    , {field: 'installDate', title: '安装日期'}
+                                    , {
+                                        field: 'installDate', title: '安装日期'
+
+
+                                    }
                                     , {field: 'motorcade', title: '车队', sort: true}
                                     , {field: 'phoneNumber', title: '电话号码', sort: true}
                                     , {field: 'plateColor', title: '车牌颜色', sort: true}
@@ -350,10 +366,18 @@ var renderOwner = function (url) {
                             {type: 'checkbox'}
 
 
-                            , {field: 'annualSurveyDate', title: '年检日期'}
+                            , {
+                                field: 'annualSurveyDate', title: '年检日期'
+
+
+                            }
 
                             , {field: 'deviceNumber', title: '设备号'}
-                            , {field: 'installDate', title: '安装日期'}
+                            , {
+                                field: 'installDate', title: '安装日期'
+
+
+                            }
                             , {field: 'motorcade', title: '车队', sort: true}
                             , {field: 'phoneNumber', title: '电话号码', sort: true}
                             , {field: 'plateColor', title: '车牌颜色', sort: true}
@@ -455,7 +479,12 @@ var renderOwner = function (url) {
 
                     var form = layui.form;
                     form.render();
-
+                    form.on('checkbox(show)', function (data) {
+                        console.log(data.elem); //得到checkbox原始DOM对象
+                        console.log(data.elem.checked); //是否被选中，true或者false
+                        console.log(data.value); //复选框value值，也可以通过data.elem.value得到
+                        console.log(data.othis); //得到美化后的DOM对象
+                    });
 
                     form.on('submit(formDemo)', function (data) {
 
@@ -486,7 +515,7 @@ var renderOwner = function (url) {
                             error: function (res) {
                                 console.log(res)
                                 console.log(res.responseJSON.msg)
-                                layer.msg( res.responseJSON.msg )
+                                layer.msg(res.responseJSON.msg)
                             }
                         });
 
@@ -572,7 +601,7 @@ var renderOwner = function (url) {
                                 console.log(res);
                                 laydate.render({
                                     elem: '#serviceStartDate' //指定元素
-                                    , format: "yyyy-MM-dd HH:mm:ss"
+
                                     , value: res.serviceStartDate
                                     , done: function (value, date, endDate) {
                                         console.log(value); //得到日期生成的值，如：2017-08-18
@@ -583,7 +612,7 @@ var renderOwner = function (url) {
 
                                 laydate.render({
                                     elem: '#serviceEndDate' //指定元素
-                                    , format: "yyyy-MM-dd HH:mm:ss"
+
                                     , value: res.serviceEndDate
                                     , done: function (value, date, endDate) {
                                         console.log(value); //得到日期生成的值，如：2017-08-18
@@ -641,7 +670,7 @@ var renderOwner = function (url) {
                                 error: function (res) {
                                     console.log(res)
                                     console.log(res.responseJSON.msg)
-                                    layer.msg( res.responseJSON.msg )
+                                    layer.msg(res.responseJSON.msg)
                                 }
                             });
 

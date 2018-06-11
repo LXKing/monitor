@@ -15,8 +15,16 @@ public class IdentityDto implements Serializable {
     public Date serviceEndTime;
     public boolean enable;
 
+    public String FULLNAME;
     private String[] roles;
 
+    public String getFULLNAME() {
+        return FULLNAME;
+    }
+
+    public void setFULLNAME(String FULLNAME) {
+        this.FULLNAME = FULLNAME;
+    }
 
     public String[] getRoles() {
         return roles;
@@ -108,9 +116,6 @@ public class IdentityDto implements Serializable {
 
     @Override
     public String toString() {
-        return "IdentityDto{" + "id='" + id + '\'' + ", unid='" + unid + '\'' + ", companyId='" + companyId + '\'' +
-                ", account='" + account + '\'' + ", password='" + password + '\'' + ", name='" + name + '\'' + ", " +
-                "kind=" + kind + ", serviceStartTime=" + serviceStartTime + ", serviceEndTime=" + serviceEndTime + "," +
-                "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + " enable=" + enable + '}';
+        return "IdentityDto{" + "id='" + id + '\'' + ", unid='" + unid + '\'' + ", companyId='" + companyId + '\'' + ", account='" + account + '\'' + ", password='" + password + '\'' + ", name='" + name + '\'' + ", " + "kind=" + kind + ", serviceStartTime=" + serviceStartTime + ", serviceEndTime=" + serviceEndTime + "," + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + " enable=" + enable + '}';
     }
 }

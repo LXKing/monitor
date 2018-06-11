@@ -1,4 +1,5 @@
 package com.rayton.gps.dao;
+
 public class Viewport implements java.io.Serializable {
     private static final long serialVersionUID = 1L;
     private Integer id;
@@ -6,10 +7,12 @@ public class Viewport implements java.io.Serializable {
     private String level;
     private Double alt;
     private String userId;
+
     public Viewport() {
         super();
     }
-    public Viewport(Integer id,Double lng,String level,Double alt,String userId) {
+
+    public Viewport(Integer id, Double lng, String level, Double alt, String userId) {
         super();
         this.id = id;
         this.lng = lng;
@@ -17,6 +20,7 @@ public class Viewport implements java.io.Serializable {
         this.alt = alt;
         this.userId = userId;
     }
+
     public Integer getId() {
         return this.id;
     }

@@ -16,10 +16,7 @@ public class MultimediaEventReport {
 
     @Override
     public String toString() {
-        return "MultimediaEventReport{" + "id='" + id + '\'' + ", number='" + number + '\'' + ", plateNumber='" +
-                plateNumber + '\'' + ", time=" + time + ", mediaId=" + mediaId + ", mediaType='" + mediaType + '\'' +
-                ", formatType='" + formatType + '\'' + ", eventType='" + eventType + '\'' + ", channelId=" +
-                channelId + '}';
+        return "MultimediaEventReport{" + "id='" + id + '\'' + ", number='" + number + '\'' + ", plateNumber='" + plateNumber + '\'' + ", time=" + time + ", mediaId=" + mediaId + ", mediaType='" + mediaType + '\'' + ", formatType='" + formatType + '\'' + ", eventType='" + eventType + '\'' + ", channelId=" + channelId + '}';
     }
 
     public String getId() {

@@ -97,7 +97,8 @@ public class BaseInfoController {
             count++;
         }
 
-        if (count > 0) menus.add(menuAccountAdmin);
+        if (count > 0)
+            menus.add(menuAccountAdmin);
         count = 0;
 
         AdminMenu menuVehicleAdmin = new AdminMenu();
@@ -149,7 +150,8 @@ public class BaseInfoController {
             count++;
         }
 
-        if (count > 0) menus.add(menuVehicleAdmin);
+        if (count > 0)
+            menus.add(menuVehicleAdmin);
         count = 0;
 
         AdminMenu menuVehicleMaintain = new AdminMenu();
@@ -168,7 +170,8 @@ public class BaseInfoController {
             count++;
         }
 
-        if (count > 0) menus.add(menuVehicleMaintain);
+        if (count > 0)
+            menus.add(menuVehicleMaintain);
         count = 0;
 
         AdminMenu dl = new AdminMenu();
@@ -206,7 +209,8 @@ public class BaseInfoController {
             menus.add(menuMaintain);
             count++;
         }
-        if (count > 0) menus.add(dl);
+        if (count > 0)
+            menus.add(dl);
         count = 0;
 
 
@@ -215,27 +219,27 @@ public class BaseInfoController {
         menuMapAdmin.setText("地图管理");
         menuMapAdmin.setLeaf(false);
 
-//        if (securityService.hasAuthorized("baseinfo.circleArea")) {
-//            AdminMenu menuCircle = new AdminMenu();
-//            menuCircle.setId(ObjectId.next());
-//            menuCircle.setPid(menuMapAdmin.getId());
-//            menuCircle.setText("圆形区域");
-//            menuCircle.setUrl("/circleArea/circleArea.iframe");
-//            menuCircle.setLeaf(true);
-//            menus.add(menuCircle);
-//            count++;
-//        }
-//
-//        if (securityService.hasAuthorized("baseinfo.rectangleArea")) {
-//            AdminMenu menuRectangle = new AdminMenu();
-//            menuRectangle.setId(ObjectId.next());
-//            menuRectangle.setPid(menuMapAdmin.getId());
-//            menuRectangle.setText("矩形区域");
-//            menuRectangle.setUrl("rectangleArea/rectangleArea.iframe");
-//            menuRectangle.setLeaf(true);
-//            menus.add(menuRectangle);
-//            count++;
-//        }
+        //        if (securityService.hasAuthorized("baseinfo.circleArea")) {
+        //            AdminMenu menuCircle = new AdminMenu();
+        //            menuCircle.setId(ObjectId.next());
+        //            menuCircle.setPid(menuMapAdmin.getId());
+        //            menuCircle.setText("圆形区域");
+        //            menuCircle.setUrl("/circleArea/circleArea.iframe");
+        //            menuCircle.setLeaf(true);
+        //            menus.add(menuCircle);
+        //            count++;
+        //        }
+        //
+        //        if (securityService.hasAuthorized("baseinfo.rectangleArea")) {
+        //            AdminMenu menuRectangle = new AdminMenu();
+        //            menuRectangle.setId(ObjectId.next());
+        //            menuRectangle.setPid(menuMapAdmin.getId());
+        //            menuRectangle.setText("矩形区域");
+        //            menuRectangle.setUrl("rectangleArea/rectangleArea.iframe");
+        //            menuRectangle.setLeaf(true);
+        //            menus.add(menuRectangle);
+        //            count++;
+        //        }
 
         if (securityService.hasAuthorized("baseinfo.polygonArea")) {
             AdminMenu menuPolygon = new AdminMenu();
@@ -258,18 +262,18 @@ public class BaseInfoController {
             menus.add(menuSection);
             count++;
         }
-//
-//        if (securityService.hasAuthorized("baseinfo.routeArea")) {
-//            AdminMenu menuRoute = new AdminMenu();
-//            menuRoute.setId(ObjectId.next());
-//            menuRoute.setPid(menuMapAdmin.getId());
-//            menuRoute.setText("路线");
-//            menuRoute.setUrl("routeArea/routeArea.iframe");
-//            menuRoute.setLeaf(true);
-//            menus.add(menuRoute);
-//
-//            count++;
-//        }
+        //
+        //        if (securityService.hasAuthorized("baseinfo.routeArea")) {
+        //            AdminMenu menuRoute = new AdminMenu();
+        //            menuRoute.setId(ObjectId.next());
+        //            menuRoute.setPid(menuMapAdmin.getId());
+        //            menuRoute.setText("路线");
+        //            menuRoute.setUrl("routeArea/routeArea.iframe");
+        //            menuRoute.setLeaf(true);
+        //            menus.add(menuRoute);
+        //
+        //            count++;
+        //        }
 
         if (securityService.hasAuthorized("baseinfo.poi")) {
             AdminMenu menuPoi = new AdminMenu();
@@ -282,40 +286,41 @@ public class BaseInfoController {
             count++;
         }
 
-//        if (securityService.hasAuthorized("baseinfo.mapOption")) {
-//            AdminMenu menuMapOption = new AdminMenu();
-//            menuMapOption.setId(ObjectId.next());
-//            menuMapOption.setPid(menuMapAdmin.getId());
-//            menuMapOption.setText("地图设置");
-//            menuMapOption.setUrl("mapOption/mapOption.iframe");
-//            menuMapOption.setLeaf(true);
-//            menus.add(menuMapOption);
-//            count++;
-//        }
-//
-//        if (securityService.hasAuthorized("baseinfo.mapLayer")) {
-//            AdminMenu menuMapLayer = new AdminMenu();
-//            menuMapLayer.setId(ObjectId.next());
-//            menuMapLayer.setPid(menuMapAdmin.getId());
-//            menuMapLayer.setText("地图图层");
-//            menuMapLayer.setUrl("mapLayer/mapLayer.iframe");
-//            menuMapLayer.setLeaf(true);
-//            menus.add(menuMapLayer);
-//            count++;
-//        }
+        //        if (securityService.hasAuthorized("baseinfo.mapOption")) {
+        //            AdminMenu menuMapOption = new AdminMenu();
+        //            menuMapOption.setId(ObjectId.next());
+        //            menuMapOption.setPid(menuMapAdmin.getId());
+        //            menuMapOption.setText("地图设置");
+        //            menuMapOption.setUrl("mapOption/mapOption.iframe");
+        //            menuMapOption.setLeaf(true);
+        //            menus.add(menuMapOption);
+        //            count++;
+        //        }
+        //
+        //        if (securityService.hasAuthorized("baseinfo.mapLayer")) {
+        //            AdminMenu menuMapLayer = new AdminMenu();
+        //            menuMapLayer.setId(ObjectId.next());
+        //            menuMapLayer.setPid(menuMapAdmin.getId());
+        //            menuMapLayer.setText("地图图层");
+        //            menuMapLayer.setUrl("mapLayer/mapLayer.iframe");
+        //            menuMapLayer.setLeaf(true);
+        //            menus.add(menuMapLayer);
+        //            count++;
+        //        }
 
-//        if (securityService.hasAuthorized("baseinfo.marker")) {
-//            AdminMenu menuVehicleMarker = new AdminMenu();
-//            menuVehicleMarker.setId(ObjectId.next());
-//            menuVehicleMarker.setPid(menuMapAdmin.getId());
-//            menuVehicleMarker.setText("车辆图标");
-//            menuVehicleMarker.setUrl("marker/marker.iframe");
-//            menuVehicleMarker.setLeaf(true);
-//            menus.add(menuVehicleMarker);
-//            count++;
-//        }
+        //        if (securityService.hasAuthorized("baseinfo.marker")) {
+        //            AdminMenu menuVehicleMarker = new AdminMenu();
+        //            menuVehicleMarker.setId(ObjectId.next());
+        //            menuVehicleMarker.setPid(menuMapAdmin.getId());
+        //            menuVehicleMarker.setText("车辆图标");
+        //            menuVehicleMarker.setUrl("marker/marker.iframe");
+        //            menuVehicleMarker.setLeaf(true);
+        //            menus.add(menuVehicleMarker);
+        //            count++;
+        //        }
 
-        if (count > 0) menus.add(menuMapAdmin);
+        if (count > 0)
+            menus.add(menuMapAdmin);
         count = 0;
 
         AdminMenu menuSystem = new AdminMenu();
@@ -334,7 +339,19 @@ public class BaseInfoController {
             count++;
         }
 
-        if (count > 0) menus.add(menuSystem);
+        if (securityService.hasAuthorized("baseinfo.sysvid")) {
+            AdminMenu sys = new AdminMenu();
+            sys.setId(ObjectId.next());
+            sys.setPid(menuSystem.getId());
+            sys.setText("系统VID");
+            sys.setUrl("svid/list");
+            sys.setLeaf(true);
+            menus.add(sys);
+            count++;
+        }
+
+        if (count > 0)
+            menus.add(menuSystem);
 
         return menus;
     }

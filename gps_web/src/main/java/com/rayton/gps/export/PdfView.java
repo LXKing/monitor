@@ -15,8 +15,7 @@ import java.util.Map;
 public class PdfView extends AbstractPdfView {
 
     @Override
-    public void buildPdfDocument(Map<String, Object> model, Document document, PdfWriter writer, HttpServletRequest
-            request, HttpServletResponse response) throws Exception {
+    public void buildPdfDocument(Map<String, Object> model, Document document, PdfWriter writer, HttpServletRequest request, HttpServletResponse response) throws Exception {
         String ttfPath = request.getServletContext().getRealPath("/resources/simsun.ttf");
         BaseFont zh = BaseFont.createFont(ttfPath, BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
         Font titleFont = new Font(zh, 10, Font.BOLD);

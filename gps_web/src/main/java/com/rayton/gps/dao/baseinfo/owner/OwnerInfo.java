@@ -1,5 +1,7 @@
 package com.rayton.gps.dao.baseinfo.owner;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.sql.Date;
 
 public class OwnerInfo {
@@ -8,15 +10,19 @@ public class OwnerInfo {
     private String phone;
     private String idType;
     private String idNumber;
+    @JSONField(format = "yyyy-MM-dd")
     private Date serviceStartDate;
+    @JSONField(format = "yyyy-MM-dd")
     private Date serviceEndDate;
     private boolean enable;
+    @JSONField(format = "yyyy-MM-dd")
     private Date createTime;
     private String remark;
 
 
     //
     private String CONTACT;
+    @JSONField(format = "yyyy-MM-dd")
     private Date REGISTRATIONDATE;
     // private String PHONE;
     private String FAX;
@@ -26,11 +32,7 @@ public class OwnerInfo {
 
     @Override
     public String toString() {
-        return "OwnerInfo{" + "id='" + id + '\'' + ", ownerName='" + ownerName + '\'' + ", phone='" + phone + '\'' +
-                ", idType='" + idType + '\'' + ", idNumber='" + idNumber + '\'' + ", serviceStartDate=" +
-                serviceStartDate + ", serviceEndDate=" + serviceEndDate + ", enable=" + enable + ", createTime=" +
-                createTime + ", remark='" + remark + '\'' + ", CONTACT='" + CONTACT + '\'' + ", REGISTRATIONDATE=" +
-                REGISTRATIONDATE + ", FAX='" + FAX + '\'' + ", BUSSINESSAGENT='" + BUSSINESSAGENT + '\'' + '}';
+        return "OwnerInfo{" + "id='" + id + '\'' + ", ownerName='" + ownerName + '\'' + ", phone='" + phone + '\'' + ", idType='" + idType + '\'' + ", idNumber='" + idNumber + '\'' + ", serviceStartDate=" + serviceStartDate + ", serviceEndDate=" + serviceEndDate + ", enable=" + enable + ", createTime=" + createTime + ", remark='" + remark + '\'' + ", CONTACT='" + CONTACT + '\'' + ", REGISTRATIONDATE=" + REGISTRATIONDATE + ", FAX='" + FAX + '\'' + ", BUSSINESSAGENT='" + BUSSINESSAGENT + '\'' + '}';
     }
 
     public String getCONTACT() {

@@ -1,10 +1,17 @@
 package com.rayton.gps.service;
 
+import com.rayton.gps.cache.AreaCatcherCache;
 import com.rayton.gps.cache.AssociationCache;
 import com.rayton.gps.cache.SynchronizerCache;
 import com.rayton.gps.common.MessageKinds;
 import com.rayton.gps.common.ObjectId;
 import com.rayton.gps.configuration.AppConfig;
+import com.rayton.gps.dao.baseinfo.device.Device;
+import com.rayton.gps.dao.baseinfo.device.IDeviceDao;
+import com.rayton.gps.dao.baseinfo.driver.DriverInfo;
+import com.rayton.gps.dao.baseinfo.sim.ISimcardDao;
+import com.rayton.gps.dao.baseinfo.sim.Simcard;
+import com.rayton.gps.dao.baseinfo.vehicle.IVehicleDao;
 import com.rayton.gps.dao.cache.UserMonitorTarget;
 import com.rayton.gps.dao.cache.association.MonitorTarget;
 import com.rayton.gps.dao.locate.*;
@@ -14,6 +21,7 @@ import com.rayton.gps.domain.statistics.DeviceOnlineOfflineReport;
 import com.rayton.gps.godp.IGodpDao;
 import com.rayton.gps.util.JsonMapper;
 import com.rayton.gps.util.enums.*;
+import com.rayton.gps.websocket.SystemWebSocketHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +36,15 @@ public class LocateService {
     private IGodpDao godpDao;
     @Autowired
     private AppConfig webConfig;
+
+    @Autowired
+    private IDeviceDao deviceDao;
+
+    @Autowired
+    private IVehicleDao vehicleDao;
+
+    @Autowired
+    private ISimcardDao simcardDao;
 
     /**
      * 获取用户组别车辆列表
@@ -65,6 +82,21 @@ public class LocateService {
             groupVehicle.setType(mt.getType());
             groupVehicle.setMarker(mt.getMarker());
             groupVehicle.setRotate(mt.getRotate());
+
+
+            Device device = deviceDao.getD(mt.getDeviceNumber());
+            Simcard simcard = simcardDao.fetch(device.getSimcardId());
+            groupVehicle.setSim(simcard.getSimcardNumber());
+            List<DriverInfo> drivers = vehicleDao.assignedDrivers(vehicleDao.getByD(mt.getDeviceNumber()));
+            StringBuilder name = new StringBuilder();
+            StringBuilder phone = new StringBuilder();
+            drivers.forEach(driverInfo -> name.append(driverInfo.getName()));
+            drivers.forEach(driverInfo -> phone.append(driverInfo.getPhone()));
+            groupVehicle.setPhone(phone.toString());
+            groupVehicle.setDriname(name.toString());
+            String vehicle = vehicleDao.getSS(mt.getDeviceNumber());
+
+            groupVehicle.setInum(vehicle);
             result.add(groupVehicle);
         }
 
@@ -246,8 +278,7 @@ public class LocateService {
      * 处理多媒体检索应答
      */
     private void handleDeviceMultimediaRetrievalReply(Object data) {
-        List<MultimediaDataRetrievalMessage> messages = JsonMapper.convertValue(data, List.class,
-                MultimediaDataRetrievalMessage.class);
+        List<MultimediaDataRetrievalMessage> messages = JsonMapper.convertValue(data, List.class, MultimediaDataRetrievalMessage.class);
         List<MultimediaRetrievalDto> list = new ArrayList<MultimediaRetrievalDto>();
         for (MultimediaDataRetrievalMessage message : messages) {
             MultimediaRetrievalDto dto = new MultimediaRetrievalDto();
@@ -312,31 +343,31 @@ public class LocateService {
 
     private void sendToUser(Object message, String deviceNumber, String messageKind) {
         // // 以用户名为主键创建下发的数据数块
-        // Map<String, List<GodpDataBlock>> map = new HashMap<String, List<GodpDataBlock>>();
-        // // 查找对应的用户id
-        // Set<String> users = AssociationCache.getUsers(deviceNumber);
-        // if (users == null)
-        //     return;
-        // // 每用户生成一份数据
-        // for (String userId : users) {
-        //     // 检查用户是否在线
-        //     if (!SystemWebSocketHandler.isOnline(userId))
-        //         continue;
-        //     List<GodpDataBlock> blocks = map.get(userId);
-        //     if (blocks == null) {
-        //         blocks = new ArrayList<GodpDataBlock>();
-        //         map.put(userId, blocks);
-        //     }
-        //
-        //     GodpDataBlock block = new GodpDataBlock();
-        //     block.setKind(messageKind);
-        //     block.setData(message);
-        //     blocks.add(block);
-        // }
-        //
-        // // 下发数据
-        // SystemWebSocketHandler handler = new SystemWebSocketHandler();
-        // handler.sendMessageToUser(map);
+        Map<String, List<GodpDataBlock>> map = new HashMap<String, List<GodpDataBlock>>();
+        // 查找对应的用户id
+        Set<String> users = AssociationCache.getUsers(deviceNumber);
+        if (users == null)
+            return;
+        // 每用户生成一份数据
+        for (String userId : users) {
+            // 检查用户是否在线
+            if (!SystemWebSocketHandler.isOnline(userId))
+                continue;
+            List<GodpDataBlock> blocks = map.get(userId);
+            if (blocks == null) {
+                blocks = new ArrayList<GodpDataBlock>();
+                map.put(userId, blocks);
+            }
+
+            GodpDataBlock block = new GodpDataBlock();
+            block.setKind(messageKind);
+            block.setData(message);
+            blocks.add(block);
+        }
+
+        // 下发数据
+        SystemWebSocketHandler handler = new SystemWebSocketHandler();
+        handler.sendMessageToUser(map);
     }
 
     /**
@@ -355,99 +386,99 @@ public class LocateService {
      */
     private void handleDeviceRealtimeData(Object source) {
         // // 解析godp发送过来的数据
-        // RealtimeDataBlock data = JsonMapper.convertValue(source, RealtimeDataBlock.class);
-        // // 以用户名为主键创建下发的数据数块
-        // Map<String, List<GodpDataBlock>> map = new HashMap<String, List<GodpDataBlock>>();
-        // // 收集报警数据，以便入库后，用户做处理
-        // List<AlarmDto> alarms = new ArrayList<AlarmDto>();
-        //
-        // List<Latest> tracks = data.getTracks();
-        // if (tracks != null) {
-        //     for (Latest latest : tracks) {
-        //         // 发送未同步的指令
-        //         SynchronizerCache.sendNext(latest.getDn());
-        //         // 平台区域计算
-        //         boolean hasAlarm = AreaCatcherCache.hasAlarm(latest);
-        //
-        //         GodpDataBlock block = new GodpDataBlock();
-        //         block.setKind(MessageKinds.device_realtime_track);
-        //
-        //         // 收集报警
-        //         if (latest.getA() != 0) {
-        //             AlarmDto dto = new AlarmDto();
-        //
-        //             dto.dn = latest.getDn();
-        //             dto.a = latest.getA();
-        //             dto.d = latest.getD();
-        //             dto.val = latest.getVal();
-        //             dto.lat = latest.getLat();
-        //             dto.lng = latest.getLng();
-        //             dto.alt = latest.getAlt();
-        //             dto.s = latest.getS();
-        //             dto.sp = latest.getSp();
-        //             dto.gt = latest.getGt();
-        //             dto.st = latest.getSt();
-        //             dto.m = latest.getM();
-        //             dto.oil = latest.getOil();
-        //             dto.vss = latest.getVss();
-        //             dto.ovt = latest.getOvt();
-        //             dto.oid = latest.getOid();
-        //             dto.iot = latest.getIot();
-        //             dto.iid = latest.getIid();
-        //             dto.iof = latest.getIof();
-        //             dto.rid = latest.getRid();
-        //             dto.rt = latest.getRt();
-        //             dto.rf = latest.getRf();
-        //             dto.aid = latest.getAid();
-        //             dto.exs = latest.getExs();
-        //             dto.ios = latest.getIos();
-        //             dto.ad0 = latest.getAd0();
-        //             dto.ad1 = latest.getAd1();
-        //             dto.net = latest.getNet();
-        //             dto.sat = latest.getSat();
-        //
-        //             dto.id = ObjectId.next();
-        //             dto.from = (byte) (hasAlarm ? 1 : 0);
-        //
-        //             alarms.add(dto);
-        //             Alarm alarm = JsonMapper.convertValue(latest, Alarm.class);
-        //             alarm.setId(dto.id);
-        //             alarm.setFrom(dto.from);
-        //             block.setData(alarm);
-        //         } else
-        //             block.setData(latest);
-        //
-        //         String deviceNumber = latest.getDn();
-        //         // 查找对应的用户id
-        //         Set<String> users = AssociationCache.getUsers(deviceNumber);
-        //         if (users == null)
-        //             continue;
-        //         // 每用户生成一份数据
-        //         for (String userId : users) {
-        //             // 检查用户是否在线
-        //             if (!SystemWebSocketHandler.isOnline(userId))
-        //                 continue;
-        //             List<GodpDataBlock> blocks = map.get(userId);
-        //             if (blocks == null) {
-        //                 blocks = new ArrayList<GodpDataBlock>();
-        //                 map.put(userId, blocks);
-        //             }
-        //
-        //             blocks.add(block);
-        //         }
-        //     }
-        // }
-        // // 下发数据
+        RealtimeDataBlock data = JsonMapper.convertValue(source, RealtimeDataBlock.class);
+        // 以用户名为主键创建下发的数据数块
+        Map<String, List<GodpDataBlock>> map = new HashMap<String, List<GodpDataBlock>>();
+        // 收集报警数据，以便入库后，用户做处理
+        List<AlarmDto> alarms = new ArrayList<AlarmDto>();
+
+        List<Latest> tracks = data.getTracks();
+        if (tracks != null) {
+            for (Latest latest : tracks) {
+                // 发送未同步的指令
+                SynchronizerCache.sendNext(latest.getDn());
+                // 平台区域计算
+                boolean hasAlarm = AreaCatcherCache.hasAlarm(latest);
+
+                GodpDataBlock block = new GodpDataBlock();
+                block.setKind(MessageKinds.device_realtime_track);
+
+                // 收集报警
+                if (latest.getA() != 0) {
+                    AlarmDto dto = new AlarmDto();
+
+                    dto.dn = latest.getDn();
+                    dto.a = latest.getA();
+                    dto.d = latest.getD();
+                    dto.val = latest.getVal();
+                    dto.lat = latest.getLat();
+                    dto.lng = latest.getLng();
+                    dto.alt = latest.getAlt();
+                    dto.s = latest.getS();
+                    dto.sp = latest.getSp();
+                    dto.gt = latest.getGt();
+                    dto.st = latest.getSt();
+                    dto.m = latest.getM();
+                    dto.oil = latest.getOil();
+                    dto.vss = latest.getVss();
+                    dto.ovt = latest.getOvt();
+                    dto.oid = latest.getOid();
+                    dto.iot = latest.getIot();
+                    dto.iid = latest.getIid();
+                    dto.iof = latest.getIof();
+                    dto.rid = latest.getRid();
+                    dto.rt = latest.getRt();
+                    dto.rf = latest.getRf();
+                    dto.aid = latest.getAid();
+                    dto.exs = latest.getExs();
+                    dto.ios = latest.getIos();
+                    dto.ad0 = latest.getAd0();
+                    dto.ad1 = latest.getAd1();
+                    dto.net = latest.getNet();
+                    dto.sat = latest.getSat();
+
+                    dto.id = ObjectId.next();
+                    dto.from = (byte) (hasAlarm ? 1 : 0);
+
+                    alarms.add(dto);
+                    Alarm alarm = JsonMapper.convertValue(latest, Alarm.class);
+                    alarm.setId(dto.id);
+                    alarm.setFrom(dto.from);
+                    block.setData(alarm);
+                } else
+                    block.setData(latest);
+
+                String deviceNumber = latest.getDn();
+                // 查找对应的用户id
+                Set<String> users = AssociationCache.getUsers(deviceNumber);
+                if (users == null)
+                    continue;
+                // 每用户生成一份数据
+                for (String userId : users) {
+                    // 检查用户是否在线
+                    // if (!SystemWebSocketHandler.isOnline(userId))
+                    //     continue;
+                    List<GodpDataBlock> blocks = map.get(userId);
+                    if (blocks == null) {
+                        blocks = new ArrayList<GodpDataBlock>();
+                        map.put(userId, blocks);
+                    }
+
+                    blocks.add(block);
+                }
+            }
+        }
+        // 下发数据
         // SystemWebSocketHandler handler = new SystemWebSocketHandler();
         // handler.sendMessageToUser(map);
-        //
-        // try {
-        //     // 保存报警
-        //     if (alarms.size() > 0)
-        //         locateDao.saveAlarms(alarms);
-        // } catch (RuntimeException ex) {
-        //     ex.printStackTrace();
-        // }
+
+        try {
+            // 保存报警
+            if (alarms.size() > 0)
+                locateDao.saveAlarms(alarms);
+        } catch (RuntimeException ex) {
+            ex.printStackTrace();
+        }
     }
 
     /**
@@ -588,21 +619,21 @@ public class LocateService {
 
         List<UpgradeResultReport> reports = new ArrayList<UpgradeResultReport>();
 
-        Optional.ofNullable(result).ifPresent(upgradeResultReportDtos -> upgradeResultReportDtos.forEach
-                (upgradeResultReportDto -> {
+        Optional.ofNullable(result)
+                .ifPresent(upgradeResultReportDtos -> upgradeResultReportDtos.forEach(upgradeResultReportDto -> {
 
-            UpgradeResultReport report = new UpgradeResultReport();
-            MonitorTarget device = devices.get(upgradeResultReportDto.number);
-            report.setId(upgradeResultReportDto.id);
-            report.setNumber(upgradeResultReportDto.number);
-            report.setPlateNumber(device == null ? upgradeResultReportDto.number : device.getName());
-            report.setTime(upgradeResultReportDto.time);
-            report.setType(upgradeResultReportDto.type);
-            report.setResult(upgradeResultReportDto.result);
+                    UpgradeResultReport report = new UpgradeResultReport();
+                    MonitorTarget device = devices.get(upgradeResultReportDto.number);
+                    report.setId(upgradeResultReportDto.id);
+                    report.setNumber(upgradeResultReportDto.number);
+                    report.setPlateNumber(device == null ? upgradeResultReportDto.number : device.getName());
+                    report.setTime(upgradeResultReportDto.time);
+                    report.setType(upgradeResultReportDto.type);
+                    report.setResult(upgradeResultReportDto.result);
 
-            reports.add(report);
+                    reports.add(report);
 
-        }));
+                }));
 
         //
         // for (UpgradeResultReportDto dto : result) {

@@ -1,5 +1,7 @@
 package com.rayton.gps.dao.baseinfo.user;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.sql.Date;
 
 /**
@@ -12,16 +14,21 @@ public class UserInfo {
     private String name;
     private boolean enable;
     private String phone;
+    @JSONField(format = "yyyy-MM-dd")
     private Date ServiceStartDate;
+    @JSONField(format = "yyyy-MM-dd")
     private Date serviceEndDate;
     private String remark;
+    @JSONField(format = "yyyy-MM-dd")
     private Date createTime;
 
     //
     private String tel;
     private String fax;
     private String zipcode;
+    @JSONField(format = "yyyy-MM-dd")
     private Date registerDate;
+    @JSONField(format = "yyyy-MM-dd")
     private Date serviceEndNotifyDate;
     private String bussinessAgent;
 
@@ -76,11 +83,7 @@ public class UserInfo {
 
     @Override
     public String toString() {
-        return "UserInfo{" + "id='" + id + '\'' + ", name='" + name + '\'' + ", enable=" + enable + ", phone='" +
-                phone + '\'' + ", ServiceStartDate=" + ServiceStartDate + ", serviceEndDate=" + serviceEndDate + ", "
-                + "remark='" + remark + '\'' + ", createTime=" + createTime + ", tel='" + tel + '\'' + ", fax='" +
-                fax + '\'' + ", zipcode='" + zipcode + '\'' + ", registerDate=" + registerDate + ", " +
-                "serviceEndNotifyDate=" + serviceEndNotifyDate + ", bussinessAgent='" + bussinessAgent + '\'' + '}';
+        return "UserInfo{" + "id='" + id + '\'' + ", name='" + name + '\'' + ", enable=" + enable + ", phone='" + phone + '\'' + ", ServiceStartDate=" + ServiceStartDate + ", serviceEndDate=" + serviceEndDate + ", " + "remark='" + remark + '\'' + ", createTime=" + createTime + ", tel='" + tel + '\'' + ", fax='" + fax + '\'' + ", zipcode='" + zipcode + '\'' + ", registerDate=" + registerDate + ", " + "serviceEndNotifyDate=" + serviceEndNotifyDate + ", bussinessAgent='" + bussinessAgent + '\'' + '}';
     }
 
     /**

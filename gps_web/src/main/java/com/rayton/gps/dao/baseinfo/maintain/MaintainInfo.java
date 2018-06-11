@@ -1,24 +1,26 @@
 package com.rayton.gps.dao.baseinfo.maintain;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.sql.Date;
 
 public class MaintainInfo {
 
     private String id;
     private String plateNumber;
+    @JSONField(format = "yyyy-MM-dd")
     private Date doneDate;
     private String content;
     private int mileage;
     private double fee;
+    @JSONField(format = "yyyy-MM-dd")
     private Date nextDate;
     private int nextMileage;
     private String userName;
 
     @Override
     public String toString() {
-        return "MaintainInfo{" + "id='" + id + '\'' + ", plateNumber='" + plateNumber + '\'' + ", doneDate=" +
-                doneDate + ", content='" + content + '\'' + ", mileage=" + mileage + ", fee=" + fee + ", nextDate=" +
-                nextDate + ", nextMileage=" + nextMileage + ", userName='" + userName + '\'' + '}';
+        return "MaintainInfo{" + "id='" + id + '\'' + ", plateNumber='" + plateNumber + '\'' + ", doneDate=" + doneDate + ", content='" + content + '\'' + ", mileage=" + mileage + ", fee=" + fee + ", nextDate=" + nextDate + ", nextMileage=" + nextMileage + ", userName='" + userName + '\'' + '}';
     }
 
     /**

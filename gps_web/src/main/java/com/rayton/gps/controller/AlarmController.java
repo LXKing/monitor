@@ -56,12 +56,10 @@ public class AlarmController {
      * 获取当前用户所有未处理报警
      */
     @ApiOperation(httpMethod = "GET", value = "通过id查询管理信息")
-    @ApiResponses(value = {@ApiResponse(code = 500, message = "系统错误"), @ApiResponse(code = 200, message = "0 成功," +
-            "其它为错误,返回格式：{code:0,data[{}]},data中的属性参照下方Model", response = Object.class)})
+    @ApiResponses(value = {@ApiResponse(code = 500, message = "系统错误"), @ApiResponse(code = 200, message = "0 成功," + "其它为错误,返回格式：{code:0,data[{}]},data中的属性参照下方Model", response = Object.class)})
     @PostMapping(value = "/alarm/unhandled")
     @ResponseBody
-    public Object untreated(@ApiParam(required = true, name = "id", value = "查询id") HttpServletRequest request)
-            throws Exception {
+    public Object untreated(@ApiParam(required = true, name = "id", value = "查询id") HttpServletRequest request) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
 
         return alarmService.unhandled(identity.getId());
@@ -85,8 +83,7 @@ public class AlarmController {
      */
     @PostMapping(value = "/alarm/processed")
     @ResponseBody
-    public Object processed(@RequestParam String deviceNumber, @RequestParam Date start, @RequestParam Date end,
-                            @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
+    public Object processed(@RequestParam String deviceNumber, @RequestParam Date start, @RequestParam Date end, @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
         return alarmService.processed(deviceNumber, start, end, pageIndex, pageSize);
     }
 
@@ -118,8 +115,7 @@ public class AlarmController {
      */
     @PostMapping(value = "/alarm/processonce.form")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> processOnce(@ModelAttribute("alarm") @Valid ProcessAlarmOnce alarm,
-                                                           BindingResult binding) throws Exception {
+    public ResponseEntity<Map<Object, Object>> processOnce(@ModelAttribute("alarm") @Valid ProcessAlarmOnce alarm, BindingResult binding) throws Exception {
         if (binding.hasErrors()) {
             List<FieldError> errors = binding.getFieldErrors();
             Map<Object, Object> map = new HashMap<>();
@@ -131,8 +127,8 @@ public class AlarmController {
         // return "/center/alarm/processalarmonce.form";
 
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        alarmService.processOnce(alarm.getAlarmId(), alarm.getAlarmTimestamp(), alarm.getUserMethod(), alarm
-                .getUserRemark(), identity.getId(), identity.getName());
+        alarmService.processOnce(alarm.getAlarmId(), alarm.getAlarmTimestamp(), alarm.getUserMethod(), alarm.getUserRemark(), identity
+                .getId(), identity.getName());
 
         return ResponseEntityWrapper.OK();
         // try {
@@ -166,14 +162,13 @@ public class AlarmController {
      */
     @PostMapping(value = "/alarm/processall.form")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> processAllPost(@ModelAttribute("alarm") @Valid ProcessAlarmAll alarm,
-                                                              BindingResult binding) throws Exception {
+    public ResponseEntity<Map<Object, Object>> processAllPost(@ModelAttribute("alarm") @Valid ProcessAlarmAll alarm, BindingResult binding) throws Exception {
         if (binding.hasErrors())
             // return "/center/alarm/processalarmall.form";
             return ResponseEntityWrapper.Failed();
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        alarmService.processAll(alarm.getDeviceNumbers().split(","), alarm.getUserMethod(), alarm.getUserRemark(),
-                identity.getId(), identity.getName());
+        alarmService.processAll(alarm.getDeviceNumbers()
+                .split(","), alarm.getUserMethod(), alarm.getUserRemark(), identity.getId(), identity.getName());
         return ResponseEntityWrapper.OK();
         // try {
         //     IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();

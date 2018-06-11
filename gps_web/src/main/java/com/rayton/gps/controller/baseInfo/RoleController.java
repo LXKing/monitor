@@ -63,8 +63,7 @@ public class RoleController {
 
     @PostMapping(value = "/role/create.form")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> create(@ModelAttribute("role") @Valid Role role, BindingResult
-            binding) throws Exception {
+    public ResponseEntity<Map<Object, Object>> create(@ModelAttribute("role") @Valid Role role, BindingResult binding) throws Exception {
 
         if (binding.hasErrors()) {
             List<FieldError> errors = binding.getFieldErrors();
@@ -100,8 +99,7 @@ public class RoleController {
 
     @PostMapping(value = "/role/edit.form")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> edit(@ModelAttribute("role") @Valid Role role, BindingResult binding)
-            throws Exception {
+    public ResponseEntity<Map<Object, Object>> edit(@ModelAttribute("role") @Valid Role role, BindingResult binding) throws Exception {
         if (binding.hasErrors()) {
             List<FieldError> errors = binding.getFieldErrors();
             Map<Object, Object> map = new HashMap<>();
@@ -157,8 +155,7 @@ public class RoleController {
 
     @PostMapping(value = "/role/authorize")
     @ResponseBody
-    public Object authorize(@RequestParam String roleId, @RequestParam(required = false) List<String> list) throws
-            Exception {
+    public Object authorize(@RequestParam String roleId, @RequestParam(required = false) List<String> list) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         roleService.authorize(identity.getCompanyId(), roleId, list);
         return ResponseEntityWrapper.OK();
@@ -175,13 +172,11 @@ public class RoleController {
 
     @PostMapping(value = "/role/exist")
     @ResponseBody
-    public Object exists(@RequestParam String name, @RequestParam(required = false) String id, @RequestParam boolean
-            checkId) throws Exception {
+    public Object exists(@RequestParam String name, @RequestParam(required = false) String id, @RequestParam boolean checkId) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         // Identity user = (Identity) request.getAttribute("user");
 
-        return checkId ? !roleService.exist(name, identity.getCompanyId(), id) : !roleService.exist(name, identity
-                .getCompanyId());
+        return checkId ? !roleService.exist(name, identity.getCompanyId(), id) : !roleService.exist(name, identity.getCompanyId());
 
         // if (checkId) {
         //     response.getWriter().print(!roleService.exist(name, user.getCompanyId(), id));

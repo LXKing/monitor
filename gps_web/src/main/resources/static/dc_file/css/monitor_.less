@@ -12,13 +12,13 @@ section {
 }
 #box_drag::before{
   content:'';
-  background:url("./../image/zuoyou.png") no-repeat;
+  background:url("../../dc_file/image/zuoyou.png") no-repeat;
   background-size: contain;
   display: inline-block;
-  width: 6px;
-  height: 50px;
+  width: 17px;
+  height: 60px;
   position: absolute;
-  left: 0;
+  left: 2px;
   top: 43%;
 }
 .car-info_box{
@@ -43,6 +43,7 @@ section {
         //min-width: 256px;
         //max-width: 370px;
         background-color:#fff;
+        overflow: hidden;
         .current_cm{
           background-color:#fff;
           color: #0488d1!important;
@@ -58,6 +59,9 @@ section {
           box-sizing: border-box;
           float: left;
           cursor: pointer;
+        }
+        span:hover{
+          opacity: .8;
         }
         span:nth-child(1){
           //color:#00ade1;
@@ -251,9 +255,9 @@ section {
         background-color: #f1f1f1;
         //overflow: scroll;
         .am_header{
-
-          min-width: 256px;
-          max-width: 370px;
+          width: 100%;
+          //min-width: 256px;
+          //max-width: 370px;
           height: 41px;
           line-height: 41px;
           background-color: #f1f1f1;
@@ -261,6 +265,7 @@ section {
           font-size: 12px;
           display: flex;
           justify-content: space-around;
+          overflow: hidden;
           //span{
           //    padding-left: 5%;
           //}
@@ -322,6 +327,7 @@ section {
         display: inline-block;
         width: 13px;
         height: 13px;
+        padding: 0 1px;
       }
       span:nth-child(3)::before{
         content:'';
@@ -369,11 +375,11 @@ section {
       }
       span:nth-child(1){
         position: relative;
-        left: -4px;
+        left: -6px;
       }
       span:nth-child(2){
         position: relative;
-        left: -3px;
+        left: -9px;
       }
       span:nth-child(3){
         position: relative;
@@ -387,7 +393,7 @@ section {
         display: inline-block;
         width: 13px;
         height: 13px;
-        padding: 0 2px;
+        padding: 0 3px;
       }
       span:nth-child(1)::after{
         content: '';
@@ -407,7 +413,7 @@ section {
         display: inline-block;
         width: 13px;
         height: 13px;
-        padding: 0 2px;
+        padding: 0 3px;
       }
       span:nth-child(2)::after{
         content: '';
@@ -444,11 +450,15 @@ section {
       }
       span:nth-child(1){
         position: relative;
-        left: 1px;
+        left: -6px;
       }
       span:nth-child(2){
         position: relative;
-        left: 12px;
+        left: -11px;
+      }
+      span:nth-child(3){
+        position: relative;
+        left: 7px;
       }
       span:nth-child(1)::before{
         content: '';
@@ -462,13 +472,13 @@ section {
       }
       span:nth-child(2)::before{
         content: '';
-        background: url("../../dc_file/image/driving.png") no-repeat;
+        background: url("../../dc_file/image/xingshi.png") no-repeat;
         vertical-align: middle;
         background-size: contain;
         display: inline-block;
         width: 13px;
         height: 13px;
-        padding: 0 2px;
+        padding: 0 1px;
       }
       span:nth-child(3)::before{
         content: '';
@@ -502,11 +512,11 @@ section {
   }
   #box_upDown{
     width:100%;
-    height:0.1%;
+    height:0.5%;
     position:absolute;
     left:0;
     top:69.9%;
-    background-color:#fff;
+    //background-color:#fff;
     z-index:1000;
   }
   #box_upDown::before{
@@ -514,15 +524,15 @@ section {
     background:url("./../image/shangxia.png") no-repeat;
     background-size: contain;
     display: inline-block;
-    width: 50px;
-    height: 5px;
+    width: 46px;
+    height: 25px;
     position: absolute;
     left: 48%;
-    top: -0.1%;
+    top: -17px;
   }
   .mc_all{
     width: 100%;
-    height: 30%;
+    height: 29.6%;
     position: absolute;
     left: 0;
     bottom: 0;
@@ -535,103 +545,90 @@ section {
       // left: 0;
       // top:70%;
       .mcm_1{
-        padding: 0px 50px 0 5px;
+        padding: 2px 50px 0 5px;
         span::after{
           content: '';
           background: url(../image/shezhi.png) no-repeat;
+          vertical-align:middle;
           background-size: contain;
+          display: inline-block;
           width: 10px;
-          height: 10px;
-          position: absolute;
-          left: 30px;
-          top: 6px;
+          height: 11px;
         }
       }
       .mcm_2{
-        padding: 0px 615px 0 0px;
+        padding: 2px 615px 0 0px;
         span::before{
           content: '';
           background: url(../image/laba.png) no-repeat;
+          vertical-align:middle;
           background-size: contain;
+          display: inline-block;
           width: 10px;
-          height: 10px;
-          position: absolute;
-          left: 65px;
-          top: 6px;
+          height: 11px;
         }
       }
       .mcm_3{
-        ul{
-          clear: both;
-          position: relative;
-          li{
-            float: right;
-            padding-left: 20px;
-          }
-          li:nth-child(1){
-            margin-right: 5px;
-          }
-          li:nth-child(1)::before{
-            content: '';
-            background: url(../image/ziquan.png) no-repeat;
-            background-size: contain;
-            width: 10px;
-            height: 10px;
-            position: absolute;
-            left: 238px;
-            top: 6px;
-          }
-          li:nth-child(2)::before{
-            content: '';
-            background: url(../image/hongquan.png) no-repeat;
-            background-size: contain;
-            width: 10px;
-            height: 10px;
-            position: absolute;
-            left: 194px;
-            top: 6px;
-          }
-          li:nth-child(3)::before{
-            content: '';
-            background: url(../image/huiquan.png) no-repeat;
-            background-size: contain;
-            width: 10px;
-            height: 10px;
-            position: absolute;
-            left: 150px;
-            top: 6px;
-          }
-          li:nth-child(4)::before{
-            content: '';
-            background: url(../image/huangquan.png) no-repeat;
-            background-size: contain;
-            width: 10px;
-            height: 10px;
-            position: absolute;
-            left: 95px;
-            top: 6px;
-          }
-          li:nth-child(5)::before{
-            content: '';
-            background: url(../image/lanquan.png) no-repeat;
-            background-size: contain;
-            width: 10px;
-            height: 10px;
-            position: absolute;
-            left: 50px;
-            top: 6px;
-          }
-          li:nth-child(6)::before{
+          span:nth-child(1)::before{
             content: '';
             background: url(../image/lvquan.png) no-repeat;
+            vertical-align:middle;
             background-size: contain;
+            display: inline-block;
             width: 10px;
-            height: 10px;
-            position: absolute;
-            left: 5px;
-            top: 6px;
+            height: 11px;
+            padding: 0 2px;
           }
-        }
+          span:nth-child(2)::before{
+            content: '';
+            background: url(../image/lanquan.png) no-repeat;
+            vertical-align:middle;
+            background-size: contain;
+            display: inline-block;
+            width: 10px;
+            height: 11px;
+            padding: 0 2px;
+          }
+          span:nth-child(3)::before{
+            content: '';
+            background: url(../image/huangquan.png) no-repeat;
+            vertical-align:middle;
+            background-size: contain;
+            display: inline-block;
+            width: 10px;
+            height: 11px;
+            padding: 0 2px;
+          }
+          span:nth-child(4)::before{
+            content: '';
+            background: url(../image/huiquan.png) no-repeat;
+            vertical-align:middle;
+            background-size: contain;
+            display: inline-block;
+            width: 10px;
+            height: 11px;
+            padding: 0 2px;
+          }
+          span:nth-child(5)::before{
+            content: '';
+            background: url(../image/hongquan.png) no-repeat;
+            vertical-align:middle;
+            background-size: contain;
+            display: inline-block;
+            width: 10px;
+            height: 11px;
+            padding: 0 2px;
+          }
+          span:nth-child(6)::before{
+            content: '';
+            background: url(../image/ziquan.png) no-repeat;
+            vertical-align:middle;
+            background-size: contain;
+            display: inline-block;
+            width: 10px;
+            height: 11px;
+            padding: 0 2px;
+          }
       }
     }
     .map-car-details {
@@ -674,94 +671,86 @@ section {
       position: absolute;
       left: 0;
       bottom: 0;
-      a:nth-child(1){
+      span:nth-child(1){
         padding-left: 45px;
       }
-      a:nth-child(1)::before{
+      span:nth-child(1)::before{
         content: '';
         background: url(../image/car_init.png) no-repeat;
         background-size: contain;
         width: 16px;
-        height: 12px;
+        height: 13px;
         position: absolute;
-        left: 25px;
-        // display: none;
+        left: 30px;
       }
-      a:nth-child(1).current::after{
+      span:nth-child(1).current::after{
         content: '';
         background: url(../image/car_click.png) no-repeat;
         background-size: contain;
         width: 16px;
-        height: 12px;
+        height: 13px;
         position: absolute;
-        left: 25px;
-        // display: none;
+        left: 30px;
       }
-      a:nth-child(2)::before{
+      span:nth-child(2)::before{
         content: '';
         background: url(../image/warnbox_init.png) no-repeat;
         background-size: contain;
         width: 16px;
-        height: 12px;
+        height: 14px;
         position: absolute;
-        left: 135px;
-        // display: none;
+        left: 138px;
       }
-      a:nth-child(2).current::after{
+      span:nth-child(2).current::after{
         content: '';
         background: url(../image/warn_click.png) no-repeat;
         background-size: contain;
         width: 16px;
-        height: 12px;
+        height: 14px;
         position: absolute;
-        left: 135px;
-        // display: none;
+        left: 138px;
       }
-      a:nth-child(3)::before{
+      span:nth-child(3)::before{
         content: '';
         background: url(../image/video_init.png) no-repeat;
         background-size: contain;
         width: 16px;
-        height: 12px;
+        height: 13px;
         position: absolute;
-        left: 241px;
-        top: 5px;
-        // display: none;
+        left: 246px;
+        top: 6px;
       }
-      a:nth-child(3).current::after{
+      span:nth-child(3).current::after{
         content: '';
         background: url(../image/video_click.png) no-repeat;
         background-size: contain;
         width: 16px;
-        height: 12px;
+        height: 13px;
         position: absolute;
-        left: 241px;
-        top: 5px;
-        // display: none;
+        left: 246px;
+        top: 6px;
       }
-      a:nth-child(4)::before{
+      span:nth-child(4)::before{
         content: '';
         background: url(../image/message_init.png) no-repeat;
         background-size: contain;
         width: 16px;
         height: 12px;
         position: absolute;
-        left: 355px;
-        top: 4px;
-        // display: none;
+        left: 360px;
+        top: 6px;
       }
-      a:nth-child(4).current::after{
+      span:nth-child(4).current::after{
         content: '';
         background: url(../image/message_click.png) no-repeat;
         background-size: contain;
         width: 16px;
         height: 12px;
         position: absolute;
-        left: 355px;
-        top: 4px;
-        // display: none;
+        left: 360px;
+        top: 6px;
       }
-      a{
+      span{
         color: #fff;
         text-decoration: none;
         padding: 3px 30px 0 30px;
@@ -769,8 +758,8 @@ section {
         border-left: 1px solid #eee;
         border-right: 1px solid #eee;
         font-weight: bold;
+        cursor: pointer;
       }
-
       .current{
         color: #028ad6;
         background-color: #fff;

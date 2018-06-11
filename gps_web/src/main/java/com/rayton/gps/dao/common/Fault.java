@@ -16,9 +16,7 @@ public class Fault {
 
     @Override
     public String toString() {
-        return "Fault{" + "number='" + number + '\'' + ", time=" + time + ", level=" + level + ", systemId=" +
-                systemId + ", brand='" + brand + '\'' + ", descriptionC='" + descriptionC + '\'' + ", descriptionE='"
-                + descriptionE + '\'' + ", solution='" + solution + '\'' + ", sensors='" + sensors + '\'' + '}';
+        return "Fault{" + "number='" + number + '\'' + ", time=" + time + ", level=" + level + ", systemId=" + systemId + ", brand='" + brand + '\'' + ", descriptionC='" + descriptionC + '\'' + ", descriptionE='" + descriptionE + '\'' + ", solution='" + solution + '\'' + ", sensors='" + sensors + '\'' + '}';
     }
 
     public String getNumber() {

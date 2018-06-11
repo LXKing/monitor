@@ -2,6 +2,7 @@ package com.rayton.gps.controller.baseInfo;
 
 import com.rayton.gps.aop.Log;
 import com.rayton.gps.dao.Page;
+import com.rayton.gps.dao.baseinfo.company.ICompanyDao;
 import com.rayton.gps.dao.baseinfo.driver.Driver;
 import com.rayton.gps.dao.baseinfo.driver.DriverInfo;
 import com.rayton.gps.dao.baseinfo.vehicle.VehicleInfo;
@@ -29,6 +30,8 @@ public class DriverController {
     @Autowired
     private DriverService driverService;
 
+    @Autowired
+    private ICompanyDao companyDao;
 
     @RequiresPermissions("baseinfo.driver")
     @Log(name = "打开驾驶员管理页面")
@@ -40,8 +43,7 @@ public class DriverController {
 
     @GetMapping(value = "/driver/query")
     @ResponseBody
-    public Object query(@RequestParam(required = false) String filter, @RequestParam int page, @RequestParam int
-            limit) throws Exception {
+    public Object query(@RequestParam(required = false) String filter, @RequestParam int page, @RequestParam int limit) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
 
         Page<DriverInfo> result = driverService.query(identity.getCompanyId(), filter, page, limit);
@@ -64,8 +66,7 @@ public class DriverController {
 
     @PostMapping(value = "/driver/addVehicles")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> addSections(@RequestParam String driverId, @RequestParam String
-            vehicles) throws Exception {
+    public ResponseEntity<Map<Object, Object>> addSections(@RequestParam String driverId, @RequestParam String vehicles) throws Exception {
         List<String> list = Arrays.asList(vehicles.split(","));
         // List<String> list = JsonMapper.toObject(vehicles, List.class, String.class);
         driverService.addVehicles(driverId, list);
@@ -75,8 +76,7 @@ public class DriverController {
 
     @PostMapping(value = "/driver/removeVehicle")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> removeSection(@RequestParam String driverId, @RequestParam String
-            vehicleId) throws Exception {
+    public ResponseEntity<Map<Object, Object>> removeSection(@RequestParam String driverId, @RequestParam String vehicleId) throws Exception {
         driverService.removeVehicle(driverId, vehicleId);
         return ResponseEntityWrapper.OK();
 
@@ -92,13 +92,13 @@ public class DriverController {
 
     @PostMapping(value = "/driver/create.form")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> create(@ModelAttribute("driver") @Valid Driver driver, BindingResult
-            binding) throws Exception {
+    public ResponseEntity<Map<Object, Object>> create(@ModelAttribute("driver") @Valid Driver driver, BindingResult binding) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
 
         if (binding.hasErrors())
             // return "/baseinfo/driver/create.form";
             return ResponseEntityWrapper.Failed();
+        driver.setCOMPANY(companyDao.fetch(identity.getCompanyId()).getFullName());
         driver.setCompanyId(identity.getCompanyId());
         driverService.create(driver);
         return ResponseEntityWrapper.OK();
@@ -117,8 +117,7 @@ public class DriverController {
 
     @PostMapping(value = "/driver/edit.form")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> edit(@ModelAttribute("driver") @Valid Driver driver, BindingResult
-            binding) throws Exception {
+    public ResponseEntity<Map<Object, Object>> edit(@ModelAttribute("driver") @Valid Driver driver, BindingResult binding) throws Exception {
         if (binding.hasErrors()) {
             List<FieldError> errors = binding.getFieldErrors();
             Map<Object, Object> map = new HashMap<>();

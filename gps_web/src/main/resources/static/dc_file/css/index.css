@@ -12,9 +12,9 @@ header .left_logo {
   padding-top: 15px;
 }
 header .left_logo img {
-  max-width: 66%;
-  margin-left: 50px;
-  margin-top: 4px;
+  max-width: 70%;
+  margin-left: 63px;
+  margin-top: -5px;
 }
 header .right_tools {
   width: 80%;
@@ -130,7 +130,7 @@ header .right_tools .user-info .login_user a:nth-child(4) {
   display: block;
   float: right;
   text-align: center;
-  padding: 0 13px;
+  padding: 0 16px;
   border: 1px solid #00ade1;
   box-sizing: border-box;
   background-color: #0488d1;
@@ -138,11 +138,15 @@ header .right_tools .user-info .login_user a:nth-child(4) {
   position: relative;
   margin-left: 2px;
   border-radius: 3px;
+  cursor: pointer;
 }
 .link-select #tab li i {
   position: absolute;
-  left: 65px;
+  left: 71px;
   top: -6px;
+}
+.link-select #tab li:hover {
+  opacity: .8;
 }
 .link-select #tab .currentTab {
   background-color: #f3f2f1;

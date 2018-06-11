@@ -41,8 +41,7 @@ public class PolygonAreaController {
 
     @GetMapping(value = "/polygonArea/query")
     @ResponseBody
-    public Object query(@RequestParam(required = false) String filter, @RequestParam int page, @RequestParam int
-            limit) throws Exception {
+    public Object query(@RequestParam(required = false) String filter, @RequestParam int page, @RequestParam int limit) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         Page<PolygonAreaInfo> result = polygonAreaService.query(identity.getCompanyId(), filter, page, limit);
 
@@ -56,8 +55,7 @@ public class PolygonAreaController {
 
     @PostMapping(value = "/polygonArea/search")
     @ResponseBody
-    public Object search(@RequestParam(required = false) String filter, @RequestParam int pageIndex, @RequestParam
-            int pageSize) {
+    public Object search(@RequestParam(required = false) String filter, @RequestParam int pageIndex, @RequestParam int pageSize) {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
 
         filter = filter == null ? "" : filter;
@@ -79,9 +77,9 @@ public class PolygonAreaController {
 
     @PostMapping(value = "/polygonArea/create.form")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> create(@ModelAttribute("polygonArea") @Valid PolygonAreaModel
-                                                                  polygonArea, BindingResult binding) {
-        if (binding.hasErrors()) return ResponseEntityWrapper.Failed();
+    public ResponseEntity<Map<Object, Object>> create(@ModelAttribute("polygonArea") @Valid PolygonAreaModel polygonArea, BindingResult binding) {
+        if (binding.hasErrors())
+            return ResponseEntityWrapper.Failed();
         // return "/baseinfo/polygonArea/create.form";
 
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
@@ -116,9 +114,9 @@ public class PolygonAreaController {
 
     @PostMapping(value = "/polygonArea/edit.form")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> edit(@ModelAttribute("polygonArea") @Valid PolygonAreaModel
-                                                                polygonArea, BindingResult binding) {
-        if (binding.hasErrors()) return ResponseEntityWrapper.Failed();
+    public ResponseEntity<Map<Object, Object>> edit(@ModelAttribute("polygonArea") @Valid PolygonAreaModel polygonArea, BindingResult binding) {
+        if (binding.hasErrors())
+            return ResponseEntityWrapper.Failed();
         // return "/baseinfo/polygonArea/edit.form";
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         String path = polygonArea.getPath();
@@ -159,12 +157,11 @@ public class PolygonAreaController {
 
     @PostMapping(value = "/polygonArea/exist")
     @ResponseBody
-    public Object exists(@RequestParam String name, @RequestParam(required = false) Long id, @RequestParam boolean
-            checkId, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public Object exists(@RequestParam String name, @RequestParam(required = false) Long id, @RequestParam boolean checkId, HttpServletRequest request, HttpServletResponse response) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
 
-        return checkId ? !polygonAreaService.exist(name, identity.getCompanyId(), id) : !polygonAreaService.exist
-                (name, identity.getCompanyId());
+        return checkId ? !polygonAreaService.exist(name, identity.getCompanyId(), id) : !polygonAreaService.exist(name, identity
+                .getCompanyId());
 
         //
         // if (checkId) {
@@ -176,15 +173,13 @@ public class PolygonAreaController {
 
     @GetMapping("/polygonArea/vehicles")
     @ResponseBody
-    public Object vehicles(@RequestParam long polygonAreaId, @RequestParam int pageIndex, @RequestParam int pageSize)
-            throws Exception {
+    public Object vehicles(@RequestParam long polygonAreaId, @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
         return polygonAreaService.assignedVehicles(polygonAreaId, pageIndex, pageSize);
     }
 
     @PostMapping(value = "/polygonArea/addVehicles")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> addVehicles(@RequestParam long polygonAreaId, @RequestParam String
-            vehicles, HttpServletRequest request, RedirectAttributes r) {
+    public ResponseEntity<Map<Object, Object>> addVehicles(@RequestParam long polygonAreaId, @RequestParam String vehicles, HttpServletRequest request, RedirectAttributes r) {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         List<String> list = JsonMapper.toObject(vehicles, List.class, String.class);
         polygonAreaService.addVehicles(identity.getUnid(), identity.getName(), polygonAreaId, list);
@@ -203,8 +198,7 @@ public class PolygonAreaController {
 
     @PostMapping(value = "/polygonArea/removeVehicle")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> removeSection(@RequestParam long polygonAreaId, @RequestParam String
-            number) {
+    public ResponseEntity<Map<Object, Object>> removeSection(@RequestParam long polygonAreaId, @RequestParam String number) {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         polygonAreaService.removeVehicle(identity.getUnid(), identity.getName(), polygonAreaId, number);
 

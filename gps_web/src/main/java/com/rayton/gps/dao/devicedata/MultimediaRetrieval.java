@@ -59,10 +59,7 @@ public class MultimediaRetrieval {
 
     @Override
     public String toString() {
-        return "MultimediaRetrieval{" + "number='" + number + '\'' + ", mediaId=" + mediaId + ", mediaType='" +
-                mediaType + '\'' + ", channelId=" + channelId + ", eventType='" + eventType + '\'' + ", a=" + a + ", " +
-                "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "s=" + s + ", lat=" + lat + ", lng=" + lng +
-                ", " + "alt=" + alt + ", " + "sp=" + sp + ", " + "d=" + d + ", " + "gt=" + gt + '}';
+        return "MultimediaRetrieval{" + "number='" + number + '\'' + ", mediaId=" + mediaId + ", mediaType='" + mediaType + '\'' + ", channelId=" + channelId + ", eventType='" + eventType + '\'' + ", a=" + a + ", " + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "s=" + s + ", lat=" + lat + ", lng=" + lng + ", " + "alt=" + alt + ", " + "sp=" + sp + ", " + "d=" + d + ", " + "gt=" + gt + '}';
     }
 
     public String getNumber() {

@@ -4,6 +4,11 @@ import java.util.Date;
 
 public class OperateLog {
 
+
+    // @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    // @JsonFormat(pattern = "yyyy-MM-dd HH-mm-ss")
+
+    // @JsonFormat(pattern = "yyyy-MM-dd")
     private Date time;
     private String companyId;
     private String userId;
@@ -12,10 +17,11 @@ public class OperateLog {
 
     @Override
     public String toString() {
-        return "OperateLog{" + "time=" + time + ", companyId='" + companyId + '\'' + ", userId='" + userId + '\'' +
-                "," + " user='" + user + '\'' + ", action='" + action + '\'' + '}';
+        return "OperateLog{" + "time=" + time + ", companyId='" + companyId + '\'' + ", userId='" + userId + '\'' + "," + " user='" + user + '\'' + ", action='" + action + '\'' + '}';
     }
 
+
+    // @JsonFormat(pattern = "yyyy-MM-dd HH-mm-ss")
     public Date getTime() {
         return time;
     }

@@ -16,7 +16,7 @@ var replay = {
      * setTimeout
      */
     timer: null,
-
+    statistics: 1,
     /**
      * 分页的当前页
      */
@@ -71,6 +71,14 @@ var replay = {
         list: [],
         days: {}
     },
+
+    /**
+     * 按天的行程
+     */
+    dtrips: {
+        list: [],
+        days: {}
+    },
     /**
      * 停车
      */
@@ -104,7 +112,7 @@ var replay = {
         replay.playStatus = 'loaded';
         replay.vehicleMarker = null;
         replay.index = 0;
-        replay.pageIndex=0;
+        replay.pageIndex = 0;
         this.trips = {
             list: [],
             days: {}
@@ -113,6 +121,13 @@ var replay = {
             list: [],
             days: {}
         };
+
+        this.dtrips= {
+            list: [],
+            days: {}
+        };
+
+
         this.alarms = {
             list: [],
             days: {}
@@ -124,6 +139,14 @@ var replay = {
          * 行程
          */
         var trip = {
+            data: []
+        };
+
+        var divisionDate;
+        /**
+         * 按天的行程
+         */
+        var dtrip = {
             data: []
         };
         /**
@@ -155,6 +178,7 @@ var replay = {
         var runtimes = 0;
 
         for (var x = 0; x < this.tracks.length; x++) {
+            // var item = this.tracks[x];
             var item = this.tracks[x];
             item.na = this.plateNumber;
 
@@ -174,6 +198,15 @@ var replay = {
                 velocimeter.total += item.sp;
                 velocimeter.times++;
             }
+            if(x==0){
+                replay.allMaxSp=item.sp;
+            }
+
+            if(replay.allMaxSp<item.sp){
+                replay.allMaxSp=item.sp;
+            }
+
+
             // 里程是否有归零
             if (!item.reset)
                 milemeter.befor = item.m;
@@ -190,7 +223,7 @@ var replay = {
 
             // 分析
             var accStatus = gpsDataParser.parseAcc(item);
-            console.log("accStatus : " + accStatus);
+            //console.log("accStatus : " + accStatus);
             if (!trip.acc) {
                 trip.acc = accStatus;
                 trip.timeStart = item.gt;
@@ -239,8 +272,6 @@ var replay = {
                     lng: item.olng,
                     lat: item.olat
                 };
-                // console.log("+++");
-                // console.log(item);
                 trip.mileageEnd = item.m;
                 trip.oilEnd = item.oil;
                 if (trip.acc == '点火') {// 行程结束
@@ -279,10 +310,82 @@ var replay = {
                 trip.oilStart = item.oil;
                 // 找出上一个停车点
                 if (trip.acc == '点火' && this.parks.list.length > 0) {
-                    var prev = this.parks.list[this.parks.list.length - 1]
+                    var prev = this.parks.list[this.parks.list.length - 1];
                     trip.data.push(prev.data[0]);
                 }
                 trip.data.push(item);
+
+            }
+
+            //这里处理按天统计的 ，上面那个按acc的必须存在
+            if(replay.statistics == 1){
+                if(x==0){  //一开始
+                    dtrip = {
+                        data: []
+                    };
+                    dtrip.acc = accStatus;
+                    //  console.log(" item.gt : "+item.gt.toDate().toDateTimeString("MM-dd hh:mm:ss") );
+                    dtrip.timeStart = item.gt;
+                    dtrip.pointStart = {
+                        lng: item.olng,
+                        lat: item.olat
+                    };
+                    dtrip.mileageStart = item.m;
+                    dtrip.oilStart = item.oil;
+
+                    divisionDate=item.gt.toDate().toShortDateString();
+                    dtrip.data.push(item);
+                }
+
+                if( divisionDate==item.gt.toDate().toShortDateString()){
+                    dtrip.data.push(item);
+                    //  console.log(" item.gt : "+item.gt.toDate().toDateTimeString("MM-dd hh:mm:ss") );
+                    // 查检最后一条记录
+                    if (x == this.tracks.length - 1) {
+                        var item2 = this.tracks[x-1];
+                        dtrip.timeEnd = item2.gt;
+                        dtrip.pointEnd = {
+                            lng: item2.olng,
+                            lat: item2.olat
+                        };
+                        dtrip.mileageEnd = item2.m;
+                        dtrip.oilEnd = item2.oil;
+
+                        this.dtrips.days[divisionDate] = this.dtrips.days[divisionDate] || [];
+                        this.dtrips.days[divisionDate].push(dtrip);
+                        this.dtrips.list.push(dtrip);
+                    }
+                }else{
+                    //这里找到昨天的
+                    console.log(" item.gt : "+item.gt.toDate().toDateTimeString("MM-dd hh:mm:ss") );
+                    var item2 = this.tracks[x-1];
+                    dtrip.timeEnd = item2.gt;
+                    dtrip.pointEnd = {
+                        lng: item2.olng,
+                        lat: item2.olat
+                    };
+                    dtrip.mileageEnd = item2.m;
+                    dtrip.oilEnd = item2.oil;
+
+                    this.dtrips.days[divisionDate] = this.dtrips.days[divisionDate] || [];
+                    this.dtrips.days[divisionDate].push(dtrip);
+                    this.dtrips.list.push(dtrip);
+
+                    //设置成今天的
+                    dtrip = {
+                        data: []
+                    };
+                    dtrip.acc = accStatus;
+                    dtrip.timeStart = item.gt;
+                    dtrip.pointStart = {
+                        lng: item.olng,
+                        lat: item.olat
+                    };
+                    dtrip.mileageStart = item.m;
+                    dtrip.oilStart = item.oil;
+                    divisionDate=item.gt.toDate().toShortDateString();
+                    dtrip.data.push(item);
+                }
 
             }
         }
@@ -312,13 +415,22 @@ var replay = {
         }
 
 
-        // 更新行程表
-        for (var x in this.trips.days) {
-            var daytrips = this.trips.days[x];
-
-
-            updateGridReplayTrackRow(daytrips);
+        if(replay.statistics==1){
+            for (var x in this.dtrips.days) {
+                var daytrips = this.dtrips.days[x];
+                var trip = daytrips[0];
+                console.log(" s : "+ trip.timeStart.toDate().toDateTimeString("MM-dd hh:mm:ss") +"   e : "+trip.timeEnd.toDate().toDateTimeString("MM-dd hh:mm:ss"));
+                parseTrip(0, trip);
+            }
+        }else{
+            // 更新行程表
+            for (var x in this.trips.days) {
+                var daytrips = this.trips.days[x];
+                updateGridReplayTrackRow(daytrips);
+            }
         }
+
+
 
         /**
          * 更新行程表
@@ -437,7 +549,7 @@ var replay = {
                 total: 0,
                 befor: null
             };
-
+            var maxSp;
             /**
              * 里程计
              */
@@ -448,6 +560,9 @@ var replay = {
                 end: trip.data[trip.data.length - 1].m
             };
 
+
+            var maxss = [];
+
             trip.mileages = 0;
             if (trip.data) {
                 for (var index = 0; index < trip.data.length; index++) {
@@ -457,6 +572,14 @@ var replay = {
                         velocimeter.total += item.sp;
                         velocimeter.times++;
                     }
+
+                    if(index==0){
+                        maxSp= item.sp;
+                    }
+                    if(maxSp<item.sp){
+                        maxSp= item.sp;
+                    }
+
                     // 里程是否有归零
                     if (!item.reset)
                         milemeter.befor = item.m;
@@ -470,13 +593,25 @@ var replay = {
                             oilmeter.total += oil;
                     }
                     oilmeter.befor = item.oil;
+                    maxss.push(item.sp)
                 }
             }
+            var max = Math.max.apply(null, maxss);
+            trip.max = max;
 
+
+            var extimes = 0;
+
+            for (var mm of maxss) {
+                if (mm > 10) {
+                    extimes++;
+                }
+            }
+            trip.extimes = extimes;
             // 更新平均速度
             var averageSpeed = velocimeter.times == 0 ? 0 : velocimeter.total / velocimeter.times;
             trip.averageSpeed = common.round(averageSpeed, 1);
-
+            trip.maxSp = common.round(maxSp, 1);
             // 更新里程
             var mileage = milemeter.end - milemeter.start;
             if (milemeter.reset) {
@@ -537,47 +672,47 @@ var replay = {
             var paktimes = common.timespan(milliseconds);
             trip.paktimes = paktimes;
 
-            var newRow = [];
-            newRow.push('<tr>');
-            newRow.push('<td>');
-            newRow.push('	<div><div class="mon-icon-h-x16 i-16-parkpoint"></div>');
-            newRow.push('		<span style="color:red;">' + trip.timeStart.toDate().toDateTimeString('hh:mm:ss') + '-'
-                + trip.timeEnd.toDate().toDateTimeString('hh:mm:ss') + '</span>');
-            newRow.push('		<span style="color:#999999;">停车:<span style="color:red;">' + trip.paktimes + '</span></span>');
-            newRow.push('		<span style="color:#999999;">地点:<span name="address" style="color:#999999;"></span></span>');
-            newRow.push('	</div><hr>');
-            newRow.push('</td>');
-            newRow.push('</tr>');
-            var row = $(newRow.join(''));
-            $("#gridReplayPark").append(row);
-            row.data('trip', trip);
-            row.on("click", function () {
-                $("#gridReplayPark").find(".tr-selected").removeClass('tr-selected');
-                $(this).addClass('tr-selected');
-                var trip = $(this).data('trip');
-                if (trip) {
-                    // 画点
-                    if (replay.selectedPark)
-                        replay.selectedPark.dispose();
-                    if (trip.data && trip.data.length > 0) {
-                        replay.selectedPark = webMap.createMarker({
-                            map: replay.webMap,
-                            data: trip.data[0],
-                            allowShowLabel: false,
-                            infoWindow: replay.infoWindow,
-                            icon: {
-                                url: '../static/img/car.png',
-                                offset: 0
-                            },
-                            iconAnchor: {
-                                x: 16,
-                                y: 32
-                            }
-                        });
-                        replay.selectedPark.openInfoWindow();
-                    }
-                }
-            });
+            // var newRow = [];
+            // newRow.push('<tr>');
+            // newRow.push('<td>');
+            // newRow.push('	<div><div class="mon-icon-h-x16 i-16-parkpoint"></div>');
+            // newRow.push('		<span style="color:red;">' + trip.timeStart.toDate().toDateTimeString('hh:mm:ss') + '-'
+            //     + trip.timeEnd.toDate().toDateTimeString('hh:mm:ss') + '</span>');
+            // newRow.push('		<span style="color:#999999;">停车:<span style="color:red;">' + trip.paktimes + '</span></span>');
+            // newRow.push('		<span style="color:#999999;">地点:<span name="address" style="color:#999999;"></span></span>');
+            // newRow.push('	</div><hr>');
+            // newRow.push('</td>');
+            // newRow.push('</tr>');
+            // var row = $(newRow.join(''));
+            // $("#gridReplayPark").append(row);
+            // row.data('trip', trip);
+            // row.on("click", function () {
+            //     $("#gridReplayPark").find(".tr-selected").removeClass('tr-selected');
+            //     $(this).addClass('tr-selected');
+            //     var trip = $(this).data('trip');
+            //     if (trip) {
+            //         // 画点
+            //         if (replay.selectedPark)
+            //             replay.selectedPark.dispose();
+            //         if (trip.data && trip.data.length > 0) {
+            //             replay.selectedPark = webMap.createMarker({
+            //                 map: replay.webMap,
+            //                 data: trip.data[0],
+            //                 allowShowLabel: false,
+            //                 infoWindow: replay.infoWindow,
+            //                 icon: {
+            //                     url: '../static/img/car.png',
+            //                     offset: 0
+            //                 },
+            //                 iconAnchor: {
+            //                     x: 16,
+            //                     y: 32
+            //                 }
+            //             });
+            //             replay.selectedPark.openInfoWindow();
+            //         }
+            //     }
+            // });
             // replay.webMap.queryAddress(trip.pointStart.lng, trip.pointStart.lat, function (address, row) {
             //     row.find('span[name="address"]').text(address);
             // }, row);
@@ -615,49 +750,49 @@ var replay = {
          * 解析报警
          */
         function parseAlarm(alarm) {
-            var newRow = [];
-            newRow.push('<tr>');
-            newRow.push('<td>');
-            newRow.push('	<div><div class="mon-icon-h-x16 i-16-alarmpoint"></div>');
-            newRow.push('		<span>' + alarm.gt.toDate().toDateTimeString('hh:mm:ss') + '</span><br />');
-            newRow.push('		<span style="color:#999999;">报警:<span style="color:red;">' + gpsDataParser.parseAlarm(alarm) + '</span></span><br />');
-            newRow.push('		<span style="color:#999999;">地点:<span name="address" style="color:#999999;"></span></span>');
-            newRow.push('	</div>');
-            newRow.push('</td>');
-            newRow.push('</tr>');
-            var row = $(newRow.join(''));
-            $("#gridReplayAlarm").append(row);
-            row.data('alarm', alarm);
-            row.live("click", function () {
-                $("#gridReplayAlarm").find(".tr-selected").removeClass('tr-selected');
-                $(this).addClass('tr-selected');
-                var alarm = $(this).data('alarm');
-                if (alarm) {
-                    // 画点
-                    if (replay.selectedAlarm)
-                        replay.selectedAlarm.dispose();
-                    if (alarm) {
-                        replay.selectedAlarm = webMap.createMarker({
-                            map: replay.webMap,
-                            data: alarm,
-                            allowShowLabel: false,
-                            infoWindow: replay.infoWindow,
-                            icon: {
-                                url: '../resources/images/alarmpoint.png',
-                                offset: 0
-                            },
-                            iconAnchor: {
-                                x: 16,
-                                y: 32
-                            }
-                        });
-                        replay.selectedAlarm.openInfoWindow();
-                    }
-                }
-            });
-            replay.webMap.queryAddress(alarm.olng, alarm.olat, function (address, row) {
-                row.find('span[name="address"]').text(address);
-            }, row);
+            // var newRow = [];
+            // newRow.push('<tr>');
+            // newRow.push('<td>');
+            // newRow.push('	<div><div class="mon-icon-h-x16 i-16-alarmpoint"></div>');
+            // newRow.push('		<span>' + alarm.gt.toDate().toDateTimeString('hh:mm:ss') + '</span><br />');
+            // newRow.push('		<span style="color:#999999;">报警:<span style="color:red;">' + gpsDataParser.parseAlarm(alarm) + '</span></span><br />');
+            // newRow.push('		<span style="color:#999999;">地点:<span name="address" style="color:#999999;"></span></span>');
+            // newRow.push('	</div>');
+            // newRow.push('</td>');
+            // newRow.push('</tr>');
+            // var row = $(newRow.join(''));
+            // $("#gridReplayAlarm").append(row);
+            // row.data('alarm', alarm);
+            // row.live("click", function () {
+            //     $("#gridReplayAlarm").find(".tr-selected").removeClass('tr-selected');
+            //     $(this).addClass('tr-selected');
+            //     var alarm = $(this).data('alarm');
+            //     if (alarm) {
+            //         // 画点
+            //         if (replay.selectedAlarm)
+            //             replay.selectedAlarm.dispose();
+            //         if (alarm) {
+            //             replay.selectedAlarm = webMap.createMarker({
+            //                 map: replay.webMap,
+            //                 data: alarm,
+            //                 allowShowLabel: false,
+            //                 infoWindow: replay.infoWindow,
+            //                 icon: {
+            //                     url: '../resources/images/alarmpoint.png',
+            //                     offset: 0
+            //                 },
+            //                 iconAnchor: {
+            //                     x: 16,
+            //                     y: 32
+            //                 }
+            //             });
+            //             replay.selectedAlarm.openInfoWindow();
+            //         }
+            //     }
+            // });
+            // replay.webMap.queryAddress(alarm.olng, alarm.olat, function (address, row) {
+            //     row.find('span[name="address"]').text(address);
+            // }, row);
         }
 
         // replay.resetSpeedChart(replay.speeds);
@@ -673,7 +808,7 @@ var replay = {
             start: start,
             end: end,
             pageIndex: pageIndex,
-            pageSize: pageSize
+            pageSize: 500
         }, function (list) {
             if (list && list.length > 0) {
 
@@ -681,14 +816,29 @@ var replay = {
                 replay.webMap.translate(list, 0, function () {
 
                     replay.pageIndex++;
-                    console.log( replay.pageIndex)
+                    console.log(replay.pageIndex)
                     replay.tracks = replay.tracks.concat(list);
-                    console.log("ss")
+                    // console.log("ss")
                     if (replay.tracks.length >= replay.trackCount) {
-                        console.log("aa")
+                        // console.log("aa")
                         replay.downloadCompleted();
+                        $("#pb").empty();
                         callback && callback();
                     } else {
+
+                        if (replay.trackCount && replay.trackCount > 0) {
+                            var ratio = replay.tracks.length / replay.trackCount;
+                            var width = Math.round(ratio * 100);
+                            if (width > 100)
+                                width = 100;
+                            var ratioText = width + '%';
+                            console.log(replay.trackCount)
+                            console.log(ratio)
+                            console.log(replay.tracks.length)
+                            var element = layui.element;
+                            element.progress('demo', ratioText);
+                            // $('#divProcess > div').css('width', ratioText);
+                        }
                         replay.download(number, start, end, replay.pageIndex, replay.pageSize, callback);
                     }
 
@@ -734,5 +884,8 @@ var replay = {
         };
     },
 }
+
+
+
 
 

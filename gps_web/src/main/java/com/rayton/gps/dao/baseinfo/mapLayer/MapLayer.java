@@ -21,9 +21,7 @@ public class MapLayer {
 
     @Override
     public String toString() {
-        return "MapLayer{" + "id='" + id + '\'' + ", companyId='" + companyId + '\'' + ", userId='" + userId + '\'' +
-                ", name='" + name + '\'' + ", visible=" + visible + ", remark='" + remark + '\'' + ", editTime=" +
-                editTime + '}';
+        return "MapLayer{" + "id='" + id + '\'' + ", companyId='" + companyId + '\'' + ", userId='" + userId + '\'' + ", name='" + name + '\'' + ", visible=" + visible + ", remark='" + remark + '\'' + ", editTime=" + editTime + '}';
     }
 
     public String getId() {

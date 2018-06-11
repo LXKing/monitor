@@ -140,6 +140,7 @@
     left: 0px !important;
     bottom: 0px !important;
     z-index: 1;
+    font-size: 15px;
 }
 .panel-heading{
     background: #028AD6;
@@ -430,6 +431,7 @@
 }
 .nav_ul li:hover{
     background: #036ba4;
+    /*background-color: #d5dfe4;*/
 }
 #content_data tr:hover{
     background-color: #FFDECF !important;
@@ -440,15 +442,15 @@
 .level2{
 
 }
-.level0>li{
-    padding-left: 18px;
-}
-.level1>li{
-    padding-left: 18px;
-}
-.level2>li{
-    padding-left: 18px;
-}
+/*.level0>li{*/
+    /*padding-left: 18px;*/
+/*}*/
+/*.level1>li{*/
+    /*padding-left: 18px;*/
+/*}*/
+/*.level2>li{*/
+    /*padding-left: 18px;*/
+/*}*/
 /*
 #container_ .content_box-1 .car-info_box .car-info .car-lists .cl_info .am_header{
     min-width: 326px;
@@ -584,7 +586,7 @@
     background: #40A3C5;
     position: absolute;
     top: 10px;
-    left: 8px;
+    left: 68px;
     width: 54px;
     height: 28px;
     text-align: center;
@@ -704,7 +706,7 @@
     background: #40A3C5;
     position: absolute;
     top: 10px;
-    left: 64px;
+    left: 125px;
     /* width: 29px; */
     height: 28px;
     text-align: center;

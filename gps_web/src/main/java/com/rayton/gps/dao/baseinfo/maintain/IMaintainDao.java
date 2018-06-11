@@ -16,8 +16,7 @@ public interface IMaintainDao {
     /**
      * 查询保养页内容
      */
-    List<MaintainInfo> queryPageDetail(String companyId, String plateNumber, Date from, Date to, int pageIndex, int
-            pageSize);
+    List<MaintainInfo> queryPageDetail(String companyId, String plateNumber, Date from, Date to, int pageIndex, int pageSize);
 
     /**
      * 创建新的保养

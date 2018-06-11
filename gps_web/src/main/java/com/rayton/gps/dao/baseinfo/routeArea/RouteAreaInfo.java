@@ -19,8 +19,7 @@ public class RouteAreaInfo {
 
     @Override
     public String toString() {
-        return "RouteAreaInfo{" + "id=" + id + ", name='" + name + '\'' + ", deviceCatch=" + deviceCatch + ", " +
-                "remark='" + remark + '\'' + ", sections=" + sections + '}';
+        return "RouteAreaInfo{" + "id=" + id + ", name='" + name + '\'' + ", deviceCatch=" + deviceCatch + ", " + "remark='" + remark + '\'' + ", sections=" + sections + '}';
     }
 
     /**

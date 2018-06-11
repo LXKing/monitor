@@ -15,9 +15,7 @@ public class MyInfo {
 
     @Override
     public String toString() {
-        return "MyInfo{" + "id='" + id + '\'' + ", account='" + account + '\'' + ", pwd='" + pwd + '\'' + ", name='"
-                + name + '\'' + ", email='" + email + '\'' + ", phone='" + phone + '\'' + ", contact='" + contact +
-                '\'' + ", editTime=" + editTime + '}';
+        return "MyInfo{" + "id='" + id + '\'' + ", account='" + account + '\'' + ", pwd='" + pwd + '\'' + ", name='" + name + '\'' + ", email='" + email + '\'' + ", phone='" + phone + '\'' + ", contact='" + contact + '\'' + ", editTime=" + editTime + '}';
     }
 
     public String getId() {

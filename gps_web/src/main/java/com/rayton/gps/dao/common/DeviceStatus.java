@@ -19,10 +19,7 @@ public class DeviceStatus {
 
     @Override
     public String toString() {
-        return "DeviceStatus{" + "number='" + number + '\'' + ", debugging=" + debugging + ", upgrading=" + upgrading
-                + ", matching=" + matching + ", sleeping=" + sleeping + ", repairing=" + repairing + ", preVer='" +
-                preVer + '\'' + ", upgradeStart=" + upgradeStart + ", curVer='" + curVer + '\'' + ", upgradeEnd=" +
-                upgradeEnd + ", matchResult='" + matchResult + '\'' + ", matchTime=" + matchTime + '}';
+        return "DeviceStatus{" + "number='" + number + '\'' + ", debugging=" + debugging + ", upgrading=" + upgrading + ", matching=" + matching + ", sleeping=" + sleeping + ", repairing=" + repairing + ", preVer='" + preVer + '\'' + ", upgradeStart=" + upgradeStart + ", curVer='" + curVer + '\'' + ", upgradeEnd=" + upgradeEnd + ", matchResult='" + matchResult + '\'' + ", matchTime=" + matchTime + '}';
     }
 
     /**

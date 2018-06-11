@@ -14,9 +14,7 @@ public class AreaIoDetail {
 
     @Override
     public String toString() {
-        return "AreaIoDetail{" + "deviceNumber='" + deviceNumber + '\'' + ", motorcade='" + motorcade + '\'' + ", " +
-                "plateNumber='" + plateNumber + '\'' + ", in=" + in + ", out=" + out + ", start=" + start + ", end="
-                + end + '}';
+        return "AreaIoDetail{" + "deviceNumber='" + deviceNumber + '\'' + ", motorcade='" + motorcade + '\'' + ", " + "plateNumber='" + plateNumber + '\'' + ", in=" + in + ", out=" + out + ", start=" + start + ", end=" + end + '}';
     }
 
     public String getDeviceNumber() {

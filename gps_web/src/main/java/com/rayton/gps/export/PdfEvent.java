@@ -98,8 +98,8 @@ public class PdfEvent extends PdfPageEventHelper {
         }
 
         // 1.写入页眉
-        ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_LEFT, new Phrase(header, fontDetail),
-                document.left(), document.top() + 20, 0);
+        ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_LEFT, new Phrase(header, fontDetail), document
+                .left(), document.top() + 20, 0);
 
         // 2.写入前半部分的 第 X页/共
         int pageS = writer.getPageNumber();
@@ -115,13 +115,13 @@ public class PdfEvent extends PdfPageEventHelper {
         // 5.写入页脚1，x轴就是(右margin+左margin + right() -left()- len)/2.0F
         // 再给偏移20F适合人类视觉感受，否则肉眼看上去就太偏左了
         // ,y轴就是底边界-20,否则就贴边重叠到数据体里了就不是页脚了；注意Y轴是从下往上累加的，最上方的Top值是大于Bottom好几百开外的。
-        ColumnText.showTextAligned(cb, Element.ALIGN_CENTER, footer, (document.rightMargin() + document.right() +
-                document.leftMargin() - document.left() - len) / 2.0F + 20F, document.bottom() - 20, 0);
+        ColumnText.showTextAligned(cb, Element.ALIGN_CENTER, footer, (document.rightMargin() + document.right() + document
+                .leftMargin() - document.left() - len) / 2.0F + 20F, document.bottom() - 20, 0);
 
         // 6.写入页脚2的模板（就是页脚的Y页这俩字）添加到文档中，计算模板的和Y轴,X=(右边界-左边界 - 前半部分的len值)/2.0F +
         // len ， y 轴和之前的保持一致，底边界-20
-        cb.addTemplate(total, (document.rightMargin() + document.right() + document.leftMargin() - document.left()) /
-                2.0F + 20F, document.bottom() - 20); // 调节模版显示的位置
+        cb.addTemplate(total, (document.rightMargin() + document.right() + document.leftMargin() - document.left()) / 2.0F + 20F, document
+                .bottom() - 20); // 调节模版显示的位置
 
     }
 

@@ -34,8 +34,7 @@ public class AlarmService {
         query.total = total;
 
         if (total > 0) {
-            List<Alarm> rows = alarmDao.processedPageDetail(deviceNumber, start, end, (pageIndex - 1) * pageSize,
-                    pageSize);
+            List<Alarm> rows = alarmDao.processedPageDetail(deviceNumber, start, end, (pageIndex - 1) * pageSize, pageSize);
             query.rows.addAll(rows);
             // rows.forEach(alarm -> query.rows.add(alarm));
 
@@ -56,8 +55,7 @@ public class AlarmService {
     @RequiresPermissions("center.alarm.processOnce")
     @Log(name = "单次处理报警")
     @Transactional
-    public void processOnce(String alarmId, Timestamp alarmTimestamp, String userMethod, String userRemark, String
-            userId, String userName) {
+    public void processOnce(String alarmId, Timestamp alarmTimestamp, String userMethod, String userRemark, String userId, String userName) {
         ProcessOnceDto dto = new ProcessOnceDto();
         dto.alarmId = alarmId;
         dto.alarmTimestamp = alarmTimestamp;
@@ -72,8 +70,7 @@ public class AlarmService {
     @RequiresPermissions("center.alarm.processAll")
     @Log(name = "处理全部报警")
     @Transactional
-    public void processAll(String[] deviceNumbers, String userMethod, String userRemark, String userId, String
-            userName) {
+    public void processAll(String[] deviceNumbers, String userMethod, String userRemark, String userId, String userName) {
         for (String deviceNumber : deviceNumbers) {
             ProcessAllDto dto = new ProcessAllDto();
 

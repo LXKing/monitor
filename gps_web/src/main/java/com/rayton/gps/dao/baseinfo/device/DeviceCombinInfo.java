@@ -1,5 +1,7 @@
 package com.rayton.gps.dao.baseinfo.device;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.sql.Date;
 
 public class DeviceCombinInfo {
@@ -15,18 +17,17 @@ public class DeviceCombinInfo {
     private String name;
     private Integer enable;
     private String sim;
+    @JSONField(format = "yyyy-MM-dd")
     private Date ServiceStartTime;
+    @JSONField(format = "yyyy-MM-dd")
     private Date serviceEndTime;
     private String remark;
+    @JSONField(format = "yyyy-MM-dd")
     private Date createTime;
 
     @Override
     public String toString() {
-        return "DeviceCombinInfo{" + "id='" + id + '\'' + ", pid='" + pid + '\'' + ", deviceId='" + deviceId + '\'' +
-                ", userId='" + userId + '\'' + ", groupId='" + groupId + '\'' + ", type=" + type + ", number='" +
-                number + '\'' + ", name='" + name + '\'' + ", enable=" + enable + ", sim='" + sim + '\'' + ", " +
-                "ServiceStartTime=" + ServiceStartTime + ", serviceEndTime=" + serviceEndTime + ", remark='" + remark
-                + '\'' + ", createTime=" + createTime + '}';
+        return "DeviceCombinInfo{" + "id='" + id + '\'' + ", pid='" + pid + '\'' + ", deviceId='" + deviceId + '\'' + ", userId='" + userId + '\'' + ", groupId='" + groupId + '\'' + ", type=" + type + ", number='" + number + '\'' + ", name='" + name + '\'' + ", enable=" + enable + ", sim='" + sim + '\'' + ", " + "ServiceStartTime=" + ServiceStartTime + ", serviceEndTime=" + serviceEndTime + ", remark='" + remark + '\'' + ", createTime=" + createTime + '}';
     }
 
     /**

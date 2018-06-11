@@ -126,9 +126,6 @@ public class MapLayerDto {
 
     @Override
     public String toString() {
-        return "MapLayerDto{" + "id='" + id + '\'' + ", companyId='" + companyId + '\'' + ", userId='" + userId +
-                '\'' + ", name='" + name + '\'' + ", visible=" + visible + ", remark='" + remark + '\'' + ", " +
-                "editTime=" + editTime + ", circleAreas=" + circleAreas + ", rectangleAreas=" + rectangleAreas + ", "
-                + "polygonAreas=" + polygonAreas + ", routeAreas=" + routeAreas + ", pois=" + pois + '}';
+        return "MapLayerDto{" + "id='" + id + '\'' + ", companyId='" + companyId + '\'' + ", userId='" + userId + '\'' + ", name='" + name + '\'' + ", visible=" + visible + ", remark='" + remark + '\'' + ", " + "editTime=" + editTime + ", circleAreas=" + circleAreas + ", rectangleAreas=" + rectangleAreas + ", " + "polygonAreas=" + polygonAreas + ", routeAreas=" + routeAreas + ", pois=" + pois + '}';
     }
 }

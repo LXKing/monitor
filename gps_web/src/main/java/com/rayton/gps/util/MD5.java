@@ -27,9 +27,7 @@ public class MD5 {
     }
 
 
-
-
-    public static String getMd5String(String str){
+    public static String getMd5String(String str) {
         MessageDigest messageDigest = null;
 
         try {

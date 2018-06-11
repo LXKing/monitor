@@ -17,8 +17,7 @@ public class SectionAreaInfo {
 
     @Override
     public String toString() {
-        return "SectionAreaInfo{" + "id=" + id + ", name='" + name + '\'' + ", remark='" + remark + '\'' + ", " +
-                "points=" + points + '}';
+        return "SectionAreaInfo{" + "id=" + id + ", name='" + name + '\'' + ", remark='" + remark + '\'' + ", " + "points=" + points + '}';
     }
 
     /**

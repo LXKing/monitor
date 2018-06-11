@@ -29,8 +29,7 @@ public class VehicleRegisterController {
     @RequiresPermissions("baseinfo.licence.VehicleRegister")
     @GetMapping(value = "/vehicleRegister/query")
     @ResponseBody
-    public Object query(@RequestParam(required = false) String filter, @RequestParam int page, @RequestParam int
-            limit) throws Exception {
+    public Object query(@RequestParam(required = false) String filter, @RequestParam int page, @RequestParam int limit) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
 
 
@@ -62,9 +61,7 @@ public class VehicleRegisterController {
 
     @PostMapping(value = "/vehicleRegister/create.form")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> create(@ModelAttribute("vehicleRegister") @Valid VehicleRegister
-                                                                  vehicleRegister, BindingResult binding) throws
-            Exception {
+    public ResponseEntity<Map<Object, Object>> create(@ModelAttribute("vehicleRegister") @Valid VehicleRegister vehicleRegister, BindingResult binding) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
 
         if (binding.hasErrors())
@@ -87,10 +84,9 @@ public class VehicleRegisterController {
 
     @PostMapping(value = "/vehicleRegister/edit.form")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> edit(@ModelAttribute("vehicleRegister") @Valid VehicleRegister
-                                                                vehicleRegister, BindingResult binding) throws
-            Exception {
-        if (binding.hasErrors()) return ResponseEntityWrapper.Failed();
+    public ResponseEntity<Map<Object, Object>> edit(@ModelAttribute("vehicleRegister") @Valid VehicleRegister vehicleRegister, BindingResult binding) throws Exception {
+        if (binding.hasErrors())
+            return ResponseEntityWrapper.Failed();
         // return "/baseinfo/driver/edit.form";
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         vehicleRegister.setCompanyId(identity.getCompanyId());

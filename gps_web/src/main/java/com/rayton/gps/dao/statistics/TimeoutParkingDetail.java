@@ -14,9 +14,7 @@ public class TimeoutParkingDetail {
 
     @Override
     public String toString() {
-        return "TimeoutParkingDetail{" + "deviceNumber='" + deviceNumber + '\'' + ", motorcade='" + motorcade + '\''
-                + ", plateNumber='" + plateNumber + '\'' + ", times=" + times + ", duration=" + duration + ", start="
-                + start + ", end=" + end + '}';
+        return "TimeoutParkingDetail{" + "deviceNumber='" + deviceNumber + '\'' + ", motorcade='" + motorcade + '\'' + ", plateNumber='" + plateNumber + '\'' + ", times=" + times + ", duration=" + duration + ", start=" + start + ", end=" + end + '}';
     }
 
     public String getDeviceNumber() {

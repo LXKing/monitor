@@ -14,8 +14,7 @@ public class DictionaryItem {
 
     @Override
     public String toString() {
-        return "DictionaryItem{" + "id=" + id + ", pid=" + pid + ", enums=" + kind + ", name='" + name + '\'' + ", "
-                + "code='" + code + '\'' + ", index='" + index + '\'' + ", editTime=" + editTime + '}';
+        return "DictionaryItem{" + "id=" + id + ", pid=" + pid + ", enums=" + kind + ", name='" + name + '\'' + ", " + "code='" + code + '\'' + ", index='" + index + '\'' + ", editTime=" + editTime + '}';
     }
 
     public long getId() {

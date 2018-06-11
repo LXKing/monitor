@@ -15,16 +15,16 @@ $(function () {
                 success: function (tem) {
                     // console.log(ip.city + "近三日天气")
                     $("#wea_info").text(tem.HeWeather6[0].now.tmp + "℃");
-                    console.log(tem.HeWeather6[0].now.cond_code)
+                    // console.log(tem.HeWeather6[0].now.cond_code)
                     var shit = "static/image/cond_icon_heweather/" + tem.HeWeather6[0].now.cond_code + ".png";
 
                     $("#wea_right img").attr("src", shit);
-                    console.log(tem.HeWeather6[0].now.tmp)
+                    // console.log(tem.HeWeather6[0].now.tmp)
                     // console.log(tem.now.tmp)
                     // console.log(tem.now.cond_txt)
                     // $(".jumbotron h1").html(ip.city + "近三日天气");
                     var today_ = new Date().getDay();
-                    console.log(today_);
+                    // console.log(today_);
                     var str_ri = ["一", "二", "三", "四", "五", "六", "日"];
                     if (today_ == 1) {
                         today_ = str_ri[0];
@@ -41,16 +41,16 @@ $(function () {
                     } else if (today_ == 0) {
                         today_ = str_ri[6];
                     }
-                    console.log(today_);
+                    // console.log(today_);
                     $("#date").html(new Date().getMonth() + 1 + "月" + new Date().getDate() + "日" + "星期" + today_);
                 },
                 error: function () {
-                    console.log("获取天气失败...")
+                    // console.log("获取天气失败...")
                 }
             });
         },
         error: function () {
-            console.log("定位失败...")
+            // console.log("定位失败...")
         }
     });
 });
@@ -259,8 +259,8 @@ $(function(){
 
 // map_info左右拖拉
 $(function () {
-    var x = '';
-    var y = '';
+    // var x = '';
+    // var y = '';
     var boxDrag = $("#box_drag")[0];
     var boxLeft = $("#box_left")[0];
     var boxLeft_b = $("#car-status")[0];
@@ -270,23 +270,43 @@ $(function () {
         var boxRightWidth = boxRight.offsetWidth;
         var boxDragClientLeft = iEvent.clientX;
         var boxDragWidth = boxDrag.offsetWidth;
-        var screenWidth = boxRightWidth + boxDragClientLeft + boxDragWidth;
-        if (iEvent.clientX < boxDrag.offsetLeft + 10) {
-            X = 'left';
+        var screenWidth = boxRightWidth + boxDragClientLeft ;
+        // console.log("boxRightWidth:"+boxRightWidth);
+        // console.log("boxDragClientLeft:"+boxDragClientLeft);
+        // console.log("boxDragWidth:"+boxDragWidth);
+        // console.log('screenWidth274:'+screenWidth);
+
+        // if (iEvent.clientX < boxDrag.offsetLeft + 10) {
+        //     X = 'left';
             boxDrag.style.cursor = 'ew-resize';
-        }
+        // }
         $(document).mousemove(function (e) {
             var iEvent = e || event;
-            if (iEvent.clientX < 0 || iEvent.clientX > window.innerWidth*0.33) {
+
+            // var x_s = window.innerWidth - ;
+            if (iEvent.clientX < 0 || iEvent.clientX >$("#dataTree").width()) {
+
+                console.warn(iEvent.clientX >$("#dataTree").width());
+                console.log("boxRightWidth:"+boxRightWidth);
+                console.log("boxDragClientLeft:"+boxDragClientLeft);
+                console.log("boxDragWidth:"+boxDragWidth);
+                console.log('screenWidth274:'+screenWidth);
                 return;
             }
-            console.log("screenwidth:" + screenWidth);
-            boxRight.style.width = boxRightWidth - (iEvent.clientX - boxDragClientLeft) - boxDragWidth + 'px';
-            boxRight.style.left = screenWidth - boxRight.offsetWidth + 'px';
+            // boxRight.style.width = boxRightWidth - (iEvent.clientX - boxDragClientLeft)- boxDragWidth + 'px';
+            // console.log('screenWidth285:'+screenWidth);
+            // if(screenWidth==$(window).width()){
+            //     boxRight.style.width =screenWidth - iEvent.clientX   + 'px';
+            // }else{
+            //     boxRight.style.width =$(document).width()-$("#box_left").width()-$("#box_drag").width();
+            // }
+            // boxRight.style.width =screenWidth - iEvent.clientX    + 'px';
+            boxRight.style.left = iEvent.clientX + 'px';
             boxLeft.style.width = screenWidth - (boxRightWidth - (iEvent.clientX - boxDragClientLeft)) + 'px';
             boxLeft_b.style.width = screenWidth - (boxRightWidth - (iEvent.clientX - boxDragClientLeft)) + 'px';
-            boxDrag.style.left = screenWidth - boxRight.offsetWidth - boxDragWidth + 'px';
-            console.log('iEvent.clientX:' + iEvent.clientX);
+            // boxDrag.style.left = iEvent.clientX  + 'px';
+            // console.log('boxDragWidth1:'+boxDragWidth);
+            // console.log('iEvent.clientX:' + iEvent.clientX);
         })
         $(document).mouseup(function () {
             $(document).off("mousedown mousemove");
@@ -310,7 +330,7 @@ $(function () {
         mapDrag.style.cursor = 'ns-resize';
         $(document).mousemove(function (e) {
             var iEvent = e || event;
-            if (iEvent.clientY < window.innerHeight*0.5 || iEvent.clientY > window.innerHeight - 26) {
+            if (iEvent.clientY < window.innerHeight*0.1 || iEvent.clientY > window.innerHeight - 26) {
                 return;
             }
             mapContent.style.height = iEvent.clientY + 'px';
@@ -319,7 +339,7 @@ $(function () {
             mapStatus.style.height = screenHeight - iEvent.clientY + 'px';
             $(".map-car-details").css("height", $("#box_mc").height() - $(".map-car-message").height()-$("#bottom_box").height());
 
-            console.log('iEvent.clientY:' + iEvent.clientY);
+            // console.log('iEvent.clientY:' + iEvent.clientY);
         })
         $(document).mouseup(function () {
             $(document).off("mousedown mousemove");
@@ -334,34 +354,35 @@ $(function(){
         var s_h = $(document).height();
         var bottom0 = $(".car-info-header").height();
         var bottom = $(".car-status").height();
-        var c_h = s_h  - bottom0 - bottom + 12 + 'px';
+        var c_h = s_h  - bottom0 - bottom -8 +'px';
         $(".dis_list").height(c_h);
     }
     carI_h();
     $(window).resize(carI_h);
 })
 
-// $(function(){
-//     function tree_h(){
-//         var s_h = $(document).height();
-//         var top = $("#up_box").height();
-//         var middle = $("#mid_box").height();
-//         var bottom = $(".car-status").height();
-//         var t_h = $(document).height() - top - middle - bottom - 91 +'px';
-//         $(".tree_class").height(t_h);
-//     }
-//     tree_h();
-//     $(window).resize(tree_h);
-// })
+$(function(){
+    function tree_h(){
+        var s_h = $(document).height();
+        var top = $(".car-info-header").height();
+        var middle = $(".car-info-search").height();
+        // var middle0 = $(".am_header").height();
+        var bottom = $("#car-status").height();
+        var t_h = s_h - top - middle - bottom -10+'px'  ;
+        $(".car-lists").height(t_h);
+    }
+    tree_h();
+    $(window).resize(tree_h);
+})
 
 //监听地图列表高度（在线监控）
 $(function(){
     function map_h(){
         var s_h = $(document).height();
-        var top = $("#up_box").height();
-        var middle = $("#mid_box").height();
+        // var top = $("#up_box").height();
+        // var middle = $("#mid_box").height();
         var bottom = $(".car-status").height();
-        var m_h = s_h - top - middle - bottom - 24 +'px';
+        var m_h = s_h - bottom - 24 +'px';
         $(".map_list").height(m_h);
     }
     map_h();
@@ -382,24 +403,26 @@ $(function(){
 });
 
 // 监听右侧宽度（在线监控）
-$(function () {
-    function nn() {
-        var s_w = $(document).width();
-        var left = $("#box_left").width();
-        var all_W = s_w - left-17+'px';
-        console.log(left);
-        $("#box_right").width(all_W);
-        // $("#box_right3").width(all_W);
-        // console.log(all_H);
-    }
-    nn();
-    $(window).resize(nn);
-});
+// $(function () {
+//     function nn() {
+//         var s_w = $(document).width();
+//         var left = $("#box_left").width();
+//         // var left0 = $("#box_drag").width();
+//         var all_W = s_w - left +'px';
+//         // console.log(left);
+//         $("#box_right").width(all_W);
+//         $("#box_right").css("right","0");
+//         // $("#box_right3").width(all_W);
+//         // console.log(all_H);
+//     }
+//     nn();
+//     $(window).resize(nn);
+// });
 
 
 //底部tab栏（在线监控）
 $(function(){
-    $('.map-car-info>a').click(function(){
+    $('.map-car-info>span').click(function(){
         $(this).addClass('current').siblings().removeClass('current');
         $('.map-car-details>div').eq($(this).index()).css('display','block').siblings('div').css('display','none');
     })
@@ -423,8 +446,8 @@ $(function(){
 
 // map_info左右拖拉
 $(function () {
-    var x = '';
-    var y = '';
+    // var x = '';
+    // var y = '';
     var boxDrag = $("#box_drag3")[0];
     var boxLeft = $("#box_left")[0];
     var boxLeft_b = $("#car-status")[0];
@@ -435,22 +458,23 @@ $(function () {
         var boxDragClientLeft = iEvent.clientX;
         var boxDragWidth = boxDrag.offsetWidth;
         var screenWidth = boxRightWidth + boxDragClientLeft + boxDragWidth;
-        if (iEvent.clientX < boxDrag.offsetLeft + 10) {
-            X = 'left';
+        // if (iEvent.clientX < boxDrag.offsetLeft + 10) {
+        //     X = 'left';
             boxDrag.style.cursor = 'ew-resize';
-        }
+        // }
         $(document).mousemove(function (e) {
             var iEvent = e || event;
-            if (iEvent.clientX < 0 || iEvent.clientX > window.innerWidth*0.33) {
+            if (iEvent.clientX < 0 || iEvent.clientX > window.innerWidth*0.9) {
                 return;
             }
-            console.log("screenwidth:" + screenWidth);
-            boxRight.style.width = boxRightWidth - (iEvent.clientX - boxDragClientLeft) - boxDragWidth + 'px';
+            // console.log("screenwidth:" + screenWidth);
+            // boxRight.style.width = boxRightWidth - (iEvent.clientX - boxDragClientLeft)- boxDragWidth + 'px';
+            boxRight.style.width =screenWidth - iEvent.clientX  + 'px';
             boxRight.style.left = screenWidth - boxRight.offsetWidth + 'px';
             boxLeft.style.width = screenWidth - (boxRightWidth - (iEvent.clientX - boxDragClientLeft)) + 'px';
             boxLeft_b.style.width = screenWidth - (boxRightWidth - (iEvent.clientX - boxDragClientLeft)) + 'px';
             boxDrag.style.left = screenWidth - boxRight.offsetWidth - boxDragWidth + 'px';
-            console.log('iEvent.clientX:' + iEvent.clientX);
+            // console.log('iEvent.clientX:' + iEvent.clientX);
         })
         $(document).mouseup(function () {
             $(document).off("mousedown mousemove");
@@ -488,33 +512,19 @@ $(function(){
 })
 
 // 监听右侧宽度（多车跟踪）
-// $(function () {
-//     function nn3() {
-//         var s_w = $(document).width();
-//         var left0 = $("#box_left3").width();
-//         var all_W3 = s_w - left0-17+'px';
-//         console.log(left0);
-//         $("#box_right3").width(all_W3);
-//         console.log(all_W3);
-//         // $("#box.map3").width(all_W);
-//     }
-//     nn3();
-//     $(window).resize(nn3);
-// });
-
-//切换大小地图（多车跟踪）
 $(function () {
-    $(".map-contents3>.s_map>.cut_sn").click(function () {
-        var flag_0 = $(this).parent().siblings(".s_map").css("display")=="block";
-        var flag_ = $(this).parent().siblings(".s_map").css("display")=="none";
-        if(flag_0){
-            $(this).parent().css("width","100%").css("height","100%").siblings(".s_map").css("display","none");
-        }else if(flag_){
-            $(this).parent().css("width","49.9%").css("height","49.9%").siblings(".s_map").css("display","block");
-        }
-
-    })
-})
+    function nn3() {
+        var s_w = $(document).width();
+        var left0 = $("#box_left3").width();
+        var all_W3 = s_w - left0-14+'px';
+        // console.log(left0);
+        $("#box_right3").width(all_W3);
+        // console.log(all_W3);
+        // $("#box.map3").width(all_W);
+    }
+    nn3();
+    $(window).resize(nn3);
+});
 
 // 监听车机状态详情高度（多车跟踪）
 // $(function(){
@@ -592,9 +602,10 @@ $(function(){
 $(function(){
     function dmt_h(){
         var b_h = $("#driving_right").height();
-        var dm_bottom = $("#box_mc7").height();
+        var dm_bottom = $(".dm_top").height();
+        // var bottom = $("#dmBottom").height();
         var dmtH = b_h  - dm_bottom;
-        $(".dm_top").height(dmtH);
+        $("#box_mc7").height(dmtH);
         $("#dmMiddle").css("height", $("#box_mc7").height() -$("#dmBottom").height());
     }
     dmt_h();
@@ -631,95 +642,112 @@ $(function(){
 //
 // })
 //时间轴
+// $(function () {
+//     // var s = new Date().toLocaleDateString();
+//     // s = s.replace(/\//g, "-");
+//     // var t = new Date().toTimeString();
+//     // t = t.substring(8, 0);
+//     // console.log(s + " " + t);
+//     // var st = s + " " + t;
+//     // $("#test5,#test6,#test7,#test8").val(st);
+//
+//
+
+// })
+
+//监听小屏宽度
 $(function () {
-    // var s = new Date().toLocaleDateString();
-    // s = s.replace(/\//g, "-");
-    // var t = new Date().toTimeString();
-    // t = t.substring(8, 0);
-    // console.log(s + " " + t);
-    // var st = s + " " + t;
-    // $("#test5,#test6,#test7,#test8").val(st);
-
-
-    layui.use('laydate', function () {
-        var laydate = layui.laydate;
-
-        //执行一个laydate实例
-        laydate.render({
-            elem: '#test5'
-            , type: 'datetime'
-        });
-        laydate.render({
-            elem: '#test6'
-            , type: 'datetime'
-        });
-        laydate.render({
-            elem: '#test7'
-            , type: 'datetime'
-        });
-        laydate.render({
-            elem: '#test8'
-            , type: 'datetime'
-        });
-
-        //日期范围
-        laydate.render({
-            elem: '#test6'
-            , range: true
-        });
-
-        //年范围
-        laydate.render({
-            elem: '#test7'
-            , type: 'year'
-            , range: true
-        });
-
-        //年月范围
-        laydate.render({
-            elem: '#test8'
-            , type: 'month'
-            , range: true
-        });
-
-        //时间范围
-        laydate.render({
-            elem: '#test9'
-            , type: 'time'
-            , range: true
-        });
-
-        //日期时间范围
-        laydate.render({
-            elem: '#test10'
-            , type: 'datetime'
-            , range: true
-        });
-    });
-})
-
-//左右拖拉(行程管理)
-$(function(){
-    $("#driving_drag").click(function(){
-        var flag = $("#driving_left").css("display")=="block";
-        var temp = $("#driving_left").css("display")=="none";
-        console.log(flag);
-        console.log(temp);
-        if(flag){
-            $("#driving_left").css("display","none");
-            $("#driving_drag").css("left","0");
-            $("#driving_right").css("left","0.1%").css("width","99.9%");
-        }else if(temp){
-            $("#driving_left").css("display","block");
-            $("#driving_drag").css("left","20%");
-            $("#driving_right").css("left","20.1%").css("width","79.9%");
+    (function () {
+        if(window.screen.width==1366&&window.screen.height==768){
+            $(".driving_list").css({'width': '381px'});
+            $(".driving_map").css({'width':'985px','left':'381px'});
+            $(".box7_drag").css({'left':'381px'});
+            $("#driving_drag").click(function(){
+                var flag = $("#driving_left").css("display")=="block";
+                var temp = $("#driving_left").css("display")=="none";
+                // console.log(flag);
+                // console.log(temp);
+                if(flag){
+                    $("#driving_left").css("display","none");
+                    $("#driving_drag").css("left","0").addClass("zy_drag");
+                    $("#driving_right").css("left","0").css("width","1366px");
+                }else if(temp){
+                    $("#driving_left").css("display","block");
+                    $("#driving_drag").css("left","381px").removeClass("zy_drag");
+                    $("#driving_right").css("left","381px").css("width","985px");
+                }
+            })
         }
-    })
+
+    })()
 })
+
+// 左右拖拉
+$(function(){
+    if(window.screen.width==1920&&window.screen.height==1080){
+        $("#driving_drag").click(function(){
+            var flag = $("#driving_left").css("display")=="block";
+            var temp = $("#driving_left").css("display")=="none";
+            // console.log(flag);
+            // console.log(temp);
+            if(flag){
+                $("#driving_left").css("display","none");
+                $("#driving_drag").css("left","0").addClass("zy_drag");
+                $("#driving_right").css("left","0.1%").css("width","99.9%");
+            }else if(temp){
+                $("#driving_left").css("display","block");
+                $("#driving_drag").css("left","20%").removeClass("zy_drag");
+                $("#driving_right").css("left","20.1%").css("width","79.9%");
+            }
+        })
+    }
+
+
+})
+// $(function () {
+//     // var x = '';
+//     // var y = '';
+//     var boxDrag = $("#driving_drag")[0];
+//     var boxLeft = $("#driving_left")[0];
+//     // var boxLeft_b = $("#car-status")[0];
+//     var boxRight = $("#driving_right")[0];
+//     $("#driving_drag").mousedown(function (e) {
+//         var iEvent = e || event;
+//         var boxRightWidth = boxRight.offsetWidth;
+//         var boxDragClientLeft = iEvent.clientX;
+//         var boxDragWidth = boxDrag.offsetWidth;
+//         var screenWidth = boxRightWidth + boxDragClientLeft + boxDragWidth;
+//         // if (iEvent.clientX < boxDrag.offsetLeft + 10) {
+//         //     X = 'left';
+//         boxDrag.style.cursor = 'ew-resize';
+//         // }
+//         $(document).mousemove(function (e) {
+//             var iEvent = e || event;
+//             if (iEvent.clientX < 256 || iEvent.clientX > 400) {
+//                 return;
+//             }
+//             console.log("screenwidth:" + screenWidth);
+//             // boxRight.style.width = boxRightWidth - (iEvent.clientX - boxDragClientLeft)- boxDragWidth + 'px';
+//             boxRight.style.width =screenWidth - iEvent.clientX  + 'px';
+//             boxRight.style.left = screenWidth - boxRight.offsetWidth + 'px';
+//             boxLeft.style.width = screenWidth - (boxRightWidth - (iEvent.clientX - boxDragClientLeft)) + 'px';
+//             // boxLeft_b.style.width = screenWidth - (boxRightWidth - (iEvent.clientX - boxDragClientLeft)) + 'px';
+//             boxDrag.style.left = screenWidth - boxRight.offsetWidth - boxDragWidth + 'px';
+//             console.log('iEvent.clientX:' + iEvent.clientX);
+//         })
+//         $(document).mouseup(function () {
+//             $(document).off("mousedown mousemove");
+//         })
+//         return false;
+//     })
+// });
+
 
 //上下拖拉（行程管理）
 $(function () {
     // $("#dmDrag").css("top",$("#box_mc7").height()-3+'px');
+    // $("#dmMiddle").css("height", $("#box_mc7").height() -$("#dmBottom").height());
+    // $("#dmMiddle").css("height", $("#box_mc7").height() -$("#dmBottom").height());
     var dmTop = $("#dmTop")[0];
     var dmDrag = $("#dmDrag")[0];
     var dmMiddle = $("#dmMiddle")[0];
@@ -727,20 +755,28 @@ $(function () {
     $("#dmDrag").mousedown(function (e) {
         var iEvent = e || event;
         var screenHeight = $("#driving_right").height();
-        console.log(screenHeight);
+        // console.log(screenHeight);
         dmDrag.style.cursor = 'ns-resize';
         $(document).mousemove(function (e) {
             var iEvent = e || event;
-            if (iEvent.clientY < window.innerHeight*0.5 || iEvent.clientY > window.innerHeight -30) {
+            if (iEvent.clientY < window.innerHeight*0.1 || iEvent.clientY > window.innerHeight - 15) {
                 return;
             }
+            // mapContent.style.height = iEvent.clientY + 'px';
+            // mapDrag.style.top = iEvent.clientY  + 'px' ;
+            // mapStatus.style.top = iEvent.clientY + 'px';
+            // mapStatus.style.height = screenHeight - iEvent.clientY + 'px';
             dmTop.style.height = iEvent.clientY  + "px";
             dmDrag.style.top = iEvent.clientY  + "px";
-            dmMiddle.style.height = screenHeight - iEvent.clientY  + 'px';
+            dmMiddle.style.top = iEvent.clientY  + "px";
+            dmMiddle.style.height = screenHeight - iEvent.clientY + 'px';
             // $("#dmMiddle").css("height",$("#box_mc7").height()-$("#dmBottom").height());
+
             // $("#dmDrag").css("top",$("#box_mc7").height()-3+'px');
-            console.log(dmTop.style.height);
-            console.log('iEvent.clientY:' + iEvent.clientY);
+            // $("#dmMiddle").css("height", $("#box_mc7").height() -$("#dmBottom").height());
+
+            // console.log(dmTop.style.height);
+            // console.log('iEvent.clientY:' + iEvent.clientY);
         })
         $(document).mouseup(function () {
             $(document).off("mousedown mousemove");
@@ -782,7 +818,191 @@ $(function(){
 })
 
 
-//搜索框
+//搜索框 1
+$(function () {
+    (function () {
+        var com = [];
+        var carg = [];
+        var dn = [];
+        var na = [];
+        jQuery.ajax({
+            url: "/locate/groupVehicles", //请求地址
+            dataType: "json", //数据格式
+            data: {
+                force: true
+            },
+            type: "post", // 请求方式
+            async: false, //是否异步请求
+            success: function (data) { //如何发送成功
+
+
+                function fuckCom(data, id, wap) {
+                    jQuery.each(data, function (index, shit) {
+                        if (shit.pid === id && shit.type === 1) {
+                            fuckCom(data, shit.id, wap);
+                            wap.push(shit);
+                        }
+                    });
+                }
+
+                function fuckCarg(data, id, wap) {
+                    jQuery.each(data, function (index, shit) {
+                        if (shit.pid === id && shit.type === 0) {
+                            fuckCarg(data, shit.id, wap);
+                            wap.push(shit);
+                        }
+                    });
+                }
+
+                jQuery.each(data, function (index, shit) {
+                    // console.log(shit);
+                    if (shit.type === 2) {
+                        var a = {};
+                        a.com = shit;
+                        a.c = [];
+                        com.push(a);
+
+                        fuckCom(data, shit.id, a.c)
+                    } else if (shit.type === 1) {
+                        var b = {};
+                        b.carg = shit;
+                        b.c = [];
+                        carg.push(b);
+                        fuckCarg(data, shit.id, b.c)
+                    } else {
+                        na.push(shit)
+                    }
+
+                });
+                // console.log(com)
+                // console.log(carg)
+                // console.log(na)
+
+
+                //
+                jQuery.each(com, function (index, data) {
+                    var Option = `<option value= ${data.com.na} dataid=${data.com.id} na=${data.com.na}>  ${data.com.na}  </option>`;
+
+                    jQuery("#com").append(Option);
+
+                });
+
+            },
+        })
+
+
+        var form = layui.form;
+        form.render();
+
+        form.on('select(com)', function (data) {
+            // console.log(data.elem.getAttribute("dataid")); //得到select原始DOM对象
+            // console.log(data.value); //得到被选中的值
+            // console.log(data.othis); //得到美化后的DOM对象
+
+            var cccc;
+
+            jQuery("#carg").empty();
+            jQuery.each(com, function (index, ff) {
+
+
+                // console.log(ff)
+                if (ff.com.id === jQuery("#com").find("option:selected").attr("dataid")) {
+                    cccc = ff;
+                    // console.log(cccc)
+                    // console.log(cccc)
+
+
+                    var Option = `<option  >请选择 </option>`;
+
+                    jQuery("#carg").append(Option);
+
+                    jQuery.each(ff.c, function (index, ddd) {
+
+
+                        // console.log(ddd)
+                        // if (ddd..id == data.elem.getAttribute("dataid"))
+
+                        var Option = `<option value= ${ddd.na} dataid=${ddd.id}>  ${ddd.na}  </option>`;
+
+                        jQuery("#carg").append(Option);
+
+
+                    });
+                    var form = layui.form;
+                    form.render();
+                    // var Option = `<option value= ${ff.com.na} dataid=${ff.com.id}>  ${ff.com.na}  </option>`;
+                }
+
+
+                // jQuery("#com").append(Option);
+
+            });
+
+
+            var form = layui.form;
+            form.render();
+
+            form.on('select(carg)', function (data) {
+                // console.log(data.elem.getAttribute("dataid")); //得到select原始DOM对象
+                // console.log(data.value); // 得到被选中的值
+                // console.log(data.othis); //得到美化后的DOM对象
+                // console.log("data:+++++++++++++++++++++++"+data.value);
+                jQuery("#dn").empty();
+
+                var Option = `<option  >请选择</option>`;
+
+                jQuery("#dn").append(Option);
+
+                jQuery.each(carg, function (index, ff) {
+
+
+                    // console.log(ff)
+                    // if (ff.id == data.elem.getAttribute("dataid"))
+
+
+                    if (ff.carg.id === jQuery("#carg").find("option:selected").attr("dataid")) {
+
+
+                        jQuery.each(ff.c, function (index, ddd) {
+
+
+                            // console.log(ddd)
+                            // if (ddd..id == data.elem.getAttribute("dataid"))
+
+                            var Option = `<option value= ${ddd.dn} dataid=${ddd.id} na=${ddd.na}>  ${ddd.na}  </option>`;
+
+                            jQuery("#dn").append(Option);
+
+
+                        });
+                        var form = layui.form;
+                        form.render();
+
+
+                    }
+
+
+                });
+
+
+                var form = layui.form;
+                form.render();
+
+
+            });
+            form.on('select(dn)', function () {
+
+                $("#number").val($(".ciss_lm .layui-this").text().trim());
+                $("#number").keyup();
+
+            });
+
+
+        });
+    })()
+})
+
+//搜索框 2
 $(function () {
     (function () {
         $.ajax({
@@ -795,80 +1015,244 @@ $(function () {
             async: false, //是否异步请求
             success: function (data) { //如何发送成功
                 datasour= data;
-                console.log(datasour);
+                // console.log(datasour);
                 var strs = [];
                 //    var aaa ={name:"设备号",pid:"0",id:10,open: true};
                 //    strs.push(aaa);
                 for(var i=0;i<datasour.length;i++){
 
                     if(datasour[i].type==0){
-                        var bbb ={name:datasour[i].na+'—'+datasour[i].dn,pid:datasour[i].pid,id:datasour[i].id,type:datasour[i].type,open: true};
+                        var bbb ={name:datasour[i].na,pid:datasour[i].pid,id:datasour[i].id,type:datasour[i].type,open: true,dn:datasour[i].dn,driname:datasour[i].driname,sim:datasour[i].sim,phone:datasour[i].phone};
                         strs.push(bbb);
 
                     }else{
-                        var bbb ={name:datasour[i].na,pid:datasour[i].pid,id:datasour[i].id,type:datasour[i].type,open: true};
-                        strs.push(bbb);
+                        // var bbb ={name:datasour[i].na,pid:datasour[i].pid,id:datasour[i].id,type:datasour[i].type,open: true};
+                        // strs.push(bbb);
                     }
                     //  console.log(datasour[i].dn);
                 }
 
-                console.log(strs);
-                $("#number").focus(function () {
-                    // if($("#number").val()==""){
-                    //     $(".ztree_0").remove();
-                    // }
-                    if($("#pop #treeDemo").length>0){
-                        return;
-                    }
+                // console.log(strs);
+                //------------
+                // $("#number").focus(function () {
+                //     // if($("#number").val()==""){
+                //     //     $(".ztree_0").remove();
+                //     // }
+                //     if($("#pop #treeDemo").length>0){
+                //         return;
+                //     }
+                //
+                //     console.log(7788);
+                //
+                //
+                //     var divDom0 = $("<div></div>").attr("id", "pop").css("width",$("#number").width()*2.53);
+                //     var input0 = "<input type=\"text\" placeholder=\"搜索设备号\" id=\"number0\">";
+                //     var ulDom0 = "<ul id=\"treeDemo\" class=\"ztree_0\"></ul>";
+                //     var delTip = "<div class='delIt' style='width:15px;height:15px;color:#0488d1;position: absolute;right: 0;top: 25px;cursor: pointer;'>X</div>";
+                //     divDom0.append(input0);
+                //     divDom0.append(ulDom0);
+                //     divDom0.append(delTip);
+                //     $("#cm_cardwarper").append(divDom0);
+                //     var setting = {
+                //         data: {
+                //             simpleData: {
+                //                 enable: true,
+                //                 idKey: "id",
+                //                 pIdKey: "pid",
+                //                 rootPId: 0
+                //             }
+                //         },
+                //         callback: {
+                //             onClick: zTree_onClick
+                //         }
+                //     };
+                //     function zTree_onClick(event, treeId, treeNode) {
+                //         if(treeNode.type==0){
+                //             console.log(treeNode);
+                //             var fr_tn = treeNode.name;
+                //             console.log(fr_tn.substring(fr_tn.indexOf("—")+1));
+                //             $("#number").val(fr_tn.substring(fr_tn.indexOf("—")+1));
+                //             $("#pop").remove();
+                //
+                //         }else{
+                //             return;
+                //         }
+                //
+                //     }
+                //     jQuery.fn.zTree.init(jQuery("#treeDemo"), setting,strs);
+                // })
+                // $("#cm_cardwarper").delegate(".delIt","click",function () {
+                //     $("#pop").remove();
+                // })
+                // $("#cm_cardwarper").delegate("#number0","keyup",function () {
+                //     $(".ztree_0").remove();
+                //     console.log(7776);
+                //     console.log(strs);
+                //     var aaa = [];
+                //     var t_value = $("#number0").val();
+                //     if(t_value.length == 0) {
+                //         $(".ztree_1").html("");
+                //         return;
+                //     }
+                //     var fr_arr=[];
+                //     for (var i = 0; i < strs.length; i++) {
+                //         if (strs[i].name.indexOf(t_value) != -1) {
+                //             fr_arr.push(strs[i]);
+                //             console.log(fr_arr);
+                //             for(var d in datasour){
+                //                 if(strs[i].pid==datasour[d].id){
+                //                     datasour[d].name =datasour[d].na;
+                //                     console.log(strs[i].pid);
+                //                     console.log(datasour[d].id);
+                //                     //其实错了
+                //                     if(aaa.indexOf(datasour[d].id)==0){
+                //
+                //                     }else{
+                //                         console.log(datasour[d]);
+                //                         datasour[d].open=true;
+                //                         fr_arr.push(datasour[d]);
+                //                         aaa.push(datasour[d].id);
+                //                     }
+                //
+                //                 }
+                //             }
+                //         }
+                //     }
+                //     console.log(fr_arr);
+                //     if (fr_arr.length > 0) {
+                //         var ulDom = "<ul id=\"treeDemo\" class=\"ztree_1\"></ul>";
+                //         $(".ztree_0").remove();
+                //         $("#pop").append(ulDom);
+                //         var setting = {
+                //             data: {
+                //                 simpleData: {
+                //                     enable: true,
+                //                     idKey: "id",
+                //                     pIdKey: "pid",
+                //                     rootPId: 0
+                //                 }
+                //             },
+                //             callback: {
+                //                 onClick: zTree_onClick
+                //             },
+                //             view:{
+                //                 open:true
+                //             }
+                //         };
+                //         function zTree_onClick(event, treeId, treeNode) {
+                //             if(treeNode.type==0){
+                //                 console.log(treeNode);
+                //                 var fr_tn = treeNode.name;
+                //                 console.log(fr_tn.substring(fr_tn.indexOf("—")+1));
+                //                 $("#number").val(fr_tn.substring(fr_tn.indexOf("—")+1));
+                //                 $("#pop").remove();
+                //
+                //             }else{
+                //                 return;
+                //             }
+                //
+                //         }
+                //         console.log(fr_arr);
+                //         jQuery.fn.zTree.init(jQuery("#treeDemo"), setting,fr_arr);
+                //     }
+                // })
+                //---------------
 
-                    console.log(7788);
-                    var divDom0 = $("<div></div>").attr("id", "pop").css("width",$("#number").width()+$("#number").width());
-                    var input0 = "<input type=\"text\" placeholder=\"搜索设备号\" id=\"number0\">";
-                    var ulDom0 = "<ul id=\"treeDemo\" class=\"ztree_0\"></ul>";
-                    divDom0.append(input0);
-                    divDom0.append(ulDom0);
-                    $("#cm_cardwarper").append(divDom0);
-                    var setting = {
-                        data: {
-                            simpleData: {
-                                enable: true,
-                                idKey: "id",
-                                pIdKey: "pid",
-                                rootPId: 0
-                            }
-                        },
-                        callback: {
-                            onClick: zTree_onClick
-                        }
-                    };
-                    function zTree_onClick(event, treeId, treeNode) {
-                        if(treeNode.type==0){
-                            console.log(treeNode);
-                            var fr_tn = treeNode.name;
-                            console.log(fr_tn.substring(fr_tn.indexOf("—")+1));
-                            $("#number").val(fr_tn.substring(fr_tn.indexOf("—")+1));
-                            $("#pop").remove();
-
-                        }else{
-                            return;
-                        }
-
-                    }
-                    jQuery.fn.zTree.init(jQuery("#treeDemo"), setting,strs);
-                })
-                $("#cm_cardwarper").delegate("#number0","keyup",function () {
-                    $(".ztree_0").remove();
-                    console.log(7776);
-                    console.log(strs);
+                $("#number").keyup(function () {
+                    // $(".ztree_0").remove();
+                    // console.log(7776);
+                    // console.log(strs);
                     var aaa = [];
-                    var t_value = $("#number0").val();
+                    var t_value = $("#number").val();
+                    console.log("t_value" +t_value);
                     if(t_value.length == 0) {
-                        $(".ztree_1").html("");
+                        $("#cm_cardwarper").html("");
                         return;
                     }
+                    $("#cm_cardwarper").html("");
                     var fr_arr=[];
                     for (var i = 0; i < strs.length; i++) {
                         if (strs[i].name.indexOf(t_value) != -1) {
+                            fr_arr.push(strs[i]);
+                            console.log(fr_arr);
+                            for(var d in datasour){
+                                if(strs[i].pid==datasour[d].id){
+                                    datasour[d].name =datasour[d].na;
+                                    console.log(strs[i].pid);
+                                    console.log(datasour[d].id);
+                                    //其实错了
+                                    if(aaa.indexOf(datasour[d].id)==0){
+
+                                    }else{
+                                        console.log(datasour[d]);
+                                        datasour[d].open=true;
+                                        fr_arr.push(datasour[d]);
+                                        aaa.push(datasour[d].id);
+                                    }
+
+                                }
+                            }
+                        }else if(strs[i].dn.indexOf(t_value) != -1){
+                            fr_arr.push(strs[i]);
+                            console.log(fr_arr);
+                            for(var d in datasour){
+                                if(strs[i].pid==datasour[d].id){
+                                    datasour[d].name =datasour[d].na;
+                                    console.log(strs[i].pid);
+                                    console.log(datasour[d].id);
+                                    //其实错了
+                                    if(aaa.indexOf(datasour[d].id)==0){
+
+                                    }else{
+                                        console.log(datasour[d]);
+                                        datasour[d].open=true;
+                                        fr_arr.push(datasour[d]);
+                                        aaa.push(datasour[d].id);
+                                    }
+
+                                }
+                            }
+                        }else if(strs[i].driname.indexOf(t_value) != -1){
+                            fr_arr.push(strs[i]);
+                            console.log(fr_arr);
+                            for(var d in datasour){
+                                if(strs[i].pid==datasour[d].id){
+                                    datasour[d].name =datasour[d].na;
+                                    console.log(strs[i].pid);
+                                    console.log(datasour[d].id);
+                                    //其实错了
+                                    if(aaa.indexOf(datasour[d].id)==0){
+
+                                    }else{
+                                        console.log(datasour[d]);
+                                        datasour[d].open=true;
+                                        fr_arr.push(datasour[d]);
+                                        aaa.push(datasour[d].id);
+                                    }
+
+                                }
+                            }
+                        }else if(strs[i].sim.indexOf(t_value) != -1){
+                            fr_arr.push(strs[i]);
+                            console.log(fr_arr);
+                            for(var d in datasour){
+                                if(strs[i].pid==datasour[d].id){
+                                    datasour[d].name =datasour[d].na;
+                                    console.log(strs[i].pid);
+                                    console.log(datasour[d].id);
+                                    //其实错了
+                                    if(aaa.indexOf(datasour[d].id)==0){
+
+                                    }else{
+                                        console.log(datasour[d]);
+                                        datasour[d].open=true;
+                                        fr_arr.push(datasour[d]);
+                                        aaa.push(datasour[d].id);
+                                    }
+
+                                }
+                            }
+                        }else if(strs[i].phone.indexOf(t_value) != -1){
                             fr_arr.push(strs[i]);
                             console.log(fr_arr);
                             for(var d in datasour){
@@ -892,9 +1276,14 @@ $(function () {
                     }
                     console.log(fr_arr);
                     if (fr_arr.length > 0) {
+                        var divDom0 = $("<div></div>").attr("id", "pop").css("width",$("#number").width()*2.53);
                         var ulDom = "<ul id=\"treeDemo\" class=\"ztree_1\"></ul>";
-                        $(".ztree_0").remove();
-                        $("#pop").append(ulDom);
+                        var delTip = "<div class='delIt' style='width:15px;height:15px;color:#0488d1;position: absolute;right: 0;top: 25px;cursor: pointer;'>X</div>";
+                        // $("#pop").append(ulDom);
+                        divDom0.append(ulDom);
+                        divDom0.append(delTip);
+                        $("#cm_cardwarper").append(divDom0);
+                        // $(".ztree_0").remove();
                         var setting = {
                             data: {
                                 simpleData: {
@@ -915,8 +1304,10 @@ $(function () {
                             if(treeNode.type==0){
                                 console.log(treeNode);
                                 var fr_tn = treeNode.name;
+                                var dn = treeNode.dn;
                                 console.log(fr_tn.substring(fr_tn.indexOf("—")+1));
-                                $("#number").val(fr_tn.substring(fr_tn.indexOf("—")+1));
+                                $("#number").val(fr_tn);
+                                $("#number").attr("data",dn);
                                 $("#pop").remove();
 
                             }else{
@@ -928,10 +1319,13 @@ $(function () {
                         jQuery.fn.zTree.init(jQuery("#treeDemo"), setting,fr_arr);
                     }
                 })
+                $("#cm_cardwarper").delegate(".delIt","click",function () {
+                    $("#pop").remove();
+                })
             }
         })
     })()
-})
+});
 // 7(结束)-------------------------
 
 

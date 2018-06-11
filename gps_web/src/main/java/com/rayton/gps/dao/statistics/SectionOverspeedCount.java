@@ -13,8 +13,7 @@ public class SectionOverspeedCount {
 
     @Override
     public String toString() {
-        return "SectionOverspeedCount{" + "motorcadeId='" + motorcadeId + '\'' + ", motorcade='" + motorcade + '\'' +
-                ", times=" + times + ", duration=" + duration + ", start=" + start + ", end=" + end + '}';
+        return "SectionOverspeedCount{" + "motorcadeId='" + motorcadeId + '\'' + ", motorcade='" + motorcade + '\'' + ", times=" + times + ", duration=" + duration + ", start=" + start + ", end=" + end + '}';
     }
 
     public String getMotorcadeId() {

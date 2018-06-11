@@ -6,7 +6,6 @@ import com.rayton.gps.util.enums.UserKinds;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
-
 import java.sql.Date;
 import java.sql.Timestamp;
 
@@ -37,13 +36,7 @@ public class OwnerModel {
 
     @Override
     public String toString() {
-        return "OwnerModel{" + "id='" + id + '\'' + ", companyId='" + companyId + '\'' + ", ownerName='" + ownerName
-                + '\'' + ", idType='" + idType + '\'' + ", idNumber='" + idNumber + '\'' + ", ownerEditTime=" +
-                ownerEditTime + ", pid='" + pid + '\'' + ", enums=" + kind + ", account='" + account + '\'' + ", " +
-                "name='" + name + '\'' + ", email='" + email + '\'' + ", phone='" + phone + '\'' + ", contact='" +
-                contact + '\'' + ", enable=" + enable + ", serviceStartDate=" + serviceStartDate + ", " +
-                "serviceEndDate=" + serviceEndDate + ", createTime=" + createTime + ", remark='" + remark + '\'' + "," +
-                "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + " userEditTime=" + userEditTime + '}';
+        return "OwnerModel{" + "id='" + id + '\'' + ", companyId='" + companyId + '\'' + ", ownerName='" + ownerName + '\'' + ", idType='" + idType + '\'' + ", idNumber='" + idNumber + '\'' + ", ownerEditTime=" + ownerEditTime + ", pid='" + pid + '\'' + ", enums=" + kind + ", account='" + account + '\'' + ", " + "name='" + name + '\'' + ", email='" + email + '\'' + ", phone='" + phone + '\'' + ", contact='" + contact + '\'' + ", enable=" + enable + ", serviceStartDate=" + serviceStartDate + ", " + "serviceEndDate=" + serviceEndDate + ", createTime=" + createTime + ", remark='" + remark + '\'' + "," + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + " userEditTime=" + userEditTime + '}';
     }
 
     public String getId() {

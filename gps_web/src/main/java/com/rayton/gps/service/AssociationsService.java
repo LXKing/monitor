@@ -20,21 +20,20 @@ public class AssociationsService {
      */
     public List<MonitorTarget> getMonitorTargets(String userId) throws Exception {
         // List<MonitorTarget> monitorTargets = new ArrayList<MonitorTarget>();
-        List<MonitorTarget> mmp =associationDao.loadUserMonitors(userId) ;
+        List<MonitorTarget> mmp = associationDao.loadUserMonitors(userId);
 
-                // 获取监控对象以及其子公司监控对象
+        // 获取监控对象以及其子公司监控对象
         List<MonitorTarget> monitorTargets = new ArrayList<MonitorTarget>();
         // monitorTargets.stream().filter(monitorTarget -> monitorTarget.getType() == 2).forEach(monitorTarget ->
         //         loadSubUserMonitors(monitorTargets, monitorTarget.getId()));
 
 
-            for (MonitorTarget monitorTarget : mmp) {
-                monitorTargets.add(monitorTarget);
-                if (monitorTarget.getType() == 2) { // 获取子企业的所有车队与子企业
-                    loadSubUserMonitors(monitorTargets, monitorTarget.getId());
-                }
+        for (MonitorTarget monitorTarget : mmp) {
+            monitorTargets.add(monitorTarget);
+            if (monitorTarget.getType() == 2) { // 获取子企业的所有车队与子企业
+                loadSubUserMonitors(monitorTargets, monitorTarget.getId());
             }
-
+        }
 
 
         // for (MonitorTargetDto dto : roots) {

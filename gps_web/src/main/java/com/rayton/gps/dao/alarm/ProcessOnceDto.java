@@ -62,8 +62,6 @@ public class ProcessOnceDto {
 
     @Override
     public String toString() {
-        return "ProcessOnceDto{" + "alarmId='" + alarmId + '\'' + ", alarmTimestamp=" + alarmTimestamp + ", " +
-                "userMethod='" + userMethod + '\'' + ", userRemark='" + userRemark + '\'' + ", userId='" + userId +
-                '\'' + ", userName='" + userName + '\'' + '}';
+        return "ProcessOnceDto{" + "alarmId='" + alarmId + '\'' + ", alarmTimestamp=" + alarmTimestamp + ", " + "userMethod='" + userMethod + '\'' + ", userRemark='" + userRemark + '\'' + ", userId='" + userId + '\'' + ", userName='" + userName + '\'' + '}';
     }
 }

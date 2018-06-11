@@ -34,8 +34,7 @@ public interface IStatisticsDao {
      * @param pageIndex 页号
      * @param pageSize  页大小
      */
-    List<OperateLogDto> operateLogPageDetail(String companyId, String user, Date start, Date end, int pageIndex, int
-            pageSize);
+    List<OperateLogDto> operateLogPageDetail(String companyId, String user, Date start, Date end, int pageIndex, int pageSize);
 
     /**
      * 车辆警情统计
@@ -62,7 +61,7 @@ public interface IStatisticsDao {
      * @param start  开始时间
      * @param end    结束时间
      */
-    List<Date> vehicleOverspeeds(String number, Date start, Date end);
+    List<OverS> vehicleOverspeeds(String number, Date start, Date end);
 
     /**
      * 路段超速

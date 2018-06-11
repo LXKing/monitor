@@ -72,14 +72,7 @@ public class Alarm {
 
     @Override
     public String toString() {
-        return "Alarm{" + "id='" + id + '\'' + ", dn='" + dn + '\'' + ", na='" + na + '\'' + ", gt=" + gt + ", st=" +
-                st + ", val=" + val + ", lng=" + lng + ", lat=" + lat + ", alt=" + alt + ", sp=" + sp + ", d=" + d +
-                ", a=" + a + ", s=" + s + ", m=" + m + ", oil=" + oil + ", vss=" + vss + ", ovt=" + ovt + ", oid=" +
-                oid + ", iot=" + iot + ", iid=" + iid + ", iof=" + iof + ", rid=" + rid + ", rt=" + rt + ", rf=" + rf
-                + ", aid=" + aid + ", exs=" + exs + ", ios=" + ios + ", ad0=" + ad0 + ", ad1=" + ad1 + ", net=" + net
-                + ", sat=" + sat + ", from=" + from + ", userName='" + userName + '\'' + ", userTime=" + userTime +
-                "," + "" + " userconfirm=" + userconfirm + ", userMethod='" + userMethod + '\'' + ", userRemark='" +
-                userRemark + '\'' + ", editTime=" + editTime + '}';
+        return "Alarm{" + "id='" + id + '\'' + ", dn='" + dn + '\'' + ", na='" + na + '\'' + ", gt=" + gt + ", st=" + st + ", val=" + val + ", lng=" + lng + ", lat=" + lat + ", alt=" + alt + ", sp=" + sp + ", d=" + d + ", a=" + a + ", s=" + s + ", m=" + m + ", oil=" + oil + ", vss=" + vss + ", ovt=" + ovt + ", oid=" + oid + ", iot=" + iot + ", iid=" + iid + ", iof=" + iof + ", rid=" + rid + ", rt=" + rt + ", rf=" + rf + ", aid=" + aid + ", exs=" + exs + ", ios=" + ios + ", ad0=" + ad0 + ", ad1=" + ad1 + ", net=" + net + ", sat=" + sat + ", from=" + from + ", userName='" + userName + '\'' + ", userTime=" + userTime + "," + "" + " userconfirm=" + userconfirm + ", userMethod='" + userMethod + '\'' + ", userRemark='" + userRemark + '\'' + ", editTime=" + editTime + '}';
     }
 
     /**

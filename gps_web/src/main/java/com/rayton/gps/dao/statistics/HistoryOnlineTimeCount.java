@@ -15,9 +15,7 @@ public class HistoryOnlineTimeCount {
 
     @Override
     public String toString() {
-        return "HistoryOnlineTimeCount{" + "motorcadeId='" + motorcadeId + '\'' + ", motorcade='" + motorcade + '\''
-                + ", start=" + start + ", end=" + end + ", must=" + must + ", real=" + real + ", onlineRate=" +
-                onlineRate + ", offlineRate=" + offlineRate + '}';
+        return "HistoryOnlineTimeCount{" + "motorcadeId='" + motorcadeId + '\'' + ", motorcade='" + motorcade + '\'' + ", start=" + start + ", end=" + end + ", must=" + must + ", real=" + real + ", onlineRate=" + onlineRate + ", offlineRate=" + offlineRate + '}';
     }
 
     public String getMotorcadeId() {

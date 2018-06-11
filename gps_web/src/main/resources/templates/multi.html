@@ -7,7 +7,11 @@
     <title>多车跟踪</title>
     <link th:href="@{/static/js/bootstrap/css/bootstrap-table.css}" rel="stylesheet" />
     <link th:href="@{/static/css/cg/bootstrap.min.css}" rel="stylesheet">
-    <link th:href="@{/static/css/zTreeStyle.css}" rel="stylesheet" />
+    <!--<link th:href="@{/static/css/zTreeStyle.css}" rel="stylesheet" />-->
+
+    <link th:href="@{/static/css/tree/metroStyle.css}" rel="stylesheet"/>
+    <!--<link href="https://cdn.bootcss.com/zTree.v3/3.5.29/css/zTreeStyle/zTreeStyle.min.css" rel="stylesheet">-->
+    <link th:href="@{/static/lib/tabular_ztree.css}" rel="stylesheet"/>
     <link rel="stylesheet" th:href="@{/static/lib/layui/css/layui.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/static/css/cg/iconfont.css}">
     <link rel="stylesheet" th:href="@{/static/css/cg/common.css}">
@@ -16,7 +20,7 @@
 
     <link rel="stylesheet" th:href="@{/static/css/center/layercolor.css}">
 
-    <link rel="stylesheet" th:href="@{/static/dc_file/css/multi.css}">
+    <link rel="stylesheet" th:href="@{/static/dc_file/css/multi_.css}">
     <link rel="stylesheet" th:href="@{/static/lib/jquery.webui-popover.css}">
 
 
@@ -27,38 +31,38 @@
         *{
             /*color: #0f0f0f;*/
         }
-        ::-webkit-scrollbar {
-            width: 14px;
-            height: 8px;
-            background-color: transparent;
-        }
+        /*::-webkit-scrollbar {*/
+            /*width: 14px;*/
+            /*height: 8px;*/
+            /*background-color: transparent;*/
+        /*}*/
 
-        ::-webkit-scrollbar-track {
-            background-color: transparent;
-        }
+        /*::-webkit-scrollbar-track {*/
+            /*background-color: transparent;*/
+        /*}*/
 
-        ::-webkit-scrollbar-thumb {
-            background-color: rgba(0, 0, 0, .1);
-        }
+        /*::-webkit-scrollbar-thumb {*/
+            /*background-color: rgba(0, 0, 0, .1);*/
+        /*}*/
 
 
 
     </style>
     <style>
 
-        ::-webkit-scrollbar {
-            width: 14px;
-            height: 8px;
-            background-color: transparent;
-        }
+        /*::-webkit-scrollbar {*/
+            /*width: 14px;*/
+            /*height: 8px;*/
+            /*background-color: transparent;*/
+        /*}*/
 
-        ::-webkit-scrollbar-track {
-            background-color: transparent;
-        }
+        /*::-webkit-scrollbar-track {*/
+            /*background-color: transparent;*/
+        /*}*/
 
-        ::-webkit-scrollbar-thumb {
-            background-color: rgba(0, 0, 0, .1);
-        }
+        /*::-webkit-scrollbar-thumb {*/
+            /*background-color: rgba(0, 0, 0, .1);*/
+        /*}*/
         .webui-popover-title{
             color:#666;
         }
@@ -66,7 +70,22 @@
             width: 250px;
             color:#666;
         }
+        .layui-laypage .layui-laypage-curr .layui-laypage-em {
+            background-color: #0488d1;
+        }
 
+        .ztree li {
+            line-height: 0;
+        }
+
+
+        .layui-input-block {
+            margin-left: 0;
+            min-height: 36px;
+        }
+        .layui-form.ooooo div {
+            padding: 8px;
+        }
     </style>
 
 </head>
@@ -116,23 +135,23 @@
                 </div>
             </div>
             <div class="car-lists">
-                <div class="cl_info">
-                    <div class="am_header">
-                        <span>自编号</span>
-                        <span>车辆号</span>
-                        <span>速度</span>
-                        <span>里程</span>
-                        <span>运行状态</span>
-                    </div>
-                    <div class="tree_class">
-                        <div class="layer">
-                            <div id="tableMain">
-                                <ul id="dataTree" class="ztree">
+                <!--<div class="cl_info">-->
+                    <!--<div class="am_header">-->
+                        <!--<span>自编号</span>-->
+                        <!--<span>车辆号</span>-->
+                        <!--<span>速度</span>-->
+                        <!--<span>里程</span>-->
+                        <!--<span>运行状态</span>-->
+                    <!--</div>-->
+                    <!--<div class="tree_class">-->
+                        <!--<div class="layer">-->
+                            <!--<div id="tableMain">-->
+                                <ul id="dataTree" class="ztree" style="position:absolute;">
                                 </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
             </div>
         </div>
         <div class="map_list dl dis_list" style="overflow: auto;">
@@ -178,7 +197,7 @@
             <span>
                             行驶:0
                         </span>
-            <span>
+            <span id="showSetting">
                             设置
                         </span>
         </div>
@@ -298,9 +317,12 @@
 <script th:src="@{/static/js/jquery.min.js}"></script>
 
 <script th:src="@{/static/js/bootstrap/js/bootstrap-table.js}"></script>
-<script th:src="@{/static/js/jquery/jquery.ztree.core-3.5.min.js}"></script>
-<script th:src="@{/static/js/jquery/jquery.ztree.exedit.js}"></script>
-<script th:src="@{/static/js/jquery/jquery.ztree.excheck-3.5.js}"></script>
+
+<script src="https://cdn.bootcss.com/zTree.v3/3.5.29/js/jquery.ztree.all.min.js"></script>
+
+<!--<script th:src="@{/static/js/jquery/jquery.ztree.core-3.5.min.js}"></script>-->
+<!--<script th:src="@{/static/js/jquery/jquery.ztree.exedit.js}"></script>-->
+<!--<script th:src="@{/static/js/jquery/jquery.ztree.excheck-3.5.js}"></script>-->
 <script src="http://api.map.baidu.com/api?v=2.0&ak=Y2TqMdQvIRuGGW83xP2kd8LR7Y5SAplh"></script>
 <script src="http://api.map.baidu.com/library/LuShu/1.2/src/LuShu_min.js"></script>
 <script src="http://api.map.baidu.com/library/DistanceTool/1.2/src/DistanceTool_min.js"></script>
@@ -320,10 +342,10 @@
 <script th:src="@{/static/dc_file/js/cars_.js}"></script>
 <script th:src="@{/static/dc_file/js/4someFuck.js}"></script>
 
+<script th:src="@{/static/lib/tabular_ztree.js}"></script>
 
 
-
-<script th:src="@{/static/js/tab.js}"></script>
+<script th:src="@{/static/dc_file/js/tab.js}"></script>
 
 
 
@@ -368,65 +390,65 @@
     }
 
     function cnmmmmm() {
-        var data = [];
-        var aaa = window.fucking();
-        // console.log(aaa)
-        for (var a of aaa) {
-            if (a.dn === undefined) continue;
-            data.push(a.dn);
-        }
-        var fffffff = [];
-        // window.fuckShitArr
-
-        for (var ddd of data) {
-            // if (ddd === undefined) continue;
-            // console.log(ddd);
-            $.ajax({
-                url: "../instruct/query",
-                type: "POST",
-                data: {
-                    deviceNumber: ddd,
-                    // start: '2015-02-02 00:00:00',
-                    // end: '2015-02-02 00:00:00',
-                    pageIndex: 1 //页码的参数名称，默认：page
-                    , pageSize: 999, //每页数据量的参数名，默认：limit
-                    start: formatTimeMin(new Date()),
-                    end: formatTime(new Date()),
-                },
-                traditional: true,
-                async: false,
-                success: function (res) {
-                    Array.prototype.push.apply(fffffff, res.rows);
-                    // fffffff.concat(res.rows);
-                }
-            })
-        }
-
-        // console.log(fffffff)
-        var table = layui.table;
-
-        table.render({
-            id: 'plsFuckMe',
-            elem: '#plsFuckMe',
-            data: fffffff,
-            page: true,
-            cellMinWidth: 150,
-            method: "POST",
-            cols: [
-                [
-
-                    {field: 'deviceNumber', title: '设备号', sort: true},
-                    {field: 'plateNumber', title: '车牌号', sort: true},
-                    {field: 'sendTime', title: '时间', sort: true},
-                    {field: 'name', title: '命令', sort: true},
-                    {field: 'result', title: '结果', sort: true},
-                    {fixed: 'right', align: 'center', toolbar: '#instructDetailsBar'}
-                ]
-            ],
-            skin: "nob",
-            size: "sm",
-
-        });
+        // var data = [];
+        // var aaa = window.fucking();
+        // // console.log(aaa)
+        // for (var a of aaa) {
+        //     if (a.dn === undefined) continue;
+        //     data.push(a.dn);
+        // }
+        // var fffffff = [];
+        // // window.fuckShitArr
+        //
+        // for (var ddd of data) {
+        //     // if (ddd === undefined) continue;
+        //     // console.log(ddd);
+        //     $.ajax({
+        //         url: "../instruct/query",
+        //         type: "POST",
+        //         data: {
+        //             deviceNumber: ddd,
+        //             // start: '2015-02-02 00:00:00',
+        //             // end: '2015-02-02 00:00:00',
+        //             pageIndex: 1 //页码的参数名称，默认：page
+        //             , pageSize: 999, //每页数据量的参数名，默认：limit
+        //             start: formatTimeMin(new Date()),
+        //             end: formatTime(new Date()),
+        //         },
+        //         traditional: true,
+        //         async: false,
+        //         success: function (res) {
+        //             Array.prototype.push.apply(fffffff, res.rows);
+        //             // fffffff.concat(res.rows);
+        //         }
+        //     })
+        // }
+        //
+        // // console.log(fffffff)
+        // var table = layui.table;
+        //
+        // table.render({
+        //     id: 'plsFuckMe',
+        //     elem: '#plsFuckMe',
+        //     data: fffffff,
+        //     page: true,
+        //     cellMinWidth: 150,
+        //     method: "POST",
+        //     cols: [
+        //         [
+        //
+        //             {field: 'deviceNumber', title: '设备号', sort: true},
+        //             {field: 'plateNumber', title: '车牌号', sort: true},
+        //             {field: 'sendTime', title: '时间', sort: true},
+        //             {field: 'name', title: '命令', sort: true},
+        //             {field: 'result', title: '结果', sort: true},
+        //             {fixed: 'right', align: 'center', toolbar: '#instructDetailsBar'}
+        //         ]
+        //     ],
+        //     skin: "nob",
+        //     size: "sm",
+        //
+        // });
     }
 
     window.cnmmmmm = cnmmmmm;
@@ -437,4 +459,263 @@
 
 
 </script>
+
+<script>
+    // layui.use('form', function () {
+    //     var form = layui.form;
+    //     form.on('checkbox(focus)', function (data) {
+    //         console.log(data.elem); //得到checkbox原始DOM对象
+    //         console.log(data.elem.checked); //是否被选中，true或者false
+    //         console.log(data.value); //复选框value值，也可以通过data.elem.value得到
+    //         console.log(data.othis); //得到美化后的DOM对象
+    //     });
+    //
+    //     form.on('checkbox(show)', function (data) {
+    //         console.log(data.elem); //得到checkbox原始DOM对象
+    //         console.log(data.elem.checked); //是否被选中，true或者false
+    //         console.log(data.value); //复选框value值，也可以通过data.elem.value得到
+    //         console.log(data.othis); //得到美化后的DOM对象
+    //     });
+    //     //各种基于事件的操作，下面会有进一步介绍
+    // });
+
+
+    var mmp = `
+
+<form  class="layui-form ooooo"  style=" color: #0f0f0f;" lay-filter="focus">
+    <div    >
+       关注车辆显示设置
+
+    </div>
+
+
+
+  <div class="layui-input-block">
+            <input type="checkbox" name="dn"  id="dn"  value="dn" lay-skin="primary" title="车牌号"   lay-filter="dn">
+             <input type="checkbox" name="inum"  id="inum"  value="inum" lay-skin="primary" title="自编号"  lay-filter="inum">
+             <input type="checkbox" name="sp"  id="sp" value="sp" lay-skin="primary" title="速度"   lay-filter="sp">
+             <input type="checkbox" name="m"  id="m" value="m"  lay-skin="primary" title="里程"   lay-filter="m">
+             <input type="checkbox" name="driname"  id="driname" value="driname" lay-skin="primary" title="司机姓名"    lay-filter="driname">
+             <input type="checkbox" name="mission"   id="mission"  value="mission" lay-skin="primary" title="任务状态"    lay-filter="mission">
+             <input type="checkbox" name="shop" id="shop" value="shop"  lay-skin="primary" title="服务网点"    lay-filter="shop">
+        </div>
+
+
+
+</form >
+<form  class="layui-form ooooo"  style=" color: #0f0f0f;" lay-filter="show">
+    <div   >
+      树形图列表显示设置
+
+    </div>
+
+
+  <div class="layui-input-block">
+            <input type="checkbox" name="showCom"  id="showCom"  value="showCom" lay-skin="primary" title="显示公司"    lay-filter="showCom">
+             <input type="checkbox" name="showCarG"   id="showCarG"  value="showCarG" lay-skin="primary" title="显示车队"    lay-filter="showCarG">
+             <input type="checkbox" name="showCar"  id="showCar"   value="showCar" lay-skin="primary" title="显示车型"  lay-filter="showCar">
+
+        </div>
+
+
+</form >
+ `;
+
+
+    window.showArr = ["showCom", "showCarG", "showCar"];
+    window.treeC = ["dn", "inum", "sp", "m","mission"];
+
+
+    function unique(arr) {
+        var res = [];
+        var json = {};
+        for (var i = 0; i < arr.length; i++) {
+            if (!json[arr[i]]) {
+                res.push(arr[i]);
+                json[arr[i]] = 1;
+            }
+        }
+        return res;
+    }
+
+
+    function removeWithoutCopy(arr, id) {
+        for (var i = arr.length - 1; i >= 0; i--) {
+            if (arr[i] === id) {
+                arr.splice(i, 1);
+            }
+        }
+        return arr;
+    }
+
+
+    // $("#showSetting").click(function () {
+    //     showSetting();
+    // });
+
+    $("#showSetting").on("click", function () {
+        var kkk = layer.open({
+            type: 1 //Page层类型
+            , content: mmp
+            , shade: 0.6 //遮罩透明度
+
+            , anim: 0 //0-6的动画形式，-1不开启
+            , area: ['300px', '400px']
+            , btn: ['确定', '取消'] //只是为了演示
+            , yes: function () {
+                console.log("no")
+
+                refresh();
+
+                layer.closeAll();
+            }
+            , btn2: function () {
+                layer.close(kkk);
+            },
+
+            success: function (layero, index) {
+
+                var form = layui.form;
+
+                for (var jjjo of window.treeC) {
+
+                    var mmo = "#" + jjjo;
+                    jQuery(mmo).prop("checked", true);
+                    // console.warn((mmo))
+
+                }
+
+                for (var lllo of window.showArr) {
+
+                    var sssssss = "#" + lllo;
+                    jQuery(sssssss).prop("checked", true);
+                    console.warn((sssssss))
+
+                }
+
+                form.render();
+
+
+                form.on('checkbox(dn)', function (data) {
+
+                    layer.msg("不可取消");
+                    jQuery(data.elem).prop("checked", true);
+                    form.render();
+                    return;
+                    console.log(data.elem); //得到checkbox原始DOM对象
+                    console.log(data.elem.checked); //是否被选中，true或者false
+                    console.log(data.value); //复选框value值，也可以通过data.elem.value得到
+                    console.log(data.othis); //得到美化后的DOM对象
+
+                    if (data.elem.checked) {
+                        treeC.push(data.value)
+                    } else {
+                        removeWithoutCopy(treeC, data.value)
+                    }
+                    console.log(treeC)
+
+
+                });
+                form.on('checkbox(inum)', function (data) {
+
+                    if (data.elem.checked) {
+                        treeC.push(data.value)
+                    } else {
+                        removeWithoutCopy(treeC, data.value)
+                    }
+                    console.log(treeC)
+
+                });
+                form.on('checkbox(sp)', function (data) {
+                    layer.msg("不可取消");
+                    jQuery(data.elem).prop("checked", true);
+                    form.render();
+                    return;
+                    if (data.elem.checked) {
+                        treeC.push(data.value)
+                    } else {
+                        removeWithoutCopy(treeC, data.value)
+                    }
+                    console.log(treeC)
+                });
+                form.on('checkbox(m)', function (data) {
+
+                    if (data.elem.checked) {
+                        treeC.push(data.value)
+                    } else {
+                        removeWithoutCopy(treeC, data.value)
+                    }
+                    console.log(treeC)
+                });
+                form.on('checkbox(driname)', function (data) {
+
+                    if (data.elem.checked) {
+                        treeC.push(data.value)
+                    } else {
+                        removeWithoutCopy(treeC, data.value)
+                    }
+                    console.log(treeC)
+                });
+                form.on('checkbox(mission)', function (data) {
+
+                    if (data.elem.checked) {
+                        treeC.push(data.value)
+                    } else {
+                        removeWithoutCopy(treeC, data.value)
+                    }
+                    console.log(treeC)
+                });
+
+
+                form.on('checkbox(shop)', function (data) {
+                    if (data.elem.checked) {
+                        treeC.push(data.value)
+                    } else {
+                        removeWithoutCopy(treeC, data.value)
+                    }
+                    console.log(treeC)
+                });
+
+
+                form.on('checkbox(showCom)', function (data) {
+                    if (data.elem.checked) {
+                        showArr.push(data.value)
+                    } else {
+                        removeWithoutCopy(showArr, data.value)
+                    }
+                    console.warn(showArr)
+                });
+                form.on('checkbox(showCarG)', function (data) {
+                    if (data.elem.checked) {
+                        showArr.push(data.value)
+                    } else {
+                        removeWithoutCopy(showArr, data.value)
+                    }
+                    console.warn(showArr)
+                });
+                form.on('checkbox(showCar)', function (data) {
+                    if (data.elem.checked) {
+                        showArr.push(data.value)
+                    } else {
+                        removeWithoutCopy(showArr, data.value)
+                    }
+                    console.warn(showArr)
+                });
+
+
+            }
+        });
+    })
+
+    // showSetting();
+
+
+    function showSetting() {
+
+    }
+
+
+</script>
+
+
 </html>

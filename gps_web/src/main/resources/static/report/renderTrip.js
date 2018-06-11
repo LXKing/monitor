@@ -153,7 +153,7 @@ function renderTrip(url) {
                         // console.log(ddd)
                         // if (ddd..id == data.elem.getAttribute("dataid"))
 
-                        var Option = `<option value= ${ddd.dn} dataid=${ddd.id}>  ${ddd.na}  </option>`;
+                        var Option = `<option value= ${ddd.dn} dataid=${ddd.id} na= ${ddd.na} >  ${ddd.na}  </option>`;
 
                         jQuery("#dn").append(Option);
 
@@ -314,9 +314,49 @@ function renderTrip(url) {
             return;
         }
 
+        $("#theTable").bootstrapTable('destroy');
+        $("#pb").html('<div class="layui-progress-bar layui-bg-blue"   lay-percent="0%"></div>')
+        var dddnnn;
+        jQuery.ajax({
+            url: '/device/getD',
+            type: "GET",
+            data: {
+                deviceNumber: jQuery("#dn").find("option:selected").val()
+            },
+            async: false,
+            success: function (res) {
+                dddnnn = res;
+            }
+        });
 
+
+        var aaabbb;
+        jQuery.ajax({
+            url: '/vehicle/getByD',
+            type: "GET",
+            data: {
+
+                dn: jQuery("#dn").find("option:selected").val()
+            },
+            async: false,
+            success: function (res) {
+                aaabbb = res;
+            }
+        });
         // jQuery("#theTable").empty();
+        var eee;
+        jQuery.ajax({
+            url: ' /vehicle/getW',
+            type: "GET",
+            data: {
+                dn: jQuery("#dn").find("option:selected").val()
+            },
+            async: false,
+            success: function (res) {
+                eee = res;
 
+            }
+        });
         replay.tracks = []
         jQuery.ajax({
             url: '../replay/count',
@@ -333,6 +373,8 @@ function renderTrip(url) {
             success: function (r) {
                 // 获取历史数据总数量
                 replay.trackCount = r.total;
+
+
                 if (replay.trackCount <= 0) {
                     layer.msg('<div style="color: #0C0C0C">此时间段无数据！</div>', {icon: 4});
                     return;
@@ -344,6 +386,19 @@ function renderTrip(url) {
                     console.log(replay.trips);
                     console.log(replay.parks);
                     console.log(replay.tracks);
+
+                    var sp = []
+
+                    for (var x in replay.speeds) {
+                        var it = replay.speeds[x];
+                        sp.push(it.y);
+
+                    }
+
+
+                    var max = Math.max.apply(null, sp);
+
+
                     console.log(jQuery(":radio[name='waytohell']").val());
 
 
@@ -351,9 +406,21 @@ function renderTrip(url) {
 
                         ddd.com = jQuery("#com").find("option:selected").val();
                         ddd.carg = jQuery("#carg").find("option:selected").val();
-                        ddd.dn = jQuery("#dn").find("option:selected").val();
+                        ddd.pn = jQuery("#dn").find("option:selected").attr("na");
+                        ddd.deviceNumber = dddnnn.deviceNumber;
 
-
+                        ddd.lICENSEPLATESELFNUM = eee.lICENSEPLATESELFNUM;
+                        ddd.model = dddnnn.model;
+                        ddd.imei = dddnnn.iMEI;
+                        ddd.drin = "";
+                        ddd.oilWear = eee.oilWear;
+                        for (var jjj of aaabbb.rows) {
+                            ddd.drin += (jjj.name + " ");
+                        }
+                        ddd.drip = "";
+                        for (var jjj of aaabbb.rows) {
+                            ddd.drip += (jjj.phone + " ");
+                        }
                     });
 
 
@@ -370,6 +437,9 @@ function renderTrip(url) {
                             showColumns: true,
                             sortName: 'id', // 要排序的字段
                             sortOrder: 'desc', // 排序规则
+                            showExport: true,
+                            exportDataType: "all",
+
                             columns: [
                                 {
                                     checkbox: true, // 显示一个勾选框
@@ -384,35 +454,39 @@ function renderTrip(url) {
                                     title: '车队名称', // 表格表头显示文字
                                 },
                                 {
-                                    field: '', // 返回json数据中的name
+                                    field: 'drin', // 返回json数据中的name
                                     title: '司机姓名', // 表格表头显示文字
                                 },
                                 {
-                                    field: '', // 返回json数据中的name
+                                    field: 'drip', // 返回json数据中的name
                                     title: '司机手机', // 表格表头显示文字
                                 },
                                 {
-                                    field: 'dn', // 返回json数据中的name
+                                    field: 'pn', // 返回json数据中的name
                                     title: '车牌号', // 表格表头显示文字
                                 },
                                 {
-                                    field: '', // 返回json数据中的name
+                                    field: 'lICENSEPLATESELFNUM', // 返回json数据中的name
                                     title: '自编号', // 表格表头显示文字
                                 },
+                                // {
+                                //     field: '', // 返回json数据中的name
+                                //     title: '车辆类型', // 表格表头显示文字
+                                // },
                                 {
-                                    field: '', // 返回json数据中的name
-                                    title: '车辆类型', // 表格表头显示文字
-                                },
-                                {
-                                    field: '', // 返回json数据中的name
+                                    field: 'max', // 返回json数据中的name
                                     title: '最高速度', // 表格表头显示文字
+                                    formatter: function (value, row, index) { // 单元格格式化函数
+
+                                        return (value * 10)
+                                    }
                                 },
+                                // {
+                                //     field: '', // 返回json数据中的name
+                                //     title: '停车次数', // 表格表头显示文字
+                                // },
                                 {
-                                    field: ' ', // 返回json数据中的name
-                                    title: '停车次数', // 表格表头显示文字
-                                },
-                                {
-                                    field: '', // 返回json数据中的name
+                                    field: 'extimes', // 返回json数据中的name
                                     title: '超速次数', // 表格表头显示文字
                                 },
                                 {
@@ -420,25 +494,37 @@ function renderTrip(url) {
                                     title: '异常告警次数', // 表格表头显示文字
                                 },
                                 {
-                                    field: ' ', // 返回json数据中的name
+                                    field: 'imei', // 返回json数据中的name
                                     title: '设备IMEI', // 表格表头显示文字
                                 },
                                 {
-                                    field: '', // 返回json数据中的name
+                                    field: 'deviceNumber', // 返回json数据中的name
                                     title: '设备ID', // 表格表头显示文字
                                 },
                                 {
-                                    field: '', // 返回json数据中的name
+                                    field: 'model', // 返回json数据中的name
                                     title: '设备型号', // 表格表头显示文字
                                 },
 
                                 {
                                     field: 'averageSpeed', // 返回json数据中的name
                                     title: '平均速度', // 表格表头显示文字
+
+                                    formatter: function (value, row, index) { // 单元格格式化函数
+                                        // console.warn(row.timeStart - row.timeEnd);
+                                        // console.warn(row.timeStart.getTime()  );
+                                        console.warn((new Date(row.timeStart) - new Date(row.timeEnd)) / 1000 / (60 * 60));
+                                        return (value * 10);
+                                    }
                                 },
                                 {
                                     field: 'oils', // 返回json数据中的name
-                                    title: '行车油耗', // 表格表头显示文字
+                                    title: '油耗', // 表格表头显示文字
+
+                                    formatter: function (value, row, index) { // 单元格格式化函数
+                                        return (row.averageSpeed * 10 * (new Date(row.timeEnd) - new Date(row.timeStart)) / 1000 / (60 * 60) * row.oilWear / 100).toFixed(1);
+
+                                    }
                                 },
                                 {
                                     field: 'runtimes', // 返回json数据中的name
@@ -447,6 +533,12 @@ function renderTrip(url) {
                                 }, {
                                     field: 'mileages',
                                     title: '行车里程',
+                                    formatter: function (value, row, index) { // 单元格格式化函数
+                                        // console.warn(row.timeStart - row.timeEnd);
+                                        // console.warn(row.timeStart.getTime()  );
+                                        console.warn((new Date(row.timeStart) - new Date(row.timeEnd)) / 1000 / (60 * 60));
+                                        return (row.averageSpeed * 10 * (new Date(row.timeEnd) - new Date(row.timeStart)) / 1000 / (60 * 60)).toFixed(1);
+                                    }
 
                                 },
                                 {
@@ -463,33 +555,22 @@ function renderTrip(url) {
                                     field: 'pointStart',
                                     title: '起点',
                                     //
-                                    formatter: function (value, row, index) { // 单元格格式化函数
-                                        // var text;
-                                        //
-                                        // var point = new BMap.Point(value.lng, value.lat);
-                                        // var gc = new BMap.Geocoder();
-                                        // gc.getLocation(point, function (rs) {
-                                        //     var addComp = rs.addressComponents;
-                                        //     text = addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber;
-                                        //
-                                        //
-                                        // });
-                                        //
-                                        //
-                                        // return text;
-                                        return JSON.stringify(value)
-                                    }
+                                    formatter: operateFormatter,
+                                    events: operateEvents,
                                 }, {
                                     field: 'pointEnd',
                                     title: '终点',
-
-                                    formatter: function (value, row, index) { // 单元格格式化函数
-
-                                        return JSON.stringify(value)
-                                    }
+                                    formatter: operateFormatter,
+                                    events: operateEvents,
                                 },
 
-                            ]
+                            ],
+                            onPostBody: function () {
+
+                                jQuery("a.remove").trigger("mouseover");
+
+
+                            }
 
                         })
 
@@ -498,11 +579,55 @@ function renderTrip(url) {
                         $("#theTable").bootstrapTable('destroy');
 
 
+                        var sp = []
+
+                        for (var x in replay.speeds) {
+                            var it = replay.speeds[x];
+                            sp.push(it.y);
+
+                        }
+
+
+                        var max = Math.max.apply(null, sp);
+
+
+                        console.log(jQuery(":radio[name='waytohell']").val());
+
+                        var extimes = 0;
+
+                        for (var mm of sp) {
+                            if (sp > 10) {
+                                extimes++;
+                            }
+                        }
+                        var mddd=[];
+
+
+                        for (var i in replay.dtrips.days){
+                            var oo={};
+                            oo.date=i;
+                            mddd.push(replay.dtrips.days[i][0])
+                        }
+console.log(mddd)
+                        jQuery.each(replay.dtrips.days, function (index, ddd) {
+
+
+
+                            // ddd.max = max;
+                            // ddd.extimes = extimes;
+                            // ddd.mileages = ddd.averageSpeed * ddd.runtimes * 10;
+                            // ddd.oilWear = eee.oilWear;
+                            // ddd.timeStart = jQuery("#test19").val();
+                            // ddd.timeEnd = jQuery("#test20").val();
+
+                        });
                         $("#theTable").bootstrapTable({ // 对应table标签的id
-                            data: replay.fuck,
+                            data: mddd,
                             cache: false,
                             pagination: true, // 在表格底部显示分页组件，默认false
                             pageList: [10, 20], // 设置页面可以显示的数据条数
+                            showExport: true,
+                            exportDataType: "all",
                             pageSize: 10, // 页面数据条数
                             pageNumber: 1, // 首页页码
                             showColumns: true,
@@ -515,10 +640,19 @@ function renderTrip(url) {
                                 {
                                     field: 'averageSpeed', // 返回json数据中的name
                                     title: '平均速度', // 表格表头显示文字
+                                    formatter: function (value, row, index) { // 单元格格式化函数
+
+                                        return (value * 10)
+                                    }
                                 },
                                 {
                                     field: 'oils', // 返回json数据中的name
-                                    title: '行车油耗', // 表格表头显示文字
+                                    title: '油耗', // 表格表头显示文字
+
+                                    formatter: function (value, row, index) { // 单元格格式化函数
+                                        return (row.averageSpeed * 10 * (new Date(row.timeEnd) - new Date(row.timeStart)) / 1000 / (60 * 60) * row.oilWear / 100).toFixed(1);
+
+                                    }
                                 },
                                 {
                                     field: 'runtimes', // 返回json数据中的name
@@ -527,6 +661,12 @@ function renderTrip(url) {
                                 }, {
                                     field: 'mileages',
                                     title: '行车里程',
+                                    formatter: function (value, row, index) { // 单元格格式化函数
+                                        // console.warn(row.timeStart - row.timeEnd);
+                                        // console.warn(row.timeStart.getTime()  );
+                                        console.warn((new Date(row.timeStart) - new Date(row.timeEnd)) / 1000 / (60 * 60));
+                                        return (row.averageSpeed * 10 * (new Date(row.timeEnd) - new Date(row.timeStart)) / 1000 / (60 * 60)).toFixed(1);
+                                    }
 
                                 },
                                 {
@@ -543,33 +683,34 @@ function renderTrip(url) {
                                     field: 'pointStart',
                                     title: '起点',
                                     //
-                                    formatter: function (value, row, index) { // 单元格格式化函数
-                                        // var text;
-                                        //
-                                        // var point = new BMap.Point(value.lng, value.lat);
-                                        // var gc = new BMap.Geocoder();
-                                        // gc.getLocation(point, function (rs) {
-                                        //     var addComp = rs.addressComponents;
-                                        //     text = addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber;
-                                        //
-                                        //
-                                        // });
-                                        //
-                                        //
-                                        // return text;
-                                        return JSON.stringify(value)
-                                    }
+                                    formatter: operateFormatter,
+                                    events: operateEvents,
                                 }, {
                                     field: 'pointEnd',
                                     title: '终点',
-
+                                    formatter: operateFormatter,
+                                    events: operateEvents,
+                                },
+                                {
+                                    field: 'max', // 返回json数据中的name
+                                    title: '最高速度', // 表格表头显示文字
                                     formatter: function (value, row, index) { // 单元格格式化函数
 
-                                        return JSON.stringify(value)
+                                        return (value * 10)
                                     }
                                 },
+                                {
+                                    field: 'extimes', // 返回json数据中的name
+                                    title: '超速次数', // 表格表头显示文字
+                                },
 
-                            ]
+                            ],
+                            onPostBody: function () {
+
+                                jQuery("a.remove").trigger("mouseover");
+
+
+                            }
 
                         })
                     }
@@ -583,7 +724,86 @@ function renderTrip(url) {
         });
     });
 
+    function aa(value, row, index) { // 单元格格式化函数
+        // var text;
+        //
 
+        alert("ok")
+        //
+        //
+        // return text;
+        return JSON.stringify(value)
+    }
+
+    function operateFormatter(value, row, index) {
+
+
+        return '<a class="remove" href="javascript:void(0)" >' + JSON.stringify(value) + '</a>';
+    }
+
+    window.operateEvents = {
+
+        'mouseover .remove': function (e, value, row, index) {
+
+            var point = new BMap.Point(value.lng, value.lat);
+            var gc = new BMap.Geocoder();
+            gc.getLocation(point, function (rs) {
+                var addComp = rs.addressComponents;
+                var text = addComp.province + "-" + addComp.city + "-" + addComp.district + "-" + addComp.street + "-" + addComp.streetNumber;
+
+                jQuery(e.target).text(text)
+            });
+            console.log(e)
+            console.log(e.target)
+            console.log(value)
+            console.log(row)
+            console.log(index)
+
+            console.log(this)
+
+        },
+        'click .remove': function (e, value, row, index) {
+
+            var layer = layui.layer;
+
+            layer.open({
+                type: 1,
+                title: '地图'
+                , shade: 0.6 //遮罩透明度
+                , maxmin: true //允许全屏最小化
+                , anim: 0, //0-6的动画形式，-1不开启
+
+                area: ['1000px', '500px'], //宽高
+                content: '<div id="map_canvas" style="width: 100%;height: 100%;"></div>',
+
+
+                success: function (layero, index) {
+
+
+                    var map = new BMap.Map('map_canvas');
+                    map.enableScrollWheelZoom();
+                    // map.centerAndZoom(new BMap.Point(116.404, 39.915), 13);
+
+                    var point = new BMap.Point(value.lng, value.lat);
+                    map.centerAndZoom(point, 20);
+
+                    var marker = new BMap.Marker(new BMap.Point(value.lng, value.lat)); // 创建点
+
+                    map.addOverlay(marker);            //增加点
+
+
+                }
+            });
+            console.log(e)
+            console.log(e.target)
+            console.log(value)
+            console.log(row)
+            console.log(index)
+
+            console.log(this)
+
+        }
+    };
     // url = filter == null ? url : url + filter;
     // console.log(url)
     // 第一个实例
@@ -677,154 +897,154 @@ function renderTrip(url) {
     //
     // });
 
-    // 监听表格复选框选择
-    table.on('checkbox(table)', function (obj) {
-
-        obj.checked ? checkShitHistoryOnlineOffline.push(obj) : removeWithoutCopy(checkShitHistoryOnlineOffline, obj.data.id);
-        var checkStatus = table.checkStatus('idTest')
-            , data = checkStatus.data;
-        console.log(data);
-
-        // console.log(checkShitRenderVehicle);
-
-        function removeWithoutCopy(arr, id) {
-            for (var i = arr.length - 1; i >= 0; i--) {
-                if (arr[i].data.id === id) {
-                    arr.splice(i, 1);
-                }
-            }
-            return arr;
-        }
-
-        // console.log(obj);
-        // console.log(obj.checked); //当前是否选中状态
-        // console.log(obj.data); //选中行的相关数据
-        // console.log(obj.type); //如果触发的是全选，则为：all，如果触发的是单选，则为：one
-    });
-
-
-    // 表格内按鈕
-    table.on('tool(table)', function (obj) {
-        var data = obj.data;
-        if (obj.event === 'more') {
-
-            var jjj = layer.open({
-                type: 1 //Page层类型
-                , content: '<table id="detail" lay-filter="detail"></table>',
-                offset: 'lt',
-                btn: ['导出', '取消'] //只是为了演示
-                , yes: function () {
-
-                    // var params = {
-                    //     motorcade: data.motorcade,
-                    //     motorcadeId: data.motorcadeId,
-                    //     start: formatTimeMin(new Date()),
-                    //     end: formatTime(new Date()),
-                    //     type: "excel"
-                    //
-                    // };
-                    // jQuery.ajax({
-                    //     url: '/statistics/historyOnlineOfflineCountExport',
-                    //     type: "POST",
-                    //     data: params,
-                    //     success: function (response, status, request) {
-                    //         var u='/statistics/historyOnlineOfflineCountExport';
-                    //         var disp = request.getResponseHeader('Content-Disposition');
-                    //         if (disp && disp.search('attachment') != -1) {  //判断是否为文件
-                    //             var form = jQuery('<form method="POST" action="' + u + '">');
-                    //             jQuery.each(params, function (k, v) {
-                    //                 form.append(jQuery('<input type="hidden" name="' + k +
-                    //                     '" value="' + v + '">'));
-                    //             });
-                    //             jQuery('body').append(form);
-                    //             form.submit(); //自动提交
-                    //         }
-                    //     }
-                    // });
-                }
-                , btn2: function () {
-                    layer.close(jjj);
-                },
-
-                success: function (layero, index) {
-                    var table = layui.table;
-
-                    //第一个实例
-                    table.render({
-                        elem: '#detail'
-                        , url: '/statistics/historyOnlineOfflineDetail', //数据接口
-                        page: true, // 开启分页
-                        method: "POST",
-                        where: {
-                            motorcade: data.motorcade,
-                            motorcadeId: data.motorcadeId,
-                            start: formatTimeMin(new Date()),
-                            end: formatTime(new Date()),
-                        }
-                        , cellMinWidth: 150,
-                        skin: "nob",
-                        size: "sm",
-                        cols: [[ // 表头
-                            {field: 'deviceNumber', title: '设备号'}
-                            , {field: 'end', title: '结束时间'}
-                            , {field: 'motorcade', title: '车队', sort: true}
-                            , {field: 'start', title: '开始时间', sort: true}
-                            , {field: 'online', title: '在线情况', sort: true}
-                            , {field: 'plateNumber', title: '车牌号', sort: true}
-
-
-                        ]],
-                        request: {
-                            pageName: 'pageIndex' //页码的参数名称，默认：page
-                            , limitName: 'pageSize' //每页数据量的参数名，默认：limit
-                        },
-                        response: {
-                            countName: 'total' //数据总数的字段名称，默认：count
-                            , dataName: 'rows' //数据列表的字段名称，默认：data
-                        }
-                    });
-
-                    // table.on('checkbox(vehicle)', function (obj) {
-                    //
-                    //     var checkStatus = table.checkStatus('vehicle');
-                    //     fff = checkStatus.data;
-                    //     // console.log(mmm)
-                    //
-                    //     // console.log(obj.data); //选中行的相关数据
-                    //
-                    //
-                    // });
-                }
-            });
-        } else if (obj.event === 'exp') {
-            var params = {
-                motorcade: data.motorcade,
-                motorcadeId: data.motorcadeId,
-                start: jQuery("#test19").val(),
-                end: jQuery("#test20").val(),
-                type: "excel"
-
-            };
-            jQuery.ajax({
-                url: '/statistics/historyOnlineOfflineCountExport',
-                type: "POST",
-                data: params,
-                success: function (response, status, request) {
-                    var u = '/statistics/historyOnlineOfflineCountExport';
-                    var disp = request.getResponseHeader('Content-Disposition');
-                    if (disp && disp.search('attachment') != -1) {  //判断是否为文件
-                        var form = jQuery('<form method="POST" action="' + u + '">');
-                        jQuery.each(params, function (k, v) {
-                            form.append(jQuery('<input type="hidden" name="' + k +
-                                '" value="' + v + '">'));
-                        });
-                        jQuery('body').append(form);
-                        form.submit(); //自动提交
-                    }
-                }
-            });
-        }
-    });
+    // // 监听表格复选框选择
+    // table.on('checkbox(table)', function (obj) {
+    //
+    //     obj.checked ? checkShitHistoryOnlineOffline.push(obj) : removeWithoutCopy(checkShitHistoryOnlineOffline, obj.data.id);
+    //     var checkStatus = table.checkStatus('idTest')
+    //         , data = checkStatus.data;
+    //     console.log(data);
+    //
+    //     // console.log(checkShitRenderVehicle);
+    //
+    //     function removeWithoutCopy(arr, id) {
+    //         for (var i = arr.length - 1; i >= 0; i--) {
+    //             if (arr[i].data.id === id) {
+    //                 arr.splice(i, 1);
+    //             }
+    //         }
+    //         return arr;
+    //     }
+    //
+    //     // console.log(obj);
+    //     // console.log(obj.checked); //当前是否选中状态
+    //     // console.log(obj.data); //选中行的相关数据
+    //     // console.log(obj.type); //如果触发的是全选，则为：all，如果触发的是单选，则为：one
+    // });
+    //
+    //
+    // // 表格内按鈕
+    // table.on('tool(table)', function (obj) {
+    //     var data = obj.data;
+    //     if (obj.event === 'more') {
+    //
+    //         var jjj = layer.open({
+    //             type: 1 //Page层类型
+    //             , content: '<table id="detail" lay-filter="detail"></table>',
+    //             offset: 'lt',
+    //             btn: ['导出', '取消'] //只是为了演示
+    //             , yes: function () {
+    //
+    //                 // var params = {
+    //                 //     motorcade: data.motorcade,
+    //                 //     motorcadeId: data.motorcadeId,
+    //                 //     start: formatTimeMin(new Date()),
+    //                 //     end: formatTime(new Date()),
+    //                 //     type: "excel"
+    //                 //
+    //                 // };
+    //                 // jQuery.ajax({
+    //                 //     url: '/statistics/historyOnlineOfflineCountExport',
+    //                 //     type: "POST",
+    //                 //     data: params,
+    //                 //     success: function (response, status, request) {
+    //                 //         var u='/statistics/historyOnlineOfflineCountExport';
+    //                 //         var disp = request.getResponseHeader('Content-Disposition');
+    //                 //         if (disp && disp.search('attachment') != -1) {  //判断是否为文件
+    //                 //             var form = jQuery('<form method="POST" action="' + u + '">');
+    //                 //             jQuery.each(params, function (k, v) {
+    //                 //                 form.append(jQuery('<input type="hidden" name="' + k +
+    //                 //                     '" value="' + v + '">'));
+    //                 //             });
+    //                 //             jQuery('body').append(form);
+    //                 //             form.submit(); //自动提交
+    //                 //         }
+    //                 //     }
+    //                 // });
+    //             }
+    //             , btn2: function () {
+    //                 layer.close(jjj);
+    //             },
+    //
+    //             success: function (layero, index) {
+    //                 var table = layui.table;
+    //
+    //                 //第一个实例
+    //                 table.render({
+    //                     elem: '#detail'
+    //                     , url: '/statistics/historyOnlineOfflineDetail', //数据接口
+    //                     page: true, // 开启分页
+    //                     method: "POST",
+    //                     where: {
+    //                         motorcade: data.motorcade,
+    //                         motorcadeId: data.motorcadeId,
+    //                         start: formatTimeMin(new Date()),
+    //                         end: formatTime(new Date()),
+    //                     }
+    //                     , cellMinWidth: 150,
+    //                     skin: "nob",
+    //                     size: "sm",
+    //                     cols: [[ // 表头
+    //                         {field: 'deviceNumber', title: '设备号'}
+    //                         , {field: 'end', title: '结束时间'}
+    //                         , {field: 'motorcade', title: '车队', sort: true}
+    //                         , {field: 'start', title: '开始时间', sort: true}
+    //                         , {field: 'online', title: '在线情况', sort: true}
+    //                         , {field: 'plateNumber', title: '车牌号', sort: true}
+    //
+    //
+    //                     ]],
+    //                     request: {
+    //                         pageName: 'pageIndex' //页码的参数名称，默认：page
+    //                         , limitName: 'pageSize' //每页数据量的参数名，默认：limit
+    //                     },
+    //                     response: {
+    //                         countName: 'total' //数据总数的字段名称，默认：count
+    //                         , dataName: 'rows' //数据列表的字段名称，默认：data
+    //                     }
+    //                 });
+    //
+    //                 // table.on('checkbox(vehicle)', function (obj) {
+    //                 //
+    //                 //     var checkStatus = table.checkStatus('vehicle');
+    //                 //     fff = checkStatus.data;
+    //                 //     // console.log(mmm)
+    //                 //
+    //                 //     // console.log(obj.data); //选中行的相关数据
+    //                 //
+    //                 //
+    //                 // });
+    //             }
+    //         });
+    //     } else if (obj.event === 'exp') {
+    //         var params = {
+    //             motorcade: data.motorcade,
+    //             motorcadeId: data.motorcadeId,
+    //             start: jQuery("#test19").val(),
+    //             end: jQuery("#test20").val(),
+    //             type: "excel"
+    //
+    //         };
+    //         jQuery.ajax({
+    //             url: '/statistics/historyOnlineOfflineCountExport',
+    //             type: "POST",
+    //             data: params,
+    //             success: function (response, status, request) {
+    //                 var u = '/statistics/historyOnlineOfflineCountExport';
+    //                 var disp = request.getResponseHeader('Content-Disposition');
+    //                 if (disp && disp.search('attachment') != -1) {  //判断是否为文件
+    //                     var form = jQuery('<form method="POST" action="' + u + '">');
+    //                     jQuery.each(params, function (k, v) {
+    //                         form.append(jQuery('<input type="hidden" name="' + k +
+    //                             '" value="' + v + '">'));
+    //                     });
+    //                     jQuery('body').append(form);
+    //                     form.submit(); //自动提交
+    //                 }
+    //             }
+    //         });
+    //     }
+    // });
     //监听工具条
     // var $ = layui.$, active = {
     //     reload: function () {

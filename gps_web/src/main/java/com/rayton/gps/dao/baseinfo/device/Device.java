@@ -1,5 +1,6 @@
 package com.rayton.gps.dao.baseinfo.device;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import java.sql.Date;
@@ -11,6 +12,7 @@ import java.sql.Timestamp;
  * @author 生
  */
 public class Device {
+
 
     private String id;
     private String companyId;
@@ -25,13 +27,45 @@ public class Device {
     private boolean hasMicrophone;
     private boolean hasNavigation;
     private String sensors;
+    @JSONField(format = "yyyy-MM-dd")
     private Date warranty;
+    @JSONField(format = "yyyy-MM-dd")
     private Date purchaseDate;
+    @JSONField(format = "yyyy-MM-dd")
     private Date installDate;
     private Timestamp editTime;
 
     private String protocol;
     private String protocolName;
+    private String REPAIR;
+    private String EDITUSER;
+    private String SN;
+    @JSONField(format = "yyyy-MM-dd")
+    private Date INSTOCKDATE;
+    @JSONField(format = "yyyy-MM-dd")
+    private Date OUTSTOCKDATE;
+    @JSONField(format = "yyyy-MM-dd")
+    private Date ACTIVATIONDATE;
+    private String IMEI;
+    private String LIFECYCLE;
+    @JSONField(format = "yyyy-MM-dd")
+    private Date LIFEEXPIRATIONDATE;
+
+    public String getEDITUSER() {
+        return EDITUSER;
+    }
+
+    public void setEDITUSER(String EDITUSER) {
+        this.EDITUSER = EDITUSER;
+    }
+
+    public String getREPAIR() {
+        return REPAIR;
+    }
+
+    public void setREPAIR(String REPAIR) {
+        this.REPAIR = REPAIR;
+    }
 
     public String getProtocolName() {
         return protocolName;
@@ -40,14 +74,6 @@ public class Device {
     public void setProtocolName(String protocolName) {
         this.protocolName = protocolName;
     }
-
-    private String SN;
-    private Date INSTOCKDATE;
-    private Date OUTSTOCKDATE;
-    private Date ACTIVATIONDATE;
-    private String IMEI;
-    private String LIFECYCLE;
-    private Date LIFEEXPIRATIONDATE;
     //
 
     public String getProtocol() {
@@ -60,15 +86,7 @@ public class Device {
 
     @Override
     public String toString() {
-        return "Device{" + "id='" + id + '\'' + ", companyId='" + companyId + '\'' + ", deviceNumber='" +
-                deviceNumber + '\'' + ", simcardId='" + simcardId + '\'' + ", phoneNumber='" + phoneNumber + '\'' +
-                ", model='" + model + '\'' + ", factoryName='" + factoryName + '\'' + ", factoryNumber='" +
-                factoryNumber + '\'' + ", cameras=" + cameras + ", hasMicrophone=" + hasMicrophone + ", " +
-                "hasNavigation=" + hasNavigation + ", sensors='" + sensors + '\'' + ", warranty=" + warranty + ", " +
-                "purchaseDate=" + purchaseDate + ", installDate=" + installDate + ", editTime=" + editTime + ", SN='"
-                + SN + '\'' + ", INSTOCKDATE=" + INSTOCKDATE + ", OUTSTOCKDATE=" + OUTSTOCKDATE + ", ACTIVATIONDATE="
-                + ACTIVATIONDATE + ", IMEI='" + IMEI + '\'' + ", LIFECYCLE='" + LIFECYCLE + '\'' + ", " +
-                "LIFEEXPIRATIONDATE=" + LIFEEXPIRATIONDATE + '}';
+        return "Device{" + "id='" + id + '\'' + ", companyId='" + companyId + '\'' + ", deviceNumber='" + deviceNumber + '\'' + ", simcardId='" + simcardId + '\'' + ", phoneNumber='" + phoneNumber + '\'' + ", model='" + model + '\'' + ", factoryName='" + factoryName + '\'' + ", factoryNumber='" + factoryNumber + '\'' + ", cameras=" + cameras + ", hasMicrophone=" + hasMicrophone + ", " + "hasNavigation=" + hasNavigation + ", sensors='" + sensors + '\'' + ", warranty=" + warranty + ", " + "purchaseDate=" + purchaseDate + ", installDate=" + installDate + ", editTime=" + editTime + ", SN='" + SN + '\'' + ", INSTOCKDATE=" + INSTOCKDATE + ", OUTSTOCKDATE=" + OUTSTOCKDATE + ", ACTIVATIONDATE=" + ACTIVATIONDATE + ", IMEI='" + IMEI + '\'' + ", LIFECYCLE='" + LIFECYCLE + '\'' + ", " + "LIFEEXPIRATIONDATE=" + LIFEEXPIRATIONDATE + '}';
     }
 
     public String getSN() {

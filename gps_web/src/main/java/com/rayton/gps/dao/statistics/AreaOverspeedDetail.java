@@ -17,9 +17,7 @@ public class AreaOverspeedDetail {
 
     @Override
     public String toString() {
-        return "AreaOverspeedDetail{" + "deviceNumber='" + deviceNumber + '\'' + ", motorcade='" + motorcade + '\'' +
-                ", plateNumber='" + plateNumber + '\'' + ", times=" + times + ", duration=" + duration + ", start=" +
-                start + ", end=" + end + ", detail=" + detail + '}';
+        return "AreaOverspeedDetail{" + "deviceNumber='" + deviceNumber + '\'' + ", motorcade='" + motorcade + '\'' + ", plateNumber='" + plateNumber + '\'' + ", times=" + times + ", duration=" + duration + ", start=" + start + ", end=" + end + ", detail=" + detail + '}';
     }
 
     public String getDeviceNumber() {

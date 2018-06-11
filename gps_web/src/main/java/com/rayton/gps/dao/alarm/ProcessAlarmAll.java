@@ -11,8 +11,7 @@ public class ProcessAlarmAll {
 
     @Override
     public String toString() {
-        return "ProcessAlarmAll{" + "deviceNumbers='" + deviceNumbers + '\'' + ", userMethod='" + userMethod + '\'' +
-                ", userRemark='" + userRemark + '\'' + '}';
+        return "ProcessAlarmAll{" + "deviceNumbers='" + deviceNumbers + '\'' + ", userMethod='" + userMethod + '\'' + ", userRemark='" + userRemark + '\'' + '}';
     }
 
     public String getDeviceNumbers() {

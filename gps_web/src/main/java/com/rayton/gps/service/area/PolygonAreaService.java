@@ -45,8 +45,7 @@ public class PolygonAreaService {
         query.total = total;
 
         if (total > 0) {
-            List<PolygonAreaInfo> rows = polygonAreaDao.queryPageDetail(companyId, filter, (pageIndex - 1) *
-                    pageSize, pageSize);
+            List<PolygonAreaInfo> rows = polygonAreaDao.queryPageDetail(companyId, filter, (pageIndex - 1) * pageSize, pageSize);
             rows.forEach(polygonAreaInfo -> {
                 List<LatLng> points = polygonAreaDao.fetchPolygonPoint(polygonAreaInfo.getId());
                 polygonAreaInfo.setPoints(points);
@@ -77,8 +76,7 @@ public class PolygonAreaService {
         search.total = total;
 
         if (total > 0) {
-            List<PolygonAreaInfo> rows = polygonAreaDao.searchPageDetail(companyId, filter, (pageIndex - 1) *
-                    pageSize, pageSize);
+            List<PolygonAreaInfo> rows = polygonAreaDao.searchPageDetail(companyId, filter, (pageIndex - 1) * pageSize, pageSize);
 
             rows.forEach(polygonAreaInfo -> {
                 List<LatLng> points = polygonAreaDao.fetchPolygonPoint(polygonAreaInfo.getId());
@@ -211,8 +209,7 @@ public class PolygonAreaService {
                 AreaCatcherCache.bind(number, old.getId(), areaKind);
 
                 info.setAction((byte) AreaActions.Remove.getIndex());
-                areaInDeviceDao.log(info.getId(), number, old.getId(), areaKind, (byte) AreaActions.Remove.getIndex()
-                        , unid, user);
+                areaInDeviceDao.log(info.getId(), number, old.getId(), areaKind, (byte) AreaActions.Remove.getIndex(), unid, user);
                 SynchronizerCache.put(info);
 
                 info.setAction((byte) AreaActions.Edit.getIndex());
@@ -222,8 +219,7 @@ public class PolygonAreaService {
 
                 info.setAction((byte) AreaActions.Append.getIndex());
                 areaInDeviceDao.addVehicle(number, old.getId(), areaKind);
-                areaInDeviceDao.log(info.getId(), number, old.getId(), areaKind, (byte) AreaActions.Append.getIndex()
-                        , unid, user);
+                areaInDeviceDao.log(info.getId(), number, old.getId(), areaKind, (byte) AreaActions.Append.getIndex(), unid, user);
                 SynchronizerCache.put(info);
 
                 info.setAction((byte) AreaActions.Edit.getIndex());
@@ -233,8 +229,7 @@ public class PolygonAreaService {
                     AreaCatcherCache.refresh(old.getId(), areaKind);
 
                 info.setAction((byte) AreaActions.Edit.getIndex());
-                areaInDeviceDao.log(info.getId(), number, old.getId(), areaKind, (byte) AreaActions.Update.getIndex()
-                        , unid, user);
+                areaInDeviceDao.log(info.getId(), number, old.getId(), areaKind, (byte) AreaActions.Update.getIndex(), unid, user);
                 SynchronizerCache.put(info);
             }
         }
@@ -267,8 +262,7 @@ public class PolygonAreaService {
             if (polygon != null) {
                 areaInDeviceDao.removeVehicle(number, id, areaKind);
                 if (polygon.isDeviceCatch())
-                    areaInDeviceDao.log(info.getId(), number, id, areaKind, (byte) AreaActions.Remove.getIndex(),
-                            unid, user);
+                    areaInDeviceDao.log(info.getId(), number, id, areaKind, (byte) AreaActions.Remove.getIndex(), unid, user);
             }
 
             SynchronizerCache.put(info);
@@ -293,8 +287,7 @@ public class PolygonAreaService {
         query.total = total;
 
         if (total > 0) {
-            List<AreaInDeviceInfo> rows = areaInDeviceDao.assignedPageVehiclesDetail(polygonAreaId, areaKind,
-                    (pageIndex - 1) * pageSize, pageSize);
+            List<AreaInDeviceInfo> rows = areaInDeviceDao.assignedPageVehiclesDetail(polygonAreaId, areaKind, (pageIndex - 1) * pageSize, pageSize);
             query.rows.addAll(rows);
         }
         return query;
@@ -323,8 +316,7 @@ public class PolygonAreaService {
             if (polygon != null) {
                 areaInDeviceDao.addVehicle(number, polygonAreaId, areaKind);
                 if (polygon.isDeviceCatch())
-                    areaInDeviceDao.log(info.getId(), number, polygonAreaId, areaKind, (byte) AreaActions.Append
-                            .getIndex(), unid, user);
+                    areaInDeviceDao.log(info.getId(), number, polygonAreaId, areaKind, (byte) AreaActions.Append.getIndex(), unid, user);
             }
             SynchronizerCache.put(info);
             AreaCatcherCache.bind(number, polygonAreaId, areaKind);
@@ -353,8 +345,7 @@ public class PolygonAreaService {
         if (polygon != null) {
             areaInDeviceDao.removeVehicle(number, polygonAreaId, areaKind);
             if (polygon.isDeviceCatch())
-                areaInDeviceDao.log(info.getId(), number, polygonAreaId, areaKind, (byte) AreaActions.Remove.getIndex
-                        (), unid, user);
+                areaInDeviceDao.log(info.getId(), number, polygonAreaId, areaKind, (byte) AreaActions.Remove.getIndex(), unid, user);
         }
         SynchronizerCache.put(info);
         AreaCatcherCache.unbind(number, polygonAreaId, areaKind);

@@ -12,9 +12,7 @@ public class MonitorTarget {
 
     @Override
     public String toString() {
-        return "MonitorTarget{" + "id='" + id + '\'' + ", pid='" + pid + '\'' + ", type=" + type + ", name='" + name
-                + '\'' + ", deviceNumber='" + deviceNumber + '\'' + ", marker='" + marker + '\'' + ", rotate=" +
-                rotate + '}';
+        return "MonitorTarget{" + "id='" + id + '\'' + ", pid='" + pid + '\'' + ", type=" + type + ", name='" + name + '\'' + ", deviceNumber='" + deviceNumber + '\'' + ", marker='" + marker + '\'' + ", rotate=" + rotate + '}';
     }
 
     /**

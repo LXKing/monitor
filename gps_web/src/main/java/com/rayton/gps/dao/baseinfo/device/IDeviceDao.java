@@ -19,6 +19,8 @@ public interface IDeviceDao {
 
     Device getByNum(String num);
 
+    Device getD(String num);
+
     /**
      * 创建新的设备
      */

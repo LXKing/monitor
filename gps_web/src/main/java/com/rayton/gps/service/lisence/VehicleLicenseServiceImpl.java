@@ -1,12 +1,12 @@
 package com.rayton.gps.service.lisence;
 
-import java.util.List;
-
-import com.rayton.gps.dao.lisence.VehicleLicenseDao;
 import com.rayton.gps.dao.lisence.VehicleLicense;
+import com.rayton.gps.dao.lisence.VehicleLicenseDao;
 import com.rayton.gps.util.Assist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class VehicleLicenseServiceImpl implements VehicleLicenseService {

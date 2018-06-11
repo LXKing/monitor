@@ -1,22 +1,31 @@
 package com.rayton.gps.dao.lisence;
+
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class DrivingLisence implements java.io.Serializable {
     private static final long serialVersionUID = 1L;
     private Integer id;
     private String address;//地址
+
+    @JSONField(format = "yyyy-MM-dd")
     private java.util.Date birthdate;//生日
     private String companyId;
     private String nationality;//国籍
+    @JSONField(format = "yyyy-MM-dd")
     private java.util.Date validPeriod;//有效期限
     private String sex;//性别
     private String docNo;//档案编号
     private String record;//记录
     private String name;//司机名
     private String carClass;//准驾车型
+    @JSONField(format = "yyyy-MM-dd")
     private java.util.Date dateOfFirstIssue;//初次领证日期
+
     public DrivingLisence() {
         super();
     }
-    public DrivingLisence(Integer id,String address,java.util.Date birthdate,String companyId,String nationality,java.util.Date validPeriod,String sex,String docNo,String record,String name,String carClass,java.util.Date dateOfFirstIssue) {
+
+    public DrivingLisence(Integer id, String address, java.util.Date birthdate, String companyId, String nationality, java.util.Date validPeriod, String sex, String docNo, String record, String name, String carClass, java.util.Date dateOfFirstIssue) {
         super();
         this.id = id;
         this.address = address;
@@ -31,6 +40,7 @@ public class DrivingLisence implements java.io.Serializable {
         this.carClass = carClass;
         this.dateOfFirstIssue = dateOfFirstIssue;
     }
+
     public Integer getId() {
         return this.id;
     }

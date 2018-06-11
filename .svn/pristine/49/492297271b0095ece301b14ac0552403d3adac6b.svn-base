@@ -1,0 +1,162 @@
+/*报表管理*/
+.layui-layout-body .layui-layout .layui-side div:nth-child(1)::before {
+    content: '';
+    background: url("../../dc_file/image/report/report_shi.png") no-repeat;
+    vertical-align: middle;
+    background-size: contain;
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    padding: 0 2px;
+}
+
+.layui-layout-body .layui-layout .layui-side .layui-side-scroll {
+    background-color: #f1f1f1;
+}
+
+.layui-layout-body .layui-layout .layui-side .layui-side-scroll .layui-nav .layui-nav-item:nth-child(1) {
+    border-top: 1px solid #fff;
+}
+
+.layui-layout-body .layui-layout .layui-side .layui-side-scroll .layui-nav .layui-nav-item:nth-child(1) dl dd a[tat="超速报表"]::before {
+    content: '';
+    background: url("../../dc_file/image/csbb.png") no-repeat;
+    vertical-align: middle;
+    background-size: contain;
+    display: inline-block;
+    width: 18px;
+    height: 13px;
+    padding: 0 2px;
+}
+
+.layui-layout-body .layui-layout .layui-side .layui-side-scroll .layui-nav .layui-nav-item:nth-child(1) dl dd a[tat="超速报表"].current_a::before {
+    content: '';
+    background: url("../../dc_file/image/csbb_c.png") no-repeat;
+    vertical-align: middle;
+    background-size: contain;
+    display: inline-block;
+    width: 18px;
+    height: 13px;
+    padding: 0 2px;
+}
+
+.layui-layout-body .layui-layout .layui-side .layui-side-scroll .layui-nav .layui-nav-item:nth-child(1) dl dd a[tat="停留报表"]::before {
+    content: '';
+    background: url("../../dc_file/image/tlbb.png") no-repeat;
+    vertical-align: middle;
+    background-size: contain;
+    display: inline-block;
+    width: 18px;
+    height: 13px;
+    padding: 0 2px;
+}
+
+.layui-layout-body .layui-layout .layui-side .layui-side-scroll .layui-nav .layui-nav-item:nth-child(1) dl dd a[tat="停留报表"].current_a::before {
+    content: '';
+    background: url("../../dc_file/image/tlbb_c.png") no-repeat;
+    vertical-align: middle;
+    background-size: contain;
+    display: inline-block;
+    width: 18px;
+    height: 13px;
+    padding: 0 2px;
+}
+
+.layui-layout-body .layui-layout .layui-side .layui-side-scroll .layui-nav .layui-nav-item:nth-child(1) dl dd a[tat="ACC报表"]::before {
+    content: '';
+    background: url("../../dc_file/image/abb.png") no-repeat;
+    vertical-align: middle;
+    background-size: contain;
+    display: inline-block;
+    width: 18px;
+    height: 13px;
+    padding: 0 2px;
+}
+
+.layui-layout-body .layui-layout .layui-side .layui-side-scroll .layui-nav .layui-nav-item:nth-child(1) dl dd a[tat="ACC报表"].current_a::before {
+    content: '';
+    background: url("../../dc_file/image/abb_c.png") no-repeat;
+    vertical-align: middle;
+    background-size: contain;
+    display: inline-block;
+    width: 18px;
+    height: 13px;
+    padding: 0 2px;
+}
+
+.layui-layout-body .layui-layout .layui-side .layui-side-scroll .layui-nav .layui-nav-item:nth-child(1) dl dd a[tat="行程报表"]::before {
+    content: '';
+    background: url("../../dc_file/image/xcbb.png") no-repeat;
+    vertical-align: middle;
+    background-size: contain;
+    display: inline-block;
+    width: 18px;
+    height: 13px;
+    padding: 0 2px;
+}
+
+.layui-layout-body .layui-layout .layui-side .layui-side-scroll .layui-nav .layui-nav-item:nth-child(1) dl dd a[tat="行程报表"].current_a::before {
+    content: '';
+    background: url("../../dc_file/image/xcbb_c.png") no-repeat;
+    vertical-align: middle;
+    background-size: contain;
+    display: inline-block;
+    width: 18px;
+    height: 13px;
+    padding: 0 2px;
+}
+
+.layui-layout-body .layui-layout .layui-side .layui-side-scroll .layui-nav .layui-nav-item:nth-child(1) dl dd a[tat="行驶记录表"]::before {
+    content: '';
+    background: url("../../dc_file/image/xsjl.png") no-repeat;
+    vertical-align: middle;
+    background-size: contain;
+    display: inline-block;
+    width: 18px;
+    height: 13px;
+    padding: 0 2px;
+}
+
+.layui-layout-body .layui-layout .layui-side .layui-side-scroll .layui-nav .layui-nav-item:nth-child(1) dl dd a[tat="行驶记录表"].current_a::before {
+    content: '';
+    background: url("../../dc_file/image/xsjl_c.png") no-repeat;
+    vertical-align: middle;
+    background-size: contain;
+    display: inline-block;
+    width: 18px;
+    height: 13px;
+    padding: 0 2px;
+}
+
+.layui-layout-body .layui-layout .layui-side .layui-side-scroll .layui-nav .layui-nav-item {
+    background-color: #a9d1e7 !important;
+}
+
+.layui-layout-body .layui-layout .layui-side .layui-side-scroll .layui-nav .layui-nav-item a,
+.layui-layout-body .layui-layout .layui-side .layui-side-scroll .layui-nav .layui-nav-item .cccc {
+    background-color: #a9d1e7 !important;
+}
+
+.layui-layout-body .layui-layout .layui-side .layui-side-scroll .layui-nav .layui-nav-item a {
+    background-color: #f1f1f1 !important;
+    color: #666 !important;
+    font-size: 12px !important;
+    border-top: 1px solid #fff !important;
+    box-sizing: border-box;
+}
+
+.layui-layout-body .layui-layout .layui-side .layui-side-scroll .layui-nav .layui-nav-item .layui-nav-child dd .current_a:nth-child(1) {
+    background-color: #a9d1e7 !important;
+    color: #028ad6 !important;
+}
+
+.layui-layout-body .layui-layout .layui-side .layui-side-scroll .layui-nav .layui-nav-item .layui-nav-child dd a:hover {
+    color: #666 !important;
+    background-color: #d9e6ee !important;
+    text-decoration: none;
+}
+
+.layui-layout-body .layui-layout .layui-side .layui-side-scroll .layui-nav .layui-nav-item .layui-nav-child a {
+    color: #666 !important;
+    text-decoration: none;
+}

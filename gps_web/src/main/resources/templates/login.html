@@ -24,17 +24,17 @@
 <div class="login_page">
     <div class="login_header clear">
         <div class="loginH_l fl">
-            <img src="./static/img/login//logo.png" alt="" style="width: 45px">
-            <span>锐讯易通</span>
+            <img src="./static/dc_file/image/logo-gtbd.png" alt="" style="width: 150px">
+            <!--<span>国泰北斗</span>-->
         </div>
         <div class="loginH_r fr">
-            <span>锐讯易通GPS位置服务平台</span>
+            <span>国泰北斗位置服务平台</span>
         </div>
     </div>
     <div class="login_info fl">
         <div class="login_all fr">
-            <p class="fr">锐讯易通GPS位置服务平台</p>
-            <p class="fr">Erayton GPS location service platform.</p>
+            <p class="fr p1">国泰北斗位置服务平台</p>
+            <p class="fr p2">Cathay Pacific beidou location service platform.</p>
             <div class="login_box fr">
                 <div class="Lbox">
                     <p>登录管理系统</p>
@@ -152,7 +152,16 @@
                         });
                 });
 
-
+                document.onkeyup = function(e){
+                if (e == null) {
+                    _key = event.keyCode;
+                } else {
+                    _key = e.which;
+                }
+                if(_key == 13){
+                    document.getElementById('submit').click();
+                }
+            }
         });
 
 

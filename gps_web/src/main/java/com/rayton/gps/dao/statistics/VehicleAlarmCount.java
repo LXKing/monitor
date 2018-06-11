@@ -17,11 +17,7 @@ public class VehicleAlarmCount {
 
     @Override
     public String toString() {
-        return "VehicleAlarmCount{" + "motorcadeId='" + motorcadeId + '\'' + ", motorcade='" + motorcade + '\'' + ", " +
-                "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "overspeedNoneArea=" + overspeedNoneArea + ", " +
-                "" + "overspeedInArea=" + overspeedInArea + "," + " " + "overspeedInSection=" + overspeedInSection +
-                ", " + "fatigueDriving=" + fatigueDriving + ", " + "" + "parkingTimeout=" + parkingTimeout + ", " +
-                "routeDeparture=" + routeDeparture + ", start=" + start + ", " + "end=" + end + '}';
+        return "VehicleAlarmCount{" + "motorcadeId='" + motorcadeId + '\'' + ", motorcade='" + motorcade + '\'' + ", " + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "overspeedNoneArea=" + overspeedNoneArea + ", " + "" + "overspeedInArea=" + overspeedInArea + "," + " " + "overspeedInSection=" + overspeedInSection + ", " + "fatigueDriving=" + fatigueDriving + ", " + "" + "parkingTimeout=" + parkingTimeout + ", " + "routeDeparture=" + routeDeparture + ", start=" + start + ", " + "end=" + end + '}';
     }
 
     public String getMotorcadeId() {

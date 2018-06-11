@@ -1,8 +1,7 @@
 package com.rayton.gps.util.enums;
 
 public enum DrivingRecorderActions {
-    SetVehileInfo("设置车辆信息", 0x82), SetInstallDate("设置记录仪初次安装日期", 0x83), SetStatusName("设置状态量配置信息", 0x84), SetTime
-            ("设置记录仪时间", 0xC2), SetPulse("设置记录仪脉冲系数", 0xC3), SetInitalMileage("设置初始里程", 0xC4);
+    SetVehileInfo("设置车辆信息", 0x82), SetInstallDate("设置记录仪初次安装日期", 0x83), SetStatusName("设置状态量配置信息", 0x84), SetTime("设置记录仪时间", 0xC2), SetPulse("设置记录仪脉冲系数", 0xC3), SetInitalMileage("设置初始里程", 0xC4);
     // 成员变量
     private String name;
     private int index;

@@ -1,5 +1,7 @@
 package com.rayton.gps.dao.baseinfo.motorcade;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.sql.Date;
 import java.sql.Timestamp;
 
@@ -12,6 +14,9 @@ public class Motorcade {
 
     private String id;
     private String companyId;
+
+    private String PID;
+    private String COMPANY;
     private String type;
     private String name;
     private boolean parentVisible;
@@ -19,21 +24,31 @@ public class Motorcade {
     private String phone;
     private String remark;
     private Timestamp editTime;
-
-
     //
+    @JSONField(format = "yyyy-MM-dd")
     private Date REGISTATIONDATE;
     private String BUSSINESSAGENT;
-    //
 
+    public String getPID() {
+        return PID;
+    }
+
+    public void setPID(String PID) {
+        this.PID = PID;
+    }
+
+    public String getCOMPANY() {
+        return COMPANY;
+    }
+
+    public void setCOMPANY(String COMPANY) {
+        this.COMPANY = COMPANY;
+    }
+    //
 
     @Override
     public String toString() {
-        return "Motorcade{" + "id='" + id + '\'' + ", companyId='" + companyId + '\'' + ", type='" + type + '\'' + "," +
-                "" + "" + "" + "" + "" + "" + "" + "" + "" + " name='" + name + '\'' + ", parentVisible=" +
-                parentVisible + ", " + "" + "linkMan='" + linkMan + '\'' + ", " + "phone='" + phone + '\'' + ", " +
-                "remark='" + remark + '\'' + ", " + "editTime=" + editTime + "," + " " + "REGISTATIONDATE=" +
-                REGISTATIONDATE + ", " + "BUSSINESSAGENT='" + BUSSINESSAGENT + '\'' + '}';
+        return "Motorcade{" + "id='" + id + '\'' + ", companyId='" + companyId + '\'' + ", type='" + type + '\'' + "," + "" + "" + "" + "" + "" + "" + "" + "" + "" + " name='" + name + '\'' + ", parentVisible=" + parentVisible + ", " + "" + "linkMan='" + linkMan + '\'' + ", " + "phone='" + phone + '\'' + ", " + "remark='" + remark + '\'' + ", " + "editTime=" + editTime + "," + " " + "REGISTATIONDATE=" + REGISTATIONDATE + ", " + "BUSSINESSAGENT='" + BUSSINESSAGENT + '\'' + '}';
     }
 
     public Date getREGISTATIONDATE() {

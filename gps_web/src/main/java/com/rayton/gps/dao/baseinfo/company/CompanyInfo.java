@@ -1,5 +1,7 @@
 package com.rayton.gps.dao.baseinfo.company;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.util.Date;
 
 /**
@@ -13,9 +15,12 @@ public class CompanyInfo {
     private String fullName;
     private String shortName;
     private String officeAddress;
+    @JSONField(format = "yyyy-MM-dd")
     private Date serviceStartDate;
+    @JSONField(format = "yyyy-MM-dd")
     private Date serviceEndDate;
     private boolean enable;
+    @JSONField(format = "yyyy-MM-dd")
     private Date createTime;
     private String ondutyPhone;
     private String remark;
@@ -41,11 +46,7 @@ public class CompanyInfo {
 
     @Override
     public String toString() {
-        return "CompanyInfo{" + "id='" + id + '\'' + ", fullName='" + fullName + '\'' + ", shortName='" + shortName +
-                '\'' + ", officeAddress='" + officeAddress + '\'' + ", serviceStartDate=" + serviceStartDate + ", " +
-                "serviceEndDate=" + serviceEndDate + ", enable=" + enable + ", createTime=" + createTime + ", " +
-                "ondutyPhone='" + ondutyPhone + '\'' + ", remark='" + remark + '\'' + ", PID='" + PID + '\'' + ", " +
-                "ZIPCODE='" + ZIPCODE + '\'' + '}';
+        return "CompanyInfo{" + "id='" + id + '\'' + ", fullName='" + fullName + '\'' + ", shortName='" + shortName + '\'' + ", officeAddress='" + officeAddress + '\'' + ", serviceStartDate=" + serviceStartDate + ", " + "serviceEndDate=" + serviceEndDate + ", enable=" + enable + ", createTime=" + createTime + ", " + "ondutyPhone='" + ondutyPhone + '\'' + ", remark='" + remark + '\'' + ", PID='" + PID + '\'' + ", " + "ZIPCODE='" + ZIPCODE + '\'' + '}';
     }
 
     public boolean isEnable() {

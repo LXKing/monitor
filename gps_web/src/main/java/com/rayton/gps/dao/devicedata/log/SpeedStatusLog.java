@@ -12,8 +12,7 @@ public class SpeedStatusLog {
 
     @Override
     public String toString() {
-        return "SpeedStatusLog{" + "startTime=" + startTime + ", endTime=" + endTime + ", state='" + state + '\'' +
-                "," + " content=" + content + '}';
+        return "SpeedStatusLog{" + "startTime=" + startTime + ", endTime=" + endTime + ", state='" + state + '\'' + "," + " content=" + content + '}';
     }
 
     public Date getStartTime() {

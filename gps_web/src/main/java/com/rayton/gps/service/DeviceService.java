@@ -40,7 +40,7 @@ public class DeviceService {
 
     public Page<DeviceInfo> query(String companyId, String filter, int pageIndex, int pageSize) {
         int total = deviceDao.queryPageCount(companyId, filter);
-        Page<DeviceInfo> query = new Page< >();
+        Page<DeviceInfo> query = new Page<>();
         query.total = total;
         if (total > 0) {
             List<DeviceInfo> rows = deviceDao.queryPageDetail(companyId, filter, (pageIndex - 1) * pageSize, pageSize);
@@ -133,7 +133,6 @@ public class DeviceService {
     public Tuple<Device, User> fetch(String id) {
         Device device = deviceDao.fetch(id);
 
-
         User user = userDao.fetch(id);
         // User user = new User();
         // user.setId(u.id);
@@ -183,8 +182,7 @@ public class DeviceService {
         Page<DeviceSearchInfo> page = new Page<DeviceSearchInfo>();
         page.total = total;
         if (total > 0) {
-            List<DeviceSearchInfo> rows = deviceDao.searchPageDetail(companyId, filter, (pageIndex - 1) * pageSize,
-                    pageSize);
+            List<DeviceSearchInfo> rows = deviceDao.searchPageDetail(companyId, filter, (pageIndex - 1) * pageSize, pageSize);
             page.rows.addAll(rows);
 
         }
@@ -196,8 +194,7 @@ public class DeviceService {
         Page<DeviceSearchInfo> page = new Page<>();
         page.total = total;
         if (total > 0) {
-            List<DeviceSearchInfo> rows = deviceDao.freePageDetail(companyId, deviceNumber, (pageIndex - 1) *
-                    pageSize, pageSize);
+            List<DeviceSearchInfo> rows = deviceDao.freePageDetail(companyId, deviceNumber, (pageIndex - 1) * pageSize, pageSize);
             page.rows.addAll(rows);
 
 

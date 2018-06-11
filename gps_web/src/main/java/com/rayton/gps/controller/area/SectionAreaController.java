@@ -39,8 +39,7 @@ public class SectionAreaController {
 
     @PostMapping(value = "/sectionArea/query")
     @ResponseBody
-    public Object query(@RequestParam(required = false) String filter, @RequestParam int page, @RequestParam int
-            limit) throws Exception {
+    public Object query(@RequestParam(required = false) String filter, @RequestParam int page, @RequestParam int limit) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         Page<SectionAreaInfo> result = sectionAreaService.query(identity.getCompanyId(), filter, page, limit);
 
@@ -54,8 +53,7 @@ public class SectionAreaController {
 
     @PostMapping(value = "/sectionArea/search")
     @ResponseBody
-    public Object search(@RequestParam(required = false) String filter, @RequestParam int pageIndex, @RequestParam
-            int pageSize) {
+    public Object search(@RequestParam(required = false) String filter, @RequestParam int pageIndex, @RequestParam int pageSize) {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
 
         filter = filter == null ? "" : filter;
@@ -76,9 +74,9 @@ public class SectionAreaController {
 
     @PostMapping(value = "/sectionArea/create.form")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> create(@ModelAttribute("sectionArea") @Valid SectionAreaModel
-                                                                  sectionArea, BindingResult binding) {
-        if (binding.hasErrors()) return ResponseEntityWrapper.Failed();
+    public ResponseEntity<Map<Object, Object>> create(@ModelAttribute("sectionArea") @Valid SectionAreaModel sectionArea, BindingResult binding) {
+        if (binding.hasErrors())
+            return ResponseEntityWrapper.Failed();
         // return "/baseinfo/sectionArea/create.form";
 
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
@@ -114,8 +112,7 @@ public class SectionAreaController {
 
     @PostMapping(value = "/sectionArea/edit.form")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> edit(@ModelAttribute("sectionArea") @Valid SectionAreaModel
-                                                                sectionArea, BindingResult binding) {
+    public ResponseEntity<Map<Object, Object>> edit(@ModelAttribute("sectionArea") @Valid SectionAreaModel sectionArea, BindingResult binding) {
         if (binding.hasErrors())
             // return "/baseinfo/sectionArea/edit.form";
             return ResponseEntityWrapper.Failed();
@@ -155,12 +152,11 @@ public class SectionAreaController {
 
     @PostMapping(value = "/sectionArea/exist")
     @ResponseBody
-    public Object exists(@RequestParam String name, @RequestParam(required = false) Long id, @RequestParam boolean
-            checkId) throws Exception {
+    public Object exists(@RequestParam String name, @RequestParam(required = false) Long id, @RequestParam boolean checkId) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
 
-        return checkId ? !sectionAreaService.exist(name, identity.getCompanyId(), id) : !sectionAreaService.exist
-                (name, identity.getCompanyId());
+        return checkId ? !sectionAreaService.exist(name, identity.getCompanyId(), id) : !sectionAreaService.exist(name, identity
+                .getCompanyId());
         // if (checkId) {
         //     response.getWriter().print(!sectionAreaService.exist(name, identity.getCompanyId(), id));
         // } else {

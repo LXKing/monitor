@@ -1,5 +1,6 @@
 package com.rayton.gps.dao.baseinfo.user;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import org.hibernate.validator.constraints.NotBlank;
 
 import java.sql.Date;
@@ -15,6 +16,7 @@ public class User {
     private String id;
     private String pid;
     private String companyId;
+    private String company;
     private int kind;
     @NotBlank
     private String account;
@@ -26,22 +28,31 @@ public class User {
     private String tel;
     private String fax;
     private String zipcode;
+    @JSONField(format = "yyyy-MM-dd")
     private Date registerDate;
+    @JSONField(format = "yyyy-MM-dd")
     private Date serviceEndNotifyDate;
     private String bussinessAgent;
-
-
     private String salt;
-    //
-
-
     private String contact;
     private boolean enable;
+    //
+    @JSONField(format = "yyyy-MM-dd")
     private Date serviceStartDate;
+    @JSONField(format = "yyyy-MM-dd")
     private Date serviceEndDate;
+    @JSONField(format = "yyyy-MM-dd")
     private Date createTime;
     private String remark;
     private Timestamp editTime;
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
 
     public String getSalt() {
         return salt;
@@ -101,14 +112,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" + "password='" + password + '\'' + ", id='" + id + '\'' + ", pid='" + pid + '\'' + ", " +
-                "companyId='" + companyId + '\'' + ", kind=" + kind + ", account='" + account + '\'' + ", name='" +
-                name + '\'' + ", email='" + email + '\'' + ", phone='" + phone + '\'' + ", tel='" + tel + '\'' + ", "
-                + "fax='" + fax + '\'' + ", zipcode='" + zipcode + '\'' + ", registerDate=" + registerDate + ", " +
-                "serviceEndNotifyDate=" + serviceEndNotifyDate + ", bussinessAgent='" + bussinessAgent + '\'' + ", "
-                + "contact='" + contact + '\'' + ", enable=" + enable + ", serviceStartDate=" + serviceStartDate + "," +
-                "" + "" + "" + "" + "" + "" + "" + "" + " " + "serviceEndDate=" + serviceEndDate + ", createTime=" +
-                createTime + "," + " " + "remark='" + remark + '\'' + "," + " editTime=" + editTime + '}';
+        return "User{" + "password='" + password + '\'' + ", id='" + id + '\'' + ", pid='" + pid + '\'' + ", " + "companyId='" + companyId + '\'' + ", kind=" + kind + ", account='" + account + '\'' + ", name='" + name + '\'' + ", email='" + email + '\'' + ", phone='" + phone + '\'' + ", tel='" + tel + '\'' + ", " + "fax='" + fax + '\'' + ", zipcode='" + zipcode + '\'' + ", registerDate=" + registerDate + ", " + "serviceEndNotifyDate=" + serviceEndNotifyDate + ", bussinessAgent='" + bussinessAgent + '\'' + ", " + "contact='" + contact + '\'' + ", enable=" + enable + ", serviceStartDate=" + serviceStartDate + "," + "" + "" + "" + "" + "" + "" + "" + "" + " " + "serviceEndDate=" + serviceEndDate + ", createTime=" + createTime + "," + " " + "remark='" + remark + '\'' + "," + " editTime=" + editTime + '}';
     }
 
     public String getPassword() {

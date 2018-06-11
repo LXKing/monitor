@@ -1,7 +1,11 @@
 package com.rayton.gps.dao.lisence;
+
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class VehicleRegister implements java.io.Serializable {
     private static final long serialVersionUID = 1L;
     private Integer id;
+    @JSONField(format = "yyyy-MM-dd")
     private java.util.Date exFactoryDate;//出厂日期
     private String color;//颜色
     private String purposeOfUse;//使用性质
@@ -29,16 +33,19 @@ public class VehicleRegister implements java.io.Serializable {
     private String ownerNumber;//所有人
     private String identifyCode;//识别代号
     private String tyreSize;//轮胎规格
+    @JSONField(format = "yyyy-MM-dd")
     private java.util.Date registerDate;//登记日期
     private String ratedPassengerCapacity;//核定载客
     private String allSize;//外廓尺寸
     private String outputVolume;//排量
     private String wheelbase;//轴距
     private String ratedLoadingWeight;//核定载质量
+
     public VehicleRegister() {
         super();
     }
-    public VehicleRegister(Integer id,java.util.Date exFactoryDate,String color,String purposeOfUse,String registerNo,String importOrNot,String numberOfSpringLeaf,String type,String engineModel,String steeringType,String manufacturer,String grossMass,String meansOfAcquisition,String totalTractionWeight,String engineNo,String numberOfWheel,String model,String fuelType,String track,String numberOfAxles,String brand,String passengerCapacityOfCab,String registerOffice,String internalSize,String companyId,String ownerNumber,String identifyCode,String tyreSize,java.util.Date registerDate,String ratedPassengerCapacity,String allSize,String outputVolume,String wheelbase,String ratedLoadingWeight) {
+
+    public VehicleRegister(Integer id, java.util.Date exFactoryDate, String color, String purposeOfUse, String registerNo, String importOrNot, String numberOfSpringLeaf, String type, String engineModel, String steeringType, String manufacturer, String grossMass, String meansOfAcquisition, String totalTractionWeight, String engineNo, String numberOfWheel, String model, String fuelType, String track, String numberOfAxles, String brand, String passengerCapacityOfCab, String registerOffice, String internalSize, String companyId, String ownerNumber, String identifyCode, String tyreSize, java.util.Date registerDate, String ratedPassengerCapacity, String allSize, String outputVolume, String wheelbase, String ratedLoadingWeight) {
         super();
         this.id = id;
         this.exFactoryDate = exFactoryDate;
@@ -75,6 +82,7 @@ public class VehicleRegister implements java.io.Serializable {
         this.wheelbase = wheelbase;
         this.ratedLoadingWeight = ratedLoadingWeight;
     }
+
     public Integer getId() {
         return this.id;
     }

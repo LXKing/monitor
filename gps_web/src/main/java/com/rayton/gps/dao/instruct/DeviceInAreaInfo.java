@@ -16,9 +16,7 @@ public class DeviceInAreaInfo {
 
     @Override
     public String toString() {
-        return "DeviceInAreaInfo{" + "id='" + id + '\'' + ", deviceNumber='" + deviceNumber + '\'' + ", areaId=" +
-                areaId + ", areaType=" + areaType + ", action=" + action + ", unid='" + unid + '\'' + ", user='" +
-                user + '\'' + ", sendTime=" + sendTime + ", ackTime=" + ackTime + '}';
+        return "DeviceInAreaInfo{" + "id='" + id + '\'' + ", deviceNumber='" + deviceNumber + '\'' + ", areaId=" + areaId + ", areaType=" + areaType + ", action=" + action + ", unid='" + unid + '\'' + ", user='" + user + '\'' + ", sendTime=" + sendTime + ", ackTime=" + ackTime + '}';
     }
 
     public String getId() {

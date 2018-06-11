@@ -12,8 +12,7 @@ public class AdminMenu {
 
     @Override
     public String toString() {
-        return "AdminMenu{" + "id='" + id + '\'' + ", pid='" + pid + '\'' + ", text='" + text + '\'' + ", url='" +
-                url + '\'' + ", leaf=" + leaf + '}';
+        return "AdminMenu{" + "id='" + id + '\'' + ", pid='" + pid + '\'' + ", text='" + text + '\'' + ", url='" + url + '\'' + ", leaf=" + leaf + '}';
     }
 
     public String getIcon() {

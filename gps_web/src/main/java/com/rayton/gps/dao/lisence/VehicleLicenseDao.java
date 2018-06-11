@@ -1,12 +1,10 @@
 package com.rayton.gps.dao.lisence;
 
-import com.rayton.gps.dao.lisence.VehicleLicense;
-
-import java.util.List;
-
 import com.rayton.gps.util.Assist;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface VehicleLicenseDao {

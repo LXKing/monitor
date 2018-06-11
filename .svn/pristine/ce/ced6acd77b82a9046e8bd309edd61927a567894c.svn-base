@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>在线监控</title>
+    <link th:href="@{/static/js/bootstrap/css/bootstrap-table.css}" rel="stylesheet" />
+    <link th:href="@{/static/css/cg/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/static/css/zTreeStyle.css}" rel="stylesheet" />
+    <link rel="stylesheet" th:href="@{/static/lib/layui/css/layui.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/cg/iconfont.css}">
+    <link rel="stylesheet" th:href="@{/static/css/cg/common.css}">
+    <!--<link rel="stylesheet" th:href="@{/static/css/cg/index.css}">-->
+    <link rel="stylesheet" th:href="@{/static/css/index_l.css}">
+
+    <link rel="stylesheet" th:href="@{/static/css/center/layercolor.css}">
+
+    <link rel="stylesheet" th:href="@{/static/dc_file/css/monitor_.css}">
+
+
+    <link rel="stylesheet" href="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.css">
+
+
+    <style>
+
+        body{
+            overflow: hidden;
+        }
+
+        ::-webkit-scrollbar {
+            width: 14px;
+            height: 8px;
+            background-color: transparent;
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, .1);
+        }
+        .layui-laypage .layui-laypage-curr .layui-laypage-em{
+            background-color: #0488d1;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+
+<!--打印地图-->
+<div  style="display: none;position: absolute;left: 0px;top: 0px;width: 100%;height: 100%;background: #fff;    z-index: 999999;" id="printmap">
+
+</div>
+<!-- 侧边栏 -->
+<div class="car-info_box">
+    <!-- 车辆信息上部分 -->
+    <section class="car-info" id="box_left">
+        <!-- <i class="iconfont icon-jiantouarrowheads3"></i> -->
+        <!-- 车辆信息头部 -->
+        <div class="car-info-header">
+            <div class="cih_small">
+                            <span class="current_cm">
+                                车辆列表
+                            </span>
+                <span>
+                                地图列表
+                            </span>
+                <span>
+                                关注
+                            </span>
+            </div>
+        </div>
+        <!-- 车辆信息搜索栏 -->
+        <!-- 车辆信息列表 -->
+        <div class="dl dis_list" style="display: block">
+            <div class="car-info-search">
+                <div class="cis_small">
+                    <div class="ciss_l fl" style="background-color: #fff">
+                        <form class="layui-form form_font" action="" style="color: #c9c9c9">
+                            <select lay-filter="test" name="Company" lay-verify="" id="Company">
+                                <option value="1">所属车队</option>
+                            </select>
+                        </form>
+                    </div>
+                    <div class="ciss_m fl" style="background-color: #fff">
+                        <form class="layui-form form_font" action="" style="color: #c9c9c9">
+                            <select name="team" lay-verify="" id="team" lay-filter="teamss">
+                                <option value="1">所属公司</option>
+                            </select>
+                        </form>
+                    </div>
+                    <div class="ciss_r fl" style="color: #c9c9c9;">
+                        <input type="text" id="textscresh">
+                    </div>
+                </div>
+            </div>
+            <div class="car-lists">
+                <div class="cl_info">
+                    <div class="am_header">
+                        <span>自编号</span>
+                        <span>车辆号</span>
+                        <span>速度</span>
+                        <span>里程</span>
+                        <span>运行状态</span>
+                    </div>
+                    <div class="tree_class">
+                        <div class="layer">
+                            <div id="tableMain">
+                                <ul id="dataTree" class="ztree">
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="rMenu">
+                    <a href="#" class="list-group-item" type="m_expand" >功能1</a>
+                    <a href="#" class="list-group-item" type="m_expandSon">功能2</a>
+                    <a href="#" class="list-group-item" type="m_collapse">功能3</a>
+                    <a href="#" class="list-group-item" type="m_expandAll">功能4</a>
+                    <a href="#" class="list-group-item" type="m_collapseAll">功能5</a>
+                </div>
+            </div>
+        </div>
+        <div class="map_list dl dis_list" style="overflow: auto;">
+            <div class="tree_class">
+                <div class="layer">
+                    <div id="tableMaindis" style="text-align: center;color: red">
+                        <ul id="dataTreedis" class="ztreemap"></ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- 侧边栏底部 -->
+    <div class="car-status" id="car-status">
+        <div class="cs_top">
+        <span onclick="countcar()">
+            总车辆:1
+        </span>
+            <span>
+            在线率80%
+        </span>
+            <span onclick="hidden_bottom()">
+            隐藏
+        </span>
+        </div>
+        <div class="cs_middle">
+        <span onclick="Onlinecar()">
+            在线:3800
+        </span>
+            <span onclick="offlinecar()">
+            离线:11000
+        </span>
+            <span onclick="refresh()">
+            刷新
+        </span>
+        </div>
+        <div class="cs_bottom">
+                        <span>
+                            任务:0
+                        </span>
+            <span>
+                            行驶:0
+                        </span>
+            <span>
+                            设置
+                        </span>
+        </div>
+    </div>
+</div>
+<!--左右拖拉-->
+<section id="box_drag">
+</section>
+<!-- 地图，车辆信息 -->
+<section class="map-info" id="box_right">
+    <div class="map-contents" id="box_map">
+        <!--倒计时刷新-->
+
+        <!--startprint-->
+        <div id="locateMap">
+        </div>
+        <!--endprint-->
+        <div class="map_uldiv">
+            <nav class="nav_ul">
+                <ul>
+                    <li onclick="areacar()">
+                        <div>
+                            <input type="button" class="" value="区域查车">
+                            <img th:src="@{/static/image/pointimage/whitecar.png}">
+                            <img th:src="@{/static/image/pointimage/whilev.png}">
+                            <span class="nav_ul_line"></span>
+                        </div>
+                    </li>
+                    <li onclick="default_view()">
+                        <div>
+                            <input type="button" class="" value="默认视野">
+                            <img th:src="@{/static/image/pointimage/default_view.png}">
+                            <span class="nav_ul_line"></span>
+                        </div>
+                    </li>
+                    <li onclick="Refreshmap()">
+                        <div>
+                            <input type="button" class="" value="刷新地图">
+                            <img th:src="@{/static/image/pointimage/refresh.png}">
+                            <span class="nav_ul_line"></span>
+                        </div>
+                    </li>
+                    <li onclick="Full_screen()">
+                        <div>
+                            <input type="button" class="" value="全屏">
+                            <img th:src="@{/static/image/pointimage/Full_screen.png}">
+                            <span class="nav_ul_line"></span>
+                        </div>
+                    </li>
+                    <li onclick="toolnav()">
+                        <div>
+                            <input type="button" class="" value="工具">
+                            <img th:src="@{/static/image/pointimage/whiletool.png}">
+                            <img th:src="@{/static/image/pointimage/whilev.png}">
+                            <ul class="ul_tool_li" id="toolnav_ul">
+                                <li onclick="amplification()">
+                                    放大
+                                </li>
+                                <li onclick="narrow()">
+                                    缩小
+                                </li>
+                                <li onclick="ranging()">
+                                    测距
+                                </li>
+                                <li onclick="tool()">
+                                    清除
+                                </li>
+                                <li onclick="Uploadvision()">
+                                    上传视野
+                                </li>
+                            </ul>
+                            <span class="nav_ul_line"></span>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <input type="button" class="" value="设置">
+                            <img th:src="@{/static/image/pointimage/srtting.png}">
+                            <span class="nav_ul_line"></span>
+                        </div>
+                    </li>
+                    <li onclick="printmap()">
+                        <div>
+                            <input type="button" class="" value="打印地图">
+                            <img th:src="@{/static/image/pointimage/whileprint.png}">
+                            <span class="nav_ul_line"></span>
+                        </div>
+                    </li>
+                    <li onclick="Locationservice()">
+                        <div>
+                            <input type="button" class="" value="位置服务">
+                            <img th:src="@{/static/image/pointimage/wzfw.png}">
+                            <img th:src="@{/static/image/pointimage/whilev.png}">
+                            <span class="nav_ul_line"></span>
+                        </div>
+                    </li>
+                    <li onclick="LushuorthJS()">
+                        <div>
+                            <input type="button" class="" value="预留">
+                            <span class="nav_ul_line"></span>
+                        </div>
+                    </li>
+                    <li onclick="mapnavigationshrinkage()">
+                        <img th:src="@{/static/image/pointimage/xiaohungdeng.png}" id="map_shrinkage">
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <!--区域车辆-->
+        <div class="panel panel-default" style="display: none;" id="panelqucar" draggable=true>
+            <div class="panel-heading">
+                            <span style="margin-left: 10px;    line-height: 2;font-size: 12px;">
+                                查看区域车辆
+                                <img th:src="@{/static/image/pointimage/whitecar.png}"
+                                     style="width: 16px;height: 16px">
+                            </span>
+
+                <span style="float:right;padding-right: 2px;" onclick="penlarareacar()"><i>X</i></span>
+                <span style="float:right;" onclick="qucarbigger()"><img
+                    th:src="@{/static/image/pointimage/kuang.png}" style="width: 60%"></span>
+            </div>
+            <div class="panel-body">
+                <ul id="myTab" class="nav">
+                    <li class="active">
+                        <a href="#home" data-toggle="tab">
+                            全部
+                        </a>
+                    </li>
+                    <li><a href="#online" data-toggle="tab">在线</a></li>
+                    <li><a href="#offline" data-toggle="tab">离线</a></li>
+                </ul>
+                <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane fade in active" id="home">
+                        <!--头-->
+                        <div class="cissqucar" style="background-color: #fff">
+                            <form class="layui-form form_font Tab_spanone">
+                                <div>
+                                    <select name="Companypanelqucar" lay-verify="" id="Companypanelqucar"
+                                            lay-filter="Companypanelqucarlay">
+                                        <option value="1">所属公司</option>
+                                    </select>
+
+                                </div>
+                            </form>
+                            <div style="color: #c9c9c9;display: inline-block;">
+                                <input type="text" id="textscreshcar" placeholder="车牌号">
+                            </div>
+                        </div>
+                        <!--表格-->
+                        <div class="tab_Table">
+                            <table class="table table-condensed table-bordered table-striped"
+                                   data-classes="table-no-bordered" id="finishingTask" data-toggle="table"
+                                   border="0" cellpadding="0" cellspacing="0">
+                                <thead style="text-align: center;color: #969696 ">
+                                <tr>
+                                    <th data-field="id" style="display: none" class="noneid">id</th>
+                                    <th data-field="na">车牌号</th>
+                                    <th data-field="sp">车速</th>
+                                    <th data-field="m">里程</th>
+                                    <th data-field="gt">定位时间</th>
+                                    <th data-field="dn">设备号</th>
+                                    <th data-field="oil">油量</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody id="datatbody">
+                                <script id="datatbodytql" type="text/html">
+                                    {{each list as value i}}
+                                    <tr>
+                                        <td> {{value.na}}</td>
+                                        <td>{{value.sp}}</td>
+                                        <td> {{value.m}}</td>
+                                        <td>{{value.gt}}</td>
+                                        <td>{{ value.dn}}</td>
+                                        <td> {{value.oil}}</td>
+                                    </tr>
+                                    {{/each}}
+                                </script>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="online">
+
+                        <!--头-->
+                        <div class="cissqucar" style="background-color: #fff">
+                            <form class="layui-form form_font Tab_spanone">
+                                <div>
+                                    <select name="Companononline" lay-verify="" id="Companononline"
+                                            lay-filter="Companononlinelay">
+                                        <option value="1">所属公司</option>
+                                    </select>
+
+                                </div>
+                            </form>
+                            <div style="color: #c9c9c9;display: inline-block;">
+                                <input type="text" id="textscreshcaronline" placeholder="车牌号">
+                            </div>
+                        </div>
+                        <!--表格-->
+                        <div class="tab_Table">
+                            <table class="table table-condensed table-bordered table-striped"
+                                   data-classes="table-no-bordered" id="finishingTaskonline"
+                                   data-toggle="table"
+                                   border="0" cellpadding="0" cellspacing="0">
+                                <thead style="text-align: left;color: #969696 ">
+                                <tr>
+                                    <th data-field="id" style="display: none" class="noneid">id</th>
+                                    <th data-field="na">车牌号</th>
+                                    <th data-field="sp">车速</th>
+                                    <th data-field="m">里程</th>
+                                    <th data-field="gt">定位时间</th>
+                                    <th data-field="dn">设备号</th>
+                                    <th data-field="oil">油量</th>
+                                    <th>操作</th>
+
+                                </tr>
+                                </thead>
+                                <tbodey id="datatbodyonline">
+                                    <script id="datatbodytqlonline" type="text/html">
+                                        {{each list as value i}}
+                                        <tr>
+                                            <td> {{value.na}}</td>
+                                            <td>{{value.sp}}</td>
+                                            <td> {{value.m}}</td>
+                                            <td>{{value.gt}}</td>
+                                            <td>{{ value.dn}}</td>
+                                            <td> {{value.oil}}</td>
+                                        </tr>
+                                        {{/each}}
+                                    </script>
+                                </tbodey>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="offline">
+                        <!--头-->
+
+                        <div class="cissqucar" style="background-color: #fff">
+                            <form class="layui-form form_font Tab_spanone">
+                                <div>
+                                    <select name="Companonoffline" lay-verify="" id="Companonoffline"
+                                            lay-filter="Companonofflinelay">
+                                        <option value="1">所属公司</option>
+                                    </select>
+
+                                </div>
+                            </form>
+                            <div style="color: #c9c9c9;display: inline-block;">
+                                <input type="text" id="textscreshcaroffline" placeholder="车牌号">
+                            </div>
+                        </div>
+
+                        <!--表格-->
+                        <div class="tab_Table">
+                            <table class="table table-condensed table-bordered table-striped"
+                                   data-classes="table-no-bordered" id="finishingTaskoffline"
+                                   data-toggle="table" border="0" cellpadding="0" cellspacing="0">
+                                <thead style="text-align: left;color: #969696 ">
+                                <tr>
+                                    <th data-field="id" style="display: none" class="noneid">id</th>
+                                    <th data-field="na">车牌号</th>
+                                    <th data-field="sp">车速</th>
+                                    <th data-field="m">里程</th>
+                                    <th data-field="gt">定位时间</th>
+                                    <th data-field="dn">设备号</th>
+                                    <th data-field="oil">油量</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbodey id="datatbodyoffline">
+                                    <script id="datatbodytqloffline" type="text/html">
+                                        {{each list as value i}}
+                                        <tr>
+                                            <td> {{value.na}}</td>
+                                            <td>{{value.sp}}</td>
+                                            <td> {{value.m}}</td>
+                                            <td>{{value.gt}}</td>
+                                            <td>{{ value.dn}}</td>
+                                            <td> {{value.oil}}</td>
+                                        </tr>
+                                        {{/each}}
+                                    </script>
+                                </tbodey>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--位置服务-->
+        <div class="Locat panel-primary"
+             style=" display: none;  border: 1px solid rgb(2, 138, 214);"
+             id="Locationservice" draggable=true>
+            <div class="panel-heading">
+                            <span style="margin-left: 10px;    line-height: 2;font-size: 12px;">
+                               位置服务
+                            </span>
+                <span style="float:right;" onclick="Locatclose()"><i>X</i></span>
+                <span style="float:right;" onclick="Locationservice()"><i
+                    class="fa fa-close tab-close"></i></span>
+            </div>
+            <div class="panel-body">
+                <ul id="myTabLocat" class="nav">
+                    <li class="active">
+                        <a href="#league_mark" data-toggle="tab">
+                            共联标注点
+                        </a>
+                    </li>
+                    <li><a href="#Shared" data-toggle="tab">共享标注点</a></li>
+                    <li><a href="#mapsearch" data-toggle="tab">地图搜索</a></li>
+                    <li><a href="#City_navigation" data-toggle="tab">城市导航</a></li>
+                </ul>
+                <div id="myTabLoacat" class="tab-content">
+                    <div class="tab-pane fade in active" id="league_mark">
+                        <div>
+                                        <span class="Tab_spanonelocat">
+                              <select lay-filter="Companonlocatlay" name="Companonlocat"
+                                      lay-verify=""
+                                      id="Companonlocat">
+                                        <option value="1">所属车队</option>
+                             </select>
+                            </span>
+                            <span>
+                                      <input type="text" class="" id="textscreshlocat"
+                                             placeholder="名称"/>
+                                  </span>
+                            <button class="btn   btn-success btn-xs" onclick="markserver()">
+                                标注
+                            </button>
+                        </div>
+                        <table class="tableLocal">
+                            <thead>
+                            <th>
+                                <div class="kouspan">
+                                </div>
+                            </th>
+                            <th>
+                                名称
+                            </th>
+                            <th>
+                                类型
+                            </th>
+                            </thead>
+                            <tbody id="locat_Data">
+                            <script th:src="@{static/js/arttemplate.js}"></script>
+                            <script id="tpllocat" type="text/html">
+                                {{each list as value i}}
+                                <tr onclick="locatpoint('{{value.id}}','{{value.lng}}','{{value.alt}}')">
+                                    <td style="visibility: hidden"> {{value.id}}</td>
+                                    <td> {{value.showName}}</td>
+                                    <td> 酒店</td>
+                                </tr>
+                                {{/each}}
+                            </script>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="Shared">
+                        该功能正在开发中
+                    </div>
+                    <div class="tab-pane fade" id="mapsearch">
+                        该功能正在开发中
+                    </div>
+                    <div class="tab-pane fade" id="City_navigation">
+                        该功能正在开发中
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section id="box_upDown">
+    </section>
+    <section class="mc_all" id="box_mc">
+        <div class="map-car-message">
+            <!-- <i class="iconfont icon-jiantou2"></i>
+                <i class="iconfont icon-jiantou4"></i> -->
+            <div class="mcm_1 fl">
+                            <span>
+                                设置
+                            </span>
+                <!-- <img src="./image/shezhi.png" alt=""> -->
+            </div>
+            <div class="mcm_2 fl">
+                <!-- <img src="./image/laba.png" alt=""> -->
+                <span>
+                                通知
+                            </span>
+            </div>
+            <div class="mcm_3 fr">
+                <span>在线</span>
+                <span>行驶</span>
+                <span>不定位</span>
+                <span>离线</span>
+                <span>报警</span>
+                <span>异常</span>
+            </div>
+        </div>
+        <div class="map-car-details">
+            <div class="con" style="display:block">
+                <table border="0" cellpadding="0" cellspacing="0" style="overflow: scroll;">
+                    <thead>
+                    <tr>
+                        <td>车牌</td>
+                        <td>车队</td>
+                        <td>服务时间</td>
+                        <td>定位时间</td>
+                        <td>速度</td>
+                        <td>方向</td>
+                        <!--<td>油量（O）</td>
+                <td>油量（升）</td>
+                <td>油量（%）</td>
+                <td>电平</td>-->
+                        <td>里程</td>
+                        <!--<td>定位</td>
+                <td>Acc</td>-->
+                        <td>地理位置</td>
+                    </tr>
+                    </thead>
+                    <tbody id="content_data">
+                    <script th:src="@{static/js/arttemplate.js}"></script>
+                    <!--修改这里-->
+                    <script id="tpl" type="text/html">
+                        {{each list as value i}}
+                        <tr onclick="tables('{{value.id}}',this)">
+                            <td> {{value.na}}</td>
+                            <td>{{value.team}}</td>
+                            <td> {{value.st}}</td>
+                            <td> {{value.gt}}</td>
+                            <td>{{value.sp}}km/h</td>
+                            <td> {{value.d}}</td>
+                            <td>{{ value.m}}km</td>
+                            <td id="geographical"> <span  class="locatNamejingwei">经度:{{value.lng}},纬度:{{value.lat}}</span>
+                                <span class="locatName">{{value.locatName}}</span>  </td>
+                        </tr>
+                        {{/each}}
+                    </script>
+                    </tbody>
+                </table>
+            </div>
+            <div class="con">功能正在开发中</div>
+            <div class="con">功能正在开发中</div>
+            <div class="con">
+                <table id="plsFuckMe" lay-filter="plsFuckMe" lay-data="{id: 'plsFuckMe'}" lay-size="sm"
+                       lay-skin="nob" style="    display: block;"></table>
+            </div>
+        </div>
+        <div class="map-car-info" id="bottom_box">
+            <a href="javascript:;" class="current">车机状态</a>
+            <a href="javascript:;">告警信号</a>
+            <a href="javascript:;">回放信息</a>
+            <a href="javascript:;" id="wwwtttff">即时消息</a>
+        </div>
+    </section>
+</section>
+<div class="clear"></div>
+
+</body>
+
+<script th:src="@{/static/gpsparser.js}"></script>
+<script th:src="@{/static/js/jquery.min.js}"></script>
+<script th:src="@{/static/js/bootstrap/js/bootstrap-table.js}"></script>
+<script th:src="@{/static/js/jquery/jquery.ztree.core-3.5.min.js}"></script>
+<script th:src="@{/static/js/jquery/jquery.ztree.exedit.js}"></script>
+<script th:src="@{/static/js/jquery/jquery.ztree.excheck-3.5.js}"></script>
+<script src="http://api.map.baidu.com/api?v=2.0&ak=Y2TqMdQvIRuGGW83xP2kd8LR7Y5SAplh"></script>
+<script src="http://api.map.baidu.com/library/LuShu/1.2/src/LuShu_min.js"></script>
+<script src="http://api.map.baidu.com/library/DistanceTool/1.2/src/DistanceTool_min.js"></script>
+<script th:src="@{static/lib/layui/layui.all.js}"></script>
+<script th:src="@{/static/js/bootstrap.min.js}"></script>
+<script th:src="@{/static/dc_file/js/index_.js}"></script>
+<script th:src="@{/static/webmap.js}"></script>
+<script th:src="@{/static/js/js/locate.js}"></script>
+<script th:src="@{/static/js/tab.js}"></script>
+<script th:src="@{/static/js/tablecolor.js}"></script>
+<script th:src="@{/static/js/Print.js}"></script>
+
+<!--<script th:src="@{/static/js/center/common.js}"></script>-->
+<script th:src="@{/static/js/center/dateutils.js}"></script>
+
+
+<script th:src="@{/static/baseinfo/ins.js}"></script>
+
+
+<script type="text/javascript" th:src="@{/static/js/bootstrap.min.js}"></script>
+
+
+
+
+<script src="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.js" type="text/javascript"></script>
+
+
+<script>
+
+    if (window.top !== window.self) {
+
+
+        console.log("mmmp")
+    }
+
+</script>
+
+<script>
+  $(".iplay").click(function (e) {
+    e.stopPropagation();
+    console.log(123);
+  })
+
+  function formatTimeMin(date) {
+    var year = date.getFullYear();
+    var month = date.getMonth(), month = month < 10 ? '0' + month : month;
+    var day = date.getDate(), day = day < 10 ? '0' + day : day;
+    return year + '-' + month + '-' + day;
+  }
+
+  function formatTime(date) {
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1, month = month < 10 ? '0' + month : month;
+    var day = date.getDate() + 1, day = day < 10 ? '0' + day : day;
+    return year + '-' + month + '-' + day;
+  }
+
+  function cnmmmmm() {
+
+    $.ajax({
+      url: "/locate/groupVehicles", //请求地址
+
+      data: {
+        force: true
+      },
+      type: "post", //请求方式
+      async: false, //是否异步请求
+      success: function (res) { //如何发送成功
+
+        var data = [];
+
+
+        for (var a of res) {
+          if (a.dn === undefined) {
+            continue;
+          }
+          data.push(a.dn);
+        }
+        var fffffff = [];
+
+        // for (var ddd of data) {
+        // if (ddd === undefined) continue;
+        // console.log(ddd);
+        $.ajax({
+          url: "../instruct/queryArr",
+          type: "POST",
+          data: {
+            deviceNumber: data,
+            // start: '2015-02-02 00:00:00',
+            // end: '2015-02-02 00:00:00',
+            pageIndex: 1 //页码的参数名称，默认：page
+            , pageSize: 999, //每页数据量的参数名，默认：limit
+            start: formatTimeMin(new Date()),
+            end: formatTime(new Date()),
+          },
+          traditional: true,
+          async: false,
+          success: function (res) {
+            Array.prototype.push.apply(fffffff, res.rows);
+            // fffffff.concat(res.rows);
+          }
+        });
+        // }
+
+        console.log(fffffff)
+        var table = layui.table;
+
+        table.render({
+          id: 'plsFuckMe',
+          elem: '#plsFuckMe',
+          data: fffffff,
+          page: true,
+          cellMinWidth: 150,
+          method: "POST",
+          cols: [
+            [
+
+              {field: 'deviceNumber', title: '设备号', sort: true,align:'left'},
+              {field: 'plateNumber', title: '车牌号', sort: true,align:'left'},
+              {field: 'sendTime', title: '时间', sort: true,align:'left'},
+              {field: 'name', title: '命令', sort: true,align:'left'},
+              {field: 'result', title: '结果', sort: true,align:'left'},
+
+            ]
+          ],
+          skin: "nob",
+          size: "sm",
+
+        });
+      }
+    });
+
+  }
+
+  $(function () {
+
+    $("#wwwtttff").on("click",function () {
+      cnmmmmm();
+    });
+
+  });
+
+
+</script>
+</html>

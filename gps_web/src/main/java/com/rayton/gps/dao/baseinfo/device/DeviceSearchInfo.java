@@ -1,5 +1,7 @@
 package com.rayton.gps.dao.baseinfo.device;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.sql.Date;
 
 public class DeviceSearchInfo {
@@ -12,6 +14,19 @@ public class DeviceSearchInfo {
     private String factoryNumber;
 
     private String protocolName;
+    private String protocol;
+    //
+    private String SN;
+    @JSONField(format = "yyyy-MM-dd")
+    private Date INSTOCKDATE;
+    @JSONField(format = "yyyy-MM-dd")
+    private Date OUTSTOCKDATE;
+    @JSONField(format = "yyyy-MM-dd")
+    private Date ACTIVATIONDATE;
+    private String IMEI;
+    private String LIFECYCLE;
+    @JSONField(format = "yyyy-MM-dd")
+    private Date LIFEEXPIRATIONDATE;
 
     public String getProtocolName() {
         return protocolName;
@@ -21,8 +36,6 @@ public class DeviceSearchInfo {
         this.protocolName = protocolName;
     }
 
-    private String protocol;
-
     public String getProtocol() {
         return protocol;
     }
@@ -30,25 +43,11 @@ public class DeviceSearchInfo {
     public void setProtocol(String protocol) {
         this.protocol = protocol;
     }
-
     //
-    private String SN;
-    private Date INSTOCKDATE;
-    private Date OUTSTOCKDATE;
-    private Date ACTIVATIONDATE;
-    private String IMEI;
-    private String LIFECYCLE;
-    private Date LIFEEXPIRATIONDATE;
-    //
-
 
     @Override
     public String toString() {
-        return "DeviceSearchInfo{" + "id='" + id + '\'' + ", deviceNumber='" + deviceNumber + '\'' + ", " +
-                "phoneNumber='" + phoneNumber + '\'' + ", model='" + model + '\'' + ", factoryName='" + factoryName +
-                '\'' + ", factoryNumber='" + factoryNumber + '\'' + ", SN='" + SN + '\'' + ", INSTOCKDATE=" +
-                INSTOCKDATE + ", OUTSTOCKDATE=" + OUTSTOCKDATE + ", ACTIVATIONDATE=" + ACTIVATIONDATE + ", IMEI='" +
-                IMEI + '\'' + ", LIFECYCLE='" + LIFECYCLE + '\'' + ", LIFEEXPIRATIONDATE=" + LIFEEXPIRATIONDATE + '}';
+        return "DeviceSearchInfo{" + "id='" + id + '\'' + ", deviceNumber='" + deviceNumber + '\'' + ", " + "phoneNumber='" + phoneNumber + '\'' + ", model='" + model + '\'' + ", factoryName='" + factoryName + '\'' + ", factoryNumber='" + factoryNumber + '\'' + ", SN='" + SN + '\'' + ", INSTOCKDATE=" + INSTOCKDATE + ", OUTSTOCKDATE=" + OUTSTOCKDATE + ", ACTIVATIONDATE=" + ACTIVATIONDATE + ", IMEI='" + IMEI + '\'' + ", LIFECYCLE='" + LIFECYCLE + '\'' + ", LIFEEXPIRATIONDATE=" + LIFEEXPIRATIONDATE + '}';
     }
 
     public String getSN() {

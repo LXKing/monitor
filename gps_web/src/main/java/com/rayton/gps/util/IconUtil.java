@@ -30,10 +30,10 @@ public class IconUtil {
 
             if (checkFileType(originalFilename)) {
                 log.warn(path);
-                String newFileName = String.valueOf(new Random().nextInt()) + originalFilename.substring
-                        (originalFilename.lastIndexOf("" + "."));
+                String newFileName = String.valueOf(new Random().nextInt()) + originalFilename.substring(originalFilename
+                        .lastIndexOf("" + "."));
 
-                File file = new File(path+ newFileName);
+                File file = new File(path + newFileName);
                 if (!file.getParentFile().exists()) {
                     file.getParentFile().mkdirs();
                 }

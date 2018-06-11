@@ -1,9 +1,9 @@
 package com.rayton.gps.service.lisence;
 
-import java.util.List;
-
 import com.rayton.gps.dao.lisence.VehicleLicense;
 import com.rayton.gps.util.Assist;
+
+import java.util.List;
 
 public interface VehicleLicenseService {
     /**

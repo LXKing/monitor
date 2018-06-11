@@ -1,178 +1,75 @@
 package com.rayton.gps.util;
 
-import com.ning.http.util.Base64;
+import org.apache.commons.codec.binary.Base64;
 
-import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import java.io.UnsupportedEncodingException;
-import java.nio.ByteBuffer;
-import java.security.KeyFactory;
-import java.security.PrivateKey;
-import java.security.PublicKey;
-import java.security.spec.PKCS8EncodedKeySpec;
-import java.security.spec.X509EncodedKeySpec;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.SecureRandom;
+import java.security.Security;
+import java.security.interfaces.RSAPrivateKey;
+import java.security.interfaces.RSAPublicKey;
+
 
 public class RSA {
-    private static PublicKey publicKey;
-    private static PrivateKey privateKey;
-    private static Cipher encryptCipher;
-    private static Cipher decryptCipher;
 
-    private RSA() {
-    }
+    private static KeyPair keyPair;
 
-    /**
-     * 获取公钥
-     */
-    private static PublicKey getPublicKey() {
-        if (publicKey == null) {
-            try {
-                publicKey = DecodePublicKey("MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC3pmn4H" +
-                        "/WbduvuaJv60eCcvrbIqIPK18S1gpfWbEvJDLUMOSTc5zIaDvE1ixYp8hvEAPVMvZI/JqVxaSICRUC3zbaN" +
-                        "/RlMgT9oVh8mNw6LcT4fGeqYOFKLQU4obRkW4GSq/ZXA79Og79Ii2Il153" +
-                        "/Bo3l8rQZotYz54aHEwp8jLwIDAQAB");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+    static {
+        try {
+            Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
+            SecureRandom random = new SecureRandom();
+            KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA", "BC");
+            generator.initialize(1024, random);
+            keyPair = generator.generateKeyPair();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
-        return publicKey;
     }
+    // private static KeyPair initKey() {
+    //     try {
+    //         Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
+    //         SecureRandom random = new SecureRandom();
+    //         KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA", "BC");
+    //         generator.initialize(1024, random);
+    //         return generator.generateKeyPair();
+    //     } catch (Exception e) {
+    //         throw new RuntimeException(e);
+    //     }
+    // }
 
     /**
-     * 获取私钥
-     */
-    private static PrivateKey getPrivateKey() {
-        if (privateKey == null) {
-            try {
-                privateKey = DecodePrivateKey
-                        ("MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBALemafgf9Zt26+5om/rR4Jy" +
-                                "+tsiog8rXxLWCl9ZsS8kMtQw5JNznMhoO8TWLFinyG8QA9Uy9kj8mpXFpIgJFQLfNto39GUyBP2hWHyY3DotxPh8Z6pg4UotBTihtGRbgZKr9lcDv06Dv0iLYiXXnf8GjeXytBmi1jPnhocTCnyMvAgMBAAECgYBPEKc4utGrv9QtTP4ySt9PvE/HLb2nu6MlnfauyusJwJ3FiGiVbjfEvkAclCfToTdQ+DSjeE4ZQBMkM2X/4j7M6Ck2EWr5KW/inC8YJzFUZtWz9Kn8jQ9pGCj/9apafCWCsbFQhI/q/kJrgwmGvGRLvIyyggxTYgf4UfcpLKlnQQJBAOOZO6PQnHZyoLpy48BeoLrV+numdSaI4Pll0Yuk7+8fkMzp3ed064QMJsbIywVjoxLtncGsRI60SmGb4G+lP6ECQQDOkThyu93UsjHhuHgVZBiMfNvpVERlFsuAcRbhpoZslWtrp/lx0Iktsy/kKNRryT5lEE/D0AsbRA3xiIbBArDPAkAeL5CNZXma7BENKXezZ9mBbifOhoE7HyRXb32fO7zmxhT6WHop3IPv+3yZGMB0coaKWCF4MlTVaGwFDhtyM0SBAkA00eFzRSKmHqKuqzLZlWzJj6vT8B5FEx0aTNCjBqfc4CBFuQAJ4F8TdnxKhT48CYuQ4CjlUy9j23UNS/HZLMz1AkEA1MKbMk1B/uLSA3CNgg/5jKNEimFO1QNS93/ucM8mr0IFp2tPbr6sgOQ2LUUSCWA3Da1tXjloN0BWrq9akAp/aw==");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return privateKey;
-    }
-
-    /**
-     * 解密base64编码得到公钥
+     * 生成public key
      *
-     * @param key 密钥字符串（经过base64编码）
-     * @throws Exception
+     * @return
      */
-
-    private static PublicKey DecodePublicKey(String key) throws Exception {
-        byte[] keyBytes;
-        keyBytes = Base64.decode(key);
-        X509EncodedKeySpec keySpec = new X509EncodedKeySpec(keyBytes);
-        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-        PublicKey publicKey = keyFactory.generatePublic(keySpec);
-        return publicKey;
+    public static String generateBase64PublicKey() {
+        RSAPublicKey key = (RSAPublicKey) keyPair.getPublic();
+        return new String(Base64.encodeBase64(key.getEncoded()));
     }
 
     /**
-     * 解密base64编码得到私钥
+     * 解密
      *
-     * @param key 密钥字符串（经过base64编码）
-     * @throws Exception
+     * @param string
+     * @return
      */
-
-    private static PrivateKey DecodePrivateKey(String key) throws Exception {
-        byte[] keyBytes;
-        keyBytes = Base64.decode(key);
-        PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(keyBytes);
-        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-        PrivateKey privateKey = keyFactory.generatePrivate(keySpec);
-        return privateKey;
+    public static String decryptBase64(String string) {
+        return new String(decrypt(Base64.decodeBase64(string)));
     }
 
-    /**
-     * 获取加密密码器
-     */
-    private static Cipher getEncryptCipher() {
-        if (encryptCipher == null) {
-            try {
-                encryptCipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
-                encryptCipher.init(Cipher.ENCRYPT_MODE, getPublicKey());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+    private static byte[] decrypt(byte[] string) {
+        try {
+            Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
+            Cipher cipher = Cipher.getInstance("RSA/None/PKCS1Padding", "BC");
+            RSAPrivateKey pbk = (RSAPrivateKey) keyPair.getPrivate();
+            cipher.init(Cipher.DECRYPT_MODE, pbk);
+            byte[] plainText = cipher.doFinal(string);
+            return plainText;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
-        return encryptCipher;
     }
 
-    /**
-     * 获取解密密码器
-     */
-    private static Cipher getDecryptCipher() {
-        if (decryptCipher == null) {
-            try {
-                decryptCipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
-                decryptCipher.init(Cipher.DECRYPT_MODE, getPrivateKey());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return decryptCipher;
-    }
 
-    /**
-     * 把消息加密
-     *
-     * @param message 明文
-     * @return Base64密文
-     * @throws BadPaddingException
-     * @throws IllegalBlockSizeException
-     * @throws UnsupportedEncodingException
-     */
-    public synchronized static String encrypt(String message) throws Exception {
-        byte[] plainText = message.getBytes("utf-8");
-
-        ByteBuffer out = ByteBuffer.allocate(1024);
-        ByteBuffer in = ByteBuffer.wrap(plainText);
-        while (in.remaining() > 0) {
-            byte[] data = (in.remaining() > 100) ? new byte[100] : new byte[in.remaining()];
-            // if (in.remaining() > 100)
-            //     data = new byte[100];
-            // else
-            //     data = new byte[in.remaining()];
-            in.get(data);
-            byte[] cipherText = getEncryptCipher().doFinal(data);
-            out.put(cipherText);
-        }
-        out.flip();
-        byte[] raw = new byte[out.limit()];
-        out.get(raw);
-        return Base64.encode(raw);
-    }
-
-    /**
-     * 把密文解密成明文
-     *
-     * @param message Base64密文
-     * @return 明文
-     * @throws BadPaddingException
-     * @throws IllegalBlockSizeException
-     * @throws UnsupportedEncodingException
-     */
-    public synchronized static String decrypt(String message) throws Exception {
-        byte[] cipherText = Base64.decode(message);
-        ByteBuffer out = ByteBuffer.allocate(1024);
-        ByteBuffer in = ByteBuffer.wrap(cipherText);
-        while (in.remaining() > 0) {
-            byte[] data;
-            if (in.remaining() > 128)
-                data = new byte[128];
-            else
-                data = new byte[in.remaining()];
-            in.get(data);
-            byte[] plainText = getDecryptCipher().doFinal(data);
-            out.put(plainText);
-        }
-        out.flip();
-        byte[] raw = new byte[out.limit()];
-        out.get(raw);
-        return new String(raw, "utf-8");
-    }
 }

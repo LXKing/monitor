@@ -17,8 +17,7 @@ public class RealtimeDataBlock {
 
     @Override
     public String toString() {
-        return "RealtimeDataBlock{" + "tracks=" + tracks + ", faults=" + faults + ", flows=" + flows + ", replies=" +
-                replies + '}';
+        return "RealtimeDataBlock{" + "tracks=" + tracks + ", faults=" + faults + ", flows=" + flows + ", replies=" + replies + '}';
     }
 
     /**

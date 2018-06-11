@@ -16,9 +16,7 @@ public class OwnerBaseInfo {
 
     @Override
     public String toString() {
-        return "OwnerBaseInfo{" + "ownerName='" + ownerName + '\'' + ", phone='" + phone + '\'' + ", idType='" +
-                idType + '\'' + ", idNumber='" + idNumber + '\'' + ", email='" + email + '\'' + ", remark='" + remark
-                + '\'' + '}';
+        return "OwnerBaseInfo{" + "ownerName='" + ownerName + '\'' + ", phone='" + phone + '\'' + ", idType='" + idType + '\'' + ", idNumber='" + idNumber + '\'' + ", email='" + email + '\'' + ", remark='" + remark + '\'' + '}';
     }
 
     /**

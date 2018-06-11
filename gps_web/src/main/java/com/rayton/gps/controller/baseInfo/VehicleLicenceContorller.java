@@ -41,8 +41,7 @@ public class VehicleLicenceContorller {
         List<Drivervl> driverdl = drivervlService.selectDrivervl(row);
         // Assist a = new Assist();
         List<VehicleLicense> drivingLisenceList = new ArrayList<>();
-        driverdl.forEach(drivervl1 -> drivingLisenceList.add(vehicleLicenseService.selectVehicleLicenseById
-                (drivervl1.getVehicleLicenceId())));
+        driverdl.forEach(drivervl1 -> drivingLisenceList.add(vehicleLicenseService.selectVehicleLicenseById(drivervl1.getVehicleLicenceId())));
 
         Page<VehicleLicense> page = new Page<>();
         page.rows = drivingLisenceList;
@@ -53,8 +52,7 @@ public class VehicleLicenceContorller {
     @RequiresPermissions("baseinfo.driver.addVehicleLicence")
     @PostMapping(value = "/driver/addDrivervl")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> addSections(@RequestParam String driverId, @RequestParam String vl)
-            throws Exception {
+    public ResponseEntity<Map<Object, Object>> addSections(@RequestParam String driverId, @RequestParam String vl) throws Exception {
         List<String> list = Arrays.asList(vl.split(","));
         // List<String> list = JsonMapper.toObject(vehicles, List.class, String.class);
 
@@ -72,8 +70,7 @@ public class VehicleLicenceContorller {
     @RequiresPermissions("baseinfo.driver.removeVehicleLicence")
     @PostMapping(value = "/driver/removeDrivervl")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> removeSection(@RequestParam String driverId, @RequestParam String vl)
-            throws Exception {
+    public ResponseEntity<Map<Object, Object>> removeSection(@RequestParam String driverId, @RequestParam String vl) throws Exception {
         Assist a = new Assist();
         a.setRequires(Assist.andEq("driver_id", driverId));
         a.setRequires(Assist.andEq("vehicle_licence_id", vl));

@@ -16,8 +16,7 @@ public class FeatureInfo {
 
     @Override
     public String toString() {
-        return "FeatureInfo{" + "id='" + id + '\'' + ", index=" + index + ", name='" + name + '\'' + ", command='" +
-                command + '\'' + ", params=" + params + ", description='" + description + '\'' + '}';
+        return "FeatureInfo{" + "id='" + id + '\'' + ", index=" + index + ", name='" + name + '\'' + ", command='" + command + '\'' + ", params=" + params + ", description='" + description + '\'' + '}';
     }
 
     /**

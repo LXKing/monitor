@@ -13,8 +13,7 @@ public class UpgradeResultReport {
 
     @Override
     public String toString() {
-        return "UpgradeResultReport{" + "id='" + id + '\'' + ", number='" + number + '\'' + ", plateNumber='" +
-                plateNumber + '\'' + ", time=" + time + ", type='" + type + '\'' + ", result='" + result + '\'' + '}';
+        return "UpgradeResultReport{" + "id='" + id + '\'' + ", number='" + number + '\'' + ", plateNumber='" + plateNumber + '\'' + ", time=" + time + ", type='" + type + '\'' + ", result='" + result + '\'' + '}';
     }
 
     public String getId() {

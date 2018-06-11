@@ -15,8 +15,7 @@ public class MotorcadeInfo {
 
     @Override
     public String toString() {
-        return "MotorcadeInfo{" + "id='" + id + '\'' + ", type='" + type + '\'' + ", name='" + name + '\'' + ", " +
-                "parentVisible=" + parentVisible + ", remark='" + remark + '\'' + '}';
+        return "MotorcadeInfo{" + "id='" + id + '\'' + ", type='" + type + '\'' + ", name='" + name + '\'' + ", " + "parentVisible=" + parentVisible + ", remark='" + remark + '\'' + '}';
     }
 
     /**

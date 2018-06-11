@@ -30,8 +30,7 @@ public class SectionAreaService {
         query.total = total;
 
         if (total > 0) {
-            List<SectionAreaInfo> rows = sectionAreaDao.queryPageDetail(companyId, filter, (pageIndex - 1) *
-                    pageSize, pageSize);
+            List<SectionAreaInfo> rows = sectionAreaDao.queryPageDetail(companyId, filter, (pageIndex - 1) * pageSize, pageSize);
             for (SectionAreaInfo dto : rows) {
                 // SectionAreaInfo info = new SectionAreaInfo();
                 // info.setId(dto.id);
@@ -63,8 +62,7 @@ public class SectionAreaService {
         search.total = total;
 
         if (total > 0) {
-            List<SectionAreaInfo> rows = sectionAreaDao.searchPageDetail(companyId, filter, (pageIndex - 1) *
-                    pageSize, pageSize);
+            List<SectionAreaInfo> rows = sectionAreaDao.searchPageDetail(companyId, filter, (pageIndex - 1) * pageSize, pageSize);
             for (SectionAreaInfo dto : rows) {
                 // SectionAreaInfo info = new SectionAreaInfo();
                 // info.setId(dto.id);

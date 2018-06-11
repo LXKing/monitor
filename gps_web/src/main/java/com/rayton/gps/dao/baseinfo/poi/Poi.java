@@ -20,9 +20,7 @@ public class Poi {
 
     @Override
     public String toString() {
-        return "Poi{" + "id=" + id + ", companyId='" + companyId + '\'' + ", type='" + type + '\'' + ", name='" +
-                name + '\'' + ", lat=" + lat + ", lng=" + lng + ", remark='" + remark + '\'' + ", editTime=" +
-                editTime + '}';
+        return "Poi{" + "id=" + id + ", companyId='" + companyId + '\'' + ", type='" + type + '\'' + ", name='" + name + '\'' + ", lat=" + lat + ", lng=" + lng + ", remark='" + remark + '\'' + ", editTime=" + editTime + '}';
     }
 
     /**

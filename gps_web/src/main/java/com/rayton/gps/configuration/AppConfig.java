@@ -98,8 +98,6 @@ public class AppConfig {
 
     @Override
     public String toString() {
-        return "AppConfig{" + "godpPortal='" + godpPortal + '\'' + ", godpUser='" + godpUser + '\'' + ", " +
-                "godpPassword='" + godpPassword + '\'' + ", operateLogCacheRows=" + operateLogCacheRows + ", " +
-                "topCompanyId='" + topCompanyId + '\'' + '}';
+        return "AppConfig{" + "godpPortal='" + godpPortal + '\'' + ", godpUser='" + godpUser + '\'' + ", " + "godpPassword='" + godpPassword + '\'' + ", operateLogCacheRows=" + operateLogCacheRows + ", " + "topCompanyId='" + topCompanyId + '\'' + '}';
     }
 }

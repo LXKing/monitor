@@ -50,8 +50,7 @@ public class AreaCatcherCache {
         areaInfos.addAll(areaCatcherService.getRoutes());
 
 
-        areaInfos.forEach(areaInfo -> AreaCatcherCache.bind(areaInfo.getDeviceNumber(), areaInfo.getAreaId(),
-                areaInfo.getAreaType()));
+        areaInfos.forEach(areaInfo -> AreaCatcherCache.bind(areaInfo.getDeviceNumber(), areaInfo.getAreaId(), areaInfo.getAreaType()));
     }
 
     // private synchronized static void init() {

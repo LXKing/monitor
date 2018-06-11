@@ -14,9 +14,7 @@ public class MileageOilCount {
 
     @Override
     public String toString() {
-        return "MileageOilCount{" + "motorcadeId='" + motorcadeId + '\'' + ", motorcade='" + motorcade + '\'' + ", "
-                + "vehicles=" + vehicles + ", mileages=" + mileages + ", oils=" + oils + ", start=" + start + ", " +
-                "end=" + end + '}';
+        return "MileageOilCount{" + "motorcadeId='" + motorcadeId + '\'' + ", motorcade='" + motorcade + '\'' + ", " + "vehicles=" + vehicles + ", mileages=" + mileages + ", oils=" + oils + ", start=" + start + ", " + "end=" + end + '}';
     }
 
     public String getMotorcadeId() {

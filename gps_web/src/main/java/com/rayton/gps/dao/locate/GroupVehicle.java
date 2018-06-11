@@ -14,10 +14,67 @@ public class GroupVehicle extends Latest {
     private String marker;
     private int rotate;
 
+    private String iconOpen;
+    private String iconClose;
+
+    public String getIconOpen() {
+        return iconOpen;
+    }
+
+    public void setIconOpen(String iconOpen) {
+        this.iconOpen = iconOpen;
+    }
+
+    public String getIconClose() {
+        return iconClose;
+    }
+
+    public void setIconClose(String iconClose) {
+        this.iconClose = iconClose;
+    }
+
+    private String inum;
+    private String driname;
+
+    private String phone;
+
+    private String sim;
+
+    public String getSim() {
+        return sim;
+    }
+
+    public void setSim(String sim) {
+        this.sim = sim;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getInum() {
+        return inum;
+    }
+
+    public void setInum(String inum) {
+        this.inum = inum;
+    }
+
+    public String getDriname() {
+        return driname;
+    }
+
+    public void setDriname(String driname) {
+        this.driname = driname;
+    }
+
     @Override
     public String toString() {
-        return "GroupVehicle{" + "id='" + id + '\'' + ", pid='" + pid + '\'' + ", type=" + type + ", icon='" + icon +
-                '\'' + ", marker='" + marker + '\'' + ", rotate=" + rotate + '}';
+        return "GroupVehicle{" + "id='" + id + '\'' + ", pid='" + pid + '\'' + ", type=" + type + ", icon='" + icon + '\'' + ", marker='" + marker + '\'' + ", rotate=" + rotate + '}';
     }
 
     /**

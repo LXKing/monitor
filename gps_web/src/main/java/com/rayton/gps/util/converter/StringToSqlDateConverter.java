@@ -2,7 +2,6 @@ package com.rayton.gps.util.converter;
 
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
-import org.springframework.util.Assert;
 
 import java.sql.Date;
 import java.text.ParseException;

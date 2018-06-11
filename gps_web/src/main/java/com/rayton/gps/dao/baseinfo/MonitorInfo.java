@@ -9,8 +9,7 @@ public class MonitorInfo {
 
     @Override
     public String toString() {
-        return "MonitorInfo{" + "id='" + id + '\'' + ", name='" + name + '\'' + ", type='" + type + '\'' + ", " +
-                "remark='" + remark + '\'' + '}';
+        return "MonitorInfo{" + "id='" + id + '\'' + ", name='" + name + '\'' + ", type='" + type + '\'' + ", " + "remark='" + remark + '\'' + '}';
     }
 
     public String getId() {

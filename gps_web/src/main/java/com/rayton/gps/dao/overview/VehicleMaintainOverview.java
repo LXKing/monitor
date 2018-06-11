@@ -15,8 +15,7 @@ public class VehicleMaintainOverview {
 
     @Override
     public String toString() {
-        return "VehicleMaintainOverview{" + "total=" + total + ", expired=" + expired + ", expired30=" + expired30 +
-                ", expired15=" + expired15 + ", expired7=" + expired7 + '}';
+        return "VehicleMaintainOverview{" + "total=" + total + ", expired=" + expired + ", expired30=" + expired30 + ", expired15=" + expired15 + ", expired7=" + expired7 + '}';
     }
 
     /**

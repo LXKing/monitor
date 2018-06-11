@@ -12,8 +12,7 @@ public class DeviceEventReport {
 
     @Override
     public String toString() {
-        return "DeviceEventReport{" + "id='" + id + '\'' + ", number='" + number + '\'' + ", plateNumber='" +
-                plateNumber + '\'' + ", time=" + time + ", eventId=" + eventId + ", content='" + content + '\'' + '}';
+        return "DeviceEventReport{" + "id='" + id + '\'' + ", number='" + number + '\'' + ", plateNumber='" + plateNumber + '\'' + ", time=" + time + ", eventId=" + eventId + ", content='" + content + '\'' + '}';
     }
 
     public String getId() {

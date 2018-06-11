@@ -57,13 +57,13 @@ window.common = {
         var seconds = Math.floor((milliseconds - days * 24 * 60 * 60 * 1000 - hours * 60 * 60 * 1000 - minutes * 60 * 1000) / 1000);
         var timespans = [];
         if (days > 0)
-            timespans.push(days + "天");
+            timespans.push(days + "");
         if (hours > 0)
-            timespans.push(hours + "小时");
+            timespans.push(hours + "");
         if (minutes > 0)
-            timespans.push(minutes + "分");
+            timespans.push(minutes + "");
         if (seconds > 0)
-            timespans.push(seconds + "秒");
+            timespans.push(seconds + "");
 
         return timespans.join(':');
     },

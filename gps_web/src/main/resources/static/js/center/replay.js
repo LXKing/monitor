@@ -1,12 +1,13 @@
+//var laydate;
 $(function () {
     layui.use('laydate', function () {
-        var laydate = layui.laydate;
+        var laydate= layui.laydate;
 
         //日期时间选择器
         laydate.render({
             elem: '#allStartTime'
             , type: 'datetime'
-            , value: new Date()
+            , value: new Date(new Date().toLocaleDateString())
             , theme: '#0488d1'
             , change: function (value, date, endDate) {
                 replay.txtStartTime = value;
@@ -69,6 +70,20 @@ $(function () {
          */
         deviceNumber: null,
         /**
+         * 停车
+         */
+        parking: null,
+
+
+        /**
+         * 默认显示标签
+         */
+        iscreateAllMarker:0,
+        /**
+         * 超速
+         */
+        sp: null,
+        /**
          * 分页下载时的页大小
          */
         pageSize: 100,
@@ -100,6 +115,12 @@ $(function () {
          * 位置数据
          */
         tracks: [],
+
+        /**
+         * 位置数据对象
+         */
+        tracksclass: [],
+
         /**
          * 正在播放位置数据
          */
@@ -161,6 +182,15 @@ $(function () {
 
         onMapLoaded: function (map) {
             replay.webMap = map;
+            var navigationControl = new BMap.NavigationControl({
+                // 靠左上角位置
+                anchor: BMAP_ANCHOR_TOP_LEFT,
+                // LARGE类型
+                type: BMAP_NAVIGATION_CONTROL_LARGE,
+                // 启用显示定位
+                enableGeolocation: true
+            });
+            replay.webMap.addControl(navigationControl);
             replay.infoWindow = webMap.createInfoWindow({
                 map: map,
                 data: undefined,
@@ -223,7 +253,7 @@ $(function () {
                     html.push('<b>里程:</b>');
                     html.push(common.round(this.data.m, 3) + 'km');
                     html.push('&nbsp;&nbsp;<b>速度:</b>');
-                    html.push(common.round(this.data.sp, 1) + 'km/h');
+                    html.push(common.round(this.data.sp*10, 1) + 'km/h');
                     html.push('</div>');
 
                     // 第四行
@@ -441,10 +471,19 @@ $(function () {
             this.webMap.clearOverlays();
             var points = this.webMap.makePoints(this.tracks);
             // 画线
+            var sy = new BMap.Symbol(BMap_Symbol_SHAPE_BACKWARD_OPEN_ARROW, {
+                scale: 0.6,//图标缩放大小
+                strokeColor:'#fff',//设置矢量图标的线填充颜色
+                strokeWeight: '2',//设置线宽
+            });
+            var icons = new BMap.IconSequence(sy, '10', '30');
+
             webMap.createPolyline({
                 map: this.webMap,
+                icons:icons,
                 points: points,
-                color: 'blue'
+                // color: 'blue'
+                color:'#2048c8'
             })
 
             // 标注起点,终点,停车点
@@ -585,36 +624,38 @@ $(function () {
                 var newRow = [];
                 //这个开始
                 newRow.push(' <li>');
+                newRow.push('<div class="allTime">');
                 newRow.push(' <div class="stTime">' + dates.start.toDateTimeString("MM-dd hh:mm:ss") + '</div>');
+                newRow.push(' <div class="edTime">' + dates.end.toDateTimeString("MM-dd hh:mm:ss") + '</div>');
+                newRow.push('</div>')
                 newRow.push(' <div class="stAdd"><span name="from"></span></div>');
-                newRow.push('   <div class="edTime">' + dates.end.toDateTimeString("MM-dd hh:mm:ss") + '</div>');
                 newRow.push('   <div class="edAdd"><span name="to"></span></div>');
                 newRow.push('  <div class="dataList">');
                 newRow.push(' <table border="0" cellpadding="0" cellspacing="0">');
                 newRow.push('  <thead>');
-                newRow.push('   <td>行车里程</td>');
-                newRow.push('   <td>平均速度</td>');
-                newRow.push('   <td>最高速度</td>');
-                newRow.push('    <td>行车油耗</td>');
-                newRow.push('    <td>行驶时长</td>');
+                newRow.push('   <td>' + common.round(averageSpeed, 1) + '(km/h)</td>');
+                newRow.push('   <td>' + common.round(averageSpeed, 1) + '(km/h)</td>');
+                newRow.push('   <td>' + common.round(mileage, 1) + '(km)</td>');
+                newRow.push('    <td>' + common.round(oilmeter.total, 1) + '(L)</td>');
+                newRow.push('    <td>' + common.timespan(runtimes) + '</td>');
 
                 newRow.push('   </thead>');
                 newRow.push('    <tbody>');
                 newRow.push('   <tr>');
-                newRow.push('     <td>' + common.round(mileage, 1) + '(km)</td>');
-                newRow.push('     <td>' + common.round(averageSpeed, 1) + '(km/h)</td>');
-                newRow.push('     <td>' + common.round(averageSpeed, 1) + '(km/h)</td>');
-                newRow.push('     <td>' + common.round(oilmeter.total, 1) + '(L)</td>');
-                newRow.push('     <td>' + common.timespan(runtimes) + '</td>');
+                newRow.push('     <td>平均速度</td>');
+                newRow.push('     <td>最高速度</td>');
+                newRow.push('     <td>里程</td>');
+                newRow.push('     <td>油耗</td>');
+                newRow.push('     <td>时长</td>');
 
                 newRow.push('   <tr>');
                 newRow.push('   </tbody>');
                 newRow.push('   </table>');
                 newRow.push('    </div>');
                 newRow.push('   <div class="drivingPro" style="display: none;">');
+                newRow.push('   <div id="fuckP"></div>  ');
                 newRow.push('   <span>');
                 newRow.push('   <img src="./static/image/replay/click_bo.png" alt="" class="iplay">');
-                newRow.push('   <button class="fuckP">平滑</button>  ');
                 newRow.push('  </span>');
                 newRow.push('   <span>');
                 newRow.push('    <div class="layui-progress" style="top: 3px;" >');
@@ -633,7 +674,7 @@ $(function () {
                 newRow.push(' </li>');
                 //结束
                 var row = $(newRow.join(''));
-
+                $(".overlay").css("display","none");
                 $("#dri_all").append(row);
                 var trip = {
                     data: tracks
@@ -655,6 +696,9 @@ $(function () {
                 var timeStart = trip.timeStart.toDate().getTime();
                 var timeEnd = trip.timeEnd.toDate().getTime();
                 var milliseconds = timeEnd - timeStart;
+
+
+
                 var runtimes = common.timespan(milliseconds);
                 trip.runtimes = runtimes;
 
@@ -736,35 +780,37 @@ $(function () {
 
                 var newRow = [];
 //这个开始
-                newRow.push(' <li>');
+                newRow.push(' <li class="fenduan">');
+                newRow.push('<div class="allTime">');
                 newRow.push(' <div class="stTime">' + trip.timeStart.toDate().toDateTimeString("MM-dd hh:mm:ss") + '</div>');
+                newRow.push(' <div class="edTime">' + trip.timeEnd.toDate().toDateTimeString("MM-dd hh:mm:ss") + '</div>');
+                newRow.push('</div>');
                 newRow.push(' <div class="stAdd"><span name="from"></span></div>');
-                newRow.push('   <div class="edTime">' + trip.timeEnd.toDate().toDateTimeString("MM-dd hh:mm:ss") + '</div>');
                 newRow.push('   <div class="edAdd"><span name="to"></span></div>');
                 newRow.push('  <div class="dataList">');
                 newRow.push(' <table border="0" cellpadding="0" cellspacing="0">');
                 newRow.push('  <thead>');
-                newRow.push('   <td>行车里程</td>');
-                newRow.push('   <td>平均速度</td>');
-                newRow.push('   <td>最高速度</td>');
-                newRow.push('    <td>行车油耗</td>');
-                newRow.push('    <td>行驶时长</td>');
+                newRow.push('   <td>' + trip.averageSpeed + '(km/h)</td>');
+                newRow.push('   <td>' + trip.mileages + '(km/h)</td>');
+                newRow.push('   <td>' + trip.mileages + '(km)</td>');
+                newRow.push('    <td>' + trip.oils + '(L)</td>');
+                newRow.push('    <td>' + trip.runtimes + '</td>');
                 newRow.push('   </thead>');
                 newRow.push('    <tbody>');
                 newRow.push('   <tr>');
-                newRow.push('     <td>' + trip.mileages + '(km)</td>');
-                newRow.push('     <td>' + trip.averageSpeed + '(km/h)</td>');
-                newRow.push('     <td>' + trip.mileages + '(km/h)</td>');
-                newRow.push('     <td>' + trip.oils + '(L)</td>');
-                newRow.push('     <td>' + trip.runtimes + '</td>');
+                newRow.push('     <td>平均速度</td>');
+                newRow.push('     <td>最高速度</td>');
+                newRow.push('     <td>里程</td>');
+                newRow.push('     <td>油耗</td>');
+                newRow.push('     <td>时长</td>');
                 newRow.push('   <tr>');
                 newRow.push('   </tbody>');
                 newRow.push('   </table>');
                 newRow.push('    </div>');
                 newRow.push('   <div class="drivingPro" style="display: none;">');
+                newRow.push('   <div id="fuckP"></div>  ');
                 newRow.push('   <span>');
                 newRow.push('   <img src="./static/image/replay/click_bo.png" alt="" class="iplay">');
-                newRow.push('   <button class="fuckP">平滑</button>  ');
                 newRow.push('  </span>');
                 newRow.push('   <span>');
 
@@ -786,8 +832,9 @@ $(function () {
 
 
                 var row = $(newRow.join(''));
-
                 $("#driving_li").append(row);
+                $(".dl_select span:nth-child(2)").text('分段('+$("#driving_li .fenduan").length+')');
+
                 row.data('trip', trip);
 
 
@@ -799,10 +846,197 @@ $(function () {
                 }, row);
             }
 
+
+
+            $("#gridReplayIllegalParking tr").remove();
+            updateGridReplayIllegalParkingRow(this.tracks);  //非法停车
+
+            /**
+             * 更新非法停车
+             */
+            function  updateGridReplayIllegalParkingRow(track) {
+                var length=track.length;
+                for (var index = 0; index < length; index++) {
+                    var park = track[index];
+                    var park2=null;
+                    if(park.sp==0  && gpsDataParser.parseAcc(park)=="点火" ){ //进入下一个
+                        do{
+                            index++;
+                            if(index < length){
+                                park2=track[index];
+                            }else{
+                                park2=null;
+                                break;
+                            }
+                        }while( park2.sp == 0)
+                        if(park2!=null){
+                            var timeStart = park.gt.toDate().getTime();
+                            var timeEnd =  park2.gt.toDate().getTime();
+                            var milliseconds = timeEnd - timeStart;
+                            if(replay.parking*60*1000<milliseconds) {
+                                var paktimes = common.timespan(milliseconds);
+                                var newRow = [];
+                                newRow.push('<tr>');
+                                newRow.push('<td>');
+                                newRow.push('	<div class="il_paking"><div class="mon-icon-h-x16 i-16-parkpoint"></div>');
+                                newRow.push('		<span style="color:red;">' + park.gt.toDate().toDateTimeString('yyyy-MM-dd hh:mm:ss') + '-'
+                                    + park2.gt.toDate().toDateTimeString('yyyy-MM-dd hh:mm:ss') + '</span>');
+                                newRow.push('		<span style="color:#999999;">停车:<span style="color:red;">' + paktimes + '</span></span>');
+                                newRow.push('		<span style="color:#999999;">地点:<span name="address" style="color:#999999;"></span></span>');
+                                newRow.push('	</div><hr>');
+                                newRow.push('</td>');
+                                newRow.push('</tr>');
+                                var row = $(newRow.join(''));
+                                $("#gridReplayIllegalParking").append(row);
+                                $(".dl_select span:nth-child(6)").text('静止('+$("#gridReplayIllegalParking .il_paking").length+')');
+                                row.data('park', park);
+                                webMap.createMarker({
+                                    map: replay.webMap,
+                                    data: park,
+                                    allowShowLabel: false,
+                                    infoWindow: replay.infoWindow,
+                                    icon: {
+                                        url: '../static/img/center/IllegalParking.png',
+                                        offset: 0
+                                    },
+                                    iconAnchor: {
+                                        x: 16,
+                                        y: 32
+                                    }
+                                });
+                                row.on("click", function () {
+                                    console.log('点击了');
+                                    $("#gridReplayIllegalParking").find(".tr-selected").removeClass('tr-selected');
+                                    $(this).addClass('tr-selected');
+                                    var speed = $(this).data('park');
+                                    if (speed) {
+                                        // 画点
+                                        if (replay.selectedPark)
+                                            replay.selectedPark.dispose();
+                                        if (speed ) {
+                                            replay.selectedPark = webMap.createMarker({
+                                                map: replay.webMap,
+                                                data: speed,
+                                                allowShowLabel: false,
+                                                infoWindow: replay.infoWindow,
+                                                icon: {
+                                                    url: '../static/img/car.png',
+                                                    offset: 0
+                                                },
+                                                iconAnchor: {
+                                                    x: 16,
+                                                    y: 32
+                                                }
+                                            });
+                                            replay.selectedPark.openInfoWindow();
+                                        }
+                                    }
+                                });
+                                replay.webMap.queryAddress(park.lng, park.lat, function (address, row) {
+                                    row.find('span[name="address"]').text(address);
+                                }, row);
+                            }
+                        }
+
+                    }
+
+                }
+            }
+
+            $("#gridReplayoversp tr").remove();
+            updateGridReplaySpRow(this.tracks);
+            /**
+             * 更新超速表
+             */
+            function  updateGridReplaySpRow(daytrips) {
+                for (var index = 0; index < daytrips.length; index++) {
+                    var trip = daytrips[index];
+                    parseSp(trip);
+                }
+            }
+
+
+            /**
+             * 解析超速
+             */
+            function parseSp(trip) {
+                if(replay.sp==0){
+                }else if(replay.sp<trip.sp*10){
+                    var newRow = [];
+                    newRow.push('<tr>');
+                    newRow.push('<td>');
+                    newRow.push('	<div class="osplist"><div class="mon-icon-h-x16 i-16-parkpoint"></div>');
+                    newRow.push('		<span style="color:red;">' + trip.gt.toDate().toDateTimeString('yyyy-MM-dd hh:mm:ss'));
+                    newRow.push('		<span style="color:#999999;">速度:<span style="color:red;">' + trip.sp*10 + 'km/h</span></span>');
+                    newRow.push('		<span style="color:#999999;">地点:<span name="address" style="color:#999999;"></span></span>');
+                    newRow.push('	</div><hr>');
+                    newRow.push('</td>');
+                    newRow.push('</tr>');
+                    var row = $(newRow.join(''));
+                    $("#gridReplayoversp").append(row);
+                    $(".dl_select span:nth-child(5)").text('超速('+$("#gridReplayoversp .osplist").length+')');
+                    row.data('speed', trip);
+                    webMap.createMarker({
+                        map: replay.webMap,
+                        data: trip,
+                        allowShowLabel: false,
+                        infoWindow: replay.infoWindow,
+                        icon: {
+                            url: '../static/img/center/overspeed.png',
+                            offset: 0
+                        },
+                        iconAnchor: {
+                            x: 16,
+                            y: 32
+                        }
+                    });
+
+
+                    row.on("click", function () {
+                        console.log('点击了');
+                        $("#gridReplayoversp").find(".tr-selected").removeClass('tr-selected');
+                        $(this).addClass('tr-selected');
+                        var speed = $(this).data('speed');
+                        if (speed) {
+                            // 画点
+                            if (replay.selectedPark)
+                                replay.selectedPark.dispose();
+                            if (speed ) {
+                                replay.selectedPark = webMap.createMarker({
+                                    map: replay.webMap,
+                                    data: speed,
+                                    allowShowLabel: false,
+                                    infoWindow: replay.infoWindow,
+                                    icon: {
+                                        url: '../static/img/car.png',
+                                        offset: 0
+                                    },
+                                    iconAnchor: {
+                                        x: 16,
+                                        y: 32
+                                    }
+                                });
+                                replay.selectedPark.openInfoWindow();
+                            }
+                        }
+                    });
+                    replay.webMap.queryAddress(trip.lng, trip.lat, function (address, row) {
+                        row.find('span[name="address"]').text(address);
+                    }, row);
+
+                }
+
+            }
+
+
+
+
+
+
             // 更新停车表
             $("#gridReplayPark tr").remove();
             for (var x in this.parks.days) {
-                // var daytrips = this.parks.days[x];
+                var daytrips = this.parks.days[x];
                 // var newRow = [];
                 // newRow.push('<tr>');
                 // newRow.push('<td>');
@@ -816,6 +1050,10 @@ $(function () {
                 // $("#gridReplayPark").append($(row));
                 updateGridReplayParkRow(daytrips);
             }
+
+
+
+
 
             /**
              * 更新停车表
@@ -834,53 +1072,56 @@ $(function () {
                 var timeStart = trip.timeStart.toDate().getTime();
                 var timeEnd = trip.timeEnd.toDate().getTime();
                 var milliseconds = timeEnd - timeStart;
-                var paktimes = common.timespan(milliseconds);
-                trip.paktimes = paktimes;
+                if(replay.parking*60*1000<milliseconds) {
+                    var paktimes = common.timespan(milliseconds);
+                    trip.paktimes = paktimes;
 
-                var newRow = [];
-                newRow.push('<tr>');
-                newRow.push('<td>');
-                newRow.push('	<div><div class="mon-icon-h-x16 i-16-parkpoint"></div>');
-                newRow.push('		<span style="color:red;">' + trip.timeStart.toDate().toDateTimeString('hh:mm:ss') + '-'
-                    + trip.timeEnd.toDate().toDateTimeString('hh:mm:ss') + '</span>');
-                newRow.push('		<span style="color:#999999;">停车:<span style="color:red;">' + trip.paktimes + '</span></span>');
-                newRow.push('		<span style="color:#999999;">地点:<span name="address" style="color:#999999;"></span></span>');
-                newRow.push('	</div><hr>');
-                newRow.push('</td>');
-                newRow.push('</tr>');
-                var row = $(newRow.join(''));
-                $("#gridReplayPark").append(row);
-                row.data('trip', trip);
-                row.on("click", function () {
-                    $("#gridReplayPark").find(".tr-selected").removeClass('tr-selected');
-                    $(this).addClass('tr-selected');
-                    var trip = $(this).data('trip');
-                    if (trip) {
-                        // 画点
-                        if (replay.selectedPark)
-                            replay.selectedPark.dispose();
-                        if (trip.data && trip.data.length > 0) {
-                            replay.selectedPark = webMap.createMarker({
-                                map: replay.webMap,
-                                data: trip.data[0],
-                                allowShowLabel: false,
-                                infoWindow: replay.infoWindow,
-                                icon: {
-                                    url: '../static/img/car.png',
-                                    offset: 0
-                                },
-                                iconAnchor: {
-                                    x: 16,
-                                    y: 32
-                                }
-                            });
-                            replay.selectedPark.openInfoWindow();
+                    var newRow = [];
+                    newRow.push('<tr>');
+                    newRow.push('<td>');
+                    newRow.push('	<div class="st_carlist"><div class="mon-icon-h-x16 i-16-parkpoint"></div>');
+                    newRow.push('		<span style="color:red;">' + trip.timeStart.toDate().toDateTimeString('hh:mm:ss') + '-'
+                        + trip.timeEnd.toDate().toDateTimeString('hh:mm:ss') + '</span>');
+                    newRow.push('		<span style="color:#999999;">停车:<span style="color:red;">' + trip.paktimes + '</span></span>');
+                    newRow.push('		<span style="color:#999999;">地点:<span name="address" style="color:#999999;"></span></span>');
+                    newRow.push('	</div><hr>');
+                    newRow.push('</td>');
+                    newRow.push('</tr>');
+                    var row = $(newRow.join(''));
+                    $("#gridReplayPark").append(row);
+                    $(".dl_select span:nth-child(3)").text('停车('+$("#gridReplayPark .st_carlist").length+')');
+                    row.data('trip', trip);
+                    row.on("click", function () {
+                        $("#gridReplayPark").find(".tr-selected").removeClass('tr-selected');
+                        $(this).addClass('tr-selected');
+                        var trip = $(this).data('trip');
+                        if (trip) {
+                            // 画点
+                            if (replay.selectedPark)
+                                replay.selectedPark.dispose();
+                            if (trip.data && trip.data.length > 0) {
+                                replay.selectedPark = webMap.createMarker({
+                                    map: replay.webMap,
+                                    data: trip.data[0],
+                                    allowShowLabel: false,
+                                    infoWindow: replay.infoWindow,
+                                    icon: {
+                                        url: '../static/img/car.png',
+                                        offset: 0
+                                    },
+                                    iconAnchor: {
+                                        x: 16,
+                                        y: 32
+                                    }
+                                });
+                                replay.selectedPark.openInfoWindow();
+                            }
                         }
-                    }
-                });
-                replay.webMap.queryAddress(trip.pointStart.lng, trip.pointStart.lat, function (address, row) {
-                    row.find('span[name="address"]').text(address);
-                }, row);
+                    });
+                    replay.webMap.queryAddress(trip.pointStart.lng, trip.pointStart.lat, function (address, row) {
+                        row.find('span[name="address"]').text(address);
+                    }, row);
+                }
             }
 
             // 更新报警表
@@ -918,17 +1159,22 @@ $(function () {
                 var newRow = [];
                 newRow.push('<tr>');
                 newRow.push('<td>');
-                newRow.push('	<div><div class="mon-icon-h-x16 i-16-alarmpoint"></div>');
+                newRow.push('	<div class="warn_car"><div class="mon-icon-h-x16 i-16-alarmpoint"></div>');
                 newRow.push('		<span>' + alarm.gt.toDate().toDateTimeString('hh:mm:ss') + '</span><br />');
-                newRow.push('		<span style="color:#999999;">报警:<span style="color:red;">' + gpsDataParser.parseAlarm(alarm) + '</span></span><br />');
+                newRow.push('		<span style="color:#999999;">报警:<span style="color:red;">' + gpsDataParser.parseAlarm(alarm) );
+                if(gpsDataParser.parseAlarm(alarm)=="[终端]超速报警"){
+                    newRow.push('	速度:' + alarm.sp*10 +'km/h');
+                }
+                newRow.push( '</span></span><br />');
                 newRow.push('		<span style="color:#999999;">地点:<span name="address" style="color:#999999;"></span></span>');
                 newRow.push('	</div>');
                 newRow.push('</td>');
                 newRow.push('</tr>');
                 var row = $(newRow.join(''));
                 $("#gridReplayAlarm").append(row);
+                $(".dl_select span:nth-child(4)").text('告警('+$("#gridReplayAlarm .warn_car").length+')');
                 row.data('alarm', alarm);
-                row.live("click", function () {
+                row.on("click", function () {
                     $("#gridReplayAlarm").find(".tr-selected").removeClass('tr-selected');
                     $(this).addClass('tr-selected');
                     var alarm = $(this).data('alarm');
@@ -943,7 +1189,7 @@ $(function () {
                                 allowShowLabel: false,
                                 infoWindow: replay.infoWindow,
                                 icon: {
-                                    url: '../resources/images/alarmpoint.png',
+                                    url:  '../static/img/car.png',
                                     offset: 0
                                 },
                                 iconAnchor: {
@@ -977,8 +1223,16 @@ $(function () {
                     replay.webMap.translate(list, 0, function () {
                         replay.pageIndex++;
                         replay.tracks = replay.tracks.concat(list);
-                        //  这个没有进度条
+
                         replay.playProgress();
+                        if (replay.trackCount && replay.trackCount > 0) {
+                            var ratio = replay.tracks.length / replay.trackCount;
+                            var width = Math.round(ratio * 100);
+                            if (width > 100)
+                                width = 100;
+                            var ratioText = width + '%';
+                            $(".progress-bar").css('width',ratioText).text(ratioText);
+                        }
                         replay.download(number, start, end, replay.pageIndex, replay.pageSize);
                     });
                 }
@@ -1035,7 +1289,14 @@ $(function () {
                 replay.selecteddrivingedtracksPolyline = webMap.createPolyline({
                     map: replay.webMap,
                     points: points,
-                    color: 'yellow'
+                    // color: 'yellow'
+                    color:'#fff'
+                })
+                replay.selecteddrivingedtracksPolyline = webMap.createPolyline({
+                    map: replay.webMap,
+                    points: points,
+                    // color: 'yellow'
+                    color:'#555'
                 })
 
                 // replay.webMap.panTo(trip[0].olng, trip[0].olat);
@@ -1045,7 +1306,7 @@ $(function () {
         },
 
         play: function () {
-            
+
             if (replay.tracks && replay.tracks.length <= 0)
                 return;
             if (replay.playtracks && replay.playtracks.length <= 0) {
@@ -1059,6 +1320,7 @@ $(function () {
             function move() {
                 clearTimeout(replay.timer);
                 if (replay.playStatus !== 'play'){
+                    $("#dmMiddle").stop(true);
                     return;
                 }
                 if (me.index >= replay.playtracks.length) {
@@ -1091,10 +1353,17 @@ $(function () {
                     marker.refresh();
                     if (replay.infoWindow.owner != marker) {
                         marker.openInfoWindow();
+                    }else{
+                        // var bound=replay.webMap.getBounds();//地图可视区域
+                        var point = new BMap.Point(marker.data.olng, marker.data.olat);
+                        if(replay.webMap.getBounds(point)==true){
+                            // console.log("在" );
+                        }else{
+                            //   console.log("不在" );
+                            replay.webMap.panTo(marker.data.olng, marker.data.olat);
+                        }
                     }
 
-                    else
-                        replay.webMap.panTo(marker.data.olng, marker.data.olat);
                 }
                 //  $('#divReplayMapControl #txtProcess').val(me.index);
 
@@ -1107,11 +1376,11 @@ $(function () {
                 $("#dmMiddle").animate({"scrollTop": 14 * count+'px'});
                 me.index++;
 
-                console.log("me.index % replay.pagelength" + me.index % replay.pagelength + "me.index:"+me.index+"replay.pagelength:"+replay.pagelength);
+                // console.log("me.index % replay.pagelength" + me.index % replay.pagelength + "me.index:"+me.index+"replay.pagelength:"+replay.pagelength);
                 //  翻页
                 if (me.index % replay.pagelength == 0) {
 
-                    console.log("分？？？？？？" + replay.pagelength);
+                    // console.log("分？？？？？？" + replay.pagelength);
                     //  翻页
 
 
@@ -1125,6 +1394,41 @@ $(function () {
             replay.timer = setTimeout(move, replay.playAccelerate);
 
         },
+
+
+        createAllMarker: function () {//
+            if (replay.tracks && replay.tracks.length > 0) {
+                for (var x = 0; x < replay.tracks.length; x++) {
+                    var track = replay.tracks[x];
+                    var  createAllMarker=webMap.createMarker({
+                        map: this.webMap,
+                        data: track,
+                        allowShowLabel: false,
+                        infoWindow: replay.infoWindow,
+                        icon: {
+                            url: '../static/image/pointimage/defaultsmine2.png',
+                            offset: 0
+                        },
+                        iconAnchor: {
+                            x: 11,
+                            y: 20
+                        }
+                    });
+                    replay.tracksclass.push(createAllMarker);
+                }
+            }
+        },
+        removeAllMarker: function () {
+            if (replay.iscreateAllMarker == 1) {
+                for (var x = 0; x < replay.tracksclass.length; x++) {
+                    var track = replay.tracksclass[x];
+                    track.dispose();
+
+                }
+                replay.iscreateAllMarker=0;
+            }
+        },
+
 
 
         playing: function () {//进度条
@@ -1149,12 +1453,13 @@ $(function () {
          * 选取时间
          */
         selectDate: function () {
-            var dateStart = new Date().addDays(-1);
-            var dateEnd = new Date();
+            var dateStart = new Date().addDays(0);
+            var dateEnd =  new Date();
 
             var start = replay.txtStartTime;
             var end = replay.txtEndTime;
-
+            $("#allStartTime").val(start);
+            $("#allEndTime").val(end);
             console.log(start + " ++++" + end);
             if (start == null || end == null)
                 return null;
@@ -1193,6 +1498,107 @@ $(function () {
 
         });
     }
+    form.on('select(dayfr)', function(){
+        console.log(999);
+        var datatype = $('#datatype').val();
+        console.log("datatype1221" + datatype);
+        switch (datatype) {
+            case "1":
+                var dateStart = new Date().addDays(0);
+                var dateEnd = new Date();
+                console.log("dateStart" + dateStart.toDateTimeString());
+                replay.txtStartTime = dateStart.toDateTimeString();
+                replay.txtEndTime = dateEnd.toDateTimeString();
+                // $("#allStartTime").val(replay.txtStartTime);
+                // $("#allEndTime").val(replay.txtEndTime);
+                break;
+            case "2":
+                var dateStart = new Date().addDays(-7);
+                var dateEnd = new Date().addDays(-1);
+                replay.txtStartTime = dateStart.toDateTimeString();
+                replay.txtEndTime = dateEnd.toDateTimeString();
+                // $("#allStartTime").val(replay.txtStartTime);
+                // $("#allEndTime").val(replay.txtEndTime);
+                break;
+            case "3":
+                var dateStart = new Date().addDays(-(new Date().getDay())+1);
+                var dateEnd = new Date();
+                replay.txtStartTime = dateStart.toDateTimeString();
+                replay.txtEndTime = dateEnd.toDateTimeString();
+                // $("#allStartTime").val(replay.txtStartTime);
+                // $("#allEndTime").val(replay.txtEndTime);
+                break;
+            case "4":
+                var dateStart = new Date().addDays(-2);
+                var dateEnd = new Date().addDays(0);
+                replay.txtStartTime = dateStart.toDateTimeString();
+                replay.txtEndTime = dateEnd.toDateTimeString();
+                // $("#allStartTime").val(replay.txtStartTime);
+                // $("#allEndTime").val(replay.txtEndTime);
+                break;
+            case "5":
+                var dateStart = new Date().addDays(-1);
+                var dateEnd = new Date().addDays(0);
+                replay.txtStartTime = dateStart.toDateTimeString();
+                replay.txtEndTime = dateEnd.toDateTimeString();
+                // $("#allStartTime").val(replay.txtStartTime);
+                // $("#allEndTime").val(replay.txtEndTime);
+                break;
+            case "6":
+                replay.txtStartTime = $("#allStartTime").val();
+                replay.txtEndTime = $("#allEndTime").val();
+                var d1 = new Date(replay.txtStartTime.replace(/\-/g, "\/"));
+                var d2 = new Date(replay.txtEndTime.replace(/\-/g, "\/"));
+
+                if (d1 >= d2) {
+                    layer.msg('<div style="color: #0C0C0C">开始时间不能大于结束时间！</div>', {icon: 4});
+                    // layer.open({
+                    //     type: 1,
+                    //     skin: 'layui-layer-demo', //样式类名
+                    //     closeBtn: 0, //不显示关闭按钮
+                    //     anim: 2,
+                    //     shadeClose: true, //开启遮罩关闭
+                    //     content: '开始时间不能大于结束时间！'
+                    // });
+
+                    return;
+                }
+                break;
+            case "7":
+                var dateStart = new Date().addDays(-6);
+                var dateEnd = new Date().addDays(0);
+                replay.txtStartTime = dateStart.toDateTimeString();
+                replay.txtEndTime = dateEnd.toDateTimeString();
+
+                break;
+            case "8":
+                var dateStart = new Date().addDays(-(new Date().getDate())+1);
+                var dateEnd = new Date();
+                replay.txtStartTime = dateStart.toDateTimeString();
+                replay.txtEndTime = dateEnd.toDateTimeString();
+                // $("#allStartTime").val(replay.txtStartTime);
+                // $("#allEndTime").val(replay.txtEndTime);
+                break;
+            case "9":
+                var dateStart = new Date().addDays(-(new Date().getDate())-29);
+                var dateEnd = new Date().addDays(-(new Date().getDate()));
+                replay.txtStartTime = dateStart.toDateTimeString();
+                replay.txtEndTime = dateEnd.toDateTimeString();
+                // $("#allStartTime").val(replay.txtStartTime);
+                // $("#allEndTime").val(replay.txtEndTime);
+                break;
+        }
+        $("#allStartTime").val(replay.txtStartTime);
+        $("#allEndTime").val(replay.txtEndTime);
+    });
+
+    $(".sl_day .layui-anim-upbit").change(function () {
+
+    })
+    function ch_time() {
+
+
+    }
 
     $(function () {
 
@@ -1201,20 +1607,41 @@ $(function () {
             webMap.events.onMapLoadCompleted['replayMap'] = replay.onMapLoaded;
             webMap.createMap("replayMap");
             // console.log("地图的加载");
-        }, 1000);
+        }, 1);
+        //查询天数ACC
+        form.on('select(query_way)', function(){
+            console.log($("#query_way").val());
+        });
+
+        //操作点显示
+        form.on('select(display_way)', function(){
+
+
+            var  isMarker=$("#display_way").val();
+            if(isMarker==3){
+                //console.log($("#display_way").val());
+                replay.iscreateAllMarker=1;
+                replay.createAllMarker();
+            }else{
+                //console.log($("#display_way").val());
+                replay.removeAllMarker()
+            }
+
+
+        });
 
 
         $(".dl_info ul").delegate("li", "click", function () {
-            var flag1 = $(this).css("height") == 200 + 'px';
-            var temp1 = $(this).css("height") == 245 + 'px';
+            var flag1 = $(this).css("height") == 155 + 'px';
+            var temp1 = $(this).css("height") == 195 + 'px';
             if (flag1) {
-                $(this).css("height", "245px").css("backgroundColor", "#ffe8e0").siblings("li").css("height", "200px").css("backgroundColor", "#f1f1f1");
+                $(this).css("height", "195px").css("backgroundColor", "#f2f9fc").siblings("li").css("height", "155px").css("backgroundColor", "#fff");
                 $(this).children(".drivingPro").css("display", "block");
                 $(this).siblings("li").children(".drivingPro").css("display", "none");
                 $(this).children(".drivingTime").css("display", "block");
                 $(this).siblings("li").children(".drivingTime").css("display", "none");
             } else if (temp1) {
-                $(this).css("height", "200px").css("backgroundColor", "#f1f1f1");
+                $(this).css("height", "155px").css("backgroundColor", "#fff");
                 $(this).children(".drivingPro").css("display", "none");
                 $(this).children(".drivingTime").css("display", "none");
             }
@@ -1231,7 +1658,7 @@ $(function () {
                 replay.selectedPolyline = webMap.createPolyline({
                     map: replay.webMap,
                     points: points,
-                    color: 'red'
+                    color: '#00ff84'
                 })
                 replay.webMap.panTo(trip.data[0].olng, trip.data[0].olat);
             }
@@ -1239,11 +1666,12 @@ $(function () {
         });
 
 
-        $(".dl_info ul").delegate(".fuckP", "click", function (e) {
+
+        $(".dl_info ul").delegate("#fuckP", "click", function (e) {
             e.stopPropagation();
 
 
-            var trip = $(this).parent().parent().parent().data('trip');
+            var trip = $(this).parent().parent().data('trip');
             var mmp;
 
             replay.playtracks = trip.data;
@@ -1400,7 +1828,7 @@ $(function () {
         $(".dl_info ul").delegate(".accelerate", "click", function (e) {
             e.stopPropagation();
 
-            if (replay.playAccelerate === 125 / 2) {
+            if (replay.playAccelerate === 125 ) {
 
                 return;
                 // replay.playAccelerate=1000;
@@ -1409,20 +1837,24 @@ $(function () {
             } else {
                 replay.playAccelerate = replay.playAccelerate / 2;
                 if (replay.playAccelerate === 500) {
-
                     $(this).parent().next().text("2X")
-                    // $(this).parent().prev().children().attr('src', "./static/image/replay/click_qian.png");
+                    $(this).parent().prev().children().attr('src', "./static/image/replay/click_qian.png");
                 } else if (replay.playAccelerate === 250) {
                     $(this).parent().next().text("4X")
                 } else if (replay.playAccelerate === 125) {
                     $(this).parent().next().text("8X")
-                } else if (replay.playAccelerate === 125 / 2) {
-                    $(this).parent().next().text("16X")
-                    // $(this).attr('src', "./static/image/replay/noclick_hou.png");
-                } else if (replay.playAccelerate === 1000) {
+                    $(this).attr('src', "./static/image/replay/noclick_hou.png");
+                    $(this).parent().prev().children().attr('src', "./static/image/replay/click_qian.png");
+                }else if (replay.playAccelerate === 1000) {
                     $(this).parent().next().text("1X")
-                    // $(this).attr('src', "./static/image/replay/noclick_qian.png");
+                    $(this).attr('src', "./static/image/replay/noclick_qian.png");
+                    // $(this).parent().next().children().attr('src', "./static/image/replay/click_hou.png");
                 }
+                // else if (replay.playAccelerate === 125 / 2) {
+                //     $(this).parent().next().text("16X")
+                //
+                // }
+
 
             }
             // alert(replay.playAccelerate)
@@ -1437,18 +1869,21 @@ $(function () {
                 replay.playAccelerate = replay.playAccelerate * 2;
                 if (replay.playAccelerate === 250) {
                     $(this).parent().next().next().text("4X")
+                    $(this).parent().next().children().attr('src', "./static/image/replay/click_hou.png");
                 } else if (replay.playAccelerate === 125) {
                     $(this).parent().next().next().text("8X")
-                } else if (replay.playAccelerate === 125 / 2) {
-                    $(this).parent().next().next().text("16X")
-                    // $(this).parent().next().children().attr('src', "./static/image/replay/click_hou.png");
-                } else if (replay.playAccelerate === 500) {
+                }else if (replay.playAccelerate === 500) {
                     $(this).parent().next().next().text("2X")
                     // $(this).attr('src', "./static/image/replay/noclick_qian.png");
                 } else if (replay.playAccelerate === 1000) {
                     $(this).parent().next().next().text("1X")
-                    // $(this).attr('src', "./static/image/replay/noclick_qian.png");
+                    $(this).attr('src', "./static/image/replay/noclick_qian.png");
                 }
+                // else if (replay.playAccelerate === 125 / 2) {
+                //     $(this).parent().next().next().text("16X")
+                //     // $(this).parent().next().children().attr('src', "static/dc_file/image/replay/noclick_hou.png");
+                // }
+
 
 
             }
@@ -1508,43 +1943,61 @@ $(function () {
         });
         $('#query').click(function () {
 
-            var numberstr = $('#number').val();
+           // var numberstr = $('#number').val();
             var datatype = $('#datatype').val();
+            var numberstr = $('#number').attr("data");
+
+            replay.sp= $('#sp').val();
+            if(replay.sp==null  || replay.sp==""){   //如果用户没有输入
+                replay.sp=0;
+            }
+            // if(replay.sp<30){
+            //     alert();
+            // }else{
+            //
+            // }
+
+
+            replay.parking= $('#parking').val();
+            if(replay.parking==null  || replay.parking==""){   //如果用户没有输入
+                replay.parking=0;
+            }
 
             console.log("numberstr" + numberstr);
             if (numberstr == "") {
                 numberstr = "120187322620";
             }
             console.log("datatype" + datatype);
+
             switch (datatype) {
                 case "1":
-                    var dateStart = new Date().addDays(-1);
+                    var dateStart = new Date().addDays(0);
                     var dateEnd = new Date();
                     console.log("dateStart" + dateStart.toDateTimeString());
                     replay.txtStartTime = dateStart.toDateTimeString();
                     replay.txtEndTime = dateEnd.toDateTimeString();
                     break;
                 case "2":
-                    var dateStart = new Date().addDays(-14);
-                    var dateEnd = new Date().addDays(-7);
+                    var dateStart = new Date().addDays(-7);
+                    var dateEnd = new Date().addDays(-1);
                     replay.txtStartTime = dateStart.toDateTimeString();
                     replay.txtEndTime = dateEnd.toDateTimeString();
                     break;
                 case "3":
-                    var dateStart = new Date().addDays(-7);
-                    var dateEnd = new Date().addDays();
+                    var dateStart = new Date().addDays(-(new Date().getDay())+1);
+                    var dateEnd = new Date();
                     replay.txtStartTime = dateStart.toDateTimeString();
                     replay.txtEndTime = dateEnd.toDateTimeString();
                     break;
                 case "4":
                     var dateStart = new Date().addDays(-2);
-                    var dateEnd = new Date().addDays();
+                    var dateEnd = new Date().addDays(0);
                     replay.txtStartTime = dateStart.toDateTimeString();
                     replay.txtEndTime = dateEnd.toDateTimeString();
                     break;
                 case "5":
-                    var dateStart = new Date().addDays(-2);
-                    var dateEnd = new Date().addDays(-1);
+                    var dateStart = new Date().addDays(-1);
+                    var dateEnd = new Date().addDays(0);
                     replay.txtStartTime = dateStart.toDateTimeString();
                     replay.txtEndTime = dateEnd.toDateTimeString();
                     break;
@@ -1594,6 +2047,22 @@ $(function () {
             var startDate = dates.start.toDateTimeString();
             var endDate = dates.end.toDateTimeString();
 
+            // $.ajax({
+            //     type: "POST",
+            //     url : '../replay/count',
+            //     dataType: 'script',
+            //     beforeSend : function(){
+            //         //  设置 进度条到20%慢慢变到50%
+            //     },
+            //     complete: function(){
+            //         //  设置 进度条到80%
+            //     },
+            //     success:function(){
+            //     // 渲染页面
+            //     //  进度到100%
+            //
+            // }
+            // })
 
             $.post('../replay/count', {
                 number: numberstr,
@@ -1601,19 +2070,35 @@ $(function () {
                 end: endDate
             }, function (r) {
                 // 获取历史数据总数量
+                $(".overlay").css("display","block");
+                // $(".progress-bar").animate({"width": "90%"},10000);
                 replay.trackCount = r.total;
                 if (replay.trackCount <= 0) {
+                    $(".overlay").css("display","none");
                     layer.msg('<div style="color: #0C0C0C">此时间段无数据！</div>', {icon: 4});
 
                     return;
                 }
+                // $(".overlay").css("display","none");
+                // var ratio = replay.tracks.length / replay.trackCount;
+                // var width = Math.round(ratio * 100);
+                // if (width > 100)
+                //     width = 100;
+                // var ratioText = width ;
+                // console.log(replay.trackCount)
+                // console.log(ratio)
+                // console.log(replay.tracks.length);
                 $('#divReplayMapControl #divProcess').show();
                 $('#divReplayMapControl #txtProcess').hide();
                 replay.download(numberstr, startDate, endDate, 1, replay.pageSize);
-            });
 
 
+            })
         });
+        // $("#datatype").(function () {
+        //     var numberstr = $('#number').val();
+        //     var datatype = $('#datatype').val();
+        // })
 
 
         $('#divReplayMapControl #btnReplayAccelerate').click(function () {

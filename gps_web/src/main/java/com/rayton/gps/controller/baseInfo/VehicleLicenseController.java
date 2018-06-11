@@ -29,8 +29,7 @@ public class VehicleLicenseController {
     @RequiresPermissions("baseinfo.licence.VehicleLicence")
     @GetMapping(value = "/vehicleLicence/query")
     @ResponseBody
-    public Object query(@RequestParam(required = false) String filter, @RequestParam int page, @RequestParam int
-            limit) throws Exception {
+    public Object query(@RequestParam(required = false) String filter, @RequestParam int page, @RequestParam int limit) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
 
 
@@ -62,9 +61,7 @@ public class VehicleLicenseController {
 
     @PostMapping(value = "/vehicleLicense/create.form")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> create(@ModelAttribute("vehicleLicense") @Valid VehicleLicense
-                                                                  vehicleLicense, BindingResult binding) throws
-            Exception {
+    public ResponseEntity<Map<Object, Object>> create(@ModelAttribute("vehicleLicense") @Valid VehicleLicense vehicleLicense, BindingResult binding) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
 
         if (binding.hasErrors())
@@ -87,10 +84,9 @@ public class VehicleLicenseController {
 
     @PostMapping(value = "/vehicleLicense/edit.form")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> edit(@ModelAttribute("vehicleLicense") @Valid VehicleLicense
-                                                                vehicleLicense, BindingResult binding) throws
-            Exception {
-        if (binding.hasErrors()) return ResponseEntityWrapper.Failed();
+    public ResponseEntity<Map<Object, Object>> edit(@ModelAttribute("vehicleLicense") @Valid VehicleLicense vehicleLicense, BindingResult binding) throws Exception {
+        if (binding.hasErrors())
+            return ResponseEntityWrapper.Failed();
         // return "/baseinfo/driver/edit.form";
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         vehicleLicense.setCompanyId(identity.getCompanyId());

@@ -1,5 +1,7 @@
 package com.rayton.gps.dao.baseinfo.sim;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.sql.Date;
 
 public class SimcardSearchInfo {
@@ -15,19 +17,18 @@ public class SimcardSearchInfo {
     // FUCK ME
     private String ACCOUNTNAME;
     private String MONTHLYRENT;
+    @JSONField(format = "yyyy-MM-dd")
     private Date INSTOCKDATE;
+    @JSONField(format = "yyyy-MM-dd")
     private Date OUTSTOCKDATE;
+    @JSONField(format = "yyyy-MM-dd")
     private Date EXPIRENOTIFYDATE;
     // FUCK ME
 
 
     @Override
     public String toString() {
-        return "SimcardSearchInfo{" + "id='" + id + '\'' + ", phoneNumber='" + phoneNumber + '\'' + ", speechType='"
-                + speechType + '\'' + ", openSMS=" + openSMS + ", carrierOperator='" + carrierOperator + '\'' + ", "
-                + "remark='" + remark + '\'' + ", ACCOUNTNAME='" + ACCOUNTNAME + '\'' + ", MONTHLYRENT='" +
-                MONTHLYRENT + '\'' + ", INSTOCKDATE=" + INSTOCKDATE + ", OUTSTOCKDATE=" + OUTSTOCKDATE + ", " +
-                "EXPIRENOTIFYDATE=" + EXPIRENOTIFYDATE + '}';
+        return "SimcardSearchInfo{" + "id='" + id + '\'' + ", phoneNumber='" + phoneNumber + '\'' + ", speechType='" + speechType + '\'' + ", openSMS=" + openSMS + ", carrierOperator='" + carrierOperator + '\'' + ", " + "remark='" + remark + '\'' + ", ACCOUNTNAME='" + ACCOUNTNAME + '\'' + ", MONTHLYRENT='" + MONTHLYRENT + '\'' + ", INSTOCKDATE=" + INSTOCKDATE + ", OUTSTOCKDATE=" + OUTSTOCKDATE + ", " + "EXPIRENOTIFYDATE=" + EXPIRENOTIFYDATE + '}';
     }
 
     public String getACCOUNTNAME() {

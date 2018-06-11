@@ -15,14 +15,16 @@ public class DriverInfo {
     private String phone;
     private String drivingLicenseNumber;
     private String remark;
+    private String EDITTIME;
+    // FFFFFFUUUUUUCCCCKKKKKKK
+    private Date REGISTRATIONDATE;
+    private String PERMITCODE;
+    private String EMERGENCYCONTACTA;
+    private String EMERGENCYCONTACTB;
 
     @Override
     public String toString() {
-        return "DriverInfo{" + "id='" + id + '\'' + ", name='" + name + '\'' + ", sex='" + sex + '\'' + ", phone='" +
-                phone + '\'' + ", drivingLicenseNumber='" + drivingLicenseNumber + '\'' + ", remark='" + remark +
-                '\'' + ", EDITTIME='" + EDITTIME + '\'' + ", REGISTRATIONDATE=" + REGISTRATIONDATE + ", PERMITCODE='"
-                + PERMITCODE + '\'' + ", EMERGENCYCONTACTA='" + EMERGENCYCONTACTA + '\'' + ", EMERGENCYCONTACTB='" +
-                EMERGENCYCONTACTB + '\'' + '}';
+        return "DriverInfo{" + "id='" + id + '\'' + ", name='" + name + '\'' + ", sex='" + sex + '\'' + ", phone='" + phone + '\'' + ", drivingLicenseNumber='" + drivingLicenseNumber + '\'' + ", remark='" + remark + '\'' + ", EDITTIME='" + EDITTIME + '\'' + ", REGISTRATIONDATE=" + REGISTRATIONDATE + ", PERMITCODE='" + PERMITCODE + '\'' + ", EMERGENCYCONTACTA='" + EMERGENCYCONTACTA + '\'' + ", EMERGENCYCONTACTB='" + EMERGENCYCONTACTB + '\'' + '}';
     }
 
     public String getEDITTIME() {
@@ -33,17 +35,7 @@ public class DriverInfo {
         this.EDITTIME = EDITTIME;
     }
 
-    private String EDITTIME;
-
-
-    // FFFFFFUUUUUUCCCCKKKKKKK
-    private Date REGISTRATIONDATE;
-    private String PERMITCODE;
-    private String EMERGENCYCONTACTA;
-    private String EMERGENCYCONTACTB;
-
     //
-
 
     public Date getREGISTRATIONDATE() {
         return REGISTRATIONDATE;

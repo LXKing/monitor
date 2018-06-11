@@ -10,8 +10,7 @@ public class DeviceGroupInfo {
 
     @Override
     public String toString() {
-        return "DeviceGroupInfo{" + "id='" + id + '\'' + ", pid='" + pid + '\'' + ", userId='" + userId + '\'' + ", "
-                + "name='" + name + '\'' + ", remark='" + remark + '\'' + '}';
+        return "DeviceGroupInfo{" + "id='" + id + '\'' + ", pid='" + pid + '\'' + ", userId='" + userId + '\'' + ", " + "name='" + name + '\'' + ", remark='" + remark + '\'' + '}';
     }
 
     /**

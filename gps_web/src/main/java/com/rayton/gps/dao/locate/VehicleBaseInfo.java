@@ -23,13 +23,7 @@ public class VehicleBaseInfo {
 
     @Override
     public String toString() {
-        return "VehicleBaseInfo{" + "company='" + company + '\'' + ", motorcade='" + motorcade + '\'' + ", " +
-                "deviceNumber='" + deviceNumber + '\'' + ", plateNumber='" + plateNumber + '\'' + ", plateColor='" +
-                plateColor + '\'' + ", vehicleColor='" + vehicleColor + '\'' + ", vehicleType='" + vehicleType + '\''
-                + ", vehicleVoltage='" + vehicleVoltage + '\'' + ", carryType='" + carryType + '\'' + ", " +
-                "initialMileage=" + initialMileage + ", oilWear=" + oilWear + ", usefulLife=" + usefulLife + ", " +
-                "installDate=" + installDate + ", annualSurveyDate=" + annualSurveyDate + ", adminArea='" + adminArea
-                + '\'' + ", remark='" + remark + '\'' + '}';
+        return "VehicleBaseInfo{" + "company='" + company + '\'' + ", motorcade='" + motorcade + '\'' + ", " + "deviceNumber='" + deviceNumber + '\'' + ", plateNumber='" + plateNumber + '\'' + ", plateColor='" + plateColor + '\'' + ", vehicleColor='" + vehicleColor + '\'' + ", vehicleType='" + vehicleType + '\'' + ", vehicleVoltage='" + vehicleVoltage + '\'' + ", carryType='" + carryType + '\'' + ", " + "initialMileage=" + initialMileage + ", oilWear=" + oilWear + ", usefulLife=" + usefulLife + ", " + "installDate=" + installDate + ", annualSurveyDate=" + annualSurveyDate + ", adminArea='" + adminArea + '\'' + ", remark='" + remark + '\'' + '}';
     }
 
     /**

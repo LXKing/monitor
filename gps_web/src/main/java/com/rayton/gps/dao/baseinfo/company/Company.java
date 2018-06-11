@@ -1,5 +1,6 @@
 package com.rayton.gps.dao.baseinfo.company;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import java.sql.Date;
@@ -16,11 +17,13 @@ public class Company {
 
     private String PID;
     private String ZIPCODE;
-
+    private String FAX;
+    private String EMAIL;
     private String fullName;
     @NotEmpty
     private String shortName;
     private String organCode;
+    @JSONField(format = "yyyy-MM-dd")
     private Date registDate;
     private String corporation;
     private String ondutyPhone;
@@ -28,6 +31,22 @@ public class Company {
     private String registAddress;
     private boolean parentVisible;
     private Timestamp editTime;
+
+    public String getFAX() {
+        return FAX;
+    }
+
+    public void setFAX(String FAX) {
+        this.FAX = FAX;
+    }
+
+    public String getEMAIL() {
+        return EMAIL;
+    }
+
+    public void setEMAIL(String EMAIL) {
+        this.EMAIL = EMAIL;
+    }
 
     public String getPID() {
         return PID;
@@ -47,11 +66,7 @@ public class Company {
 
     @Override
     public String toString() {
-        return "Company{" + "id='" + id + '\'' + ", PID='" + PID + '\'' + ", ZIPCODE='" + ZIPCODE + '\'' + ", " +
-                "fullName='" + fullName + '\'' + ", shortName='" + shortName + '\'' + ", organCode='" + organCode +
-                '\'' + ", registDate=" + registDate + ", corporation='" + corporation + '\'' + ", ondutyPhone='" +
-                ondutyPhone + '\'' + ", officeAddress='" + officeAddress + '\'' + ", registAddress='" + registAddress
-                + '\'' + ", parentVisible=" + parentVisible + ", editTime=" + editTime + '}';
+        return "Company{" + "id='" + id + '\'' + ", PID='" + PID + '\'' + ", ZIPCODE='" + ZIPCODE + '\'' + ", " + "fullName='" + fullName + '\'' + ", shortName='" + shortName + '\'' + ", organCode='" + organCode + '\'' + ", registDate=" + registDate + ", corporation='" + corporation + '\'' + ", ondutyPhone='" + ondutyPhone + '\'' + ", officeAddress='" + officeAddress + '\'' + ", registAddress='" + registAddress + '\'' + ", parentVisible=" + parentVisible + ", editTime=" + editTime + '}';
     }
 
     public String getId() {

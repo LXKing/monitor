@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rayton.gps.dao.baseinfo.vehicle.IVehicleDao">
+    <select id="queryPageCount" resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM
+        automobile AS A LEFT JOIN equipment AS
+        B ON A.DEVICEID = B.ID
+        LEFT JOIN simcard
+        AS C ON B.SIMCARDID = C.ID
+        LEFT
+        JOIN motorcade AS D ON
+        A.MOTORCADEID = D.ID
+        WHERE A.COMPANYID = #{param1} AND
+        (A.PLATENUMBER LIKE CONCAT('%', #{param2}, '%') OR
+        B.DEVICENUMBER LIKE
+        CONCAT('%', #{param2}, '%') OR C.PHONENUMBER LIKE
+        CONCAT('%', #{param2}, '%') OR
+        D.NAME LIKE CONCAT('%', #{param2}, '%'))
+    </select>
+
+    <select id="queryPageDetail" resultType="com.rayton.gps.dao.baseinfo.vehicle.VehicleInfo">
+        SELECT
+        A.ID,
+        B.DEVICENUMBER,
+        C.PHONENUMBER,
+        A.PLATENUMBER,
+        A.PLATECOLOR,
+        A.INSTALLDATE,
+        A.ANNUALSURVEYDATE,
+        A.MARKER,
+        A.REMARK,
+        D.NAME AS
+        MOTORCADE,
+
+        A.FACTORYPLATEMODE,
+        A.AXLENUM,
+        A.MANUFACTURER,
+        A.TRAILERNUM,
+        A.VIN,
+        A.BUYMONEY,
+        A.SERVICEPROVIDER,
+        A.LICENSEPLATESELFNUM,
+        A.ENGINENUM,
+        A.CARRIAGELONG,
+        A.BUYDATE,
+        A.PROVIDERCONTACT,
+        A.DANGERPLATENUM,
+        A.VEHICULARWEIGHT,
+        A.INVOICEAMOUNT,
+        A.PROVIDERTEL,
+        A.REGISTRATIONDATE,
+        A.BUYTAX,
+        A.LICENSEEXAMINATIONPERIOD,
+        A.VEHICLEPIC,
+        A.VINPIC
+
+
+        FROM automobile AS A LEFT JOIN
+        equipment AS B ON A.DEVICEID = B.ID
+        LEFT JOIN simcard AS C ON
+        B.SIMCARDID = C.ID
+        LEFT JOIN motorcade AS D ON
+        A.MOTORCADEID = D.ID
+        WHERE
+        A.COMPANYID = #{param1} AND (A.PLATENUMBER LIKE
+        CONCAT('%', #{param2}, '%') OR
+        B.DEVICENUMBER LIKE CONCAT('%', #{param2}, '%') OR
+        C.PHONENUMBER LIKE
+        CONCAT('%', #{param2}, '%') OR D.NAME LIKE
+        CONCAT('%', #{param2}, '%'))
+        ORDER BY
+        A.PLATENUMBER
+        LIMIT #{param3}, #{param4}
+    </select>
+    <insert id="create" parameterType="com.rayton.gps.dao.baseinfo.vehicle.Vehicle">
+        INSERT INTO automobile (ID,
+        COMPANYID, MOTORCADEID, DEVICEID, PLATENUMBER,
+        PLATECOLOR,
+        VEHICLECOLOR, VEHICLETYPE, VEHICLEVOLTAGE, CARRYTYPE,
+        INITIALMILEAGE,
+        OILWEAR, USEFULLIFE, INSTALLDATE, ANNUALSURVEYDATE,
+        ADMINAREA, MARKER,
+        ROTATE, REMARK, CREATETIME,
+
+
+        FACTORYPLATEMODE,
+        AXLENUM,
+        MANUFACTURER,
+        TRAILERNUM,
+        VIN,
+        BUYMONEY,
+        SERVICEPROVIDER,
+        LICENSEPLATESELFNUM,
+        ENGINENUM,
+        CARRIAGELONG,
+        BUYDATE,
+        PROVIDERCONTACT,
+        DANGERPLATENUM,
+        VEHICULARWEIGHT,
+        INVOICEAMOUNT,
+        PROVIDERTEL,
+        REGISTRATIONDATE,
+        BUYTAX,
+        LICENSEEXAMINATIONPERIOD,
+        VEHICLEPIC,
+        VINPIC
+
+
+        ) VALUES (#{id}, #{companyId},
+        #{motorcadeId}, #{deviceId}, #{plateNumber},
+        #{plateColor},
+        #{vehicleColor}, #{vehicleType},
+        #{vehicleVoltage}, #{carryType},
+        #{initialMileage}, #{oilWear}, #{usefulLife},
+        #{installDate},
+        #{annualSurveyDate}, #{adminArea}, #{marker},
+        #{rotate},
+        #{remark},
+        SYSDATE(),
+
+
+        #{FACTORYPLATEMODE},
+        #{AXLENUM},
+        #{MANUFACTURER},
+        #{TRAILERNUM},
+        #{VIN},
+        #{BUYMONEY},
+        #{SERVICEPROVIDER},
+        #{LICENSEPLATESELFNUM},
+        #{ENGINENUM},
+        #{CARRIAGELONG},
+        #{BUYDATE},
+        #{PROVIDERCONTACT},
+        #{DANGERPLATENUM},
+        #{VEHICULARWEIGHT},
+        #{INVOICEAMOUNT},
+        #{PROVIDERTEL},
+        #{REGISTRATIONDATE},
+        #{BUYTAX},
+        #{LICENSEEXAMINATIONPERIOD},
+        #{VEHICLEPIC},
+        #{VINPIC}
+
+
+        )
+    </insert>
+    <update id="update" parameterType="com.rayton.gps.dao.baseinfo.vehicle.Vehicle">
+        UPDATE automobile
+        SET
+        COMPANYID = #{companyId}, MOTORCADEID = #{motorcadeId},
+        DEVICEID = #{deviceId}, PLATENUMBER = #{plateNumber},
+        PLATECOLOR = #{plateColor},
+        VEHICLECOLOR = #{vehicleColor},
+        VEHICLETYPE = #{vehicleType}, VEHICLEVOLTAGE = #{vehicleVoltage},
+        CARRYTYPE = #{carryType},
+        INITIALMILEAGE = #{initialMileage},
+        OILWEAR = #{oilWear},
+        USEFULLIFE = #{usefulLife},
+        ADMINAREA = #{adminArea},
+        MARKER = #{marker}, ROTATE = #{rotate}, REMARK = #{remark},
+        INSTALLDATE = #{installDate}, ANNUALSURVEYDATE = #{annualSurveyDate},
+
+
+        FACTORYPLATEMODE = #{FACTORYPLATEMODE},
+        AXLENUM = #{AXLENUM},
+        MANUFACTURER = #{MANUFACTURER},
+        TRAILERNUM = #{TRAILERNUM},
+        VIN = #{VIN},
+        BUYMONEY = #{BUYMONEY},
+        SERVICEPROVIDER = #{SERVICEPROVIDER},
+        LICENSEPLATESELFNUM = #{LICENSEPLATESELFNUM},
+        ENGINENUM = #{ENGINENUM},
+        CARRIAGELONG = #{CARRIAGELONG},
+        BUYDATE = #{BUYDATE},
+        PROVIDERCONTACT = #{PROVIDERCONTACT},
+        DANGERPLATENUM = #{DANGERPLATENUM},
+        VEHICULARWEIGHT = #{VEHICULARWEIGHT},
+        INVOICEAMOUNT = #{INVOICEAMOUNT},
+        PROVIDERTEL = #{PROVIDERTEL},
+        REGISTRATIONDATE = #{REGISTRATIONDATE},
+        BUYTAX = #{BUYTAX},
+        LICENSEEXAMINATIONPERIOD = #{LICENSEEXAMINATIONPERIOD},
+        VEHICLEPIC = #{VEHICLEPIC},
+        VINPIC = #{VINPIC},
+        EDITTIME = now()
+        WHERE
+        ID = #{id}
+        LIMIT 1
+    </update>
+    <delete id="deleteVehicleInOwner">
+        DELETE FROM automobile_automobile_owner
+        WHERE VEHICLEID = #{param1}
+    </delete>
+    <delete id="deleteVehicleInDriver">
+        DELETE FROM automobile_driveer
+        WHERE VEHICLEID = #{param1}
+    </delete>
+    <delete id="delete">
+        DELETE FROM automobile
+        WHERE ID = #{param1}
+        LIMIT 1
+    </delete>
+    <select id="fetch" resultType="com.rayton.gps.dao.baseinfo.vehicle.Vehicle">
+        SELECT
+        A.ID,
+        A.COMPANYID,
+        A.MOTORCADEID,
+        C.NAME AS MOTORCADE,
+        A.DEVICEID,
+        B.DEVICENUMBER,
+        A.PLATENUMBER,
+        A.PLATECOLOR,
+        A.VEHICLECOLOR,
+        A.VEHICLETYPE,
+        A.VEHICLEVOLTAGE,
+        A.CARRYTYPE,
+        A.INITIALMILEAGE,
+        A.OILWEAR,
+        A.USEFULLIFE,
+        A.ADMINAREA,
+        A.MARKER,
+        A.ROTATE,
+        A.REMARK,
+        A.EDITTIME,
+        A.INSTALLDATE,
+        A.ANNUALSURVEYDATE,
+
+
+        A.FACTORYPLATEMODE,
+        A.AXLENUM,
+        A.MANUFACTURER,
+        A.TRAILERNUM,
+        A.VIN,
+        A.BUYMONEY,
+        A.SERVICEPROVIDER,
+        A.LICENSEPLATESELFNUM,
+        A.ENGINENUM,
+        A.CARRIAGELONG,
+        A.BUYDATE,
+        A.PROVIDERCONTACT,
+        A.DANGERPLATENUM,
+        A.VEHICULARWEIGHT,
+        A.INVOICEAMOUNT,
+        A.PROVIDERTEL,
+        A.REGISTRATIONDATE,
+        A.BUYTAX,
+        A.LICENSEEXAMINATIONPERIOD,
+        A.VEHICLEPIC,
+        A.VINPIC
+        FROM automobile AS A LEFT
+        JOIN equipment AS
+        B ON A.DEVICEID = B.ID
+        LEFT JOIN motorcade AS C ON
+        A.MOTORCADEID = C.ID
+        WHERE A.ID = #{param1}
+        LIMIT 1
+    </select>
+    <select id="exist" resultType="java.lang.Boolean">
+        SELECT COUNT(1)
+        FROM automobile
+        WHERE
+        PLATENUMBER = #{param1}
+        LIMIT 1
+    </select>
+    <select id="existOutId" resultType="java.lang.Boolean">
+        SELECT COUNT(1)
+        FROM automobile
+        WHERE PLATENUMBER = #{param1} AND ID != #{param2}
+        LIMIT 1
+    </select>
+    <select id="searchPageCount" resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM
+        automobile AS A LEFT JOIN equipment AS B ON A.DEVICEID = B.ID
+        LEFT JOIN simcard
+        AS C ON B.SIMCARDID = C.ID
+        WHERE A.COMPANYID = #{param1} AND
+        A.PLATENUMBER LIKE
+        CONCAT('%', #{param2}, '%')
+    </select>
+    <select id="searchPageDetail" resultType="com.rayton.gps.dao.baseinfo.vehicle.VehicleInfo">
+        SELECT
+        A.ID,
+        B.DEVICENUMBER,
+        C.PHONENUMBER,
+        A.PLATENUMBER,
+        A.PLATECOLOR,
+        A.INSTALLDATE,
+        A.ANNUALSURVEYDATE,
+        A.REMARK,
+        D.NAME AS MOTORCADE
+        FROM
+        automobile AS A LEFT JOIN equipment AS B ON A.DEVICEID = B.ID
+        LEFT JOIN
+        simcard AS C ON B.SIMCARDID = C.ID
+        LEFT JOIN motorcade AS D ON
+        A.MOTORCADEID = D.ID
+        WHERE A.COMPANYID = #{param1} AND A.PLATENUMBER LIKE
+        CONCAT('%', #{param2}, '%')
+        ORDER
+        BY A.PLATENUMBER
+        LIMIT #{param3}, #{param4}
+    </select>
+    <select id="assignedOwners" resultType="com.rayton.gps.dao.baseinfo.owner.OwnerInfo">
+        SELECT
+        A.ID,
+        A.`ENABLE`,
+        A.PHONE,
+        A.SERVICESTARTDATE,
+        A.SERVICEENDDATE,
+        A.CREATETIME,
+        A.REMARK,
+        B.OWNERNAME,
+        B.IDTYPE,
+        B.IDNUMBER
+        FROM user A
+        INNER JOIN automobile_owner B ON
+        A.ID
+        = B.ID
+        INNER JOIN
+        automobile_automobile_owner C ON A.ID
+        = C.OWNERID
+        WHERE
+        C.VEHICLEID
+        = #{param1}
+    </select>
+    <insert id="addOwners">
+        REPLACE INTO automobile_automobile_owner( VEHICLEID,OWNERID) VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.key},#{item.value})
+        </foreach>
+    </insert>
+    <delete id="removeOwner">
+        DELETE FROM automobile_automobile_owner
+        WHERE OWNERID = #{param2} AND
+        VEHICLEID = #{param1}
+        LIMIT 1
+    </delete>
+    <select id="assignedDrivers" resultType="com.rayton.gps.dao.baseinfo.driver.DriverInfo">
+        SELECT
+        ID,
+        NAME,
+        SEX,
+        PHONE,
+        DRIVINGLICENSENUMBER,
+        REMARK
+        FROM driver AS A
+        INNER JOIN
+        automobile_driveer AS B ON A.ID = B.DRIVERID
+        WHERE
+        B.VEHICLEID = #{param1}
+    </select>
+    <insert id="addDrivers">
+        REPLACE INTO automobile_driveer(VEHICLEID,DRIVERID ) VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.key},#{item.value})
+        </foreach>
+    </insert>
+    <delete id="removeDriver">
+        DELETE FROM automobile_driveer
+        WHERE DRIVERID = #{param2} AND
+        VEHICLEID = #{param1}
+        LIMIT 1
+    </delete>
+    <update id="resetMarker">
+        UPDATE automobile
+        SET MARKER = #{param2}
+        WHERE MARKER = #{param1}
+    </update>
+
+
+    <select id="getByD" resultType="java.lang.String">
+        SELECT A.ID
+
+        FROM automobile AS A LEFT
+        JOIN equipment AS
+        B ON A.DEVICEID = B.ID
+
+        WHERE B.DEVICENUMBER = #{param1}
+        LIMIT 1
+    </select>
+
+
+    <select id="getWhat" resultType="com.rayton.gps.dao.baseinfo.vehicle.Vehicle">
+        SELECT
+        A.ID,
+
+        A.VEHICLETYPE,
+        A.VEHICLEVOLTAGE,
+        A.CARRYTYPE,
+        A.INITIALMILEAGE,
+        A.OILWEAR,
+
+
+        A.LICENSEPLATESELFNUM
+        FROM automobile AS A
+        LEFT
+        JOIN equipment AS
+        B ON A.DEVICEID = B.ID
+
+        WHERE B.DEVICENUMBER = #{param1}
+        LIMIT 1
+    </select>
+</mapper>

@@ -10,7 +10,7 @@ public class Page<T> {
 
     public int count;
 
-    public List<T> data= new ArrayList<>();
+    public List<T> data = new ArrayList<>();
 
     public String msg;
 

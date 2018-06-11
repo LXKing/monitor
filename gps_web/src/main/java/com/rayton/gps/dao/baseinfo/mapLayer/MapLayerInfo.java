@@ -23,9 +23,7 @@ public class MapLayerInfo {
 
     @Override
     public String toString() {
-        return "MapLayerInfo{" + "id='" + id + '\'' + ", name='" + name + '\'' + ", visible=" + visible + ", " +
-                "remark='" + remark + '\'' + ", circleAreas=" + circleAreas + ", rectangleAreas=" + rectangleAreas +
-                ", " + "polygonAreas=" + polygonAreas + ", routeAreas=" + routeAreas + ", pois=" + pois + '}';
+        return "MapLayerInfo{" + "id='" + id + '\'' + ", name='" + name + '\'' + ", visible=" + visible + ", " + "remark='" + remark + '\'' + ", circleAreas=" + circleAreas + ", rectangleAreas=" + rectangleAreas + ", " + "polygonAreas=" + polygonAreas + ", routeAreas=" + routeAreas + ", pois=" + pois + '}';
     }
 
     public String getId() {

@@ -14,8 +14,7 @@ public class AccidentDoubtLog {
 
     @Override
     public String toString() {
-        return "AccidentDoubtLog{" + "time=" + time + ", license='" + license + '\'' + ", lng=" + lng + ", lat=" +
-                lat + ", alt=" + alt + ", content=" + content + '}';
+        return "AccidentDoubtLog{" + "time=" + time + ", license='" + license + '\'' + ", lng=" + lng + ", lat=" + lat + ", alt=" + alt + ", content=" + content + '}';
     }
 
     public Date getTime() {

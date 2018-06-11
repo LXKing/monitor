@@ -47,8 +47,7 @@ public class RouteAreaService {
         query.total = total;
 
         if (total > 0) {
-            List<RouteAreaInfo> rows = routeAreaDao.queryPageDetail(companyId, filter, (pageIndex - 1) * pageSize,
-                    pageSize);
+            List<RouteAreaInfo> rows = routeAreaDao.queryPageDetail(companyId, filter, (pageIndex - 1) * pageSize, pageSize);
 
             for (RouteAreaInfo info : rows) {
                 // RouteAreaInfo info = new RouteAreaInfo();
@@ -97,8 +96,7 @@ public class RouteAreaService {
         search.total = total;
 
         if (total > 0) {
-            List<RouteAreaInfo> rows = routeAreaDao.searchPageDetail(companyId, filter, (pageIndex - 1) * pageSize,
-                    pageSize);
+            List<RouteAreaInfo> rows = routeAreaDao.searchPageDetail(companyId, filter, (pageIndex - 1) * pageSize, pageSize);
             for (RouteAreaInfo dto : rows) {
                 // RouteAreaInfo info = new RouteAreaInfo();
                 // info.setId(dto.id);
@@ -212,8 +210,7 @@ public class RouteAreaService {
                 AreaCatcherCache.bind(number, routeArea.getId(), areaKind);
 
                 info.setAction((byte) AreaActions.Remove.getIndex());
-                areaInDeviceDao.log(info.getId(), number, routeArea.getId(), areaKind, (byte) AreaActions.Remove
-                        .getIndex(), unid, user);
+                areaInDeviceDao.log(info.getId(), number, routeArea.getId(), areaKind, (byte) AreaActions.Remove.getIndex(), unid, user);
                 SynchronizerCache.put(info);
 
                 info.setAction((byte) AreaActions.Edit.getIndex());
@@ -223,8 +220,7 @@ public class RouteAreaService {
 
                 info.setAction((byte) AreaActions.Append.getIndex());
                 areaInDeviceDao.addVehicle(number, routeArea.getId(), areaKind);
-                areaInDeviceDao.log(info.getId(), number, routeArea.getId(), areaKind, (byte) AreaActions.Append
-                        .getIndex(), unid, user);
+                areaInDeviceDao.log(info.getId(), number, routeArea.getId(), areaKind, (byte) AreaActions.Append.getIndex(), unid, user);
                 SynchronizerCache.put(info);
 
                 info.setAction((byte) AreaActions.Edit.getIndex());
@@ -234,8 +230,7 @@ public class RouteAreaService {
                     AreaCatcherCache.refresh(routeArea.getId(), areaKind);
 
                 info.setAction((byte) AreaActions.Edit.getIndex());
-                areaInDeviceDao.log(info.getId(), number, routeArea.getId(), areaKind, (byte) AreaActions.Update
-                        .getIndex(), unid, user);
+                areaInDeviceDao.log(info.getId(), number, routeArea.getId(), areaKind, (byte) AreaActions.Update.getIndex(), unid, user);
                 SynchronizerCache.put(info);
             }
         }
@@ -270,8 +265,7 @@ public class RouteAreaService {
             if (route != null) {
                 areaInDeviceDao.removeVehicle(number, id, areaKind);
                 if (route.isDeviceCatch())
-                    areaInDeviceDao.log(info.getId(), number, id, areaKind, (byte) AreaActions.Remove.getIndex(),
-                            unid, user);
+                    areaInDeviceDao.log(info.getId(), number, id, areaKind, (byte) AreaActions.Remove.getIndex(), unid, user);
             }
 
             SynchronizerCache.put(info);
@@ -346,8 +340,7 @@ public class RouteAreaService {
         query.total = total;
 
         if (total > 0) {
-            List<AreaInDeviceInfo> rows = areaInDeviceDao.assignedPageVehiclesDetail(routeAreaId, areaKind,
-                    (pageIndex - 1) * pageSize, pageSize);
+            List<AreaInDeviceInfo> rows = areaInDeviceDao.assignedPageVehiclesDetail(routeAreaId, areaKind, (pageIndex - 1) * pageSize, pageSize);
             query.rows.addAll(rows);
         }
         return query;
@@ -374,8 +367,7 @@ public class RouteAreaService {
             if (route != null) {
                 areaInDeviceDao.addVehicle(number, routeAreaId, areaKind);
                 if (route.isDeviceCatch())
-                    areaInDeviceDao.log(info.getId(), number, routeAreaId, areaKind, (byte) AreaActions.Append
-                            .getIndex(), unid, user);
+                    areaInDeviceDao.log(info.getId(), number, routeAreaId, areaKind, (byte) AreaActions.Append.getIndex(), unid, user);
             }
             SynchronizerCache.put(info);
             AreaCatcherCache.bind(number, routeAreaId, areaKind);
@@ -401,8 +393,7 @@ public class RouteAreaService {
         if (route != null) {
             areaInDeviceDao.removeVehicle(number, routeAreaId, areaKind);
             if (route.isDeviceCatch())
-                areaInDeviceDao.log(info.getId(), number, routeAreaId, areaKind, (byte) AreaActions.Remove.getIndex()
-                        , unid, user);
+                areaInDeviceDao.log(info.getId(), number, routeAreaId, areaKind, (byte) AreaActions.Remove.getIndex(), unid, user);
         }
         SynchronizerCache.put(info);
         AreaCatcherCache.unbind(number, routeAreaId, areaKind);

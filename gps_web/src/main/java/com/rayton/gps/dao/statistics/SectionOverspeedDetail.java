@@ -17,9 +17,7 @@ public class SectionOverspeedDetail {
 
     @Override
     public String toString() {
-        return "SectionOverspeedDetail{" + "deviceNumber='" + deviceNumber + '\'' + ", motorcade='" + motorcade +
-                '\'' + ", plateNumber='" + plateNumber + '\'' + ", times=" + times + ", duration=" + duration + ", "
-                + "start=" + start + ", end=" + end + ", detail=" + detail + '}';
+        return "SectionOverspeedDetail{" + "deviceNumber='" + deviceNumber + '\'' + ", motorcade='" + motorcade + '\'' + ", plateNumber='" + plateNumber + '\'' + ", times=" + times + ", duration=" + duration + ", " + "start=" + start + ", end=" + end + ", detail=" + detail + '}';
     }
 
     public String getDeviceNumber() {

@@ -23,7 +23,6 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
@@ -67,8 +66,7 @@ public class MapLayerController {
 
     @PostMapping(value = "/mapLayer/create.form")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> create(@ModelAttribute("mapLayer") @Valid MapLayer mapLayer,
-                                                      BindingResult binding) {
+    public ResponseEntity<Map<Object, Object>> create(@ModelAttribute("mapLayer") @Valid MapLayer mapLayer, BindingResult binding) {
         if (binding.hasErrors()) {
             List<FieldError> errors = binding.getFieldErrors();
             Map<Object, Object> map = new HashMap<>();
@@ -103,8 +101,7 @@ public class MapLayerController {
 
     @PostMapping(value = "/mapLayer/edit.form")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> edit(@ModelAttribute("mapLayer") @Valid MapLayer mapLayer,
-                                                    BindingResult binding ) throws Exception {
+    public ResponseEntity<Map<Object, Object>> edit(@ModelAttribute("mapLayer") @Valid MapLayer mapLayer, BindingResult binding) throws Exception {
         if (binding.hasErrors()) {
             List<FieldError> errors = binding.getFieldErrors();
             Map<Object, Object> map = new HashMap<>();
@@ -156,8 +153,7 @@ public class MapLayerController {
 
     @PostMapping(value = "/mapLayer/addCircleAreas")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> addCircleAreas(@RequestParam String mapLayerId, @RequestParam
-            ("list[]") List<Long> areaIds) {
+    public ResponseEntity<Map<Object, Object>> addCircleAreas(@RequestParam String mapLayerId, @RequestParam("list[]") List<Long> areaIds) {
         mapLayerService.addCircleAreas(mapLayerId, areaIds);
         return ResponseEntityWrapper.OK();
         // try {
@@ -172,8 +168,7 @@ public class MapLayerController {
 
     @PostMapping(value = "/mapLayer/removeCircleArea")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> removeCircleArea(@RequestParam String mapLayerId, @RequestParam long
-            areaId, RedirectAttributes r) {
+    public ResponseEntity<Map<Object, Object>> removeCircleArea(@RequestParam String mapLayerId, @RequestParam long areaId, RedirectAttributes r) {
         mapLayerService.removeCircleArea(mapLayerId, areaId);
         return ResponseEntityWrapper.OK();
         // try {
@@ -197,8 +192,7 @@ public class MapLayerController {
 
     @PostMapping(value = "/mapLayer/addRectangleAreas")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> addRectangleAreas(@RequestParam String mapLayerId, @RequestParam
-            ("list[]") List<Long> areaIds) {
+    public ResponseEntity<Map<Object, Object>> addRectangleAreas(@RequestParam String mapLayerId, @RequestParam("list[]") List<Long> areaIds) {
         mapLayerService.addRectangleAreas(mapLayerId, areaIds);
         return ResponseEntityWrapper.OK();
         // try {
@@ -213,8 +207,7 @@ public class MapLayerController {
 
     @PostMapping(value = "/mapLayer/removeRectangleArea")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> removeRectangleArea(@RequestParam String mapLayerId, @RequestParam
-            long areaId) {
+    public ResponseEntity<Map<Object, Object>> removeRectangleArea(@RequestParam String mapLayerId, @RequestParam long areaId) {
 
         mapLayerService.removeRectangleArea(mapLayerId, areaId);
         return ResponseEntityWrapper.OK();
@@ -239,8 +232,7 @@ public class MapLayerController {
 
     @PostMapping(value = "/mapLayer/addPolygonAreas")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> addPolygonAreas(@RequestParam String mapLayerId, @RequestParam
-            ("list[]") List<Long> areaIds) {
+    public ResponseEntity<Map<Object, Object>> addPolygonAreas(@RequestParam String mapLayerId, @RequestParam("list[]") List<Long> areaIds) {
         mapLayerService.addPolygonAreas(mapLayerId, areaIds);
         return ResponseEntityWrapper.OK();
         // try {
@@ -255,8 +247,7 @@ public class MapLayerController {
 
     @PostMapping(value = "/mapLayer/removePolygonArea")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> removePolygonArea(@RequestParam String mapLayerId, @RequestParam long
-            areaId) {
+    public ResponseEntity<Map<Object, Object>> removePolygonArea(@RequestParam String mapLayerId, @RequestParam long areaId) {
         mapLayerService.removePolygonArea(mapLayerId, areaId);
         return ResponseEntityWrapper.OK();
         // try {
@@ -280,8 +271,7 @@ public class MapLayerController {
 
     @PostMapping(value = "/mapLayer/addRouteAreas")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> addRouteAreas(@RequestParam String mapLayerId, @RequestParam("list[]")
-            List<Long> areaIds) {
+    public ResponseEntity<Map<Object, Object>> addRouteAreas(@RequestParam String mapLayerId, @RequestParam("list[]") List<Long> areaIds) {
 
         mapLayerService.addRouteAreas(mapLayerId, areaIds);
         return ResponseEntityWrapper.OK();
@@ -297,8 +287,7 @@ public class MapLayerController {
 
     @PostMapping(value = "/mapLayer/removeRouteArea")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> removeRouteArea(@RequestParam String mapLayerId, @RequestParam long
-            areaId) {
+    public ResponseEntity<Map<Object, Object>> removeRouteArea(@RequestParam String mapLayerId, @RequestParam long areaId) {
         mapLayerService.removeRouteArea(mapLayerId, areaId);
         return ResponseEntityWrapper.OK();
         // try {
@@ -322,8 +311,7 @@ public class MapLayerController {
 
     @PostMapping(value = "/mapLayer/addPois")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> addPois(@RequestParam String mapLayerId, @RequestParam("list[]")
-            List<Long> areaIds) {
+    public ResponseEntity<Map<Object, Object>> addPois(@RequestParam String mapLayerId, @RequestParam("list[]") List<Long> areaIds) {
 
         mapLayerService.addPois(mapLayerId, areaIds);
         return ResponseEntityWrapper.OK();

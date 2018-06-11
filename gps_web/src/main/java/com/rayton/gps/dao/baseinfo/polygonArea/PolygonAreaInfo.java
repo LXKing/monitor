@@ -19,8 +19,7 @@ public class PolygonAreaInfo {
 
     @Override
     public String toString() {
-        return "PolygonAreaInfo{" + "id=" + id + ", name='" + name + '\'' + ", deviceCatch=" + deviceCatch + ", " +
-                "remark='" + remark + '\'' + ", points=" + points + '}';
+        return "PolygonAreaInfo{" + "id=" + id + ", name='" + name + '\'' + ", deviceCatch=" + deviceCatch + ", " + "remark='" + remark + '\'' + ", points=" + points + '}';
     }
 
     /**

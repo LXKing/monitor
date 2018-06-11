@@ -37,6 +37,10 @@ public class MarkerFileInfo {
         return id;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public Double getLng() {
         return lng;
     }
@@ -53,10 +57,6 @@ public class MarkerFileInfo {
         this.alt = alt;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getType() {
         return type;
     }
@@ -67,8 +67,7 @@ public class MarkerFileInfo {
 
     @Override
     public String toString() {
-        return "MarkerFileInfo{" + "name='" + name + '\'' + ", img='" + img + '\'' + ", time=" + time + ", id='" + id
-                + '\'' + ", type='" + type + '\'' + '}';
+        return "MarkerFileInfo{" + "name='" + name + '\'' + ", img='" + img + '\'' + ", time=" + time + ", id='" + id + '\'' + ", type='" + type + '\'' + '}';
     }
 
     public String getCompanyId() {

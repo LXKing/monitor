@@ -15,10 +15,7 @@ public class VehicleFatigueDrivingDetail {
 
     @Override
     public String toString() {
-        return "VehicleFatigueDrivingDetail{" + "deviceNumber='" + deviceNumber + '\'' + ", motorcade='" + motorcade
-                + '\'' + ", plateNumber='" + plateNumber + '\'' + ", times=" + times + ", mileages=" + mileages + ", " +
-                "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "duration=" + duration + ", start=" + start +
-                ", " + "end=" + end + '}';
+        return "VehicleFatigueDrivingDetail{" + "deviceNumber='" + deviceNumber + '\'' + ", motorcade='" + motorcade + '\'' + ", plateNumber='" + plateNumber + '\'' + ", times=" + times + ", mileages=" + mileages + ", " + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "duration=" + duration + ", start=" + start + ", " + "end=" + end + '}';
     }
 
     public String getDeviceNumber() {

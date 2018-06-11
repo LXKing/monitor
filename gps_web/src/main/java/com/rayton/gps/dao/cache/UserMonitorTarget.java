@@ -21,8 +21,7 @@ public class UserMonitorTarget {
 
     @Override
     public String toString() {
-        return "UserMonitorTarget{" + "userId='" + userId + '\'' + ", valid=" + valid + ", motorcades=" + motorcades
-                + ", devices=" + devices + '}';
+        return "UserMonitorTarget{" + "userId='" + userId + '\'' + ", valid=" + valid + ", motorcades=" + motorcades + ", devices=" + devices + '}';
     }
 
     public String getUserId() {

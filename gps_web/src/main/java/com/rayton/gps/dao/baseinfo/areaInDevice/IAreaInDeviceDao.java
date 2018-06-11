@@ -16,8 +16,7 @@ public interface IAreaInDeviceDao {
 
     void removeVehicle(String deviceNumber, long areaId, byte areaKind);
 
-    void log(String serialNumber, String deviceNumber, long areaId, byte areaKind, byte action, String unid, String
-            user);
+    void log(String serialNumber, String deviceNumber, long areaId, byte areaKind, byte action, String unid, String user);
 
     List<String> findDevice(long areaId, byte areaKind);
 

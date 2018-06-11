@@ -24,37 +24,40 @@
         <result property="serviceEndTime" column="SERVICEENDDATE"
                 jdbcType="DATE"/>
         <result property="enable" column="ENABLE" jdbcType="BOOLEAN"/>
+        <result property="FULLNAME" column="FULLNAME" jdbcType="VARCHAR"/>
     </resultMap>
 
     <select id="get" resultMap="IdentifyDtoMap">
         SELECT
-        ID,
-        UNID,
-        COMPANYID,
-        ACCOUNT,
-        PASSWORD,
-        NAME,
-        KIND,
-        SERVICESTARTDATE,
-        SERVICEENDDATE,
-        `ENABLE`
-        FROM user
+            a.ID,
+            a.UNID,
+            a.COMPANYID,
+            a.ACCOUNT,
+            a.PASSWORD,
+            a.NAME,
+            a.KIND,
+            a.SERVICESTARTDATE,
+            a.SERVICEENDDATE,
+            a.`ENABLE`,
+            b.FULLNAME
+        FROM user a INNER JOIN company b
+                ON b.ID = a.COMPANYID
         WHERE ACCOUNT = #{param1}
         LIMIT 1
     </select>
 
     <select id="login" resultMap="IdentifyDtoMap">
         SELECT
-        ID,
-        UNID,
-        COMPANYID,
-        ACCOUNT,
-        PASSWORD,
-        NAME,
-        KIND,
-        SERVICESTARTDATE,
-        SERVICEENDDATE,
-        `ENABLE`
+            ID,
+            UNID,
+            COMPANYID,
+            ACCOUNT,
+            PASSWORD,
+            NAME,
+            KIND,
+            SERVICESTARTDATE,
+            SERVICEENDDATE,
+            `ENABLE`
         FROM user
         WHERE ACCOUNT = #{param1}
         LIMIT 1
@@ -63,7 +66,7 @@
     <select id="getPasswordByUnid" resultType="java.lang.String">
         SELECT PASSWORD
         FROM
-        user
+            user
         WHERE UNID = #{param1}
         LIMIT 1
     </select>
@@ -71,7 +74,7 @@
     <select id="getPasswodById" resultType="java.lang.String">
         SELECT PASSWORD
         FROM
-        user
+            user
         WHERE ID = #{param1}
         LIMIT 1
     </select>
@@ -89,13 +92,13 @@
 
     <select id="getMyInfo" resultMap="MyInfoDtoMap">
         SELECT
-        ID,
-        ACCOUNT,
-        NAME,
-        EMAIL,
-        PHONE,
-        CONTACT,
-        EDITTIME
+            ID,
+            ACCOUNT,
+            NAME,
+            EMAIL,
+            PHONE,
+            CONTACT,
+            EDITTIME
         FROM user
         WHERE ID = #{param1}
         LIMIT 1
@@ -121,13 +124,13 @@
 
     <select id="getParentCompany" resultMap="ParentDtoMap">
         SELECT
-        PID,
-        SERVICESTARTDATE,
-        SERVICEENDDATE,
-        `ENABLE`
+            PID,
+            SERVICESTARTDATE,
+            SERVICEENDDATE,
+            `ENABLE`
         FROM user
         WHERE
-        COMPANYID = #{param1}
+            COMPANYID = #{param1}
         LIMIT 1
     </select>
 
@@ -149,8 +152,8 @@
 
     <select id="roleAuthorizes" resultType="com.rayton.gps.dao.security.RoleAuthorizeDto">
         SELECT
-        ROLEID,
-        PERMISSIONID
+            ROLEID,
+            PERMISSIONID
         FROM role_permission
     </select>
 </mapper>

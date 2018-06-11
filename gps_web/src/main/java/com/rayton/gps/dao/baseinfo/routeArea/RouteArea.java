@@ -22,9 +22,7 @@ public class RouteArea {
 
     @Override
     public String toString() {
-        return "RouteArea{" + "id=" + id + ", companyId='" + companyId + '\'' + ", name='" + name + '\'' + ", " +
-                "deviceCatch=" + deviceCatch + ", flag=" + flag + ", startTime=" + startTime + ", endTime=" + endTime
-                + ", remark='" + remark + '\'' + ", editTime=" + editTime + '}';
+        return "RouteArea{" + "id=" + id + ", companyId='" + companyId + '\'' + ", name='" + name + '\'' + ", " + "deviceCatch=" + deviceCatch + ", flag=" + flag + ", startTime=" + startTime + ", endTime=" + endTime + ", remark='" + remark + '\'' + ", editTime=" + editTime + '}';
     }
 
     /**

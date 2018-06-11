@@ -29,10 +29,7 @@ public class PolygonArea {
 
     @Override
     public String toString() {
-        return "PolygonArea{" + "id=" + id + ", companyId='" + companyId + '\'' + ", name='" + name + '\'' + ", " +
-                "deviceCatch=" + deviceCatch + ", flag=" + flag + ", maxSpeed=" + maxSpeed + ", overspeedSeconds=" +
-                overspeedSeconds + ", startTime=" + startTime + ", endTime=" + endTime + ", remark='" + remark + '\''
-                + ", editTime=" + editTime + ", points=" + points + '}';
+        return "PolygonArea{" + "id=" + id + ", companyId='" + companyId + '\'' + ", name='" + name + '\'' + ", " + "deviceCatch=" + deviceCatch + ", flag=" + flag + ", maxSpeed=" + maxSpeed + ", overspeedSeconds=" + overspeedSeconds + ", startTime=" + startTime + ", endTime=" + endTime + ", remark='" + remark + '\'' + ", editTime=" + editTime + ", points=" + points + '}';
     }
 
     /**

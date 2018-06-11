@@ -104,7 +104,8 @@
                                 BUYTAX,
                                 LICENSEEXAMINATIONPERIOD,
                                 VEHICLEPIC,
-                                VINPIC
+                                VINPIC,
+                                FUELTYPE
 
 
         ) VALUES (#{id}, #{companyId},
@@ -140,7 +141,8 @@
             #{BUYTAX},
             #{LICENSEEXAMINATIONPERIOD},
             #{VEHICLEPIC},
-            #{VINPIC}
+            #{VINPIC},
+                  #{FUELTYPE}
 
 
         )
@@ -183,6 +185,7 @@
             LICENSEEXAMINATIONPERIOD = #{LICENSEEXAMINATIONPERIOD},
             VEHICLEPIC               = #{VEHICLEPIC},
             VINPIC                   = #{VINPIC},
+            FUELTYPE                 = #{FUELTYPE},
             EDITTIME                 = now()
         WHERE
             ID = #{id}
@@ -225,6 +228,7 @@
             A.EDITTIME,
             A.INSTALLDATE,
             A.ANNUALSURVEYDATE,
+            A.FUELTYPE,
 
 
             A.FACTORYPLATEMODE,
@@ -368,4 +372,61 @@
         SET MARKER = #{param2}
         WHERE MARKER = #{param1}
     </update>
+
+
+    <select id="getByD" resultType="java.lang.String">
+        SELECT A.ID
+
+        FROM automobile AS A LEFT
+            JOIN equipment AS
+                 B ON A.DEVICEID = B.ID
+
+        WHERE B.DEVICENUMBER = #{param1}
+        LIMIT 1
+    </select>
+
+
+    <select id="getWhat" resultType="com.rayton.gps.dao.baseinfo.vehicle.Vehicle">
+        SELECT
+            A.ID,
+
+            A.VEHICLETYPE,
+            A.VEHICLEVOLTAGE,
+            A.CARRYTYPE,
+            A.INITIALMILEAGE,
+            A.OILWEAR,
+
+
+            A.LICENSEPLATESELFNUM
+        FROM automobile AS A
+            LEFT
+            JOIN equipment AS
+                 B ON A.DEVICEID = B.ID
+
+        WHERE B.DEVICENUMBER = #{param1}
+        LIMIT 1
+    </select>
+
+
+    <select id="getSS" resultType="java.lang.String">
+        SELECT A.LICENSEPLATESELFNUM
+        FROM automobile AS A
+            LEFT
+            JOIN equipment AS
+                 B ON A.DEVICEID = B.ID
+
+        WHERE B.DEVICENUMBER = #{param1}
+        LIMIT 1
+    </select>
+
+
+    <insert id="addGC">
+
+
+        UPDATE automobile
+        SET MOTORCADEID = #{param1}
+        WHERE ID = #{param2}
+    </insert>
+
+
 </mapper>

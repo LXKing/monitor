@@ -26,14 +26,7 @@ public class DrivingRecorderInfo {
 
     @Override
     public String toString() {
-        return "DrivingRecorderInfo{" + "number='" + number + '\'' + ", revision='" + revision + '\'' + ", license='"
-                + license + '\'' + ", initialMileage=" + initialMileage + ", totalMileage=" + totalMileage + ", " +
-                "pulseFactor=" + pulseFactor + ", vehicleIdCode='" + vehicleIdCode + '\'' + ", plateNumber='" +
-                plateNumber + '\'' + ", plateType='" + plateType + '\'' + ", cccCode='" + cccCode + '\'' + ", " +
-                "model='" + model + '\'' + ", productionDate='" + productionDate + '\'' + ", serialNumber=" +
-                serialNumber + ", " + "d0='" + d0 + '\'' + ", d1='" + d1 + '\'' + ", d2='" + d2 + '\'' + ", d3='" +
-                d3 + '\'' + ", d4='" + d4 + '\'' + ", d5='" + d5 + '\'' + ", d6='" + d6 + '\'' + ", d7='" + d7 + '\''
-                + '}';
+        return "DrivingRecorderInfo{" + "number='" + number + '\'' + ", revision='" + revision + '\'' + ", license='" + license + '\'' + ", initialMileage=" + initialMileage + ", totalMileage=" + totalMileage + ", " + "pulseFactor=" + pulseFactor + ", vehicleIdCode='" + vehicleIdCode + '\'' + ", plateNumber='" + plateNumber + '\'' + ", plateType='" + plateType + '\'' + ", cccCode='" + cccCode + '\'' + ", " + "model='" + model + '\'' + ", productionDate='" + productionDate + '\'' + ", serialNumber=" + serialNumber + ", " + "d0='" + d0 + '\'' + ", d1='" + d1 + '\'' + ", d2='" + d2 + '\'' + ", d3='" + d3 + '\'' + ", d4='" + d4 + '\'' + ", d5='" + d5 + '\'' + ", d6='" + d6 + '\'' + ", d7='" + d7 + '\'' + '}';
     }
 
     public String getNumber() {

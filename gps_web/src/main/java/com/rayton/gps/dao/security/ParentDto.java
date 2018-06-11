@@ -42,7 +42,6 @@ public class ParentDto {
 
     @Override
     public String toString() {
-        return "ParentDto{" + "companyId='" + companyId + '\'' + ", serviceStartTime=" + serviceStartTime + ", " +
-                "serviceEndTime=" + serviceEndTime + ", enable=" + enable + '}';
+        return "ParentDto{" + "companyId='" + companyId + '\'' + ", serviceStartTime=" + serviceStartTime + ", " + "serviceEndTime=" + serviceEndTime + ", enable=" + enable + '}';
     }
 }

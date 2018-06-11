@@ -44,8 +44,7 @@ public class OwnerController {
 
     @GetMapping("/owner/query")
     @ResponseBody
-    public Object query(@RequestParam(required = false) String filter, @RequestParam int page, @RequestParam int
-            limit) throws Exception {
+    public Object query(@RequestParam(required = false) String filter, @RequestParam int page, @RequestParam int limit) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         Page<OwnerInfo> result = ownerService.query(identity.getCompanyId(), filter, page, limit);
 
@@ -67,8 +66,7 @@ public class OwnerController {
 
     @PostMapping(value = "/owner/addVehicles")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> addSections(@RequestParam String ownerId, @RequestParam String
-            vehicles) throws Exception {
+    public ResponseEntity<Map<Object, Object>> addSections(@RequestParam String ownerId, @RequestParam String vehicles) throws Exception {
 
         List<String> list = Arrays.asList(vehicles.split(","));
         // List<String> list = JsonMapper.toObject(vehicles, List.class, String.class);
@@ -87,8 +85,7 @@ public class OwnerController {
 
     @PostMapping(value = "/owner/removeVehicle")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> removeSection(@RequestParam String ownerId, @RequestParam String
-            vehicleId) throws Exception {
+    public ResponseEntity<Map<Object, Object>> removeSection(@RequestParam String ownerId, @RequestParam String vehicleId) throws Exception {
         ownerService.removeVehicle(ownerId, vehicleId);
         return ResponseEntityWrapper.OK();
         // try {
@@ -114,8 +111,7 @@ public class OwnerController {
 
     @PostMapping(value = "/owner/create.form")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> create(@ModelAttribute("editor") @Valid OwnerModel m, BindingResult
-            binding) throws Exception {
+    public ResponseEntity<Map<Object, Object>> create(@ModelAttribute("editor") @Valid OwnerModel m, BindingResult binding) throws Exception {
         if (binding.hasErrors()) {
             List<FieldError> errors = binding.getFieldErrors();
             Map<Object, Object> map = new HashMap<>();
@@ -155,8 +151,7 @@ public class OwnerController {
 
     @PostMapping(value = "/owner/edit.form")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> edit(@ModelAttribute("editor") @Valid OwnerModel m, BindingResult
-            binding) throws Exception {
+    public ResponseEntity<Map<Object, Object>> edit(@ModelAttribute("editor") @Valid OwnerModel m, BindingResult binding) throws Exception {
         if (binding.hasErrors())
             // return "/baseinfo/owner/edit.form";
             return ResponseEntityWrapper.Failed();

@@ -149,14 +149,18 @@ public class ShiroRealm extends AuthorizingRealm {
 
         if (user.kind == 1) {
 
-            try { roles = securityDao.getRoles(user.companyId);} catch (Exception e) {
+            try {
+                roles = securityDao.getRoles(user.companyId);
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
             user.setRoles(new String[]{user.companyId});
         } else {
 
-            try { roles = securityDao.getRoles(user.id);} catch (Exception e) {
+            try {
+                roles = securityDao.getRoles(user.id);
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
@@ -175,8 +179,9 @@ public class ShiroRealm extends AuthorizingRealm {
             list.forEach(roleAuthorize -> permissionStringList.add(roleAuthorize.getPermissionId()));
         } else {
             for (String role : roles) {
-                list.stream().filter(roleAuthorize -> roleAuthorize.getRoleId().equals(role)).forEach(roleAuthorize
-                        -> permissionStringList.add(roleAuthorize.getPermissionId()));
+                list.stream()
+                        .filter(roleAuthorize -> roleAuthorize.getRoleId().equals(role))
+                        .forEach(roleAuthorize -> permissionStringList.add(roleAuthorize.getPermissionId()));
             }
         }
 

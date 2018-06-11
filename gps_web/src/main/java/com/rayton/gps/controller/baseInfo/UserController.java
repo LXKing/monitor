@@ -3,6 +3,7 @@ package com.rayton.gps.controller.baseInfo;
 import com.rayton.gps.aop.Log;
 import com.rayton.gps.dao.Page;
 import com.rayton.gps.dao.baseinfo.MonitorInfo;
+import com.rayton.gps.dao.baseinfo.company.ICompanyDao;
 import com.rayton.gps.dao.baseinfo.user.User;
 import com.rayton.gps.dao.baseinfo.user.UserInfo;
 import com.rayton.gps.dao.security.IdentityDto;
@@ -34,7 +35,8 @@ import java.util.Map;
 public class UserController {
     @Autowired
     private UserService userService;
-
+    @Autowired
+    private ICompanyDao companyDao;
 
     @RequiresPermissions("baseinfo.user")
     @Log(name = "打开用户管理页面")
@@ -45,8 +47,7 @@ public class UserController {
 
     @GetMapping(value = "/user/query")
     @ResponseBody
-    public Object query(@RequestParam(required = false) String filter, @RequestParam int page, @RequestParam int
-            limit) throws Exception {
+    public Object query(@RequestParam(required = false) String filter, @RequestParam int page, @RequestParam int limit) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         Page<UserInfo> result = userService.query(identity.getCompanyId(), filter, page, limit);
 
@@ -59,8 +60,7 @@ public class UserController {
 
     @GetMapping("/user/targets")
     @ResponseBody
-    public Object targets(@RequestParam String filter, @RequestParam int pageIndex, @RequestParam int pageSize)
-            throws Exception {
+    public Object targets(@RequestParam String filter, @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         return userService.getTargets(identity.getCompanyId(), filter, pageIndex, pageSize);
     }
@@ -96,8 +96,7 @@ public class UserController {
 
     @PostMapping(value = "/user/removeMonitor")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> removeMonitor(@RequestParam String userId, @RequestParam String
-            targetId) {
+    public ResponseEntity<Map<Object, Object>> removeMonitor(@RequestParam String userId, @RequestParam String targetId) {
         userService.removeMonitor(userId, targetId);
         return ResponseEntityWrapper.OK();
         // try {
@@ -163,7 +162,7 @@ public class UserController {
 
     @PostMapping(value = "/user/create.form")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> create(@ModelAttribute("user") @Valid User user, BindingResult binding) {
+    public ResponseEntity<Map<Object, Object>> create(@ModelAttribute("user") @Valid User user, BindingResult binding) throws Exception {
         if (binding.hasErrors()) {
             List<FieldError> errors = binding.getFieldErrors();
             Map<Object, Object> map = new HashMap<>();
@@ -173,6 +172,9 @@ public class UserController {
         // return "/baseinfo/user/create.form";
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         user.setCompanyId(identity.getCompanyId());
+
+
+        user.setCompany(companyDao.fetch(identity.getCompanyId()).getFullName());
         userService.create(user);
         return ResponseEntityWrapper.OK();
         // try {
@@ -237,8 +239,7 @@ public class UserController {
 
     @PostMapping(value = "/user/exist")
     @ResponseBody
-    public Object exists(@RequestParam String account, @RequestParam(required = false) String id, @RequestParam
-            boolean checkId) throws Exception {
+    public Object exists(@RequestParam String account, @RequestParam(required = false) String id, @RequestParam boolean checkId) throws Exception {
         return checkId ? !userService.exist(account, id) : !userService.exist(account);
         // if (checkId) {
         //     response.getWriter().print(!userService.exist(account, id));
@@ -256,8 +257,7 @@ public class UserController {
 
     @PostMapping(value = "/user/saveOption")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> saveOption(UserOptionModel op, RedirectAttributes r,
-                                                          HttpServletRequest request) {
+    public ResponseEntity<Map<Object, Object>> saveOption(UserOptionModel op, RedirectAttributes r, HttpServletRequest request) {
 
         UserOptions kind = UserOptions.of(op.getType());
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();

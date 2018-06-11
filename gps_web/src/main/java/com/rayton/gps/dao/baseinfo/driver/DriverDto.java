@@ -1,5 +1,7 @@
 package com.rayton.gps.dao.baseinfo.driver;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.sql.Date;
 import java.sql.Timestamp;
 
@@ -12,6 +14,7 @@ public class DriverDto {
     public String idType;
     public String idNumber;
     public String drivingLicenseNumber;
+    @JSONField(format = "yyyy-MM-dd")
     public Date drivingLicenseExpiryDate;
     public String remark;
     public Timestamp editTime;
@@ -106,10 +109,6 @@ public class DriverDto {
 
     @Override
     public String toString() {
-        return "DriverDto{" + "id='" + id + '\'' + ", companyId='" + companyId + '\'' + ", name='" + name + '\'' + "," +
-                "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + " sex='" + sex + '\'' + ", phone='" + phone +
-                '\'' + ", " + "" + "idType='" + idType + '\'' + "," + " " + "idNumber='" + idNumber + '\'' + ", " +
-                "drivingLicenseNumber='" + drivingLicenseNumber + '\'' + ", " + "" + "drivingLicenseExpiryDate=" +
-                drivingLicenseExpiryDate + "," + "" + " remark='" + remark + '\'' + ", " + "editTime=" + editTime + '}';
+        return "DriverDto{" + "id='" + id + '\'' + ", companyId='" + companyId + '\'' + ", name='" + name + '\'' + "," + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + " sex='" + sex + '\'' + ", phone='" + phone + '\'' + ", " + "" + "idType='" + idType + '\'' + "," + " " + "idNumber='" + idNumber + '\'' + ", " + "drivingLicenseNumber='" + drivingLicenseNumber + '\'' + ", " + "" + "drivingLicenseExpiryDate=" + drivingLicenseExpiryDate + "," + "" + " remark='" + remark + '\'' + ", " + "editTime=" + editTime + '}';
     }
 }

@@ -14,9 +14,7 @@ public class VehicleFatigueDrivingCount {
 
     @Override
     public String toString() {
-        return "VehicleFatigueDrivingCount{" + "motorcadeId='" + motorcadeId + '\'' + ", motorcade='" + motorcade +
-                '\'' + ", times=" + times + ", mileages=" + mileages + ", duration=" + duration + ", start=" + start
-                + ", end=" + end + '}';
+        return "VehicleFatigueDrivingCount{" + "motorcadeId='" + motorcadeId + '\'' + ", motorcade='" + motorcade + '\'' + ", times=" + times + ", mileages=" + mileages + ", duration=" + duration + ", start=" + start + ", end=" + end + '}';
     }
 
     public String getMotorcadeId() {

@@ -54,8 +54,7 @@ public class MarkerController {
 
     @PostMapping(value = "/marker/upload.form")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> upload(@RequestParam("file") MultipartFile file, HttpServletRequest
-            request) throws Exception {
+    public ResponseEntity<Map<Object, Object>> upload(@RequestParam("file") MultipartFile file, HttpServletRequest request) throws Exception {
 
         Assert.isTrue(file.isEmpty(), "文件不能为空！");
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
@@ -81,8 +80,7 @@ public class MarkerController {
 
     @PostMapping(value = "/marker/delete")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> delete(@RequestParam String name, HttpServletRequest request) throws
-            Exception {
+    public ResponseEntity<Map<Object, Object>> delete(@RequestParam String name, HttpServletRequest request) throws Exception {
         Assert.isTrue(name.equalsIgnoreCase("00.png"), "不能删除系统默认图标！");
         String path = request.getServletContext().getRealPath("/static/icons");
         Assert.isTrue(!markerService.deleteMarkerFile(path, name), "删除文件失败！");

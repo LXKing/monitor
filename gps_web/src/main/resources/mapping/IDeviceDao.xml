@@ -59,7 +59,9 @@
                                LIFECYCLE,
                                LIFEEXPIRATIONDATE,
                                Protocol,
-                               ProtocolName
+                               ProtocolName,
+                               REPAIR,
+                               EDITUSER
         ) VALUES (#{id}, #{companyId}, #{deviceNumber},
                          #{simcardId}, #{model},
                          #{factoryName}, #{factoryNumber}, #{cameras},
@@ -76,6 +78,8 @@
 
             , #{protocol}
             , #{protocolName}
+            , #{REPAIR}
+            , #{EDITUSER}
         )
     </insert>
     <update id="update" parameterType="com.rayton.gps.dao.baseinfo.device.Device">
@@ -91,6 +95,7 @@
 
 
             SN                 = #{SN},
+            EDITUSER           = #{EDITUSER},
             INSTOCKDATE        = #{INSTOCKDATE},
             OUTSTOCKDATE       = #{OUTSTOCKDATE},
             ACTIVATIONDATE     = #{ACTIVATIONDATE},
@@ -99,7 +104,8 @@
             LIFEEXPIRATIONDATE = #{LIFEEXPIRATIONDATE},
             EDITTIME           = #{editTime},
             Protocol           = #{protocol},
-            ProtocolName           = #{protocolName}
+            Protocol           = #{protocol},
+            REPAIR             = #{REPAIR}
         WHERE ID = #{id}
 
 
@@ -151,6 +157,8 @@
             A.INSTALLDATE,
             A.Protocol,
             A.ProtocolName,
+            A.REPAIR,
+            A.EDITUSER,
             A.SN,
             A.INSTOCKDATE,
             A.OUTSTOCKDATE,
@@ -262,5 +270,23 @@
         LIMIT 1
 
     </select>
+    <select id="getD" resultType="com.rayton.gps.dao.baseinfo.device.Device">
+        SELECT
+
+            A.COMPANYID,
+            A.DEVICENUMBER,
+            A.ID,
+            A.MODEL,
+A.SIMCARDID,
+            A.SN,
+
+            A.IMEI
+        FROM
+            equipment AS A
+        WHERE A.DEVICENUMBER = #{param1}
+        LIMIT 1
+    </select>
+
+
 
 </mapper>

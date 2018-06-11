@@ -12,8 +12,7 @@ public class AreaInDeviceInfo {
 
     @Override
     public String toString() {
-        return "AreaInDeviceInfo{" + "plateNumber='" + plateNumber + '\'' + ", deviceNumber='" + deviceNumber + '\''
-                + ", areaId=" + areaId + ", areaType=" + areaType + ", time=" + time + '}';
+        return "AreaInDeviceInfo{" + "plateNumber='" + plateNumber + '\'' + ", deviceNumber='" + deviceNumber + '\'' + ", areaId=" + areaId + ", areaType=" + areaType + ", time=" + time + '}';
     }
 
     public String getPlateNumber() {

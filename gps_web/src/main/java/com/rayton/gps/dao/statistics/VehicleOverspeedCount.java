@@ -4,6 +4,8 @@ import java.util.Date;
 
 public class VehicleOverspeedCount {
 
+    double LAT;
+    double LNG;
     private String motorcadeId;
     private String motorcade;
     private int times;
@@ -13,8 +15,24 @@ public class VehicleOverspeedCount {
 
     @Override
     public String toString() {
-        return "VehicleOverspeedCount{" + "motorcadeId='" + motorcadeId + '\'' + ", motorcade='" + motorcade + '\'' +
-                ", times=" + times + ", duration=" + duration + ", start=" + start + ", end=" + end + '}';
+        return "VehicleOverspeedCount{" + "motorcadeId='" + motorcadeId + '\'' + ", motorcade='" + motorcade + '\'' + ", times=" + times + ", duration=" + duration + ", start=" + start + ", end=" + end + '}';
+    }
+
+
+    public double getLAT() {
+        return LAT;
+    }
+
+    public void setLAT(double LAT) {
+        this.LAT = LAT;
+    }
+
+    public double getLNG() {
+        return LNG;
+    }
+
+    public void setLNG(double LNG) {
+        this.LNG = LNG;
     }
 
     public String getMotorcadeId() {

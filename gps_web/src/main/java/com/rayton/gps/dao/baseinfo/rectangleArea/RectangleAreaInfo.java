@@ -18,9 +18,7 @@ public class RectangleAreaInfo {
 
     @Override
     public String toString() {
-        return "RectangleAreaInfo{" + "id=" + id + ", name='" + name + '\'' + ", deviceCatch=" + deviceCatch + ", " +
-                "ullat=" + ullat + ", ullng=" + ullng + ", brlat=" + brlat + ", brlng=" + brlng + ", remark='" +
-                remark + '\'' + '}';
+        return "RectangleAreaInfo{" + "id=" + id + ", name='" + name + '\'' + ", deviceCatch=" + deviceCatch + ", " + "ullat=" + ullat + ", ullng=" + ullng + ", brlat=" + brlat + ", brlng=" + brlng + ", remark='" + remark + '\'' + '}';
     }
 
     /**

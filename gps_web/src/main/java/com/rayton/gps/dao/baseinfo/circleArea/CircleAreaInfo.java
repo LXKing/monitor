@@ -17,8 +17,7 @@ public class CircleAreaInfo {
 
     @Override
     public String toString() {
-        return "CircleAreaInfo{" + "id=" + id + ", name='" + name + '\'' + ", deviceCatch=" + deviceCatch + ", lat="
-                + lat + ", lng=" + lng + ", radius=" + radius + ", remark='" + remark + '\'' + '}';
+        return "CircleAreaInfo{" + "id=" + id + ", name='" + name + '\'' + ", deviceCatch=" + deviceCatch + ", lat=" + lat + ", lng=" + lng + ", radius=" + radius + ", remark='" + remark + '\'' + '}';
     }
 
     /**

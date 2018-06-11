@@ -13,9 +13,7 @@ public class CurrentOnlineOfflineDetail {
 
     @Override
     public String toString() {
-        return "CurrentOnlineOfflineDetail{" + "motorcade='" + motorcade + '\'' + ", plateNumber='" + plateNumber +
-                '\'' + ", deviceNumber='" + deviceNumber + '\'' + ", start=" + start + ", end=" + end + ", online=" +
-                online + '}';
+        return "CurrentOnlineOfflineDetail{" + "motorcade='" + motorcade + '\'' + ", plateNumber='" + plateNumber + '\'' + ", deviceNumber='" + deviceNumber + '\'' + ", start=" + start + ", end=" + end + ", online=" + online + '}';
     }
 
     public String getMotorcade() {

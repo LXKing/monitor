@@ -25,10 +25,7 @@ public class PhotoInfo {
 
     @Override
     public String toString() {
-        return "PhotoInfo{" + "id='" + id + '\'' + ", gt=" + gt + ", mediaId=" + mediaId + ", mediaType='" +
-                mediaType + '\'' + ", formatType='" + formatType + '\'' + ", eventType='" + eventType + '\'' + ", " +
-                "channelId=" + channelId + ", lng=" + lng + ", lat=" + lat + ", sp=" + sp + ", d=" + d + ", a=" + a +
-                ", s=" + s + '}';
+        return "PhotoInfo{" + "id='" + id + '\'' + ", gt=" + gt + ", mediaId=" + mediaId + ", mediaType='" + mediaType + '\'' + ", formatType='" + formatType + '\'' + ", eventType='" + eventType + '\'' + ", " + "channelId=" + channelId + ", lng=" + lng + ", lat=" + lat + ", sp=" + sp + ", d=" + d + ", a=" + a + ", s=" + s + '}';
     }
 
     /**

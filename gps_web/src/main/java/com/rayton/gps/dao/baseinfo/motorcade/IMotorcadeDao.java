@@ -51,4 +51,6 @@ public interface IMotorcadeDao {
      * 是否有车辆
      */
     boolean hasVehicle(String id);
+
+
 }

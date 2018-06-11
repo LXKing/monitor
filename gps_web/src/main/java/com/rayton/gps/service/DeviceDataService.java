@@ -23,8 +23,7 @@ public class DeviceDataService {
     @Autowired
     private IGodpDao godpDao;
 
-    public Page<PhotoInfo> queryMultimedia(String deviceNumber, Date start, Date end, int pageIndex, int pageSize)
-            throws Exception {
+    public Page<PhotoInfo> queryMultimedia(String deviceNumber, Date start, Date end, int pageIndex, int pageSize) throws Exception {
         Page<PhotoInfoDto> page = godpDao.queryMultimedia(deviceNumber, start, end, pageIndex, pageSize);
         Page<PhotoInfo> query = new Page<PhotoInfo>();
         query.total = page.total;
@@ -53,15 +52,13 @@ public class DeviceDataService {
         return godpDao.readMultimedia(id);
     }
 
-    public Page<MultimediaEventReport> queryMultimediaEventReport(String deviceNumber, Date start, Date end, int
-            pageIndex, int pageSize) {
+    public Page<MultimediaEventReport> queryMultimediaEventReport(String deviceNumber, Date start, Date end, int pageIndex, int pageSize) {
         int total = deviceDataDao.queryMultimediaEventReportPageCount(deviceNumber, start, end);
         Page<MultimediaEventReport> query = new Page<MultimediaEventReport>();
         query.total = total;
 
         if (total > 0) {
-            List<MultimediaEventReportDto> rows = deviceDataDao.queryMultimediaEventReportPageDetail(deviceNumber,
-                    start, end, (pageIndex - 1) * pageSize, pageSize);
+            List<MultimediaEventReportDto> rows = deviceDataDao.queryMultimediaEventReportPageDetail(deviceNumber, start, end, (pageIndex - 1) * pageSize, pageSize);
 
             for (MultimediaEventReportDto dto : rows) {
                 MultimediaEventReport report = new MultimediaEventReport();
@@ -80,15 +77,13 @@ public class DeviceDataService {
         return query;
     }
 
-    public Page<MultimediaRetrieval> queryMultimediaDataRetrieval(String deviceNumber, Date start, Date end, int
-            pageIndex, int pageSize) {
+    public Page<MultimediaRetrieval> queryMultimediaDataRetrieval(String deviceNumber, Date start, Date end, int pageIndex, int pageSize) {
         int total = deviceDataDao.queryMultimediaDataRetrievalPageCount(deviceNumber, start, end);
         Page<MultimediaRetrieval> query = new Page<MultimediaRetrieval>();
         query.total = total;
 
         if (total > 0) {
-            List<MultimediaRetrievalDto> rows = deviceDataDao.queryMultimediaDataRetrievalPageDetail(deviceNumber,
-                    start, end, (pageIndex - 1) * pageSize, pageSize);
+            List<MultimediaRetrievalDto> rows = deviceDataDao.queryMultimediaDataRetrievalPageDetail(deviceNumber, start, end, (pageIndex - 1) * pageSize, pageSize);
 
             for (MultimediaRetrievalDto dto : rows) {
                 MultimediaRetrieval row = new MultimediaRetrieval();
@@ -117,8 +112,7 @@ public class DeviceDataService {
         query.total = total;
 
         if (total > 0) {
-            List<DeviceEventReportDto> rows = deviceDataDao.queryDeviceEventReportPageDetail(deviceNumber, start,
-                    end, (pageIndex - 1) * pageSize, pageSize);
+            List<DeviceEventReportDto> rows = deviceDataDao.queryDeviceEventReportPageDetail(deviceNumber, start, end, (pageIndex - 1) * pageSize, pageSize);
 
             for (DeviceEventReportDto dto : rows) {
                 DeviceEventReport row = new DeviceEventReport();
@@ -133,15 +127,13 @@ public class DeviceDataService {
         return query;
     }
 
-    public Object deviceUpgradeResultReport(String deviceNumber, Date start, Date end, int pageIndex, int pageSize)
-            throws Exception {
+    public Object deviceUpgradeResultReport(String deviceNumber, Date start, Date end, int pageIndex, int pageSize) throws Exception {
         int total = deviceDataDao.queryDeviceUpgradeResultReportPageCount(deviceNumber, start, end);
         Page<UpgradeResultReport> query = new Page<UpgradeResultReport>();
         query.total = total;
 
         if (total > 0) {
-            List<UpgradeResultReportDto> rows = deviceDataDao.queryDeviceUpgradeResultReportPageDetail(deviceNumber,
-                    start, end, (pageIndex - 1) * pageSize, pageSize);
+            List<UpgradeResultReportDto> rows = deviceDataDao.queryDeviceUpgradeResultReportPageDetail(deviceNumber, start, end, (pageIndex - 1) * pageSize, pageSize);
 
             for (UpgradeResultReportDto dto : rows) {
                 UpgradeResultReport row = new UpgradeResultReport();
@@ -189,8 +181,7 @@ public class DeviceDataService {
     /**
      * 查询行驶记录事故疑点数据
      */
-    public Object queryAccidentDoubtLog(String deviceNumber, Date start, Date end, int pageIndex, int pageSize)
-            throws Exception {
+    public Object queryAccidentDoubtLog(String deviceNumber, Date start, Date end, int pageIndex, int pageSize) throws Exception {
         Page<AccidentDoubtLogDto> page = godpDao.queryAccidentDoubtLog(deviceNumber, start, end, pageIndex, pageSize);
         Page<AccidentDoubtLog> query = new Page<AccidentDoubtLog>();
         query.total = page.total;
@@ -214,8 +205,7 @@ public class DeviceDataService {
     /**
      * 查询行驶记录供电日志
      */
-    public Object queryPowerLog(String deviceNumber, Date start, Date end, int pageIndex, int pageSize) throws
-            Exception {
+    public Object queryPowerLog(String deviceNumber, Date start, Date end, int pageIndex, int pageSize) throws Exception {
         Page<PowerLogDto> page = godpDao.queryPowerLog(deviceNumber, start, end, pageIndex, pageSize);
         Page<PowerLog> query = new Page<PowerLog>();
         query.total = page.total;
@@ -232,8 +222,7 @@ public class DeviceDataService {
     /**
      * 查询行驶记录超时驾驶日志
      */
-    public Object queryTimeoutLog(String deviceNumber, Date start, Date end, int pageIndex, int pageSize) throws
-            Exception {
+    public Object queryTimeoutLog(String deviceNumber, Date start, Date end, int pageIndex, int pageSize) throws Exception {
         Page<TimeoutLogDto> page = godpDao.queryTimeoutLog(deviceNumber, start, end, pageIndex, pageSize);
         Page<TimeoutLog> query = new Page<TimeoutLog>();
         query.total = page.total;
@@ -255,8 +244,7 @@ public class DeviceDataService {
         return query;
     }
 
-    public Object queryParameterLog(String deviceNumber, Date start, Date end, int pageIndex, int pageSize) throws
-            Exception {
+    public Object queryParameterLog(String deviceNumber, Date start, Date end, int pageIndex, int pageSize) throws Exception {
         Page<ParameterLogDto> page = godpDao.queryParameterLog(deviceNumber, start, end, pageIndex, pageSize);
         Page<ParameterLog> query = new Page<ParameterLog>();
         query.total = page.total;
@@ -274,8 +262,7 @@ public class DeviceDataService {
     /**
      * 查询行驶记录驾驶员登签日志
      */
-    public Object queryLoginLog(String deviceNumber, Date start, Date end, int pageIndex, int pageSize) throws
-            Exception {
+    public Object queryLoginLog(String deviceNumber, Date start, Date end, int pageIndex, int pageSize) throws Exception {
         Page<LoginLogDto> page = godpDao.queryLoginLog(deviceNumber, start, end, pageIndex, pageSize);
         Page<LoginLog> query = new Page<LoginLog>();
         query.total = page.total;
@@ -298,8 +285,7 @@ public class DeviceDataService {
     /**
      * 查询行驶记录速度状态日志
      */
-    public Object querySpeedStatusLog(String deviceNumber, Date start, Date end, int pageIndex, int pageSize) throws
-            Exception {
+    public Object querySpeedStatusLog(String deviceNumber, Date start, Date end, int pageIndex, int pageSize) throws Exception {
         Page<SpeedStatusLogDto> page = godpDao.querySpeedStatusLog(deviceNumber, start, end, pageIndex, pageSize);
         Page<SpeedStatusLog> query = new Page<SpeedStatusLog>();
         query.total = page.total;
@@ -321,8 +307,7 @@ public class DeviceDataService {
     /**
      * 查询行驶记录位置日志
      */
-    public Object queryLocateLog(String deviceNumber, Date start, Date end, int pageIndex, int pageSize) throws
-            Exception {
+    public Object queryLocateLog(String deviceNumber, Date start, Date end, int pageIndex, int pageSize) throws Exception {
         Page<LocateLogDto> page = godpDao.queryLocateLog(deviceNumber, start, end, pageIndex, pageSize);
         Page<LocateLog> query = new Page<LocateLog>();
         query.total = page.total;
@@ -343,8 +328,7 @@ public class DeviceDataService {
     /**
      * 查询行驶记录速度日志
      */
-    public Object querySpeedLog(String deviceNumber, Date start, Date end, int pageIndex, int pageSize) throws
-            Exception {
+    public Object querySpeedLog(String deviceNumber, Date start, Date end, int pageIndex, int pageSize) throws Exception {
         Page<SpeedLogDto> page = godpDao.querySpeedLog(deviceNumber, start, end, pageIndex, pageSize);
         Page<SpeedLog> query = new Page<SpeedLog>();
         query.total = page.total;

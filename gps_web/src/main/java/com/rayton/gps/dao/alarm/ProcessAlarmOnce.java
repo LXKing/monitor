@@ -14,8 +14,7 @@ public class ProcessAlarmOnce {
 
     @Override
     public String toString() {
-        return "ProcessAlarmOnce{" + "alarmId='" + alarmId + '\'' + ", alarmTimestamp=" + alarmTimestamp + ", " +
-                "userMethod='" + userMethod + '\'' + ", userRemark='" + userRemark + '\'' + '}';
+        return "ProcessAlarmOnce{" + "alarmId='" + alarmId + '\'' + ", alarmTimestamp=" + alarmTimestamp + ", " + "userMethod='" + userMethod + '\'' + ", userRemark='" + userRemark + '\'' + '}';
     }
 
     public String getAlarmId() {

@@ -29,7 +29,7 @@
           <!--src="http://api.map.baidu.com/library/LuShu/1.2/src/LuShu_min.js"></script>-->
   <script type="text/javascript" th:src="@{/static/js/bootstrap.min.js}"></script>
   <!--<script th:src="@{/static/js/ligerui.all.js}"></script>-->
-  <script th:src="@{/static/js/tab.js}"></script>
+  <script th:src="@{/static/dc_file/js/tab.js}"></script>
   <script th:src="@{/static/dc_file/js/index_.js}"></script>
   <!--<script th:src="@{/static/dc_file/js/cars_.js}"></script>-->
 
@@ -70,7 +70,8 @@
 <header id="up_box">
   <!-- 左 -->
   <div class="left_logo fl">
-    <img th:src="@{/static/image/webwxgetmsgimg _new.jpg}" alt="">
+    <img th:src="@{/static/dc_file/image/GTBD-LOGO.png}" alt="">
+    <!--<img th:src="@{/static/dc_file/image/R.png}" alt="">-->
   </div>
   <!-- 右 -->
   <div class="right_tools fr">
@@ -91,7 +92,7 @@
         <a href="javascript:void(0)">Help</a>
         <a href="javascript:void(0)"><span th:text="${name}"></span></a>
         <a href="/logout">退出</a>
-        <a href="javascript:void(0)">修改密码</a>
+        <a href="javascript:void(0)">账户管理</a>
       </div>
     </div>
   </div>
@@ -243,7 +244,68 @@
     });
 
   });
+  function call_it(){
+      $.ajax({
+          url: "/locate/groupVehicles", //请求地址
+          dataType: "json", //数据格式
+          data: {
+              force: isforce
+          },
+          type: "post", //请求方式
+          async: false, //是否异步请求
+          success: function (data) { //如何发送成功
+              datasour = data;
 
+              // window.fucking = function () {
+              //     return data;
+              // }
+              // cnmmmmm();
+              window.fuckShitArr = data;
+              //  data = falsedata();
+              // console.log(data);
+              //总车辆
+              bottomcardata(data);
+              //匹配闪烁点
+              bit_Change_location(data);
+              var onlines = 0;
+              var total = 0;
+              for (var x = 0; x < data.length; x++) {
+                  var item = data[x];
+                  counlist.push(item.id);
+                  if (item.type === 0) {
+                      item.s = gpsDataParser.parseStatus(item);
+                      list.push(item);
+                      //console.log(item.id);
+                      alldevices[item.id] = item;
+                      addNamelist.push(item.na);
+                      total += 1
+                      onlines += item.o
+                      alllist.push(fromdevices(item));
+                      if (item.o == 1) {
+                          onlinelist.push(fromdevices(item));
+                      } else {
+                          offlinelist.push(fromdevices(item));
+                      }
+                  } else {
+                      //alldevicespid.push()
+                      fleets[item.id] = item;
+                      alllist.push(fromfleet(item));
+                      onlinelist.push(fromfleet(item));
+                      offlinelist.push(fromfleet(item));
+                  }
+              }
+              //初始化加载
+              locate.webMap.mapObject.clearOverlays();
+              quertyicon();
+              locate.devicespoint = [];
+              for (var tree in list) {
+                  chushudataadd(list[tree].id, true, false);
+                  Timerefreshid.push(list[tree].id);
+              }
+          },
+      })
+
+  }
 
 </script>
 

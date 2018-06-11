@@ -13,8 +13,7 @@ public class AreaIoCount {
 
     @Override
     public String toString() {
-        return "AreaIoCount{" + "motorcadeId='" + motorcadeId + '\'' + ", motorcade='" + motorcade + '\'' + ", in=" +
-                in + ", out=" + out + ", start=" + start + ", end=" + end + '}';
+        return "AreaIoCount{" + "motorcadeId='" + motorcadeId + '\'' + ", motorcade='" + motorcade + '\'' + ", in=" + in + ", out=" + out + ", start=" + start + ", end=" + end + '}';
     }
 
     public String getMotorcadeId() {

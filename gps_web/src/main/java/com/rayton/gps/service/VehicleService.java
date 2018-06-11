@@ -34,8 +34,7 @@ public class VehicleService {
         page.total = total;
 
         if (total > 0) {
-            List<VehicleInfo> rows = vehicleDao.queryPageDetail(companyId, filter, (pageIndex - 1) * pageSize,
-                    pageSize);
+            List<VehicleInfo> rows = vehicleDao.queryPageDetail(companyId, filter, (pageIndex - 1) * pageSize, pageSize);
             page.rows.addAll(rows);
             // for (VehicleInfoDto dto : rows) {
             //     VehicleInfo info = new VehicleInfo();
@@ -177,8 +176,7 @@ public class VehicleService {
         Page<VehicleInfo> page = new Page<VehicleInfo>();
         page.total = total;
         if (total > 0) {
-            List<VehicleInfo> rows = vehicleDao.searchPageDetail(companyId, plateNumber, (pageIndex - 1) * pageSize,
-                    pageSize);
+            List<VehicleInfo> rows = vehicleDao.searchPageDetail(companyId, plateNumber, (pageIndex - 1) * pageSize, pageSize);
             page.rows.addAll(rows);
             // for (VehicleInfoDto dto : rows) {
             //     VehicleInfo info = new VehicleInfo();

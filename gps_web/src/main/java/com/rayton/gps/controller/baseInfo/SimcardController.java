@@ -37,8 +37,7 @@ public class SimcardController {
 
     @GetMapping(value = "/simcard/query")
     @ResponseBody
-    public Object query(@RequestParam(required = false) String filter, @RequestParam int page, @RequestParam int
-            limit) throws Exception {
+    public Object query(@RequestParam(required = false) String filter, @RequestParam int page, @RequestParam int limit) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         Page<SimcardInfo> result = simcardService.query(identity.getCompanyId(), filter, page, limit);
 
@@ -58,8 +57,7 @@ public class SimcardController {
 
     @PostMapping(value = "/simcard/search")
     @ResponseBody
-    public Object search(@RequestParam(required = false) String filter, @RequestParam int pageIndex, @RequestParam
-            int pageSize) throws Exception {
+    public Object search(@RequestParam(required = false) String filter, @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
 
         filter = filter == null ? "" : filter;
@@ -75,8 +73,7 @@ public class SimcardController {
 
     @PostMapping(value = "/simcard/free")
     @ResponseBody
-    public Object findfree(@RequestParam(required = false) String phoneNumber, @RequestParam int pageIndex,
-                           @RequestParam int pageSize) throws Exception {
+    public Object findfree(@RequestParam(required = false) String phoneNumber, @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         phoneNumber = phoneNumber == null ? "" : phoneNumber;
         return simcardService.free(identity.getCompanyId(), phoneNumber, pageIndex, pageSize);
@@ -101,8 +98,7 @@ public class SimcardController {
 
     @PostMapping(value = "/simcard/create.form")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> create(@ModelAttribute("simcard") @Valid Simcard simcard,
-                                                      BindingResult binding) throws Exception {
+    public ResponseEntity<Map<Object, Object>> create(@ModelAttribute("simcard") @Valid Simcard simcard, BindingResult binding) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
 
         if (binding.hasErrors()) {
@@ -138,8 +134,7 @@ public class SimcardController {
 
     @PostMapping(value = "/simcard/edit.form")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> edit(@ModelAttribute("simcard") @Valid Simcard simcard, BindingResult
-            binding) throws Exception {
+    public ResponseEntity<Map<Object, Object>> edit(@ModelAttribute("simcard") @Valid Simcard simcard, BindingResult binding) throws Exception {
         if (binding.hasErrors()) {
             List<FieldError> errors = binding.getFieldErrors();
             Map<Object, Object> map = new HashMap<>();
@@ -176,8 +171,7 @@ public class SimcardController {
 
     @PostMapping(value = "/simcard/exist")
     @ResponseBody
-    public Object exists(@RequestParam String phoneNumber, @RequestParam(required = false) String id, @RequestParam
-            boolean checkId) throws Exception {
+    public Object exists(@RequestParam String phoneNumber, @RequestParam(required = false) String id, @RequestParam boolean checkId) throws Exception {
 
         return checkId ? !simcardService.exist(phoneNumber, id) : !simcardService.exist(phoneNumber);
         // if (checkId) {

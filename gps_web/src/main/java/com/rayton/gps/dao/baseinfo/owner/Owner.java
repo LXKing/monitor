@@ -1,5 +1,6 @@
 package com.rayton.gps.dao.baseinfo.owner;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import java.sql.Date;
@@ -17,6 +18,7 @@ public class Owner {
 
     //
     private String CONTACT;
+    @JSONField(format = "yyyy-MM-dd")
     private Date REGISTRATIONDATE;
     // private String PHONE;
     private String FAX;
@@ -26,10 +28,7 @@ public class Owner {
 
     @Override
     public String toString() {
-        return "Owner{" + "id='" + id + '\'' + ", companyId='" + companyId + '\'' + ", ownerName='" + ownerName +
-                '\'' + ", idType='" + idType + '\'' + ", idNumber='" + idNumber + '\'' + ", editTime=" + editTime +
-                ", CONTACT='" + CONTACT + '\'' + ", REGISTRATIONDATE=" + REGISTRATIONDATE + ", FAX='" + FAX + '\'' +
-                ", BUSSINESSAGENT='" + BUSSINESSAGENT + '\'' + '}';
+        return "Owner{" + "id='" + id + '\'' + ", companyId='" + companyId + '\'' + ", ownerName='" + ownerName + '\'' + ", idType='" + idType + '\'' + ", idNumber='" + idNumber + '\'' + ", editTime=" + editTime + ", CONTACT='" + CONTACT + '\'' + ", REGISTRATIONDATE=" + REGISTRATIONDATE + ", FAX='" + FAX + '\'' + ", BUSSINESSAGENT='" + BUSSINESSAGENT + '\'' + '}';
     }
 
     public String getCONTACT() {

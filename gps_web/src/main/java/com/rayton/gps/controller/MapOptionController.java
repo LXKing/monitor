@@ -40,8 +40,7 @@ public class MapOptionController {
 
     @PostMapping(value = "/mapOption/save")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> save(@RequestParam double lat, @RequestParam double lng, @RequestParam
-            int zoom) {
+    public ResponseEntity<Map<Object, Object>> save(@RequestParam double lat, @RequestParam double lng, @RequestParam int zoom) {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
 
         Map<Object, Object> values = new Hashtable<Object, Object>();

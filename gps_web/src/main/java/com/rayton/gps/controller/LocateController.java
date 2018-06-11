@@ -1,9 +1,11 @@
 package com.rayton.gps.controller;
 
 import com.rayton.gps.aop.Log;
+import com.rayton.gps.dao.locate.GodpDataBlock;
 import com.rayton.gps.dao.locate.GroupVehicle;
 import com.rayton.gps.dao.locate.VehicleInfo;
 import com.rayton.gps.dao.security.IdentityDto;
+import com.rayton.gps.domain.AppResponse;
 import com.rayton.gps.service.LocateService;
 import com.rayton.gps.service.UserService;
 import com.rayton.gps.util.ResponseEntityWrapper;
@@ -14,10 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -59,17 +58,26 @@ public class LocateController {
         GroupVehicle top = new GroupVehicle();
         top.setId(identity.getId());
         top.setType(2);
-        top.setNa("全部");
+        top.setNa(identity.FULLNAME);
         list.add(top);
+
 
         list.forEach(groupVehicle -> {
             int type = groupVehicle.getType();
             if (type == 1) {
-                groupVehicle.setIcon("../resources/css/x16/flag.png");
+                groupVehicle.setIcon("../static/css/tree/car.png");
+                groupVehicle.setIconClose("../static/css/tree/car.png");
+                groupVehicle.setIconOpen("../static/css/tree/car.png");
+
             } else if (type == 2) {
-                groupVehicle.setIcon("../resources/css/x16/company.png");
+
+
+                groupVehicle.setIcon("../static/css/tree/company.png");
+                groupVehicle.setIconClose("../static/css/tree/company.png");
+                groupVehicle.setIconOpen("../static/css/tree/company.png");
             } else {
-                groupVehicle.setIcon(groupVehicle.getO() == 1 ? "../resources/css/x16/online.png" : "../resources/css/x16/offline.png");
+
+                groupVehicle.setIcon(groupVehicle.getO() == 1 ? "../static/css/tree/car.png" : "../static/css/tree/car.png");
             }
         });
 
@@ -101,12 +109,13 @@ public class LocateController {
     /**
      * 处理godp发送过来的数据
      */
-    //    @PostMapping(value = "/locate/realtime")
-    //    @ResponseBody
-    //    public Object devices(@RequestBody GodpDataBlock block) {
-    //        locateService.handleGodpData(block);
-    //        return new AppResponse();
-    //    }
+    @PostMapping(value = "/locate/realtime")
+    @ResponseBody
+    public Object devices(@RequestBody GodpDataBlock block) {
+        locateService.handleGodpData(block);
+        return new AppResponse();
+    }
+
     @PostMapping(value = "/locate/latests")
     @ResponseBody
     public Object latests(@RequestParam List<String> list) throws Exception {

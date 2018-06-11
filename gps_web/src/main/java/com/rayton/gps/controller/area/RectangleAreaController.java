@@ -36,8 +36,7 @@ public class RectangleAreaController {
 
     @GetMapping(value = "/rectangleArea/query")
     @ResponseBody
-    public Object query(@RequestParam(required = false) String filter, @RequestParam int page, @RequestParam int
-            limit) throws Exception {
+    public Object query(@RequestParam(required = false) String filter, @RequestParam int page, @RequestParam int limit) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         Page<RectangleAreaInfo> result = rectangleAreaService.query(identity.getCompanyId(), filter, page, limit);
 
@@ -50,8 +49,7 @@ public class RectangleAreaController {
 
     @PostMapping(value = "/rectangleArea/search")
     @ResponseBody
-    public Object search(@RequestParam(required = false) String filter, @RequestParam int pageIndex, @RequestParam
-            int pageSize) {
+    public Object search(@RequestParam(required = false) String filter, @RequestParam int pageIndex, @RequestParam int pageSize) {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
 
         filter = filter == null ? "" : filter;
@@ -73,8 +71,7 @@ public class RectangleAreaController {
 
     @PostMapping(value = "/rectangleArea/create.form")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> create(@ModelAttribute("rectangleArea") @Valid RectangleArea
-                                                                  rectangleArea, BindingResult binding) {
+    public ResponseEntity<Map<Object, Object>> create(@ModelAttribute("rectangleArea") @Valid RectangleArea rectangleArea, BindingResult binding) {
         if (binding.hasErrors())
             // return "/baseinfo/rectangleArea/create.form";
             return ResponseEntityWrapper.Failed();
@@ -104,9 +101,9 @@ public class RectangleAreaController {
 
     @PostMapping(value = "/rectangleArea/edit.form")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> edit(@ModelAttribute("rectangleArea") @Valid RectangleArea
-                                                                rectangleArea, BindingResult binding) {
-        if (binding.hasErrors()) return ResponseEntityWrapper.Failed();
+    public ResponseEntity<Map<Object, Object>> edit(@ModelAttribute("rectangleArea") @Valid RectangleArea rectangleArea, BindingResult binding) {
+        if (binding.hasErrors())
+            return ResponseEntityWrapper.Failed();
         // return "/baseinfo/rectangleArea/edit.form";
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         rectangleAreaService.update(identity.getUnid(), identity.getName(), rectangleArea);
@@ -142,12 +139,11 @@ public class RectangleAreaController {
 
     @PostMapping(value = "/rectangleArea/exist")
     @ResponseBody
-    public Object exists(@RequestParam String name, @RequestParam(required = false) Long id, @RequestParam boolean
-            checkId) throws Exception {
+    public Object exists(@RequestParam String name, @RequestParam(required = false) Long id, @RequestParam boolean checkId) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
 
-        return checkId ? !rectangleAreaService.exist(name, identity.getCompanyId(), id) : !rectangleAreaService.exist
-                (name, identity.getCompanyId());
+        return checkId ? !rectangleAreaService.exist(name, identity.getCompanyId(), id) : !rectangleAreaService.exist(name, identity
+                .getCompanyId());
         // if (checkId) {
         //     response.getWriter().print(!rectangleAreaService.exist(name, identity.getCompanyId(), id));
         // } else {
@@ -157,15 +153,13 @@ public class RectangleAreaController {
 
     @GetMapping("/rectangleArea/vehicles")
     @ResponseBody
-    public Object vehicles(@RequestParam long rectangleAreaId, @RequestParam int pageIndex, @RequestParam int
-            pageSize) throws Exception {
+    public Object vehicles(@RequestParam long rectangleAreaId, @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
         return rectangleAreaService.assignedVehicles(rectangleAreaId, pageIndex, pageSize);
     }
 
     @PostMapping(value = "/rectangleArea/addVehicles")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> addVehicles(@RequestParam long rectangleAreaId, @RequestParam String
-            vehicles) {
+    public ResponseEntity<Map<Object, Object>> addVehicles(@RequestParam long rectangleAreaId, @RequestParam String vehicles) {
 
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         List<String> list = JsonMapper.toObject(vehicles, List.class, String.class);
@@ -185,8 +179,7 @@ public class RectangleAreaController {
 
     @PostMapping(value = "/rectangleArea/removeVehicle")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> removeSection(@RequestParam long rectangleAreaId, @RequestParam String
-            number) {
+    public ResponseEntity<Map<Object, Object>> removeSection(@RequestParam long rectangleAreaId, @RequestParam String number) {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         rectangleAreaService.removeVehicle(identity.getUnid(), identity.getName(), rectangleAreaId, number);
         return ResponseEntityWrapper.OK();

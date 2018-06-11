@@ -142,14 +142,12 @@ public class SimcardService {
         return simcardDao.existOutId(phoneNumber, id);
     }
 
-    public Page<SimcardSearchInfo> search(String companyId, String filter, int pageIndex, int pageSize) throws
-            Exception {
+    public Page<SimcardSearchInfo> search(String companyId, String filter, int pageIndex, int pageSize) throws Exception {
         int total = simcardDao.searchPageCount(companyId, filter);
         Page<SimcardSearchInfo> page = new Page<SimcardSearchInfo>();
         page.total = total;
         if (total > 0) {
-            List<SimcardSearchInfo> rows = simcardDao.searchPageDetail(companyId, filter, (pageIndex - 1) * pageSize,
-                    pageSize);
+            List<SimcardSearchInfo> rows = simcardDao.searchPageDetail(companyId, filter, (pageIndex - 1) * pageSize, pageSize);
             // for (SimcardSearchInfoDto dto : rows) {
             //     SimcardSearchInfo info = new SimcardSearchInfo();
             //     info.setCarrierOperator(dto.carrierOperator);
@@ -165,14 +163,12 @@ public class SimcardService {
         return page;
     }
 
-    public Page<SimcardSearchInfo> free(String companyId, String phoneNumber, int pageIndex, int pageSize) throws
-            Exception {
+    public Page<SimcardSearchInfo> free(String companyId, String phoneNumber, int pageIndex, int pageSize) throws Exception {
         int total = simcardDao.freePageCount(companyId, phoneNumber);
         Page<SimcardSearchInfo> page = new Page<SimcardSearchInfo>();
         page.total = total;
         if (total > 0) {
-            List<SimcardSearchInfo> rows = simcardDao.freePageDetail(companyId, phoneNumber, (pageIndex - 1) *
-                    pageSize, pageSize);
+            List<SimcardSearchInfo> rows = simcardDao.freePageDetail(companyId, phoneNumber, (pageIndex - 1) * pageSize, pageSize);
             page.rows.addAll(rows);
             // for (SimcardSearchInfoDto dto : rows) {
             //     SimcardSearchInfo info = new SimcardSearchInfo();

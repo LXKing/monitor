@@ -3,7 +3,6 @@ package com.rayton.gps.configuration;
 
 import com.rayton.gps.service.shiro.ShiroRealm;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
-import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.codec.Base64;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
@@ -14,8 +13,6 @@ import org.apache.shiro.web.servlet.SimpleCookie;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import org.springframework.cache.ehcache.EhCacheCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -52,11 +49,10 @@ public class ShiroConfig {
 
         filterChainDefinitionMap.put("/", "anon");
         filterChainDefinitionMap.put("/code.verify", "anon");
+        filterChainDefinitionMap.put("/locate/realtime", "anon");
         //
         filterChainDefinitionMap.put("/static/** ", "anon");
         filterChainDefinitionMap.put("/**", "user");
-
-
 
 
         // filterChainDefinitionMap.put("/example/admin", "authc,roles[admin]");
@@ -86,8 +82,7 @@ public class ShiroConfig {
 
     @Bean
     public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(SecurityManager securityManager) {
-        AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new
-                AuthorizationAttributeSourceAdvisor();
+        AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
         authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
         return authorizationAttributeSourceAdvisor;
     }

@@ -12,9 +12,7 @@ public class CurrentOnlineOfflineCount {
 
     @Override
     public String toString() {
-        return "CurrentOnlineOfflineCount{" + "motorcadeId='" + motorcadeId + '\'' + ", motorcade='" + motorcade +
-                '\'' + ", total=" + total + ", online=" + online + ", onlineRate=" + onlineRate + ", offline=" +
-                offline + ", offlineRate=" + offlineRate + '}';
+        return "CurrentOnlineOfflineCount{" + "motorcadeId='" + motorcadeId + '\'' + ", motorcade='" + motorcade + '\'' + ", total=" + total + ", online=" + online + ", onlineRate=" + onlineRate + ", offline=" + offline + ", offlineRate=" + offlineRate + '}';
     }
 
     public String getMotorcadeId() {

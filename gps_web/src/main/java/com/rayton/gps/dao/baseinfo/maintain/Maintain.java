@@ -1,5 +1,6 @@
 package com.rayton.gps.dao.baseinfo.maintain;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import java.sql.Date;
@@ -17,6 +18,7 @@ public class Maintain {
     private String vehicleId;
     @NotEmpty
     private String plateNumber;
+    @JSONField(format = "yyyy-MM-dd")
     private Date doneDate;
     private String type;
     private String content;
@@ -24,6 +26,7 @@ public class Maintain {
     private double fee;
     private String garage;
     private String agent;
+    @JSONField(format = "yyyy-MM-dd")
     private Date nextDate;
     private int nextMileage;
     private String userId;
@@ -32,11 +35,7 @@ public class Maintain {
 
     @Override
     public String toString() {
-        return "Maintain{" + "id='" + id + '\'' + ", companyId='" + companyId + '\'' + ", vehicleId='" + vehicleId +
-                '\'' + ", plateNumber='" + plateNumber + '\'' + ", doneDate=" + doneDate + ", type='" + type + '\'' +
-                ", content='" + content + '\'' + ", mileage=" + mileage + ", fee=" + fee + ", garage='" + garage +
-                '\'' + ", agent='" + agent + '\'' + ", nextDate=" + nextDate + ", nextMileage=" + nextMileage + ", "
-                + "userId='" + userId + '\'' + ", userName='" + userName + '\'' + ", editTime=" + editTime + '}';
+        return "Maintain{" + "id='" + id + '\'' + ", companyId='" + companyId + '\'' + ", vehicleId='" + vehicleId + '\'' + ", plateNumber='" + plateNumber + '\'' + ", doneDate=" + doneDate + ", type='" + type + '\'' + ", content='" + content + '\'' + ", mileage=" + mileage + ", fee=" + fee + ", garage='" + garage + '\'' + ", agent='" + agent + '\'' + ", nextDate=" + nextDate + ", nextMileage=" + nextMileage + ", " + "userId='" + userId + '\'' + ", userName='" + userName + '\'' + ", editTime=" + editTime + '}';
     }
 
     /**

@@ -18,8 +18,7 @@ public class DeviceGroup {
 
     @Override
     public String toString() {
-        return "DeviceGroup{" + "id='" + id + '\'' + ", pid='" + pid + '\'' + ", userId='" + userId + '\'' + ", " +
-                "name='" + name + '\'' + ", remark='" + remark + '\'' + ", editTime=" + editTime + '}';
+        return "DeviceGroup{" + "id='" + id + '\'' + ", pid='" + pid + '\'' + ", userId='" + userId + '\'' + ", " + "name='" + name + '\'' + ", remark='" + remark + '\'' + ", editTime=" + editTime + '}';
     }
 
     /**

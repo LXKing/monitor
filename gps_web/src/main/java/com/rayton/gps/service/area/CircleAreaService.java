@@ -39,8 +39,7 @@ public class CircleAreaService {
         query.total = total;
 
         if (total > 0) {
-            List<CircleAreaInfo> rows = circleAreaDao.queryPageDetail(companyId, filter, (pageIndex - 1) * pageSize,
-                    pageSize);
+            List<CircleAreaInfo> rows = circleAreaDao.queryPageDetail(companyId, filter, (pageIndex - 1) * pageSize, pageSize);
             query.rows.addAll(rows);
 
 
@@ -103,8 +102,7 @@ public class CircleAreaService {
                 AreaCatcherCache.bind(number, dto.getId(), areaKind);
 
                 info.setAction((byte) AreaActions.Remove.getIndex());
-                areaInDeviceDao.log(info.getId(), number, dto.getId(), areaKind, (byte) AreaActions.Remove.getIndex()
-                        , unid, user);
+                areaInDeviceDao.log(info.getId(), number, dto.getId(), areaKind, (byte) AreaActions.Remove.getIndex(), unid, user);
 
                 SynchronizerCache.put(info);
 
@@ -115,8 +113,7 @@ public class CircleAreaService {
 
                 info.setAction((byte) AreaActions.Append.getIndex());
                 areaInDeviceDao.addVehicle(number, dto.getId(), areaKind);
-                areaInDeviceDao.log(info.getId(), number, dto.getId(), areaKind, (byte) AreaActions.Append.getIndex()
-                        , unid, user);
+                areaInDeviceDao.log(info.getId(), number, dto.getId(), areaKind, (byte) AreaActions.Append.getIndex(), unid, user);
 
                 SynchronizerCache.put(info);
 
@@ -127,8 +124,7 @@ public class CircleAreaService {
                     AreaCatcherCache.refresh(dto.getId(), areaKind);
 
                 info.setAction((byte) AreaActions.Edit.getIndex());
-                areaInDeviceDao.log(info.getId(), number, dto.getId(), areaKind, (byte) AreaActions.Update.getIndex()
-                        , unid, user);
+                areaInDeviceDao.log(info.getId(), number, dto.getId(), areaKind, (byte) AreaActions.Update.getIndex(), unid, user);
                 SynchronizerCache.put(info);
             }
         }
@@ -167,8 +163,7 @@ public class CircleAreaService {
             if (circle != null) {
                 areaInDeviceDao.removeVehicle(number, id, areaKind);
                 if (circle.isDeviceCatch())
-                    areaInDeviceDao.log(info.getId(), number, id, areaKind, (byte) AreaActions.Remove.getIndex(),
-                            unid, user);
+                    areaInDeviceDao.log(info.getId(), number, id, areaKind, (byte) AreaActions.Remove.getIndex(), unid, user);
             }
 
             SynchronizerCache.put(info);
@@ -193,8 +188,7 @@ public class CircleAreaService {
         query.total = total;
 
         if (total > 0) {
-            List<AreaInDeviceInfo> rows = areaInDeviceDao.assignedPageVehiclesDetail(circleAreaId, areaKind,
-                    (pageIndex - 1) * pageSize, pageSize);
+            List<AreaInDeviceInfo> rows = areaInDeviceDao.assignedPageVehiclesDetail(circleAreaId, areaKind, (pageIndex - 1) * pageSize, pageSize);
 
             query.rows.addAll(rows);
 
@@ -226,8 +220,7 @@ public class CircleAreaService {
             if (circle != null) {
                 areaInDeviceDao.addVehicle(number, circleAreaId, areaKind);
                 if (circle.isDeviceCatch())
-                    areaInDeviceDao.log(info.getId(), number, circleAreaId, areaKind, (byte) AreaActions.Append
-                            .getIndex(), unid, user);
+                    areaInDeviceDao.log(info.getId(), number, circleAreaId, areaKind, (byte) AreaActions.Append.getIndex(), unid, user);
             }
             SynchronizerCache.put(info);
             AreaCatcherCache.bind(number, circleAreaId, areaKind);
@@ -256,8 +249,7 @@ public class CircleAreaService {
         if (circle != null) {
             areaInDeviceDao.removeVehicle(number, circleAreaId, areaKind);
             if (circle.isDeviceCatch())
-                areaInDeviceDao.log(info.getId(), number, circleAreaId, areaKind, (byte) AreaActions.Remove.getIndex
-                        (), unid, user);
+                areaInDeviceDao.log(info.getId(), number, circleAreaId, areaKind, (byte) AreaActions.Remove.getIndex(), unid, user);
         }
         SynchronizerCache.put(info);
         AreaCatcherCache.unbind(number, circleAreaId, areaKind);

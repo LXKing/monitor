@@ -38,8 +38,7 @@ public class CircleAreaController {
 
     @GetMapping(value = "/circleArea/query")
     @ResponseBody
-    public Object query(@RequestParam(required = false) String filter, @RequestParam int page, @RequestParam int
-            limit) throws Exception {
+    public Object query(@RequestParam(required = false) String filter, @RequestParam int page, @RequestParam int limit) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
 
         Page<CircleAreaInfo> result = circleAreaService.query(identity.getCompanyId(), filter, page, limit);
@@ -53,8 +52,7 @@ public class CircleAreaController {
 
     @PostMapping(value = "/circleArea/search")
     @ResponseBody
-    public Object search(@RequestParam(required = false) String filter, @RequestParam int pageIndex, @RequestParam
-            int pageSize) {
+    public Object search(@RequestParam(required = false) String filter, @RequestParam int pageIndex, @RequestParam int pageSize) {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         filter = filter == null ? "" : filter;
         return circleAreaService.search(identity.getCompanyId(), filter, pageIndex, pageSize);
@@ -75,10 +73,9 @@ public class CircleAreaController {
 
     @PostMapping(value = "/circleArea/create.form")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> create(@ModelAttribute("circleArea") @Valid CircleArea circleArea,
-                                                      BindingResult binding, Model model, HttpServletRequest request,
-                                                      RedirectAttributes r) {
-        if (binding.hasErrors()) return ResponseEntityWrapper.Failed();
+    public ResponseEntity<Map<Object, Object>> create(@ModelAttribute("circleArea") @Valid CircleArea circleArea, BindingResult binding, Model model, HttpServletRequest request, RedirectAttributes r) {
+        if (binding.hasErrors())
+            return ResponseEntityWrapper.Failed();
         // return "/baseinfo/circleArea/create.form";
 
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
@@ -106,10 +103,9 @@ public class CircleAreaController {
 
     @PostMapping(value = "/circleArea/edit.form")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> edit(@ModelAttribute("circleArea") @Valid CircleArea circleArea,
-                                                    BindingResult binding, Model model, HttpServletRequest request,
-                                                    RedirectAttributes r) {
-        if (binding.hasErrors()) return ResponseEntityWrapper.Failed();
+    public ResponseEntity<Map<Object, Object>> edit(@ModelAttribute("circleArea") @Valid CircleArea circleArea, BindingResult binding, Model model, HttpServletRequest request, RedirectAttributes r) {
+        if (binding.hasErrors())
+            return ResponseEntityWrapper.Failed();
         // return "/baseinfo/circleArea/edit.form";
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         circleAreaService.update(identity.getUnid(), identity.getName(), circleArea);
@@ -127,8 +123,7 @@ public class CircleAreaController {
 
     @PostMapping(value = "/circleArea/delete")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> delete(@RequestParam long id, HttpServletRequest request,
-                                                      RedirectAttributes r) {
+    public ResponseEntity<Map<Object, Object>> delete(@RequestParam long id, HttpServletRequest request, RedirectAttributes r) {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         circleAreaService.delete(identity.getUnid(), identity.getName(), id);
         return ResponseEntityWrapper.OK();
@@ -145,11 +140,10 @@ public class CircleAreaController {
 
     @PostMapping(value = "/circleArea/exist")
     @ResponseBody
-    public Object exists(@RequestParam String name, @RequestParam(required = false) Long id, @RequestParam boolean
-            checkId) throws Exception {
+    public Object exists(@RequestParam String name, @RequestParam(required = false) Long id, @RequestParam boolean checkId) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        return checkId ? !circleAreaService.exist(name, identity.getCompanyId(), id) : !circleAreaService.exist(name,
-                identity.getCompanyId());
+        return checkId ? !circleAreaService.exist(name, identity.getCompanyId(), id) : !circleAreaService.exist(name, identity
+                .getCompanyId());
 
         // if (checkId) {
         //     response.getWriter().print(!circleAreaService.exist(name, identity.getCompanyId(), id));
@@ -160,15 +154,13 @@ public class CircleAreaController {
 
     @RequestMapping("/circleArea/vehicles")
     @ResponseBody
-    public Object vehicles(@RequestParam long circleAreaId, @RequestParam int pageIndex, @RequestParam int pageSize)
-            throws Exception {
+    public Object vehicles(@RequestParam long circleAreaId, @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
         return circleAreaService.assignedVehicles(circleAreaId, pageIndex, pageSize);
     }
 
     @PostMapping(value = "/circleArea/addVehicles")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> addVehicles(@RequestParam long circleAreaId, @RequestParam String
-            vehicles, HttpServletRequest request, RedirectAttributes r) {
+    public ResponseEntity<Map<Object, Object>> addVehicles(@RequestParam long circleAreaId, @RequestParam String vehicles, HttpServletRequest request, RedirectAttributes r) {
 
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         List<String> list = JsonMapper.toObject(vehicles, List.class, String.class);
@@ -188,8 +180,7 @@ public class CircleAreaController {
 
     @PostMapping(value = "/circleArea/removeVehicle")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> removeSection(@RequestParam long circleAreaId, @RequestParam String
-            number, HttpServletRequest request, RedirectAttributes r) {
+    public ResponseEntity<Map<Object, Object>> removeSection(@RequestParam long circleAreaId, @RequestParam String number, HttpServletRequest request, RedirectAttributes r) {
 
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         circleAreaService.removeVehicle(identity.getUnid(), identity.getName(), circleAreaId, number);

@@ -27,12 +27,12 @@ var queryicondata = [];
 var isopenbyid = [];
 var refreshmapid = [];
 var directionid = [];
-var speed_limit =100;
+var speed_limit = 100;
 var setting = {
     view: {
-        showLine: false,
+        showLine: true,
         showIcon: true,
-        addDiyDom: addDiyDom
+        // addDiyDom: addDiyDom
     },
     data: {
         simpleData: {
@@ -45,7 +45,7 @@ var setting = {
         chkboxType: {"Y": "s", "N": "ps"},
     },
     callback: {
-        beforeClick: beforeClick,
+        onClick: beforeClick,
         onCheck: zTreeOnCheck,
         beforeDblClick: beforeDblClick,
     },
@@ -97,7 +97,9 @@ function addDiyDom(treeId, treeNode) {
         var spanObj = $("#" + treeNode.tId + "_span");
         var editStr = '';
         li_head = '<span style="width: 100%;background: #59B9C7;position: absolute;height: 3px;margin-top: 16px;left:0px"></span>';
+        li_head0 = '<span style="width: 100%;background: #59B9C7;position: absolute;height: 3px;margin-top: 16px;left:-29px;top:-3px"></span>';
         aObj.before(li_head);
+        $("a[title='子公司']").append(li_head0);
     }
     treeNode.level == 0 ? Serialnumber = 0 : "";
     if (treeNode.level == 1) {
@@ -108,20 +110,20 @@ function addDiyDom(treeId, treeNode) {
         var imgage = "";
         var stylecolor = "";
         var runstaust = "";
-        if(treeNode.o==0){
+        if (treeNode.o == 0) {
             //imgage ="<img src='/image/lixiandian.png'/>";
             stylecolor = "style= 'color:#a4a4a4'"
-            runstaust="离线";
-        }else{
+            runstaust = "离线";
+        } else {
             //  imgage ="<img src='/image/zaixian.png'/>";
-            stylecolor="style= 'color:#2ac42a'";
-            runstaust="在线";
-            if(treeNode.sp>0){
+            stylecolor = "style= 'color:#2ac42a'";
+            runstaust = "在线";
+            if (treeNode.sp > 0) {
                 stylecolor = "style= 'color:#4fa8f8'"
-                runstaust="行驶";
-                if(treeNode.sp>=speed_limit){
+                runstaust = "行驶";
+                if (treeNode.sp >= speed_limit) {
                     stylecolor = "style= 'color:fa6561'"
-                    runstaust="报警";
+                    runstaust = "报警";
                 }
             }
         }
@@ -225,27 +227,155 @@ function query(isforce, torefresh, loc) {
         type: "post", //请求方式
         async: false, //是否异步请求
         success: function (data) { //如何发送成功
-            datasour = data;
+            var atad = data;
+            var com = [];
+            var carg = [];
+            var na = [];
+
+            function fuckCom(atad, id, on, off) {
+                jQuery.each(atad, function (index, shit) {
+                    if (shit.pid === id) {
+
+                        if (shit.type === 0 && shit.o === 1) {
+                            on.push(shit)
+                        }
+                        else if (shit.type === 0 && shit.o !== 1) {
+                            off.push(shit)
+                        }
+                        fuckCom(atad, shit.id, on, off);
+
+                    }
+                });
+            }
+
+            function fuckCarg(atad, id, on, off) {
+                jQuery.each(atad, function (index, shit) {
+                    if (shit.pid === id) {
+
+                        if (shit.type === 0 && shit.o === 1) {
+                            on.push(shit)
+                        }
+                        else if (shit.type === 0 && shit.o !== 1) {
+                            off.push(shit)
+                        }
+                        fuckCarg(atad, shit.id, on, off);
+
+                    }
+                });
+            }
+
+            jQuery.each(atad, function (index, shit) {
+                // console.log(shit);
+                if (shit.type === 2) {
+                    shit.onon = [];
+                    shit.offoff = [];
+                    // var a = {
+                    //     com: shit,
+                    //     onon: [],
+                    //     offoff: [],
+                    // };
+
+                    fuckCom(atad, shit.id, shit.onon, shit.offoff)
+
+
+                }
+                else if (shit.type === 1) {
+                    // var b = {
+                    //     car: shit,
+                    //     onon: [],
+                    //     offoff: [],
+                    // };
+                    shit.onon = [];
+                    shit.offoff = [];
+                    fuckCarg(atad, shit.id, shit.onon, shit.offoff)
+                }
+                //
+                // else {
+                //     na.push(shit)
+                // }
+
+            });
+
+            console.clear();
+            console.warn(atad)
+
+            // + "(" + item.on.length + "/" + item.on.length + item.off.length + ")"
+            function removeCG(arr) {
+                for (var i = arr.length - 1; i >= 0; i--) {
+                    if (arr[i].type === 1) {
+                        arr.splice(i, 1);
+                    }
+                }
+                return arr;
+            }
+
+            function removeC(arr) {
+                for (var i = arr.length - 1; i >= 0; i--) {
+                    if (arr[i].type === 0) {
+                        arr.splice(i, 1);
+                    }
+                }
+                return arr;
+            }
+
+            function removeCom(arr) {
+                for (var i = arr.length - 1; i >= 0; i--) {
+                    if (arr[i].type === 2) {
+                        arr.splice(i, 1);
+                    }
+                }
+                return arr;
+            }
+
+            if (window.showArr.indexOf("showCom") === -1) {
+                removeCom(atad);
+
+            }
+            if (window.showArr.indexOf("showCarG") === -1) {
+                jQuery.each(atad, function (index, it) {
+                    if (it.type === 0) {
+                        jQuery.each(atad, function (index, shit) {
+                            if (shit.type === 1) {
+                                if (it.pid === shit.id
+
+                                ) {
+                                    it.pid = shit.pid;
+                                }
+                            }
+                        });
+                    }
+                });
+
+                removeCG(atad);
+
+            }
+            if (window.showArr.indexOf("showCar") === -1) {
+                removeC(atad);
+            }
+            console.clear();
+            console.warn(atad);
+
+            datasour = atad;
             getdataStr();
 
 
             window.fucking = function () {
-                return data;
+                return atad;
             }
             cnmmmmm();
-            window.fuckShitArr = data;
+            window.fuckShitArr = atad;
 
 
             //  data = falsedata();
             // console.log(data);
             //总车辆
-               bottomcardata(data);
+            bottomcardata(atad);
             //匹配闪烁点
-            bit_Change_location(data);
+            bit_Change_location(atad);
             var onlines = 0;
             var total = 0;
-            for (var x = 0; x < data.length; x++) {
-                var item = data[x];
+            for (var x = 0; x < atad.length; x++) {
+                var item = atad[x];
                 counlist.push(item.id);
                 if (item.type === 0) {
                     item.s = gpsDataParser.parseStatus(item);
@@ -297,12 +427,96 @@ function query(isforce, torefresh, loc) {
     }
     else {
         //初始化所属公司和所属车队
-         datacompanyandcar(datasour, counlist);
+        datacompanyandcar(datasour, counlist);
 
     }
     bitopen = true;
     Serialnumber = 0;
-    $.fn.zTree.init($("#dataTree"), setting, alllist);
+
+
+    for (var e of alllist) {
+        if (e.name == undefined) {
+            e.name = e.na;
+        }
+    }
+
+    var tSetting = {
+        cols: []
+    };
+
+
+    for (var jjjo of window.treeC) {
+
+        console.error(jjjo)
+
+        let dn = {
+            key: "dn",
+            name: "车牌号",
+            width: "230px"
+        };
+        let inum = {
+            key: "inum",
+            name: "自编号",
+            width: "50px"
+        };
+        let sp = {
+            key: "sp",
+            name: "速度",
+            width: "50px"
+        };
+        let m = {
+            key: "m",
+            name: "里程",
+            width: "50px"
+        };
+
+        let driname = {
+            key: "driname",
+            name: "司机姓名",
+            width: "100px"
+        };
+
+
+        let mission = {
+            key: "mission",
+            name: "任务状态",
+            width: "100px"
+        };
+        let shop = {
+            key: "shop",
+            name: "服务网点",
+            width: "100px"
+        };
+
+        if (jjjo == "dn") {
+            tSetting.cols.push(dn);
+        } else if (jjjo == "inum") {
+            tSetting.cols.push(inum);
+        } else if (jjjo == "sp") {
+            tSetting.cols.push(sp);
+        } else if (jjjo == "m") {
+            tSetting.cols.push(m);
+        } else if (jjjo == "driname") {
+            tSetting.cols.push(driname);
+        } else if (jjjo == "mission") {
+            tSetting.cols.push(mission);
+        } else if (jjjo == "shop") {
+            tSetting.cols.push(shop);
+        }
+
+        console.error(tSetting)
+
+
+    }
+
+
+    // $.fn.zTree.init($("#dataTree"), setting, alllist);
+
+    var treeObj = init_tabular_ztree($("#dataTree"), setting, alllist, tSetting);
+
+    // 展开全部节点
+    treeObj.expandAll(true);
+
     treenodemove(true);
     var rows = $("#dataTree").find('li');
     if (rows.length > 0) {
@@ -350,17 +564,18 @@ function query(isforce, torefresh, loc) {
                 }
             }
         }
-       // var tabledata = {list: adddatalist};
-       // var html = template("tpl", tabledata);
-       // $('#content_data').html(html);
+        // var tabledata = {list: adddatalist};
+        // var html = template("tpl", tabledata);
+        // $('#content_data').html(html);
         tdmousever();
     }
 }
+
 //绑定下拉框的所属公司与所属车队
-function datacompanyandcar(data,counlist) {
+function datacompanyandcar(data, counlist) {
     var form = layui.form;
-    var car =[]
-    var company =[];
+    var car = []
+    var company = [];
     $("#Company").empty();
     $("#team").empty();
     $("#Companypanelqucar").empty();
@@ -370,51 +585,51 @@ function datacompanyandcar(data,counlist) {
     document.getElementById('Company').add(new Option("全部", 0));
     document.getElementById('team').add(new Option("全部", 0));
 
-    for(var i = 0 ;i<data.length;i++){
+    for (var i = 0; i < data.length; i++) {
         // var ispid =  istopPid(data[i].pid,counlist);根据最高顶级
 
-        if(data[i].type==2){
+        if (data[i].type == 2) {
             //  car.push(data[i]);  //绑定顶级值
             document.getElementById('Company').add(new Option(data[i].na, data[i].id));//绑定DropDownList的value值，text值
         }
 
-        if(data[i].type==1){
+        if (data[i].type == 1) {
             //     company.push(data[i]);
             document.getElementById('team').add(new Option(data[i].na, data[i].id));//绑定DropDownList的value值，text值
 
         }
     }
     form.render();
-    form.on('select(test)', function(data){
-        bitopen =true;
+    form.on('select(test)', function (data) {
+        bitopen = true;
         var id = data.value;
         var datasyuan = fleets[id];
-        var listdatas =[];
-        var datas =datasour;
-        if(data.value!="0"){
+        var listdatas = [];
+        var datas = datasour;
+        if (data.value != "0") {
             $("#team").empty();
-            for(var i = 0;i<datas.length;i++){
-                if(datas[i].pid==data.value && datas[i].type!=2){
+            for (var i = 0; i < datas.length; i++) {
+                if (datas[i].pid == data.value && datas[i].type != 2) {
                     document.getElementById('team').add(new Option(datas[i].na, datas[i].id));
                     //获取属于这个公司的车队与车的数据
                     listdatas.push(datas[i]);
                 }
-                else if(datas[i].pid==data.value && datas[i].type==0){
+                else if (datas[i].pid == data.value && datas[i].type == 0) {
                     $("#team").html("没有车队了。");
                     listdatas.push(datas[i]);
                 }
             }
             // listdatas.push(datasyuan);
-            listdatas  = recursiveteam(listdatas,datas);
+            listdatas = recursiveteam(listdatas, datas);
             $("#dataTree").empty();
-            Serialnumber=0;
-            $.fn.zTree.init($("#dataTree"), setting,listdatas);
+            Serialnumber = 0;
+            $.fn.zTree.init($("#dataTree"), setting, listdatas);
             treenodemove(true);
-        }else {
+        } else {
             $("#team").empty();
             document.getElementById('team').add(new Option("全部", 0));
-            for(var i = 0 ;i<datas.length;i++){
-                if(datas[i].type==1){
+            for (var i = 0; i < datas.length; i++) {
+                if (datas[i].type == 1) {
                     document.getElementById('team').add(new Option(datas[i].na, datas[i].id));//绑定DropDownList的value值，text值
                 }
             }
@@ -426,54 +641,115 @@ function datacompanyandcar(data,counlist) {
         //treenodemove(true);
         console.log(datas);
     });
-    form.on('select(teamss)',function (data) {
-        bitopen =true;
-        var listdatas =[];
+    form.on('select(teamss)', function (data) {
+        bitopen = true;
+        var listdatas = [];
         var id = data.value;
-        if(data.value!="0"){
-            var datas =datasour;
+        if (data.value != "0") {
+            var datas = datasour;
 
             var datasyuan = fleets[id];
             listdatas.push(datasyuan);
-            listdatas  =   recursiveteam(listdatas,datas);
-        }else{
+            listdatas = recursiveteam(listdatas, datas);
+        } else {
             for (var i = 0; i < datasour.length; i++) {
-                if(datasour[i].type==0){
+                if (datasour[i].type == 0) {
                     listdatas.push(fromdevices(datasour[i]));
-                }else{
+                } else {
                     listdatas.push(fromfleet(datasour[i]));
                 }
             }
         }
         $("#dataTree").empty();
-        Serialnumber=0;
-        $.fn.zTree.init($("#dataTree"), setting,listdatas);
-        treenodemove(true)})
+        Serialnumber = 0;
+        $.fn.zTree.init($("#dataTree"), setting, listdatas);
+        treenodemove(true)
+    })
 
 }
+
 //车队的类型添加车  参数:车队的数据与整个数据  返回车队与车的数据
-function recursiveteam(datateamlist,data) {
-    var countlist=[];
-    for(var j =0;j<datateamlist.length;j++){
+function recursiveteam(datateamlist, data) {
+    var countlist = [];
+    for (var j = 0; j < datateamlist.length; j++) {
         countlist.push(fromfleet(datateamlist[j]));
-        for(var i =0 ;i<data.length;i++){
-            if(data[i].pid==datateamlist[j].id && data[i].type==0){
+        for (var i = 0; i < data.length; i++) {
+            if (data[i].pid == datateamlist[j].id && data[i].type == 0) {
                 countlist.push(fromdevices(data[i]));
             }
-        }}
+        }
+    }
     return countlist;
 }
+
 /*转换格式数据*/
 function fromfleet(item) {
     var fleet = new Object();
+
+
+    fleet.a = '\u00A0';
+    fleet.ad0 = "";
+    fleet.ad1 = "";
+    fleet.aid = "";
+    fleet.alt = "";
+    fleet.d = '\u00A0';
+    fleet.dn = '\u00A0';
+    fleet.exs = "";
+    fleet.gt = "";
+    fleet.icon = "";
+    fleet.id = "";
+    fleet.iid = "";
+    fleet.iof = "";
+    fleet.ios = "";
+    fleet.iot = "";
+    fleet.lat = "";
+    fleet.lng = "";
+    fleet.m = '\u00A0';
+    fleet.marker = "";
+    fleet.na = '\u00A0';
+    fleet.net = "";
+    fleet.o = '\u00A0';
+    fleet.oid = '\u00A0';
+    fleet.oil = "";
+    fleet.ovt = "";
+    fleet.pId = "";
+    fleet.rf = "";
+    fleet.rid = "";
+    fleet.rotate = "";
+    fleet.rt = "";
+    fleet.s = '\u00A0';
+    fleet.sat = "";
+    fleet.sp = '\u00A0';
+    fleet.st = "";
+    fleet.type = "";
+    fleet.val = "";
+    fleet.vss = "";
+    fleet.team = "";
+    fleet.locatName = "";
+    fleet.driname = '\u00A0';
+    fleet.inum = '\u00A0';
+    fleet.name = '\u00A0';
+    fleet.mission = '\u00A0';
+    fleet.shop = '\u00A0';
+
+
     fleet.ORG_ID = item.id;
     fleet.id = item.id;
     fleet.pId = item.pid;  //往上找的
     fleet.open = bitopen;
-    fleet.name = item.na;
+    fleet.name = item.na + "(" + item.onon.length + "/" + (parseInt(item.onon.length) + parseInt(item.offoff.length)) + ")";
     fleet.stust = item.o;
     fleet.type = item.type;
-    bitopen = false;
+    // fleet.driname = item.driname;
+    // fleet.inum = item.inum;
+
+
+    fleet.icon = item.icon;
+    fleet.iconOpen = item.icon;
+    fleet.iconClose = item.iconClose;
+
+
+    bitopen = true;
     return fleet;
 }
 
@@ -497,10 +773,24 @@ $(function () {
     window.webMap.events.onMapLoadCompleted['ft_map'] = window.mapG["ft_map"].onMapLoaded;
 
     console.log(window.mapG["ft_map"].onMapLoaded)
-    var img0 = $("<img/>").attr("src","../static/dc_file/image/s_one.png").css({'width':'45px','position':'absolute','left':'10px','top':'10px'});
+    var img0 = $("<img/>").attr("src", "../static/dc_file/image/s_one.png").css({
+        'width': '45px',
+        'position': 'absolute',
+        'left': '0px',
+        'top': '0px'
+    });
     $("#ft_map").append(img0);
-    var div0 = $("<div></div>").addClass("cut_sn").css({ 'width': '25px','height': '25px','backgroundColor': '#028ad6','textAlign': 'center','paddingTop': '3px','position':'absolute','right':'20px','top':'20px'});
-    var img1 = $("<img/>").attr("src","../static/dc_file/image/fangda-suoxiao-icon.png").css({'width':'20px'});
+    var div0 = $("<div></div>").addClass("cut_sn").css({
+        'width': '25px',
+        'height': '25px',
+        'backgroundColor': '#028ad6',
+        'textAlign': 'center',
+        'paddingTop': '3px',
+        'position': 'absolute',
+        'right': '20px',
+        'top': '20px'
+    });
+    var img1 = $("<img/>").attr("src", "../static/dc_file/image/fangda-suoxiao-icon.png").css({'width': '20px'});
     div0.append(img1);
     $("#ft_map").append(div0);
 
@@ -509,10 +799,24 @@ $(function () {
     console.log(b)
     webMap.events.onMapLoadCompleted['sd_map'] = window.mapG["sd_map"].onMapLoaded;
 
-    var img3 = $("<img/>").attr("src","../static/dc_file/image/s_two.png").css({'width':'45px','position':'absolute','left':'10px','top':'10px'});
+    var img3 = $("<img/>").attr("src", "../static/dc_file/image/s_two.png").css({
+        'width': '45px',
+        'position': 'absolute',
+        'left': '0px',
+        'top': '0px'
+    });
     $("#sd_map").append(img3);
-    var div1 = $("<div></div>").addClass("cut_sn").css({ 'width': '25px','height': '25px','backgroundColor': '#028ad6','textAlign': 'center','paddingTop': '3px','position':'absolute','right':'20px','top':'20px'});
-    var img4 = $("<img/>").attr("src","../static/dc_file/image/fangda-suoxiao-icon.png").css({'width':'20px'});
+    var div1 = $("<div></div>").addClass("cut_sn").css({
+        'width': '25px',
+        'height': '25px',
+        'backgroundColor': '#028ad6',
+        'textAlign': 'center',
+        'paddingTop': '3px',
+        'position': 'absolute',
+        'right': '20px',
+        'top': '20px'
+    });
+    var img4 = $("<img/>").attr("src", "../static/dc_file/image/fangda-suoxiao-icon.png").css({'width': '20px'});
     div1.append(img4);
     $("#sd_map").append(div1);
 
@@ -520,30 +824,58 @@ $(function () {
     console.log(c)
 
     webMap.events.onMapLoadCompleted['td_map'] = window.mapG["td_map"].onMapLoaded;
-    var img5 = $("<img/>").attr("src","../static/dc_file/image/s_three.png").css({'width':'45px','position':'absolute','left':'10px','top':'10px'});
+    var img5 = $("<img/>").attr("src", "../static/dc_file/image/s_three.png").css({
+        'width': '45px',
+        'position': 'absolute',
+        'left': '0px',
+        'top': '0px'
+    });
     $("#td_map").append(img5);
-    var div2 = $("<div></div>").addClass("cut_sn").css({ 'width': '25px','height': '25px','backgroundColor': '#028ad6','textAlign': 'center','paddingTop': '3px','position':'absolute','right':'20px','top':'20px'});
-    var img6 = $("<img/>").attr("src","../static/dc_file/image/fangda-suoxiao-icon.png").css({'width':'20px'});
+    var div2 = $("<div></div>").addClass("cut_sn").css({
+        'width': '25px',
+        'height': '25px',
+        'backgroundColor': '#028ad6',
+        'textAlign': 'center',
+        'paddingTop': '3px',
+        'position': 'absolute',
+        'right': '20px',
+        'top': '20px'
+    });
+    var img6 = $("<img/>").attr("src", "../static/dc_file/image/fangda-suoxiao-icon.png").css({'width': '20px'});
     div2.append(img6);
     $("#td_map").append(div2);
 
     var d = webMap.createMap("fh_map");
     console.log(d)
     webMap.events.onMapLoadCompleted['fh_map'] = window.mapG["fh_map"].onMapLoaded;
-    var img7 = $("<img/>").attr("src","../static/dc_file/image/s_four.png").css({'width':'45px','position':'absolute','left':'10px','top':'10px'});
+    var img7 = $("<img/>").attr("src", "../static/dc_file/image/s_four.png").css({
+        'width': '45px',
+        'position': 'absolute',
+        'left': '0px',
+        'top': '0px'
+    });
     $("#fh_map").append(img7);
-    var div3 = $("<div></div>").addClass("cut_sn").css({ 'width': '25px','height': '25px','backgroundColor': '#028ad6','textAlign': 'center','paddingTop': '3px','position':'absolute','right':'20px','top':'20px'});
-    var img8 = $("<img/>").attr("src","../static/dc_file/image/fangda-suoxiao-icon.png").css({'width':'20px'});
+    var div3 = $("<div></div>").addClass("cut_sn").css({
+        'width': '25px',
+        'height': '25px',
+        'backgroundColor': '#028ad6',
+        'textAlign': 'center',
+        'paddingTop': '3px',
+        'position': 'absolute',
+        'right': '20px',
+        'top': '20px'
+    });
+    var img8 = $("<img/>").attr("src", "../static/dc_file/image/fangda-suoxiao-icon.png").css({'width': '20px'});
     div3.append(img8);
     $("#fh_map").append(div3);
 
     $(".map-contents3>.s_map>.cut_sn").click(function () {
-        var flag_0 = $(this).parent().siblings(".s_map").css("display")=="block";
-        var flag_ = $(this).parent().siblings(".s_map").css("display")=="none";
-        if(flag_0){
-            $(this).parent().css("width","100%").css("height","100%").siblings(".s_map").css("display","none");
-        }else if(flag_){
-            $(this).parent().css("width","49.9%").css("height","49.9%").siblings(".s_map").css("display","block");
+        var flag_0 = $(this).parent().siblings(".s_map").css("display") == "block";
+        var flag_ = $(this).parent().siblings(".s_map").css("display") == "none";
+        if (flag_0) {
+            $(this).parent().css("width", "100%").css("height", "100%").siblings(".s_map").css("display", "none");
+        } else if (flag_) {
+            $(this).parent().css("width", "49.9%").css("height", "49.9%").siblings(".s_map").css("display", "block");
         }
     })
 })
@@ -584,19 +916,27 @@ function convertor(lng, lat, callback) {    // 纠偏
 }
 
 function bottomcardata(data) {
-    var online=0 ;
-    var offline=0;
+    var online = 0;
+    var offline = 0;
     var sp = 0;
-    for(var i in data){ data[i].type==0?(data[i].o==0?(offline++,offlinedevices.push(data[i]),sp += data[i].sp):(online++,onlinedevices.push(data[i])))
-        :""}
-    count  = offline+online;
-    $(".cs_top span:nth-child(1)").html("总车辆:"+count);
-    $(".cs_top span:nth-child(2)").html("在线率:"+ Math.round((online/count).toFixed(2) *100)+"%");
-    $(".cs_middle span:nth-child(1)").html("在线:"+online);
-    $(".cs_middle span:nth-child(2)").html("离线:"+offline);
+    var spsum = 0;
+    for (var i in data) {
+        data[i].type == 0 ? (data[i].o == 0 ? (offline++, offlinedevices.push(data[i]), sp += data[i].sp) : (online++, onlinedevices.push(data[i])))
+            : ""
+    }
+    for (var i in data) {
+        if (data[i].sp > 0) {
+            spsum = spsum + 1
+        }
+    }
+    count = offline + online;
+    $(".cs_top span:nth-child(1)").html("总车辆:" + count);
+    $(".cs_top span:nth-child(2)").html("在线率:" + Math.round((online / count).toFixed(2) * 100) + "%");
+    $(".cs_middle span:nth-child(1)").html("在线:" + online);
+    $(".cs_middle span:nth-child(2)").html("离线:" + offline);
     // $(".cs_bottom span:nth-child(1)").html("任务:"+data.);
     // console.log(sp+"sp");
-    $(".cs_bottom span:nth-child(2)").html("行驶:"+sp*10+"km/h");
+    $(".cs_bottom span:nth-child(2)").html("行驶:" + spsum);
 
 }
 
@@ -774,19 +1114,27 @@ function beforeDblClick(treeId, treeNode) {
 
 
 //点击树节点是为true的时候
-function beforeClickistrue(treeNode, loc) {
+function beforeClickistrue(event,treeNode, loc) {
     // alert("ss")
     //  console.log(locate.markers[treeNode.dn]);
     //BMap.Convertor.translate(BDPoint,0,translateCallback); //真实经纬度转成百度坐标
     if (treeNode.type == 0) {  // console.log(treeNode);
         $("#libuoonton").remove();
         var treeid = treeNode.tId;
-        var butong = `<li class='libuoonton' id='libuoonton'> 
-<input type='button' onclick='dataTreedian(${treeNode.dn})' value='点名'/> ` +
-            `<input type='button' value='资料'/>
-<input type='button' value='跟踪' data='${treeNode.id}' class="placeInto" /> 
-  </li>`;
-        $("#" + treeid).append(butong);
+//         var butong = `<li class='libuoonton' id='libuoonton'>
+// <input type='button' onclick='dataTreedian(${treeNode.dn})' value='点名'/> ` +
+//             `<input type='button' value='资料'/>
+// <input type='button' value='跟踪' data='${treeNode.id}' class="placeInto" />
+//   </li>`;
+
+ console.warn(treeNode)
+        // var cnm = $(this).attr("data");
+
+        ddds(treeNode.id,event.target);
+
+
+
+        // $("#" + treeid).append(butong);
         var id = treeNode.id;
         var iscunzai = Clickidstorage.indexOf(id);
         if (iscunzai == -1) {
@@ -800,9 +1148,9 @@ function beforeClickistrue(treeNode, loc) {
             var point = new BMap.Point(adddatalist[i].lng, adddatalist[i].lat);
             queryAddress(point, function (address) {
                 adddatalist[i].locatName = address;
-             //   var tabledata = {list: adddatalist};
-              //  var html = template("tpl", tabledata);
-              //  $('#content_data').html(html);
+                //   var tabledata = {list: adddatalist};
+                //  var html = template("tpl", tabledata);
+                //  $('#content_data').html(html);
                 tdmousever();
             }, loc);
         }
@@ -815,6 +1163,57 @@ function beforeClickistrue(treeNode, loc) {
 
     }
 }
+
+
+function ddds(arg,obj) {
+
+
+    console.clear()
+    console.warn(arg)
+    console.warn(obj)
+    var cnm = arg;
+
+    var mmmmm = `
+<div><button data="ft_map" dataid=${cnm} class="spliterMapShit">置于分屏1</button></div>
+<div><button data="sd_map" dataid=${cnm} class="spliterMapShit">置于分屏2</button></div>
+<div><button data="td_map" dataid=${cnm} class="spliterMapShit">置于分屏3</button></div>
+<div><button data="fh_map" dataid=${cnm} class="spliterMapShit" >置于分屏4</button></div>
+`;
+
+    setTimeout(function () {
+
+    },0)
+    $(obj).webuiPopover({title: '选择分屏', content: mmmmm, closeable: true});
+    //Show it
+    $(obj).webuiPopover('show');
+
+
+
+
+
+
+    console.warn(mmmmm)
+
+    $(document).off("click", ".spliterMapShit");
+    $(document).on("click", ".spliterMapShit", function () {
+
+        var id = $(this).attr("dataid");
+        var ll = $(this).attr("data");
+
+        var loc = window.mapG[ll];
+        console.log(id)
+        console.log(ll)
+        console.log(loc.webMap.mapObject)
+
+        qiehuan(id, loc);
+        $(obj).webuiPopover('destroy');
+
+    });
+
+
+}
+
+
 
 
 $("#dataTree").on("click", ".placeInto", function () {
@@ -848,7 +1247,7 @@ $("#dataTree").on("click", ".placeInto", function () {
 });
 
 /*点击树节点获取对象*/
-function beforeClick(treeId, treeNode, isCheck, loc) {
+function beforeClick(event,treeId, treeNode, isCheck, loc) {
     if (clickFlag) {//取消上次延时未执行的方法
         clickFlag = clearTimeout(clickFlag);
     }
@@ -865,7 +1264,7 @@ function beforeClick(treeId, treeNode, isCheck, loc) {
                 //如果是boolean 证明点击传过来的, 要相反
                 for (var aaa in window.webMap.maps) {
                     var mmmp = window.mapG[aaa];
-                    beforeClickistrue(treeNode, mmmp);
+                    beforeClickistrue(event,treeNode, mmmp);
                 }
             } else {
                 if (istrueorfalse == true) {
@@ -878,7 +1277,7 @@ function beforeClick(treeId, treeNode, isCheck, loc) {
                     istrueorfalse = true;
                     for (var aaa in window.webMap.maps) {
                         var mmmp = window.mapG[aaa];
-                        beforeClickistrue(treeNode, mmmp);
+                        beforeClickistrue(event,treeNode, mmmp);
                     }
                 }
                 treeObj1.checkNode(treeNode, !treeNode.checked, istrueorfalse);
@@ -899,7 +1298,7 @@ function tables(id, e, loc) {
  * 切换图片定位
  */
 function qiehuan(id, loc) {
-    if(id==null) return ;
+    if (id == null) return;
     var device = alldevices[id];
 
     convertor(device.lng, device.lat, function (point) {
@@ -948,11 +1347,10 @@ function qiehuan(id, loc) {
 
     // for (var aaa in window.webMap.maps) {
 
-        var mmmp = loc.webMap.mapObject;
+    var mmmp = loc.webMap.mapObject;
 
 
-
-        // mmmp.centerAndZoom(new BMap.Point(104.822339, 37.839088),10);
+    // mmmp.centerAndZoom(new BMap.Point(104.822339, 37.839088),10);
 
     // }
 
@@ -2071,9 +2469,9 @@ function quertyicon(loc) {
                     //datalist.push(data.rows[datas].showName);
                 }
                 queryicondata = data.rows;
-              //  var tabledata = {list: data.rows};
-              //  var html = template("tpllocat", tabledata);
-              //  $('#locat_Data').html(html);
+                //  var tabledata = {list: data.rows};
+                //  var html = template("tpllocat", tabledata);
+                //  $('#locat_Data').html(html);
             }
         }
     })
@@ -2128,7 +2526,7 @@ function treenodemove(statsdemove) {
             //  console.log(isName[0].childNodes[1]);
             if (isName[i].childNodes.length > 3) {
                 if (isName[i].childNodes[2].className == "diy divnema") {
-                    $(isName[i]).parent().css("background", "#");
+                    $(isName[i]).parent().css("background", "#d5dfe4");
                     return;
                     // $(isName[i]).parent().append(butong);
                 }
@@ -2197,14 +2595,25 @@ function Arrayis(id) {
 
 //侧面,隐藏,显示。
 function hidden_bottom() {
-    $(".cs_bottom").toggle(500);
-    $(".cs_middle").toggle(500);
-    var current= $(".car-info").get(0).offsetHeight;
+    $(".cs_bottom").toggle(1);
+    $(".cs_middle").toggle(1);
+    // var current= $(".car-info").get(0).offsetHeight;
+    var current = $(".dis_list").height();
     console.log($(".cs_top span:nth-child(3)").text().trim());
-    $(".cs_top span:nth-child(3)").text().trim()=="隐藏"?
-        ($(".cs_top span:nth-child(3)").addClass("hide_it").text("显示"), $(".car-info").css("height",(current+50)+"px")):
-        ($(".cs_top span:nth-child(3)").text("隐藏").removeClass("hide_it"),$(".car-info").css("height",(current-50)+"px"));
+    // $(".cs_top span:nth-child(3)").text().trim()=="隐藏"?
+    //     ($(".cs_top span:nth-child(3)").addClass("hide_it").text("显示"),$(".car-info").css("height",(current+50)+"px")):
+    //     ($(".cs_top span:nth-child(3)").text("隐藏").removeClass("hide_it"),$(".car-info").css("height",(current-50)+"px"));
+    if ($(".cs_top span:nth-child(3)").text().trim() == "隐藏") {
+        $(".cs_top span:nth-child(3)").addClass("hide_it").text("显示");
+        $(".dis_list").css("height", current + 45 + "px");
 
+
+    } else if ($(".cs_top span:nth-child(3)").text().trim() == "显示") {
+        $(".cs_top span:nth-child(3)").text("隐藏").removeClass("hide_it");
+        $(".dis_list").css("height", current - 45 + "px");
+
+
+    }
 }
 
 
@@ -2241,9 +2650,9 @@ function adddataztree(childrendata) {
             treeids.push(dataxhuanuhan);
         }
     }
-   // var tabledata = {list: adddatalist};
-   // var html = template("tpl", tabledata);
-   // $('#content_data').html(html);
+    // var tabledata = {list: adddatalist};
+    // var html = template("tpl", tabledata);
+    // $('#content_data').html(html);
 }
 
 //移除关注的某车队
@@ -2260,9 +2669,9 @@ function removecarteam(childrendata) {
             removerarr(treeids, childrendata[i].id);
         }
     }
-   // var tabledata = {list: adddatalist};
-  //  var html = template("tpl", tabledata);
-   // $('#content_data').html(html);
+    // var tabledata = {list: adddatalist};
+    //  var html = template("tpl", tabledata);
+    // $('#content_data').html(html);
 }
 
 //移除某个车辆
@@ -2301,8 +2710,8 @@ function removercar(treeNode, loc) {
         removerarr(treeids, treeNode.id);
     }
     //var tabledata = {list: adddatalist};
-   // var html = template("tpl", tabledata);
-   // $('#content_data').html(html);
+    // var html = template("tpl", tabledata);
+    // $('#content_data').html(html);
 }
 
 //在线车辆
@@ -2381,6 +2790,18 @@ function countcar() {
 //转换刚加载数据
 function fromdevices(data) {
     var datastart = new Object();
+
+    datastart.a = '\u00A0';
+
+    datastart.dn = '\u00A0';
+    datastart.driname = '\u00A0';
+    datastart.inum = '\u00A0';
+    datastart.name = '\u00A0';
+    datastart.sp = '\u00A0';
+    datastart.mission = '\u00A0';
+    datastart.shop = '\u00A0';
+
+
     datastart.a = data.a;
     datastart.ad0 = data.ad0;
     datastart.ad1 = data.ad1;
@@ -2398,7 +2819,7 @@ function fromdevices(data) {
     datastart.iot = data.iot;
     datastart.lat = data.lat;
     datastart.lng = data.lng;
-    datastart.m = data.m;
+    datastart.m = data.m.toFixed(2);
     datastart.marker = data.marker;
     datastart.na = data.na;
     datastart.net = data.net;
@@ -2420,8 +2841,25 @@ function fromdevices(data) {
     datastart.vss = data.vss;
     datastart.team = 0;
     datastart.locatName = data.locatName;
-    return datastart;
+    datastart.driname = data.driname;
+    datastart.inum = data.inum;
+    datastart.name = data.na;
 
+    if (datastart.inum === undefined || datastart.inum === "" || datastart.inum == null) {
+        datastart.inum = '\u00A0';
+    }
+
+    if (datastart.driname === undefined || datastart.driname === "" || datastart.driname == null) {
+        datastart.driname = '\u00A0';
+    }
+    if (datastart.shop === undefined || datastart.shop === "" || datastart.shop == null) {
+        datastart.shop = '\u00A0';
+    }
+    console.warn(datastart.inum)
+    console.warn(datastart.inum === undefined)
+
+
+    return datastart;
 }
 
 //移除存储id
@@ -2506,40 +2944,40 @@ function returnteamName(data) {
 
 //初始化搜索
 function textscresh() {
-    $("#textscresh").on("keyup",function (event) {
+    $("#textscresh").on("keyup", function (event) {
         var len = datasour.length;
         var arr = [];
         var Name = $("#textscresh").val();
-        if(Name==""){
+        if (Name == "") {
             $("#dataTree").empty();
-            Serialnumber=0;
-            bitopen=true;
+            Serialnumber = 0;
+            bitopen = true;
             for (var i = 0; i < datasour.length; i++) {
-                if(datasour[i].type==0){
+                if (datasour[i].type == 0) {
                     arr.push(fromdevices(datasour[i]));
-                }else{
+                } else {
                     arr.push(fromfleet(datasour[i]));
                 }
             }
             $.fn.zTree.init($("#dataTree"), setting, arr);
             treenodemove(true);
-            return ;
+            return;
         }
         var reg = new RegExp(Name);
-        for(var i=0;i<len;i++){
+        for (var i = 0; i < len; i++) {
             //如果字符串中不包含目标字符会返回-1
-            if(datasour[i].na.match(reg)){
-                if(datasour[i].type==0){
-                    arr.push(datasour[i] );
+            if (datasour[i].na.match(reg)) {
+                if (datasour[i].type == 0) {
+                    arr.push(datasour[i]);
                 }
             }
         }
 
-        var arrs=   screshcar(arr,datasour);
-        if(arrs.length>0){
+        var arrs = screshcar(arr, datasour);
+        if (arrs.length > 0) {
             $("#dataTree").empty();
-            Serialnumber=0;
-            bitopen=true;
+            Serialnumber = 0;
+            bitopen = true;
             $.fn.zTree.init($("#dataTree"), setting, arrs);
             treenodemove(true);
         }
@@ -2617,9 +3055,9 @@ function textscresh() {
         var Name = $("#textscreshlocat").val();
         if (Name == "" || Name.length == 0) {
 
-           // var tabledata = {list: queryicondata};
-          //  var html = template("tpllocat", tabledata);
-           // $('#locat_Data').html(html);
+            // var tabledata = {list: queryicondata};
+            //  var html = template("tpllocat", tabledata);
+            // $('#locat_Data').html(html);
         } else {
             var reg = new RegExp(Name);
             //全部
@@ -2645,9 +3083,9 @@ function textscresh() {
                     listid.push(Name);
                 }
             }
-          //  var tabledata = {list: listid};
-         //   var html = template("tpllocat", tabledata);
-          //  $('#locat_Data').html(html);
+            //  var tabledata = {list: listid};
+            //   var html = template("tpllocat", tabledata);
+            //  $('#locat_Data').html(html);
         }
     });
 }
@@ -2688,13 +3126,13 @@ function resetTime(time) {
 
 //车辆列表移入地理位置的时候
 function tdmousever() {
-    $("#content_data tr td:last-child").mousemove(function(e){
+    $("#content_data tr td:last-child").mousemove(function (e) {
         $(this).children(".locatNamejingwei").css("display", "none");
         $(this).children(".locatName").css("display", "block");
 
     })
 
-    $("#content_data tr td:last-child").mouseout(function(e){
+    $("#content_data tr td:last-child").mouseout(function (e) {
         $(this).children(".locatNamejingwei").css("display", "block");
         $(this).children(".locatName").css("display", "none");
     })
@@ -2711,13 +3149,13 @@ function tdmousever() {
 
 //递归树形是否为打开状态
 function typeisopen(data) {
-    for(var i=0;i<data.length;i++){
-        if(data[i].type==0){
-            isopenbyid.push({id:data[i].id,isopen:data[i].checked});
-        }else{
-            isopenbyid.push({id:data[i].id,isopen:data[i].open});
+    for (var i = 0; i < data.length; i++) {
+        if (data[i].type == 0) {
+            isopenbyid.push({id: data[i].id, isopen: data[i].checked});
+        } else {
+            isopenbyid.push({id: data[i].id, isopen: data[i].open});
             //看看有没有子节点   已经有子节点
-            return    data.children==undefined?"":typeisopen(data.children);
+            return data.children == undefined ? "" : typeisopen(data.children);
         }
     }
 }
@@ -2727,12 +3165,12 @@ function Set_whether_open(item) {
 
     var treeObj = $.fn.zTree.getZTreeObj("dataTree");
     var nodes = treeObj.getNodes();
-    if (nodes.length>0) {
+    if (nodes.length > 0) {
         //    nodes[0].name = "test";
         // treeObj.updateNode(item);
     }
     treeObj.refresh();
-    isopenbyid =[];
+    isopenbyid = [];
     var treeObj1 = $.fn.zTree.getZTreeObj("dataTree");
     var sNodes = treeObj1.getNodes();
     /*console.log(sNodes[0].getCheckStatus());
@@ -2740,27 +3178,27 @@ function Set_whether_open(item) {
     console.log(sNodes[0].getParentNode());
     console.log(sNodes[0].getPreNode());*/
     var nodes = treeObj.getSelectedNodes();
-    for(n in nodes){
-        isopenbyid.push({id:nodes[n].id,isopen:nodes[n].checked});
+    for (n in nodes) {
+        isopenbyid.push({id: nodes[n].id, isopen: nodes[n].checked});
     }
     //这里只循环顶级节点 ,那么顶级节点一定是父子点
-    for(var i = 0 ; i<sNodes.length;i++){
-        var data  =sNodes[i];//得到一个顶级父节点
-        isopenbyid.push({id:data.id,isopen:data.open});
+    for (var i = 0; i < sNodes.length; i++) {
+        var data = sNodes[i];//得到一个顶级父节点
+        isopenbyid.push({id: data.id, isopen: data.open});
         console.log(data.children);
         //看看有没有子节点   已经有子节点
 
-        data.children==undefined?"":typeisopen(data.children);
+        data.children == undefined ? "" : typeisopen(data.children);
     }
 
-    if(isopenbyid.length>0){
-        for(i in isopenbyid){
-            for( j in item){
-                if(item[j].id == isopenbyid[i].id){
-                    if(item[j].type==0){
+    if (isopenbyid.length > 0) {
+        for (i in isopenbyid) {
+            for (j in item) {
+                if (item[j].id == isopenbyid[i].id) {
+                    if (item[j].type == 0) {
                         item[j].checked = isopenbyid[i].isopen;
                         //子节点是否选中
-                    }else{
+                    } else {
                         //父节点是否打开
                         item[j].open = isopenbyid[i].isopen;
                     }

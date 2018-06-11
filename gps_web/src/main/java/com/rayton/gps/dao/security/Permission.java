@@ -19,8 +19,7 @@ public class Permission {
 
     @Override
     public String toString() {
-        return "Permission{" + "id='" + id + '\'' + ", pid='" + pid + '\'' + ", name='" + name + '\'' + ", " +
-                "COMPANYID='" + COMPANYID + '\'' + '}';
+        return "Permission{" + "id='" + id + '\'' + ", pid='" + pid + '\'' + ", name='" + name + '\'' + ", " + "COMPANYID='" + COMPANYID + '\'' + '}';
     }
 
     public String getId() {

@@ -32,7 +32,8 @@ public class DictionaryController {
     @Log(name = "打开数据字典页面")
     @GetMapping(value = "/dictionary/dictionary.iframe")
     public String index(Model model) {
-        model.addAttribute("dictionaryKinds", DictionaryKinds.values()); model.addAttribute("txtDictionaryKind", 1);
+        model.addAttribute("dictionaryKinds", DictionaryKinds.values());
+        model.addAttribute("txtDictionaryKind", 1);
         return "/baseinfo/dictionary/dictionary.iframe";
     }
 
@@ -45,8 +46,10 @@ public class DictionaryController {
         }
 
         if (grid) {
-            Page<DictionaryItemInfo> page = new Page<>(); page.rows = dictionaryService.list(kind);
-            page.total = page.rows.size(); return page;
+            Page<DictionaryItemInfo> page = new Page<>();
+            page.rows = dictionaryService.list(kind);
+            page.total = page.rows.size();
+            return page;
         }
 
         return dictionaryService.list(kind);
@@ -66,7 +69,9 @@ public class DictionaryController {
 
     @GetMapping(value = "/dictionary/create.form")
     public String create(@RequestParam int kind, @RequestParam(required = false) Long pid, Model model) {
-        DictionaryItem dictionaryItem = new DictionaryItem(); dictionaryItem.setKind(kind); dictionaryItem.setPid(pid);
+        DictionaryItem dictionaryItem = new DictionaryItem();
+        dictionaryItem.setKind(kind);
+        dictionaryItem.setPid(pid);
         model.addAttribute("dictionaryItem", dictionaryItem);
 
         return "/baseinfo/dictionary/create.form";
@@ -74,16 +79,17 @@ public class DictionaryController {
 
     @PostMapping(value = "/dictionary/create.form")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> create(@ModelAttribute("dictionaryItem") @Valid DictionaryItem
-                                                                  dictionaryItem, BindingResult binding) {
+    public ResponseEntity<Map<Object, Object>> create(@ModelAttribute("dictionaryItem") @Valid DictionaryItem dictionaryItem, BindingResult binding) {
 
         if (binding.hasErrors()) {
-            List<FieldError> errors = binding.getFieldErrors(); Map<Object, Object> map = new HashMap<>();
+            List<FieldError> errors = binding.getFieldErrors();
+            Map<Object, Object> map = new HashMap<>();
             errors.forEach(fieldError -> map.put(fieldError.getField(), fieldError.getDefaultMessage()));
             return ResponseEntityWrapper.Failed(map);
         }
         // return "/baseinfo/dictionary/create.form";
-        dictionaryService.create(dictionaryItem); return ResponseEntityWrapper.OK();
+        dictionaryService.create(dictionaryItem);
+        return ResponseEntityWrapper.OK();
         // try {
         //     dictionaryService.create(dictionaryItem);
         //     WebUtil.success(r);
@@ -97,7 +103,8 @@ public class DictionaryController {
     @GetMapping(value = "/dictionary/edit.form")
     @ResponseBody
     public Object edit(@RequestParam long id, Model model) throws Exception {
-        DictionaryItem dictionaryItem = dictionaryService.fetch(id); return dictionaryItem;
+        DictionaryItem dictionaryItem = dictionaryService.fetch(id);
+        return dictionaryItem;
         // model.addAttribute("dictionaryItem", dictionaryItem);
         //
         // return "/baseinfo/dictionary/edit.form";
@@ -105,11 +112,11 @@ public class DictionaryController {
 
     @PostMapping(value = "/dictionary/edit.form")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> edit(@ModelAttribute("dictionary") @Valid DictionaryItem
-                                                                dictionaryItem, BindingResult binding) {
+    public ResponseEntity<Map<Object, Object>> edit(@ModelAttribute("dictionary") @Valid DictionaryItem dictionaryItem, BindingResult binding) {
         if (binding.hasErrors())
             // return "/baseinfo/dictionary/edit.form";
-            return ResponseEntityWrapper.Failed(); dictionaryService.update(dictionaryItem);
+            return ResponseEntityWrapper.Failed();
+        dictionaryService.update(dictionaryItem);
         return ResponseEntityWrapper.OK();
         // try {
         //     dictionaryService.update(dictionaryItem);
@@ -142,7 +149,8 @@ public class DictionaryController {
     @PostMapping(value = "/dictionary/move")
     @ResponseBody
     public ResponseEntity<Map<Object, Object>> move(@RequestParam long id, @RequestParam Long pid) {
-        dictionaryService.move(id, pid); return ResponseEntityWrapper.OK();
+        dictionaryService.move(id, pid);
+        return ResponseEntityWrapper.OK();
 
         // try {
         //     dictionaryService.move(id, pid);
@@ -156,8 +164,7 @@ public class DictionaryController {
 
     @PostMapping(value = "/dictionary/exist")
     @ResponseBody
-    public Object exists(@RequestParam String name, @RequestParam int kind, @RequestParam(required = false) Long id,
-                         @RequestParam boolean checkId) throws Exception {
+    public Object exists(@RequestParam String name, @RequestParam int kind, @RequestParam(required = false) Long id, @RequestParam boolean checkId) throws Exception {
 
         return checkId ? !dictionaryService.exist(name, kind, id) : !dictionaryService.exist(name, kind);
         // if (checkId) {

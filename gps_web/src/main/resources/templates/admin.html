@@ -219,6 +219,7 @@
 <script th:src="@{/static/baseinfo/renderVehicleRegister.js}"></script>
 <script th:src="@{/static/baseinfo/renderMaintain.js}"></script>
 <script th:src="@{/static/baseinfo/renderDictionary.js}"></script>
+<script th:src="@{/static/baseinfo/renderSys.js}"></script>
 <!--左側的屎-->
 <script id="nav2" type="text/html">
     <ul class="layui-nav layui-nav-tree" lay-filter="test" style="background-color: rgba(3, 107, 164,0.5);">
@@ -229,7 +230,7 @@
                 <span class="layui-nav-more"></span>
 
             </a> {{set temp = value.id}}
-            <dl class="layui-nav-child">
+            <dl class="layui-nav-child" style="display: block">
                 {{each data as val}} {{ if val.pid== temp }}
                 <dd  style=" text-indent:50px;"><a href="javascript:;" onclick="nav_to('{{val.url}}','{{ val.text }}');console.log($(this));$(this).addClass('current_a').parent().siblings('dd').children('a:nth-child(1)').removeClass('current_a');$(this).parent().parent().parent().siblings('li').children('dl').children('dd').children('a:nth-child(1)').removeClass('current_a');" tat="{{ val.text }}">{{ val.text }}</a></dd>
                 {{/if}} {{/each}}
@@ -296,6 +297,39 @@
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
 
+
+<script type="text/html" id="renderSysBar">
+
+
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="device">终端ID</a>
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="car">车辆ID</a>
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="driver">司机ID</a>
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="sim">SIM卡ID</a>
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="cargroup">车队ID</a>
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="carL">行车证ID</a>
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="carR">登记证ID</a>
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="DrivingL">准驾证ID</a>
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="company">所属公司ID</a>
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="user">所属账号ID</a>
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <script>
 
     if (window.top !== window.self) {
@@ -303,7 +337,7 @@
         jQuery(".layui-side").css("top", 0);
         jQuery(".layui-body").css("top", 0);
         jQuery(".mmppmm").remove();
-
+        // top.location.href = location.href;
         // jQuery("button").attr("disabled", true);
 
         console.log("mmmp")

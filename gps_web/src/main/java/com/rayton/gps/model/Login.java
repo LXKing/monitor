@@ -21,8 +21,7 @@ public class Login {
 
     @Override
     public String toString() {
-        return "Login{" + "account='" + account + '\'' + ", pwd='" + pwd + '\'' + ", verify='" + verify + '\'' + ", "
-                + "error='" + error + '\'' + '}';
+        return "Login{" + "account='" + account + '\'' + ", pwd='" + pwd + '\'' + ", verify='" + verify + '\'' + ", " + "error='" + error + '\'' + '}';
     }
 
     public String getAccount() {

@@ -19,9 +19,8 @@ public class Identity {
 
     @Override
     public String toString() {
-        return "Identity{" + "id='" + id + '\'' + ", companyId='" + companyId + '\'' + ", unid='" + unid + '\'' + ", " +
-                "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "account='" + account + '\'' + ", name='" +
-                name + '\'' + ", " + "" + "enums=" + kind + ", " + "" + "roles=" + Arrays.toString(roles) + '}';
+        return "Identity{" + "id='" + id + '\'' + ", companyId='" + companyId + '\'' + ", unid='" + unid + '\'' + ", " + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "account='" + account + '\'' + ", name='" + name + '\'' + ", " + "" + "enums=" + kind + ", " + "" + "roles=" + Arrays
+                .toString(roles) + '}';
     }
 
     /**

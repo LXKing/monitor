@@ -146,7 +146,7 @@ $.fn.extend({
                 });
             }else{
                 li.on("click",function(){
-                    alert("功能正在开发中,敬请期待！");
+                    alert("未授权");
                 })
             }
 

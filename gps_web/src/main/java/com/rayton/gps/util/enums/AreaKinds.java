@@ -2,8 +2,7 @@ package com.rayton.gps.util.enums;
 
 public enum AreaKinds {
     // 0:无特定位置; 1:圆形区域; 2:矩形区域; 3:多边形区域; 4:路线/路线
-    None("无特定位置", 0), CircleArea("圆形区域", 1), RectangleArea("矩形区域", 2), PolygonArea("多边形区域", 3), RouteArea("路线/路段", 4)
-    , Poi("兴趣点", 100);
+    None("无特定位置", 0), CircleArea("圆形区域", 1), RectangleArea("矩形区域", 2), PolygonArea("多边形区域", 3), RouteArea("路线/路段", 4), Poi("兴趣点", 100);
     // 成员变量
     private String name;
     private int index;

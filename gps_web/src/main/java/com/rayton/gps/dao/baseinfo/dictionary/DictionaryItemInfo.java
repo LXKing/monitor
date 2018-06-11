@@ -9,8 +9,7 @@ public class DictionaryItemInfo {
 
     @Override
     public String toString() {
-        return "DictionaryItemInfo{" + "id=" + id + ", pid=" + pid + ", name='" + name + '\'' + ", code='" + code +
-                '\'' + ", index='" + index + '\'' + '}';
+        return "DictionaryItemInfo{" + "id=" + id + ", pid=" + pid + ", name='" + name + '\'' + ", code='" + code + '\'' + ", index='" + index + '\'' + '}';
     }
 
     public long getId() {

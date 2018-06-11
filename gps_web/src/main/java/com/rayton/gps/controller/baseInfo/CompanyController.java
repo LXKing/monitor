@@ -43,8 +43,7 @@ public class CompanyController {
 
     @GetMapping("/company/query")
     @ResponseBody
-    public Object query(@RequestParam(required = false) String filter, @RequestParam int page, @RequestParam int
-            limit) throws Exception {
+    public Object query(@RequestParam(required = false) String filter, @RequestParam int page, @RequestParam int limit) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         Page<CompanyInfo> result = companyService.query(identity.getCompanyId(), filter, page, limit);
 
@@ -80,8 +79,7 @@ public class CompanyController {
 
     @PostMapping(value = "/company/create.form")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> create(@ModelAttribute("editor") @Valid CompanyModel m, BindingResult
-            binding) throws Exception {
+    public ResponseEntity<Map<Object, Object>> create(@ModelAttribute("editor") @Valid CompanyModel m, BindingResult binding) throws Exception {
         if (binding.hasErrors())
             // return "/baseinfo/company/create.form";
 
@@ -105,6 +103,7 @@ public class CompanyController {
         // return "redirect:/result";
     }
 
+
     @GetMapping(value = "/company/edit.form")
     @ResponseBody
     public Object edit(@RequestParam String id) throws Exception {
@@ -119,8 +118,7 @@ public class CompanyController {
 
     @PostMapping(value = "/company/edit.form")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> edit(@ModelAttribute("editor") @Valid CompanyModel m, BindingResult
-            binding) throws Exception {
+    public ResponseEntity<Map<Object, Object>> edit(@ModelAttribute("editor") @Valid CompanyModel m, BindingResult binding) throws Exception {
         if (binding.hasErrors())
 
             // return "/baseinfo/company/edit.form";
@@ -174,8 +172,7 @@ public class CompanyController {
 
     @PostMapping(value = "/company/authorize")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> authorize(@RequestParam String companyId, @RequestParam(required =
-            false, defaultValue = "") List<String> list) throws Exception {
+    public ResponseEntity<Map<Object, Object>> authorize(@RequestParam String companyId, @RequestParam(required = false, defaultValue = "") List<String> list) throws Exception {
         companyService.authorize(companyId, list);
         return ResponseEntityWrapper.OK();
         // try {

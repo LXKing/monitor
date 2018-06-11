@@ -29,8 +29,7 @@ public class IconController {
 
     @PostMapping("/icon/poi/upload")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> upload(MultipartFile file, String name, double lng, double lat,
-                                                      HttpServletRequest request) throws Exception {
+    public ResponseEntity<Map<Object, Object>> upload(MultipartFile file, String name, double lng, double lat, HttpServletRequest request) throws Exception {
         System.out.println(file.isEmpty());
         // Assert.isTrue(mmp.isEmpty(), "文件不能为空！");
         String path = request.getServletContext().getRealPath("/WEB-INF/classes/static/icons/");

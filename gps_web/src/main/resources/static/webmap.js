@@ -447,15 +447,21 @@ window.webMap.baiduPolyline = window.webMap.polyline.extend({
     lineObj: undefined,
     points: [],
     color: null,
+    icons:undefined,
+
     init: function (config) {
         this.map = config.map;
         this.points = config.points || [];
         this.color = config.color || 'red';
+        this.icons =config.icons || [];
         this.lineObj = new BMap.Polyline(this.points, {
+            enableEditing: false,//是否启用线编辑，默认为false
+            // enableClicking: true,//是否响应点击事件，默认为true
+            // icons:[this.icons],
             strokeColor: this.color,
-            strokeWeight: 3,
+            strokeWeight: 4,
             strokeOpacity: 0.6,
-            enableClicking: false
+
         });
         this.map.mapObject.addOverlay(this.lineObj);
     },
@@ -611,7 +617,7 @@ window.webMap.baiduMap = window.webMap.map.extend({
         //     s.src = "http://api.map.baidu.com/api?v=2.0&ak=EqLFrxbDZx7VfrnnXAm8X6km&callback=baiduMapApiLoad";
         //     document.body.appendChild(s);
         // } else
-            window.baiduMapApiLoad();
+        window.baiduMapApiLoad();
     },
     // 测距
     distance: function () {
@@ -711,7 +717,10 @@ window.webMap.baiduMap = window.webMap.map.extend({
             } else {
                 var surround = rs.surroundingPois;
                 for (var i = 0; i < surround.length; i++) {
-                    address += ",离" + surround[i].title + "约" + Math.round(me.mapObject.getDistance(point, surround[i].point)) + "米";
+                    if(i == 0){
+                        address += ",离" + surround[i].title + "约" + Math.round(me.mapObject.getDistance(point, surround[i].point)) + "米";
+                    }
+                    //address += ",离" + surround[i].title + "约" + Math.round(me.mapObject.getDistance(point, surround[i].point)) + "米";
                 }
             }
             ;
@@ -777,6 +786,16 @@ window.webMap.baiduMap = window.webMap.map.extend({
     panTo: function (olng, olat) {
         this.mapObject.panTo(new BMap.Point(olng, olat));
     },
+//
+    addControl: function (control) {
+        return  this.mapObject.addControl(control);
+    },
+
+    // 地图可视区域
+    getBounds: function (point) {
+        return  this.mapObject.getBounds().containsPoint(point);
+    },
+
     // 获取两点距离
     getDistance: function (point1, point2) {
         var p1 = new BMap.Point(point1.lng, point1.lat);

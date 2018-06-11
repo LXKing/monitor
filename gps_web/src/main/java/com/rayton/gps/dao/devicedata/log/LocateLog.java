@@ -13,8 +13,7 @@ public class LocateLog {
 
     @Override
     public String toString() {
-        return "LocateLog{" + "number='" + number + '\'' + ", time=" + time + ", lng=" + lng + ", lat=" + lat + ", "
-                + "alt=" + alt + ", speed=" + speed + '}';
+        return "LocateLog{" + "number='" + number + '\'' + ", time=" + time + ", lng=" + lng + ", lat=" + lat + ", " + "alt=" + alt + ", speed=" + speed + '}';
     }
 
     public String getNumber() {

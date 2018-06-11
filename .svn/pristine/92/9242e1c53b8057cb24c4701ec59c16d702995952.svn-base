@@ -1,0 +1,250 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta http-equiv="X-UA-Compatible" content="IE=8">
+  <title>首页</title>
+  <link th:href="@{/static/js/bootstrap/css/bootstrap-table.css}" rel="stylesheet"/>
+  <link th:href="@{/static/css/cg/bootstrap.min.css}" rel="stylesheet">
+  <link th:href="@{/static/css/zTreeStyle.css}" rel="stylesheet"/>
+  <link rel="stylesheet" th:href="@{/static/lib/layui/css/layui.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{/static/css/cg/iconfont.css}">
+  <link rel="stylesheet" th:href="@{/static/css/cg/common.css}">
+  <link rel="stylesheet" th:href="@{/static/dc_file/css/index.css}">
+  <link rel="stylesheet" th:href="@{/static/css/index_l.css}">
+  <link rel="stylesheet" th:href="@{/static/css/center/layercolor.css}">
+
+
+
+  <!--<script type="text/javascript" th:src="@{/static/gpsparser.js}"></script>-->
+  <script type="text/javascript" th:src="@{/static/js/jquery.min.js}"></script>
+  <!--<script type="text/javascript" th:src="@{/static/webmap.js}"></script>-->
+  <!--<script type="text/javascript"-->
+  <!--src="http://api.map.baidu.com/getscript?v=2.0&ak=Y2TqMdQvIRuGGW83xP2kd8LR7Y5SAplh&callback"></script>-->
+  <!--<script src="http://api.map.baidu.com/api?v=2.0&ak=Y2TqMdQvIRuGGW83xP2kd8LR7Y5SAplh"></script>-->
+  <!--<script type="text/javascript"-->
+          <!--src="http://api.map.baidu.com/library/LuShu/1.2/src/LuShu_min.js"></script>-->
+  <script type="text/javascript" th:src="@{/static/js/bootstrap.min.js}"></script>
+  <!--<script th:src="@{/static/js/ligerui.all.js}"></script>-->
+  <script th:src="@{/static/js/tab.js}"></script>
+  <script th:src="@{/static/dc_file/js/index_.js}"></script>
+  <!--<script th:src="@{/static/dc_file/js/cars_.js}"></script>-->
+
+  <!--<script src="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.js" type="text/javascript"></script>-->
+  <!--<script th:src="@{/static/js/bootstrap/js/bootstrap-table.js}"></script>-->
+  <!--<script th:src="@{/static/js/jquery/jquery.ztree.core-3.5.min.js}"></script>-->
+  <!--<script th:src="@{/static/js/jquery/jquery.ztree.exedit.js}"></script>-->
+  <!--<script th:src="@{/static/js/jquery/jquery.ztree.excheck-3.5.js}"></script>-->
+  <!--<script th:src="@{/static/js/js/locate.js}" type="text/javascript"></script>-->
+  <!--<script th:src="@{/static/js/tablecolor.js}"></script>-->
+  <!--<script th:src="@{/static/js/center/locate.js}" type="text/javascript"></script>-->
+  <!--<script src="http://api.map.baidu.com/library/DistanceTool/1.2/src/DistanceTool_min.js"-->
+          <!--type="text/javascript"></script>-->
+  <!--<script th:src="@{/static/js/Print.js}" type="text/javascript"></script>-->
+  <script th:src="@{static/lib/layui/layui.all.js}"></script>
+  <!--<script th:src="@{/static/js/center/common.js}"></script>-->
+  <script th:src="@{/static/js/center/dateutils.js}"></script>
+  <!--<script th:src="@{/static/js/center/replay.js}"></script>-->
+  <!--<script th:src="@{/static/baseinfo/ins.js}"></script>-->
+
+  <style>
+
+
+    #container_ {
+      width: 100%;
+      min-width: 1199px;
+      position: absolute;
+      left: 0;
+      top: 105px;
+      overflow: hidden;
+    }
+
+  </style>
+</head>
+
+<body>
+<!-- 公共头部 -->
+<header id="up_box">
+  <!-- 左 -->
+  <div class="left_logo fl">
+    <img th:src="@{/static/image/webwxgetmsgimg _new.jpg}" alt="">
+  </div>
+  <!-- 右 -->
+  <div class="right_tools fr">
+    <nav>
+      <ul id="nav"></ul>
+    </nav>
+    <div class="user-info fl">
+      <div class="weather_msg fl">
+        <div class="wea_left fl" id="wea_left"></div>
+        <!-- <span style="position: absolute;left: 978px;top: 57px;">切换</span>                     -->
+        <div class="wea_right fl" id="wea_right">
+          <img src="" alt="">
+          <div class="wea_info" id="wea_info"></div>
+          <div class="w_date" id="date"></div>
+        </div>
+      </div>
+      <div class="login_user fr">
+        <a href="javascript:void(0)">Help</a>
+        <a href="javascript:void(0)"><span th:text="${name}"></span></a>
+        <a href="/logout">退出</a>
+        <a href="javascript:void(0)">修改密码</a>
+      </div>
+    </div>
+  </div>
+  <div class="clear"></div>
+</header>
+
+
+<!-- 选项卡 -->
+<div class="link-select nav_box" id="mid_box">
+  <ul id="tab"></ul>
+</div>
+<!-- 侧边，地图，底部 -->
+<div id="container_">
+  <div class="content_box-1 none-box" style="background-color: #fff;display: none; font-size:0">
+    <iframe th:src="@{/monitor}" style="width: 100%;height: 100%;border: none;vertical-align:top;"></iframe>
+  </div>
+  <div class="content_box-2 none-box" style="background-color: #fff;display: none; font-size:0">
+    <!--<iframe th:src="@{/admin}" style="width: 100%;height: 100%;border: none;vertical-align:top;"></iframe>-->
+  </div>
+  <div class="content_box-3 none-box" style="background-color: #fff;display: none; font-size:0">
+    <!--<iframe th:src="@{/multi}" style="width: 100%;height: 100%;border: none;vertical-align:top;"></iframe>-->
+  </div>
+  <div class="content_box-4 none-box" style="background-color: #fff;display: none; font-size:0">
+
+    <!--<iframe th:src="@{/statistics}" style="width: 100%;height: 100%;border: none;vertical-align:top;"></iframe>-->
+
+  </div>
+  <div class="content_box-5 none-box"></div>
+  <div class="content_box-6 none-box" style="background-color: #fff;display: none; font-size:0">
+
+    <!--<iframe th:src="@{/report}" style="width: 100%;height: 100%;border: none;vertical-align:top;"></iframe>-->
+
+  </div>
+  <div class="content_box-7 none-box" style="background-color: #fff;display: none; font-size:0">
+
+    <!--<iframe th:src="@{/replay}" style="width: 100%;height: 100%;border: none;vertical-align:top;"></iframe>-->
+
+  </div>
+  <div class="content_box-8 none-box">
+  </div>
+  <div class="content_box-9 none-box"></div>
+  <div class="content_box-10 none-box"></div>
+  <div class="content_box-11 none-box"></div>
+</div>
+</body>
+
+
+<script>
+  $(".iplay").click(function (e) {
+    e.stopPropagation();
+    console.log(123);
+  })
+
+  function formatTimeMin(date) {
+    var year = date.getFullYear();
+    var month = date.getMonth(), month = month < 10 ? '0' + month : month;
+    var day = date.getDate(), day = day < 10 ? '0' + day : day;
+    return year + '-' + month + '-' + day;
+  }
+
+  function formatTime(date) {
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1, month = month < 10 ? '0' + month : month;
+    var day = date.getDate() + 1, day = day < 10 ? '0' + day : day;
+    return year + '-' + month + '-' + day;
+  }
+
+  function cnmmmmm() {
+
+    $.ajax({
+      url: "/locate/groupVehicles", //请求地址
+
+      data: {
+        force: true
+      },
+      type: "post", //请求方式
+      async: false, //是否异步请求
+      success: function (res) { //如何发送成功
+
+        var data = [];
+
+
+        for (var a of res) {
+          if (a.dn === undefined) {
+            continue;
+          }
+          data.push(a.dn);
+        }
+        var fffffff = [];
+
+        // for (var ddd of data) {
+          // if (ddd === undefined) continue;
+          // console.log(ddd);
+          $.ajax({
+            url: "../instruct/queryArr",
+            type: "POST",
+            data: {
+              deviceNumber: data,
+              // start: '2015-02-02 00:00:00',
+              // end: '2015-02-02 00:00:00',
+              pageIndex: 1 //页码的参数名称，默认：page
+              , pageSize: 999, //每页数据量的参数名，默认：limit
+              start: formatTimeMin(new Date()),
+              end: formatTime(new Date()),
+            },
+            traditional: true,
+            async: false,
+            success: function (res) {
+              Array.prototype.push.apply(fffffff, res.rows);
+              // fffffff.concat(res.rows);
+            }
+          });
+        // }
+
+        console.log(fffffff)
+        var table = layui.table;
+
+        table.render({
+          id: 'plsFuckMe',
+          elem: '#plsFuckMe',
+          data: fffffff,
+          page: true,
+          cellMinWidth: 150,
+          method: "POST",
+          cols: [
+            [
+
+              {field: 'deviceNumber', title: '设备号', sort: true},
+              {field: 'plateNumber', title: '车牌号', sort: true},
+              {field: 'sendTime', title: '时间', sort: true},
+              {field: 'name', title: '命令', sort: true},
+              {field: 'result', title: '结果', sort: true},
+
+            ]
+          ],
+          skin: "nob",
+          size: "sm",
+
+        });
+      }
+    });
+
+  }
+
+  $(function () {
+
+    $("#wwwtttff").on("click",function () {
+      cnmmmmm();
+    });
+
+  });
+
+
+</script>
+
+</html>

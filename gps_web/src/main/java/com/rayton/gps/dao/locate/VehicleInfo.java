@@ -17,8 +17,7 @@ public class VehicleInfo {
 
     @Override
     public String toString() {
-        return "VehicleInfo{" + "id='" + id + '\'' + ", baseInfo=" + baseInfo + ", owners=" + owners + ", drivers=" +
-                drivers + '}';
+        return "VehicleInfo{" + "id='" + id + '\'' + ", baseInfo=" + baseInfo + ", owners=" + owners + ", drivers=" + drivers + '}';
     }
 
     /**

@@ -2,7 +2,7 @@ var shitbar = `
      <div class="layui-form layui-form-pane demoTable" id="mmpxxx" style="width: 100%;">
     
     <div class="layui-form-item">
-    <!--<label class="layui-form-label">联动选择框</label>-->
+    <!--<label class="layui-form-label">联动选择框</label>--> 
     <div class="layui-input-inline">
       <select id="com" lay-filter="com" >
         <option value="">公司</option>
@@ -51,7 +51,7 @@ var shitbar = `
       
     </div>
      
-        <div class="layui-inline" style="margin-bottom: 0">
+        <div class="layui-inline" style="margin-bottom: 0" id="waytohell">
          <label class="layui-form-label">统计方式</label>
     <div class="layui-input-inline">
       <input type="radio" name="waytohell" value="里程" title="里程" checked="">
@@ -64,7 +64,8 @@ var shitbar = `
                 </div>
                 <button class="layui-btn  layui-bg-blue "  id="search">查询</button>
  
-                     <button class="layui-btn  layui-bg-blue " data-type="exp">导出</button>
+                 
+                 
                      
                      
                       </div>
@@ -79,21 +80,24 @@ function nav_to(url, title) {
     jQuery("#tableTitle").text(title);
     jQuery("#tableMain").remove();
     jQuery("#chart").show();
-    // if (url === "/report/OverspeedCount") {
-    //
-    // }
-    // else if (url === "/report/ParkingCount") {
-    //
-    // }
-    // else if (url === "/report/ACCCount") {
-    //
-    // }
+    $("#theTable").bootstrapTable('destroy');
+
+
     if (url === "/report/TripCount") {
         renderTrip(url);
     }
-    // else if (url === "/report/DrivingCount") {
-    //
-    // }
+    else if (url === "/report/ACCCount") {
+        renderAcc(url);
+    }
+    else if (url === "/report/OverspeedCount") {
+        renderOverSpeed(url)
+    }
+    else if (url === "/report/ParkingCount") {
+        renderParking(url)
+    }
+    else if (url === "/report/DrivingCount") {
+        renderReport(url)
+    }
 
 
     else {
@@ -158,6 +162,16 @@ $(function () {
 
 
     });
+
+    $("document").on("click", "#exp", function () {
+        $("table").tableExport({
+            type: 'excel',
+            escape: 'false',
+
+        });
+    })
+
+
 });
 
 

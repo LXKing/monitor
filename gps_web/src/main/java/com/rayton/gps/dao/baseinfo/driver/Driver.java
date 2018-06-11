@@ -1,5 +1,6 @@
 package com.rayton.gps.dao.baseinfo.driver;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import org.hibernate.validator.constraints.NotBlank;
 
 import java.sql.Date;
@@ -14,6 +15,7 @@ public class Driver {
 
     private String id;
     private String companyId;
+    private String COMPANY;
     @NotBlank
     private String name;
     private String sex;
@@ -22,17 +24,52 @@ public class Driver {
     private String idNumber;
     @NotBlank
     private String drivingLicenseNumber;
+    @JSONField(format = "yyyy-MM-dd")
     private Date drivingLicenseExpiryDate;
     private String remark;
     private Timestamp editTime;
-
-
     // FFFFFFUUUUUUCCCCKKKKKKK
+    @JSONField(format = "yyyy-MM-dd")
     private Date REGISTRATIONDATE;
     private String PERMITCODE;
     private String EMERGENCYCONTACTA;
     private String EMERGENCYCONTACTB;
+    @JSONField(format = "yyyy-MM-dd")
+    private Date OFFICEDATE;
+    private String POSITION;
+    private String DRIVERAGE;
 
+    public String getCOMPANY() {
+        return COMPANY;
+    }
+
+    public void setCOMPANY(String COMPANY) {
+        this.COMPANY = COMPANY;
+    }
+
+    public Date getOFFICEDATE() {
+        return OFFICEDATE;
+    }
+
+    public void setOFFICEDATE(Date OFFICEDATE) {
+        this.OFFICEDATE = OFFICEDATE;
+    }
+
+    public String getPOSITION() {
+        return POSITION;
+    }
+
+    public void setPOSITION(String POSITION) {
+        this.POSITION = POSITION;
+    }
+
+    public String getDRIVERAGE() {
+        return DRIVERAGE;
+    }
+
+    public void setDRIVERAGE(String DRIVERAGE) {
+        this.DRIVERAGE = DRIVERAGE;
+    }
     //
 
     public Date getREGISTRATIONDATE() {
@@ -69,13 +106,7 @@ public class Driver {
 
     @Override
     public String toString() {
-        return "Driver{" + "id='" + id + '\'' + ", companyId='" + companyId + '\'' + ", name='" + name + '\'' + ", "
-                + "sex='" + sex + '\'' + ", phone='" + phone + '\'' + ", idType='" + idType + '\'' + ", idNumber='" +
-                idNumber + '\'' + ", drivingLicenseNumber='" + drivingLicenseNumber + '\'' + ", " +
-                "drivingLicenseExpiryDate=" + drivingLicenseExpiryDate + ", remark='" + remark + '\'' + ", editTime="
-                + editTime + ", REGISTRATIONDATE=" + REGISTRATIONDATE + ", PERMITCODE='" + PERMITCODE + '\'' + ", " +
-                "EMERGENCYCONTACTA='" + EMERGENCYCONTACTA + '\'' + ", EMERGENCYCONTACTB='" + EMERGENCYCONTACTB + '\''
-                + '}';
+        return "Driver{" + "id='" + id + '\'' + ", companyId='" + companyId + '\'' + ", name='" + name + '\'' + ", " + "sex='" + sex + '\'' + ", phone='" + phone + '\'' + ", idType='" + idType + '\'' + ", idNumber='" + idNumber + '\'' + ", drivingLicenseNumber='" + drivingLicenseNumber + '\'' + ", " + "drivingLicenseExpiryDate=" + drivingLicenseExpiryDate + ", remark='" + remark + '\'' + ", editTime=" + editTime + ", REGISTRATIONDATE=" + REGISTRATIONDATE + ", PERMITCODE='" + PERMITCODE + '\'' + ", " + "EMERGENCYCONTACTA='" + EMERGENCYCONTACTA + '\'' + ", EMERGENCYCONTACTB='" + EMERGENCYCONTACTB + '\'' + '}';
     }
 
     /**

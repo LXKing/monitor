@@ -41,8 +41,7 @@ public class RectangleAreaService {
         Page<RectangleAreaInfo> query = new Page<RectangleAreaInfo>();
         query.total = total;
         if (total > 0) {
-            List<RectangleAreaInfo> rows = rectangleAreaDao.queryPageDetail(companyId, filter, (pageIndex - 1) *
-                    pageSize, pageSize);
+            List<RectangleAreaInfo> rows = rectangleAreaDao.queryPageDetail(companyId, filter, (pageIndex - 1) * pageSize, pageSize);
             query.rows.addAll(rows);
 
             // for (RectangleAreaInfoDto dto : rows) {
@@ -178,8 +177,7 @@ public class RectangleAreaService {
                 AreaCatcherCache.bind(number, rectangleArea.getId(), areaKind);
 
                 info.setAction((byte) AreaActions.Remove.getIndex());
-                areaInDeviceDao.log(info.getId(), number, rectangleArea.getId(), areaKind, (byte) AreaActions.Remove
-                        .getIndex(), unid, user);
+                areaInDeviceDao.log(info.getId(), number, rectangleArea.getId(), areaKind, (byte) AreaActions.Remove.getIndex(), unid, user);
                 SynchronizerCache.put(info);
 
                 info.setAction((byte) AreaActions.Edit.getIndex());
@@ -189,8 +187,7 @@ public class RectangleAreaService {
 
                 info.setAction((byte) AreaActions.Append.getIndex());
                 areaInDeviceDao.addVehicle(number, rectangleArea.getId(), areaKind);
-                areaInDeviceDao.log(info.getId(), number, rectangleArea.getId(), areaKind, (byte) AreaActions.Append
-                        .getIndex(), unid, user);
+                areaInDeviceDao.log(info.getId(), number, rectangleArea.getId(), areaKind, (byte) AreaActions.Append.getIndex(), unid, user);
                 SynchronizerCache.put(info);
 
                 info.setAction((byte) AreaActions.Edit.getIndex());
@@ -200,8 +197,7 @@ public class RectangleAreaService {
                     AreaCatcherCache.refresh(rectangleArea.getId(), areaKind);
 
                 info.setAction((byte) AreaActions.Edit.getIndex());
-                areaInDeviceDao.log(info.getId(), number, rectangleArea.getId(), areaKind, (byte) AreaActions.Update
-                        .getIndex(), unid, user);
+                areaInDeviceDao.log(info.getId(), number, rectangleArea.getId(), areaKind, (byte) AreaActions.Update.getIndex(), unid, user);
                 SynchronizerCache.put(info);
             }
         }
@@ -235,8 +231,7 @@ public class RectangleAreaService {
             if (rectangle != null) {
                 areaInDeviceDao.removeVehicle(number, id, areaKind);
                 if (rectangle.isDeviceCatch())
-                    areaInDeviceDao.log(info.getId(), number, id, areaKind, (byte) AreaActions.Remove.getIndex(),
-                            unid, user);
+                    areaInDeviceDao.log(info.getId(), number, id, areaKind, (byte) AreaActions.Remove.getIndex(), unid, user);
             }
 
             SynchronizerCache.put(info);
@@ -257,8 +252,7 @@ public class RectangleAreaService {
         Page<AreaInDeviceInfo> query = new Page<AreaInDeviceInfo>();
         query.total = total;
         if (total > 0) {
-            List<AreaInDeviceInfo> rows = areaInDeviceDao.assignedPageVehiclesDetail(rectangleAreaId, areaKind,
-                    (pageIndex - 1) * pageSize, pageSize);
+            List<AreaInDeviceInfo> rows = areaInDeviceDao.assignedPageVehiclesDetail(rectangleAreaId, areaKind, (pageIndex - 1) * pageSize, pageSize);
 
             query.rows.addAll(rows);
         }
@@ -286,8 +280,7 @@ public class RectangleAreaService {
             if (rectangle != null) {
                 areaInDeviceDao.addVehicle(number, rectangleAreaId, areaKind);
                 if (rectangle.isDeviceCatch())
-                    areaInDeviceDao.log(info.getId(), number, rectangleAreaId, areaKind, (byte) AreaActions.Append
-                            .getIndex(), unid, user);
+                    areaInDeviceDao.log(info.getId(), number, rectangleAreaId, areaKind, (byte) AreaActions.Append.getIndex(), unid, user);
             }
             SynchronizerCache.put(info);
             AreaCatcherCache.bind(number, rectangleAreaId, areaKind);
@@ -313,8 +306,7 @@ public class RectangleAreaService {
         if (rectangle != null) {
             areaInDeviceDao.removeVehicle(number, rectangleAreaId, areaKind);
             if (rectangle.isDeviceCatch())
-                areaInDeviceDao.log(info.getId(), number, rectangleAreaId, areaKind, (byte) AreaActions.Remove
-                        .getIndex(), unid, user);
+                areaInDeviceDao.log(info.getId(), number, rectangleAreaId, areaKind, (byte) AreaActions.Remove.getIndex(), unid, user);
         }
         SynchronizerCache.put(info);
         AreaCatcherCache.unbind(number, rectangleAreaId, areaKind);

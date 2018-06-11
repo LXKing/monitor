@@ -24,11 +24,7 @@ public class Trip {
 
     @Override
     public String toString() {
-        return "Trip{" + "number='" + number + '\'' + ", startTime=" + startTime + ", endTime=" + endTime + ", " +
-                "mileage=" + mileage + ", maxSpeed=" + maxSpeed + ", avgSpeed=" + avgSpeed + ", overSpeed=" +
-                overSpeed + ", overSpeedTime=" + overSpeedTime + ", breaks=" + breaks + ", speedUp=" + speedUp + ", "
-                + "maxEct=" + maxEct + ", maxRpm=" + maxRpm + ", avgBv=" + avgBv + ", totalOil=" + totalOil + ", " +
-                "avgOil=" + avgOil + ", fatigueTime=" + fatigueTime + ", idleTime=" + idleTime + '}';
+        return "Trip{" + "number='" + number + '\'' + ", startTime=" + startTime + ", endTime=" + endTime + ", " + "mileage=" + mileage + ", maxSpeed=" + maxSpeed + ", avgSpeed=" + avgSpeed + ", overSpeed=" + overSpeed + ", overSpeedTime=" + overSpeedTime + ", breaks=" + breaks + ", speedUp=" + speedUp + ", " + "maxEct=" + maxEct + ", maxRpm=" + maxRpm + ", avgBv=" + avgBv + ", totalOil=" + totalOil + ", " + "avgOil=" + avgOil + ", fatigueTime=" + fatigueTime + ", idleTime=" + idleTime + '}';
     }
 
     /**

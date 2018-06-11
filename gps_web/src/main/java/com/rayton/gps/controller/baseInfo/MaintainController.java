@@ -37,13 +37,12 @@ public class MaintainController {
 
     @PostMapping("/maintain/query")
     @ResponseBody
-    public Object query(@RequestParam String plateNumber, @RequestParam Date from, @RequestParam Date to,
-                        @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
+    public Object query(@RequestParam String plateNumber, @RequestParam Date from, @RequestParam Date to, @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         return maintainService.query(identity.getCompanyId(), plateNumber, from, to, pageIndex, pageSize);
     }
 
-    @GetMapping(value = "/maintain/create.form" )
+    @GetMapping(value = "/maintain/create.form")
     public String create(Model model) {
         Maintain maintain = new Maintain();
         model.addAttribute("maintain", maintain);
@@ -52,8 +51,7 @@ public class MaintainController {
 
     @PostMapping(value = "/maintain/create.form")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> create(@ModelAttribute("maintain") @Valid Maintain maintain,
-                                                      BindingResult binding) {
+    public ResponseEntity<Map<Object, Object>> create(@ModelAttribute("maintain") @Valid Maintain maintain, BindingResult binding) {
         if (binding.hasErrors()) {
             List<FieldError> errors = binding.getFieldErrors();
             Map<Object, Object> map = new HashMap<>();
@@ -92,8 +90,7 @@ public class MaintainController {
 
     @PostMapping(value = "/maintain/edit.form")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> edit(@ModelAttribute("maintain") @Valid Maintain maintain,
-                                                    BindingResult binding) throws Exception {
+    public ResponseEntity<Map<Object, Object>> edit(@ModelAttribute("maintain") @Valid Maintain maintain, BindingResult binding) throws Exception {
         if (binding.hasErrors())
             // return "/baseinfo/maintain/edit.form";
             return ResponseEntityWrapper.Failed();

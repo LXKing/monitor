@@ -39,8 +39,7 @@ public class PoiController {
     @ApiOperation(httpMethod = "GET", value = "查询")
     @GetMapping(value = "/poi/query")
     @ResponseBody
-    public Object query(@RequestParam(required = false) String filter, @RequestParam int page, @RequestParam int
-            limit) throws Exception {
+    public Object query(@RequestParam(required = false) String filter, @RequestParam int page, @RequestParam int limit) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         Page<PoiInfo> result = poiService.query(identity.getCompanyId(), filter, page, limit);
 
@@ -54,8 +53,7 @@ public class PoiController {
     @ApiOperation(httpMethod = "POST", value = "搜索")
     @PostMapping(value = "/poi/search")
     @ResponseBody
-    public Object search(@RequestParam(required = false) String filter, @RequestParam int pageIndex, @RequestParam
-            int pageSize) throws RuntimeException {
+    public Object search(@RequestParam(required = false) String filter, @RequestParam int pageIndex, @RequestParam int pageSize) throws RuntimeException {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
 
         filter = filter == null ? "" : filter;
@@ -78,9 +76,9 @@ public class PoiController {
     @ApiOperation(httpMethod = "POST", value = "创建兴趣点")
     @PostMapping(value = "/poi/create.form")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> create(@ModelAttribute("poi") @Valid Poi poi, BindingResult binding)
-            throws RuntimeException {
-        if (binding.hasErrors()) return ResponseEntityWrapper.Failed();
+    public ResponseEntity<Map<Object, Object>> create(@ModelAttribute("poi") @Valid Poi poi, BindingResult binding) throws RuntimeException {
+        if (binding.hasErrors())
+            return ResponseEntityWrapper.Failed();
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         poi.setCompanyId(identity.getCompanyId());
         poiService.create(poi);
@@ -111,7 +109,8 @@ public class PoiController {
     @PostMapping(value = "/poi/edit.form")
     @ResponseBody
     public ResponseEntity<Map<Object, Object>> edit(@ModelAttribute("poi") @Valid Poi poi, BindingResult binding) {
-        if (binding.hasErrors()) return ResponseEntityWrapper.Failed();
+        if (binding.hasErrors())
+            return ResponseEntityWrapper.Failed();
         // return "/baseinfo/poi/edit.form";
         poiService.update(poi);
         return ResponseEntityWrapper.OK();
@@ -144,11 +143,9 @@ public class PoiController {
     @ApiOperation(httpMethod = "POST", value = "查询兴趣点存在")
     @PostMapping(value = "/poi/exist")
     @ResponseBody
-    public Object exists(@RequestParam String name, @RequestParam(required = false) Long id, @RequestParam boolean
-            checkId) throws Exception {
+    public Object exists(@RequestParam String name, @RequestParam(required = false) Long id, @RequestParam boolean checkId) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        Object re = checkId ? !poiService.exist(name, identity.getCompanyId(), id) : !poiService.exist(name, identity
-                .getCompanyId());
+        Object re = checkId ? !poiService.exist(name, identity.getCompanyId(), id) : !poiService.exist(name, identity.getCompanyId());
 
         return re;
         // if (checkId) {

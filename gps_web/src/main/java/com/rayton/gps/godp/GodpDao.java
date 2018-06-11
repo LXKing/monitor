@@ -132,8 +132,7 @@ public class GodpDao implements IGodpDao {
     }
 
     @Override
-    public Page<DataLogDto> loadDataLog(String number, Date start, Date end, int pageIndex, int pageSize) throws
-            Exception {
+    public Page<DataLogDto> loadDataLog(String number, Date start, Date end, int pageIndex, int pageSize) throws Exception {
         LoadDataLogRequest request = new LoadDataLogRequest();
         request.setNumber(number);
         request.setStart(start);
@@ -174,8 +173,7 @@ public class GodpDao implements IGodpDao {
     }
 
     @Override
-    public Page<PhotoInfoDto> queryMultimedia(String deviceNumber, Date start, Date end, int pageIndex, int pageSize)
-            throws Exception {
+    public Page<PhotoInfoDto> queryMultimedia(String deviceNumber, Date start, Date end, int pageIndex, int pageSize) throws Exception {
         Page<PhotoInfoDto> query = new Page<PhotoInfoDto>();
         QueryMultimediaRequest request = new QueryMultimediaRequest();
         request.setDeviceNumber(deviceNumber);
@@ -184,8 +182,7 @@ public class GodpDao implements IGodpDao {
         request.setPageIndex(pageIndex);
         request.setPageSize(pageSize);
 
-        QueryMultimediaResponse response = GodpPortal.execute(QueryMultimediaResponse.class, request, "multimedia" +
-                ".query");
+        QueryMultimediaResponse response = GodpPortal.execute(QueryMultimediaResponse.class, request, "multimedia" + ".query");
         query.total = response.getTotal();
         for (MultimediaInfo info : response.getRows()) {
             PhotoInfoDto dto = new PhotoInfoDto();
@@ -222,8 +219,7 @@ public class GodpDao implements IGodpDao {
         QueryDrivingRecorderInfoRequest request = new QueryDrivingRecorderInfoRequest();
         request.setNumber(deviceNumber);
 
-        QueryDrivingRecorderInfoResponse response = GodpPortal.execute(QueryDrivingRecorderInfoResponse.class,
-                request, "drivingrecorder.info");
+        QueryDrivingRecorderInfoResponse response = GodpPortal.execute(QueryDrivingRecorderInfoResponse.class, request, "drivingrecorder.info");
         DrivingRecorderInfoDto dto = new DrivingRecorderInfoDto();
         dto.number = response.getNumber();
         dto.revision = response.getRevision();
@@ -251,8 +247,7 @@ public class GodpDao implements IGodpDao {
     }
 
     @Override
-    public Page<AccidentDoubtLogDto> queryAccidentDoubtLog(String deviceNumber, Date start, Date end, int pageIndex,
-                                                           int pageSize) throws Exception {
+    public Page<AccidentDoubtLogDto> queryAccidentDoubtLog(String deviceNumber, Date start, Date end, int pageIndex, int pageSize) throws Exception {
         Page<AccidentDoubtLogDto> query = new Page<AccidentDoubtLogDto>();
         QueryAccidentDoubtLogRequest request = new QueryAccidentDoubtLogRequest();
         request.setDeviceNumber(deviceNumber);
@@ -261,8 +256,7 @@ public class GodpDao implements IGodpDao {
         request.setPageIndex(pageIndex);
         request.setPageSize(pageSize);
 
-        QueryAccidentDoubtLogResponse response = GodpPortal.execute(QueryAccidentDoubtLogResponse.class, request,
-                "drivingrecorder.accidentdoubtlog.query");
+        QueryAccidentDoubtLogResponse response = GodpPortal.execute(QueryAccidentDoubtLogResponse.class, request, "drivingrecorder.accidentdoubtlog.query");
         query.total = response.getTotal();
         for (AccidentDoubt info : response.getRows()) {
             AccidentDoubtLogDto dto = new AccidentDoubtLogDto();
@@ -281,8 +275,7 @@ public class GodpDao implements IGodpDao {
     }
 
     @Override
-    public Page<PowerLogDto> queryPowerLog(String deviceNumber, Date start, Date end, int pageIndex, int pageSize)
-            throws Exception {
+    public Page<PowerLogDto> queryPowerLog(String deviceNumber, Date start, Date end, int pageIndex, int pageSize) throws Exception {
         Page<PowerLogDto> query = new Page<PowerLogDto>();
         QueryPowerLogRequest request = new QueryPowerLogRequest();
         request.setDeviceNumber(deviceNumber);
@@ -291,8 +284,7 @@ public class GodpDao implements IGodpDao {
         request.setPageIndex(pageIndex);
         request.setPageSize(pageSize);
 
-        QueryPowerLogResponse response = GodpPortal.execute(QueryPowerLogResponse.class, request, "drivingrecorder" +
-                ".powerlog.query");
+        QueryPowerLogResponse response = GodpPortal.execute(QueryPowerLogResponse.class, request, "drivingrecorder" + ".powerlog.query");
         query.total = response.getTotal();
         for (PowerSupplyLog info : response.getRows()) {
             PowerLogDto dto = new PowerLogDto();
@@ -307,8 +299,7 @@ public class GodpDao implements IGodpDao {
     }
 
     @Override
-    public Page<TimeoutLogDto> queryTimeoutLog(String deviceNumber, Date start, Date end, int pageIndex, int
-            pageSize) throws Exception {
+    public Page<TimeoutLogDto> queryTimeoutLog(String deviceNumber, Date start, Date end, int pageIndex, int pageSize) throws Exception {
         Page<TimeoutLogDto> query = new Page<TimeoutLogDto>();
         QueryTimeoutLogRequest request = new QueryTimeoutLogRequest();
         request.setDeviceNumber(deviceNumber);
@@ -317,8 +308,7 @@ public class GodpDao implements IGodpDao {
         request.setPageIndex(pageIndex);
         request.setPageSize(pageSize);
 
-        QueryTimeoutLogResponse response = GodpPortal.execute(QueryTimeoutLogResponse.class, request,
-                "drivingrecorder.timeoutlog.query");
+        QueryTimeoutLogResponse response = GodpPortal.execute(QueryTimeoutLogResponse.class, request, "drivingrecorder.timeoutlog.query");
         query.total = response.getTotal();
         for (TimeoutDriving info : response.getRows()) {
             TimeoutLogDto dto = new TimeoutLogDto();
@@ -340,8 +330,7 @@ public class GodpDao implements IGodpDao {
     }
 
     @Override
-    public Page<ParameterLogDto> queryParameterLog(String deviceNumber, Date start, Date end, int pageIndex, int
-            pageSize) throws Exception {
+    public Page<ParameterLogDto> queryParameterLog(String deviceNumber, Date start, Date end, int pageIndex, int pageSize) throws Exception {
         Page<ParameterLogDto> query = new Page<ParameterLogDto>();
         QueryParameterLogRequest request = new QueryParameterLogRequest();
         request.setDeviceNumber(deviceNumber);
@@ -350,8 +339,7 @@ public class GodpDao implements IGodpDao {
         request.setPageIndex(pageIndex);
         request.setPageSize(pageSize);
 
-        QueryParameterLogResponse response = GodpPortal.execute(QueryParameterLogResponse.class, request,
-                "drivingrecorder.parameterlog.query");
+        QueryParameterLogResponse response = GodpPortal.execute(QueryParameterLogResponse.class, request, "drivingrecorder.parameterlog.query");
         query.total = response.getTotal();
         for (ParameterChangeLog info : response.getRows()) {
             ParameterLogDto dto = new ParameterLogDto();
@@ -366,8 +354,7 @@ public class GodpDao implements IGodpDao {
     }
 
     @Override
-    public Page<LoginLogDto> queryLoginLog(String deviceNumber, Date start, Date end, int pageIndex, int pageSize)
-            throws Exception {
+    public Page<LoginLogDto> queryLoginLog(String deviceNumber, Date start, Date end, int pageIndex, int pageSize) throws Exception {
         Page<LoginLogDto> query = new Page<LoginLogDto>();
         QueryLoginLogRequest request = new QueryLoginLogRequest();
         request.setDeviceNumber(deviceNumber);
@@ -376,8 +363,7 @@ public class GodpDao implements IGodpDao {
         request.setPageIndex(pageIndex);
         request.setPageSize(pageSize);
 
-        QueryLoginLogResponse response = GodpPortal.execute(QueryLoginLogResponse.class, request, "drivingrecorder" +
-                ".loginlog.query");
+        QueryLoginLogResponse response = GodpPortal.execute(QueryLoginLogResponse.class, request, "drivingrecorder" + ".loginlog.query");
         query.total = response.getTotal();
         for (LoginLogoutLog info : response.getRows()) {
             LoginLogDto dto = new LoginLogDto();
@@ -393,8 +379,7 @@ public class GodpDao implements IGodpDao {
     }
 
     @Override
-    public Page<SpeedStatusLogDto> querySpeedStatusLog(String deviceNumber, Date start, Date end, int pageIndex, int
-            pageSize) throws Exception {
+    public Page<SpeedStatusLogDto> querySpeedStatusLog(String deviceNumber, Date start, Date end, int pageIndex, int pageSize) throws Exception {
         Page<SpeedStatusLogDto> query = new Page<SpeedStatusLogDto>();
         QuerySpeedStatusLogRequest request = new QuerySpeedStatusLogRequest();
         request.setDeviceNumber(deviceNumber);
@@ -403,8 +388,7 @@ public class GodpDao implements IGodpDao {
         request.setPageIndex(pageIndex);
         request.setPageSize(pageSize);
 
-        QuerySpeedStatusLogResponse response = GodpPortal.execute(QuerySpeedStatusLogResponse.class, request,
-                "drivingrecorder.speedstatuslog.query");
+        QuerySpeedStatusLogResponse response = GodpPortal.execute(QuerySpeedStatusLogResponse.class, request, "drivingrecorder.speedstatuslog.query");
         query.total = response.getTotal();
         for (SpeedStatusLog info : response.getRows()) {
             SpeedStatusLogDto dto = new SpeedStatusLogDto();
@@ -420,8 +404,7 @@ public class GodpDao implements IGodpDao {
     }
 
     @Override
-    public Page<LocateLogDto> queryLocateLog(String deviceNumber, Date start, Date end, int pageIndex, int pageSize)
-            throws Exception {
+    public Page<LocateLogDto> queryLocateLog(String deviceNumber, Date start, Date end, int pageIndex, int pageSize) throws Exception {
         Page<LocateLogDto> query = new Page<LocateLogDto>();
         QueryLocateLogRequest request = new QueryLocateLogRequest();
         request.setDeviceNumber(deviceNumber);
@@ -430,8 +413,7 @@ public class GodpDao implements IGodpDao {
         request.setPageIndex(pageIndex);
         request.setPageSize(pageSize);
 
-        QueryLocateLogResponse response = GodpPortal.execute(QueryLocateLogResponse.class, request, "drivingrecorder"
-                + ".locatelog.query");
+        QueryLocateLogResponse response = GodpPortal.execute(QueryLocateLogResponse.class, request, "drivingrecorder" + ".locatelog.query");
         query.total = response.getTotal();
         for (LocateLog info : response.getRows()) {
             LocateLogDto dto = new LocateLogDto();
@@ -449,8 +431,7 @@ public class GodpDao implements IGodpDao {
     }
 
     @Override
-    public Page<SpeedLogDto> querySpeedLog(String deviceNumber, Date start, Date end, int pageIndex, int pageSize)
-            throws Exception {
+    public Page<SpeedLogDto> querySpeedLog(String deviceNumber, Date start, Date end, int pageIndex, int pageSize) throws Exception {
         Page<SpeedLogDto> query = new Page<SpeedLogDto>();
         QuerySpeedLogRequest request = new QuerySpeedLogRequest();
         request.setDeviceNumber(deviceNumber);
@@ -459,8 +440,7 @@ public class GodpDao implements IGodpDao {
         request.setPageIndex(pageIndex);
         request.setPageSize(pageSize);
 
-        QuerySpeedLogResponse response = GodpPortal.execute(QuerySpeedLogResponse.class, request, "drivingrecorder" +
-                ".speedlog.query");
+        QuerySpeedLogResponse response = GodpPortal.execute(QuerySpeedLogResponse.class, request, "drivingrecorder" + ".speedlog.query");
         query.total = response.getTotal();
         for (SpeedLog info : response.getRows()) {
             SpeedLogDto dto = new SpeedLogDto();
@@ -555,8 +535,7 @@ public class GodpDao implements IGodpDao {
     }
 
     @Override
-    public Page<InstructDto> queryInstruct(String deviceNumber, String unid, Date start, Date end, int pageIndex, int
-            pageSize) throws Exception {
+    public Page<InstructDto> queryInstruct(String deviceNumber, String unid, Date start, Date end, int pageIndex, int pageSize) throws Exception {
 
         Page<InstructDto> page = new Page<InstructDto>();
 
@@ -625,8 +604,7 @@ public class GodpDao implements IGodpDao {
     }
 
     @Override
-    public List<TrackDto> queryTrackPageDetail(String number, Date start, Date end, int pageIndex, int pageSize)
-            throws Exception {
+    public List<TrackDto> queryTrackPageDetail(String number, Date start, Date end, int pageIndex, int pageSize) throws Exception {
         LoadTrackRequest request = new LoadTrackRequest();
         request.setEnd(end);
         request.setNumber(number);
@@ -683,22 +661,19 @@ public class GodpDao implements IGodpDao {
         request.setStart(start);
         request.setEnd(end);
 
-        HistoryOnlineOfflineStatisticsResponse response = GodpPortal.execute(HistoryOnlineOfflineStatisticsResponse
-                .class, request, "statistics.history.onlineoffline");
+        HistoryOnlineOfflineStatisticsResponse response = GodpPortal.execute(HistoryOnlineOfflineStatisticsResponse.class, request, "statistics.history.onlineoffline");
 
         return response.getNumbers();
     }
 
     @Override
-    public Map<String, Integer> historyOnlineTimeStatistics(List<String> numbers, Date start, Date end) throws
-            Exception {
+    public Map<String, Integer> historyOnlineTimeStatistics(List<String> numbers, Date start, Date end) throws Exception {
         HistoryOnlineTimeStatisticsRequest request = new HistoryOnlineTimeStatisticsRequest();
         request.setNumbers(numbers);
         request.setStart(start);
         request.setEnd(end);
 
-        HistoryOnlineTimeStatisticsResponse response = GodpPortal.execute(HistoryOnlineTimeStatisticsResponse.class,
-                request, "statistics.history.onlinetime");
+        HistoryOnlineTimeStatisticsResponse response = GodpPortal.execute(HistoryOnlineTimeStatisticsResponse.class, request, "statistics.history.onlinetime");
 
         return response.getResult();
     }
@@ -708,8 +683,7 @@ public class GodpDao implements IGodpDao {
         CurrentOnlineOfflineStatisticsRequest request = new CurrentOnlineOfflineStatisticsRequest();
         request.setNumbers(numbers);
 
-        CurrentOnlineOfflineStatisticsResponse response = GodpPortal.execute(CurrentOnlineOfflineStatisticsResponse
-                .class, request, "statistics.current.onlineoffline");
+        CurrentOnlineOfflineStatisticsResponse response = GodpPortal.execute(CurrentOnlineOfflineStatisticsResponse.class, request, "statistics.current.onlineoffline");
 
         return response.getNumbers();
     }
@@ -721,8 +695,7 @@ public class GodpDao implements IGodpDao {
         request.setStart(start);
         request.setNumbers(numbers);
 
-        MileageOilCountResponse response = GodpPortal.execute(MileageOilCountResponse.class, request, "statistics" +
-                ".count.mileageoil");
+        MileageOilCountResponse response = GodpPortal.execute(MileageOilCountResponse.class, request, "statistics" + ".count.mileageoil");
 
         return response.getResults();
     }

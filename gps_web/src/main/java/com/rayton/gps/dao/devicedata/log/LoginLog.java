@@ -12,8 +12,7 @@ public class LoginLog {
 
     @Override
     public String toString() {
-        return "LoginLog{" + "number='" + number + '\'' + ", time=" + time + ", license='" + license + '\'' + ", " +
-                "driver='" + driver + '\'' + ", event='" + event + '\'' + '}';
+        return "LoginLog{" + "number='" + number + '\'' + ", time=" + time + ", license='" + license + '\'' + ", " + "driver='" + driver + '\'' + ", event='" + event + '\'' + '}';
     }
 
     public String getNumber() {

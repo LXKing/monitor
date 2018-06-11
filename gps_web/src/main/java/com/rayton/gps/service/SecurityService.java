@@ -45,31 +45,39 @@ public class SecurityService {
     public boolean hasAuthorized(String permissionId) {
 
         IdentityDto user = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        if (user == null) return false;
+        if (user == null)
+            return false;
         // 系统管理员
-        if (user.getKind() == 0) return true;
+        if (user.getKind() == 0)
+            return true;
 
 
         List<String> permissionStringList = new ArrayList<>();
 
-        List<RoleAuthorize> list = null; try {
+        List<RoleAuthorize> list = null;
+        try {
             list = roleAuthorizes();
         } catch (Exception e) {
             e.printStackTrace();
-        } List<String> roles = null;
+        }
+        List<String> roles = null;
 
 
         // 根据身份信息从数据库中获取权限数据
         if (user.kind == 1) {
 
-            try { roles = securityDao.getRoles(user.companyId);} catch (Exception e) {
+            try {
+                roles = securityDao.getRoles(user.companyId);
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
             user.setRoles(new String[]{user.companyId});
         } else {
 
-            try { roles = securityDao.getRoles(user.id);} catch (Exception e) {
+            try {
+                roles = securityDao.getRoles(user.id);
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
@@ -82,10 +90,12 @@ public class SecurityService {
             list.forEach(roleAuthorize -> permissionStringList.add(roleAuthorize.getPermissionId()));
         } else {
             for (String role : roles) {
-                list.stream().filter(roleAuthorize -> roleAuthorize.getRoleId().equals(role)).forEach(roleAuthorize
-                        -> permissionStringList.add(roleAuthorize.getPermissionId()));
+                list.stream()
+                        .filter(roleAuthorize -> roleAuthorize.getRoleId().equals(role))
+                        .forEach(roleAuthorize -> permissionStringList.add(roleAuthorize.getPermissionId()));
             }
-        } for (String permission : permissionStringList) {
+        }
+        for (String permission : permissionStringList) {
             if (permission.equals(permissionId)) {
                 return true;
             }
@@ -148,38 +158,52 @@ public class SecurityService {
             parent = securityDao.getParentCompany(companyId);
         } catch (Exception e) {
             e.printStackTrace();
-        } if (parent == null) return;
+        }
+        if (parent == null)
+            return;
         // 检查企业服务到期
         if (parent.serviceEndTime != null) {
-            Date now = new Date(); long from = parent.serviceEndTime.getTime(); long to = now.getTime();
-            if (from < to) throw new AuthenticationException("企业服务已过期！");
+            Date now = new Date();
+            long from = parent.serviceEndTime.getTime();
+            long to = now.getTime();
+            if (from < to)
+                throw new AuthenticationException("企业服务已过期！");
         }
         // 检查上级禁用否
-        if (!parent.isEnable()) throw new AuthenticationException("企业服务已停用！");
+        if (!parent.isEnable())
+            throw new AuthenticationException("企业服务已停用！");
 
         checkCompany(parent.companyId);
     }
 
     public MyInfo getMyInfo(String id) throws Exception {
-        MyInfoDto dto = securityDao.getMyInfo(id); MyInfo info = new MyInfo(); info.setAccount(dto.account);
-        info.setContact(dto.contact); info.setEditTime(dto.editTime); info.setEmail(dto.email); info.setId(id);
-        info.setName(dto.name); info.setPhone(dto.phone);
+        MyInfoDto dto = securityDao.getMyInfo(id);
+        MyInfo info = new MyInfo();
+        info.setAccount(dto.account);
+        info.setContact(dto.contact);
+        info.setEditTime(dto.editTime);
+        info.setEmail(dto.email);
+        info.setId(id);
+        info.setName(dto.name);
+        info.setPhone(dto.phone);
 
         return info;
     }
 
     @RequiresPermissions("security.saveMyinfo")
     @Log(name = "修改用户信息")
-    public void saveMyinfo(MyInfo info,IdentityDto u) throws Exception {
+    public void saveMyinfo(MyInfo info, IdentityDto u) throws Exception {
         // 验证密码
         String pwd = securityDao.getPasswodById(info.getId());
 
-        User user = new User(); user.setAccount(u.getAccount());
+        User user = new User();
+        user.setAccount(u.getAccount());
         user.setPassword(info.getPwd());
 
         if (!pwd.equals(MD5.doMD5(user))) {
             throw new Exception(Errors.passwordMistake);
-        } MyInfoDto dto = new MyInfoDto();
+        }
+        MyInfoDto dto = new MyInfoDto();
         dto.account = info.getAccount();
 
         dto.editTime = info.getEditTime();
@@ -204,16 +228,22 @@ public class SecurityService {
     @Log(name = "修改用户密码")
     public void saveMyKey(String id, String account, String oldKey, String newKey, String confirmKey) throws Exception {
         // 验证密码
-        String pwd = securityDao.getPasswodById(id); User user = new User(); user.setAccount(account);
-        user.setPassword(oldKey); MD5.doMD5(user);
+        String pwd = securityDao.getPasswodById(id);
+        User user = new User();
+        user.setAccount(account);
+        user.setPassword(oldKey);
+        MD5.doMD5(user);
 
         if (!pwd.equals(MD5.doMD5(user))) {
             throw new Exception(Errors.oldPasswordMistake);
-        } if (!newKey.equals(confirmKey)) {
+        }
+        if (!newKey.equals(confirmKey)) {
             throw new Exception(Errors.passwordNotMatch);
-        } user.setPassword(newKey);
+        }
+        user.setPassword(newKey);
 
-        int rows = securityDao.saveMyKey(id, MD5.doMD5(user)); if (rows != 1) {
+        int rows = securityDao.saveMyKey(id, MD5.doMD5(user));
+        if (rows != 1) {
             throw new Exception(Errors.anotherEdited);
         }
     }
@@ -223,9 +253,11 @@ public class SecurityService {
     }
 
     public List<Permission> authorizes(String companyId) throws Exception {
-        Map<String, Permission> all = loadPermissions(); if (companyId.equals(appConfig.getTopCompanyId())) {
+        Map<String, Permission> all = loadPermissions();
+        if (companyId.equals(appConfig.getTopCompanyId())) {
             return new ArrayList<>(all.values());
-        } List<Permission> permissions = new ArrayList<Permission>();
+        }
+        List<Permission> permissions = new ArrayList<Permission>();
         List<String> list = companyDao.authorizes(companyId);
 
         list.stream().filter(id -> all.get(id) != null).forEach(id -> permissions.add(all.get(id)));
@@ -251,7 +283,9 @@ public class SecurityService {
 
 
         permissionList.forEach(permission -> {
-            Permission per = new Permission(); per.setId(permission.getPermissionid()); per.setPid(permission.getPid());
+            Permission per = new Permission();
+            per.setId(permission.getPermissionid());
+            per.setPid(permission.getPid());
             per.setName(permission.getName());
 
             permissions.put(per.getId(), per);
@@ -280,11 +314,15 @@ public class SecurityService {
 
     public List<RoleAuthorize> roleAuthorizes() throws Exception {
         List<RoleAuthorizeDto> list = securityDao.roleAuthorizes();
-        List<RoleAuthorize> authorizes = new ArrayList<RoleAuthorize>(); for (RoleAuthorizeDto dto : list) {
-            RoleAuthorize ra = new RoleAuthorize(); ra.setPermissionId(dto.permissionId); ra.setRoleId(dto.roleId);
+        List<RoleAuthorize> authorizes = new ArrayList<RoleAuthorize>();
+        for (RoleAuthorizeDto dto : list) {
+            RoleAuthorize ra = new RoleAuthorize();
+            ra.setPermissionId(dto.permissionId);
+            ra.setRoleId(dto.roleId);
 
             authorizes.add(ra);
-        } return authorizes;
+        }
+        return authorizes;
     }
 
 

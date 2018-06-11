@@ -32,7 +32,6 @@ public class AreaInfo {
 
     @Override
     public String toString() {
-        return "AreaInfo{" + "deviceNumber='" + deviceNumber + '\'' + ", areaId=" + areaId + ", areaType=" + areaType
-                + '}';
+        return "AreaInfo{" + "deviceNumber='" + deviceNumber + '\'' + ", areaId=" + areaId + ", areaType=" + areaType + '}';
     }
 }

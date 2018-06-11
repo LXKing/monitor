@@ -28,11 +28,7 @@ public class RectangleArea {
 
     @Override
     public String toString() {
-        return "RectangleArea{" + "id=" + id + ", companyId='" + companyId + '\'' + ", name='" + name + '\'' + ", " +
-                "deviceCatch=" + deviceCatch + ", flag=" + flag + ", ullat=" + ullat + ", ullng=" + ullng + ", " +
-                "brlat=" + brlat + ", brlng=" + brlng + ", maxSpeed=" + maxSpeed + ", overspeedSeconds=" +
-                overspeedSeconds + ", startTime=" + startTime + ", endTime=" + endTime + ", remark='" + remark + '\''
-                + ", editTime=" + editTime + '}';
+        return "RectangleArea{" + "id=" + id + ", companyId='" + companyId + '\'' + ", name='" + name + '\'' + ", " + "deviceCatch=" + deviceCatch + ", flag=" + flag + ", ullat=" + ullat + ", ullng=" + ullng + ", " + "brlat=" + brlat + ", brlng=" + brlng + ", maxSpeed=" + maxSpeed + ", overspeedSeconds=" + overspeedSeconds + ", startTime=" + startTime + ", endTime=" + endTime + ", remark='" + remark + '\'' + ", editTime=" + editTime + '}';
     }
 
     /**

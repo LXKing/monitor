@@ -1,5 +1,7 @@
 package com.rayton.gps.dao.baseinfo.sim;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.sql.Date;
 
 /**
@@ -14,10 +16,13 @@ public class SimcardInfo {
     private String simcardNumber;
     private String speechType;
     private boolean openSMS;
+    @JSONField(format = "yyyy-MM-dd")
     private Date purchaseDate;
     private String carrierOperator;
     private double prepayment;
+    @JSONField(format = "yyyy-MM-dd")
     private Date expireDate;
+    @JSONField(format = "yyyy-MM-dd")
     private Date createTime;
     private String remark;
 
@@ -25,20 +30,17 @@ public class SimcardInfo {
     // FUCK ME
     private String ACCOUNTNAME;
     private String MONTHLYRENT;
+    @JSONField(format = "yyyy-MM-dd")
     private Date INSTOCKDATE;
+    @JSONField(format = "yyyy-MM-dd")
     private Date OUTSTOCKDATE;
+    @JSONField(format = "yyyy-MM-dd")
     private Date EXPIRENOTIFYDATE;
     // FUCK ME
 
     @Override
     public String toString() {
-        return "SimcardInfo{" + "id='" + id + '\'' + ", phoneNumber='" + phoneNumber + '\'' + ", simcardNumber='" +
-                simcardNumber + '\'' + ", speechType='" + speechType + '\'' + ", openSMS=" + openSMS + ", " +
-                "purchaseDate=" + purchaseDate + ", carrierOperator='" + carrierOperator + '\'' + ", prepayment=" +
-                prepayment + ", expireDate=" + expireDate + ", createTime=" + createTime + ", remark='" + remark +
-                '\'' + ", ACCOUNTNAME='" + ACCOUNTNAME + '\'' + ", MONTHLYRENT='" + MONTHLYRENT + '\'' + ", " +
-                "INSTOCKDATE=" + INSTOCKDATE + ", OUTSTOCKDATE=" + OUTSTOCKDATE + ", EXPIRENOTIFYDATE=" +
-                EXPIRENOTIFYDATE + '}';
+        return "SimcardInfo{" + "id='" + id + '\'' + ", phoneNumber='" + phoneNumber + '\'' + ", simcardNumber='" + simcardNumber + '\'' + ", speechType='" + speechType + '\'' + ", openSMS=" + openSMS + ", " + "purchaseDate=" + purchaseDate + ", carrierOperator='" + carrierOperator + '\'' + ", prepayment=" + prepayment + ", expireDate=" + expireDate + ", createTime=" + createTime + ", remark='" + remark + '\'' + ", ACCOUNTNAME='" + ACCOUNTNAME + '\'' + ", MONTHLYRENT='" + MONTHLYRENT + '\'' + ", " + "INSTOCKDATE=" + INSTOCKDATE + ", OUTSTOCKDATE=" + OUTSTOCKDATE + ", EXPIRENOTIFYDATE=" + EXPIRENOTIFYDATE + '}';
     }
 
     public String getACCOUNTNAME() {

@@ -110,4 +110,14 @@ public interface IVehicleDao {
      * 重置车辆图标
      */
     void resetMarker(String oldName, String newName);
+
+    String getByD(String dn);
+
+    Vehicle getWhat(String dn);
+
+
+    String getSS(String dn);
+
+
+    int addGC(String MOTORCADEID, String ID);
 }

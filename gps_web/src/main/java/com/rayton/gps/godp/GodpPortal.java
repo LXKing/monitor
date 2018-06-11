@@ -98,9 +98,11 @@ public class GodpPortal {
             String paraJson = objectMapper.writeValueAsString(request);
 
             BoundRequestBuilder builder = asyncHttpClient.preparePost(godp.getGodpPortal());
-            builder.addHeader("accept", "*/*").addHeader("connection", "Keep-Alive").addHeader("user-agent",
-                    "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)").addHeader("Content-Type",
-                    "application/json").setBodyEncoding("utf-8");
+            builder.addHeader("accept", "*/*")
+                    .addHeader("connection", "Keep-Alive")
+                    .addHeader("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)")
+                    .addHeader("Content-Type", "application/json")
+                    .setBodyEncoding("utf-8");
 
             builder.setBody(paraJson);
 

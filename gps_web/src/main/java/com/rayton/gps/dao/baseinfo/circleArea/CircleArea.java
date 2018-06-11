@@ -31,10 +31,7 @@ public class CircleArea {
 
     @Override
     public String toString() {
-        return "CircleArea{" + "id=" + id + ", companyId='" + companyId + '\'' + ", name='" + name + '\'' + ", " +
-                "deviceCatch=" + deviceCatch + ", flag=" + flag + ", lat=" + lat + ", lng=" + lng + ", radius=" +
-                radius + ", maxSpeed=" + maxSpeed + ", overspeedSeconds=" + overspeedSeconds + ", startTime=" +
-                startTime + ", endTime=" + endTime + ", remark='" + remark + '\'' + ", editTime=" + editTime + '}';
+        return "CircleArea{" + "id=" + id + ", companyId='" + companyId + '\'' + ", name='" + name + '\'' + ", " + "deviceCatch=" + deviceCatch + ", flag=" + flag + ", lat=" + lat + ", lng=" + lng + ", radius=" + radius + ", maxSpeed=" + maxSpeed + ", overspeedSeconds=" + overspeedSeconds + ", startTime=" + startTime + ", endTime=" + endTime + ", remark='" + remark + '\'' + ", editTime=" + editTime + '}';
     }
 
     /**

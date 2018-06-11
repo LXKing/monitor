@@ -15,8 +15,7 @@ public class PoiInfo {
 
     @Override
     public String toString() {
-        return "PoiInfo{" + "id=" + id + ", type='" + type + '\'' + ", name='" + name + '\'' + ", lat=" + lat + ", "
-                + "lng=" + lng + ", remark='" + remark + '\'' + '}';
+        return "PoiInfo{" + "id=" + id + ", type='" + type + '\'' + ", name='" + name + '\'' + ", lat=" + lat + ", " + "lng=" + lng + ", remark='" + remark + '\'' + '}';
     }
 
     /**

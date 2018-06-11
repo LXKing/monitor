@@ -47,8 +47,7 @@ public interface IGodpDao {
     /**
      * 查询多媒体信息
      */
-    Page<PhotoInfoDto> queryMultimedia(String deviceNumber, Date start, Date end, int pageIndex, int pageSize) throws
-            Exception;
+    Page<PhotoInfoDto> queryMultimedia(String deviceNumber, Date start, Date end, int pageIndex, int pageSize) throws Exception;
 
     /**
      * 查询多媒体内容
@@ -58,8 +57,7 @@ public interface IGodpDao {
     /**
      * 查询行驶记录事故疑点日志
      */
-    Page<AccidentDoubtLogDto> queryAccidentDoubtLog(String deviceNumber, Date start, Date end, int pageIndex, int
-            pageSize) throws Exception;
+    Page<AccidentDoubtLogDto> queryAccidentDoubtLog(String deviceNumber, Date start, Date end, int pageIndex, int pageSize) throws Exception;
 
     /**
      * 查询行驶记录仪信息
@@ -69,44 +67,37 @@ public interface IGodpDao {
     /**
      * 查询行驶记录外部供电日志
      */
-    Page<PowerLogDto> queryPowerLog(String deviceNumber, Date start, Date end, int pageIndex, int pageSize) throws
-            Exception;
+    Page<PowerLogDto> queryPowerLog(String deviceNumber, Date start, Date end, int pageIndex, int pageSize) throws Exception;
 
     /**
      * 查询行驶记录超时驾驶日志
      */
-    Page<TimeoutLogDto> queryTimeoutLog(String deviceNumber, Date start, Date end, int pageIndex, int pageSize)
-            throws Exception;
+    Page<TimeoutLogDto> queryTimeoutLog(String deviceNumber, Date start, Date end, int pageIndex, int pageSize) throws Exception;
 
     /**
      * 查询行驶记录参数设置日志
      */
-    Page<ParameterLogDto> queryParameterLog(String deviceNumber, Date start, Date end, int pageIndex, int pageSize)
-            throws Exception;
+    Page<ParameterLogDto> queryParameterLog(String deviceNumber, Date start, Date end, int pageIndex, int pageSize) throws Exception;
 
     /**
      * 查询行驶记录驾驶员登签日志
      */
-    Page<LoginLogDto> queryLoginLog(String deviceNumber, Date start, Date end, int pageIndex, int pageSize) throws
-            Exception;
+    Page<LoginLogDto> queryLoginLog(String deviceNumber, Date start, Date end, int pageIndex, int pageSize) throws Exception;
 
     /**
      * 查询行驶记录速度状态日志
      */
-    Page<SpeedStatusLogDto> querySpeedStatusLog(String deviceNumber, Date start, Date end, int pageIndex, int
-            pageSize) throws Exception;
+    Page<SpeedStatusLogDto> querySpeedStatusLog(String deviceNumber, Date start, Date end, int pageIndex, int pageSize) throws Exception;
 
     /**
      * 查询行驶记录位置日志
      */
-    Page<LocateLogDto> queryLocateLog(String deviceNumber, Date start, Date end, int pageIndex, int pageSize) throws
-            Exception;
+    Page<LocateLogDto> queryLocateLog(String deviceNumber, Date start, Date end, int pageIndex, int pageSize) throws Exception;
 
     /**
      * 查询行驶记录速度日志
      */
-    Page<SpeedLogDto> querySpeedLog(String deviceNumber, Date start, Date end, int pageIndex, int pageSize) throws
-            Exception;
+    Page<SpeedLogDto> querySpeedLog(String deviceNumber, Date start, Date end, int pageIndex, int pageSize) throws Exception;
 
     /**
      * 匹配设备信令信息
@@ -126,8 +117,7 @@ public interface IGodpDao {
     /**
      * 查询历史指令
      */
-    Page<InstructDto> queryInstruct(String deviceNumber, String unid, Date start, Date end, int pageIndex, int
-            pageSize) throws Exception;
+    Page<InstructDto> queryInstruct(String deviceNumber, String unid, Date start, Date end, int pageIndex, int pageSize) throws Exception;
 
     /**
      * 查询单条历史指令
@@ -142,8 +132,7 @@ public interface IGodpDao {
     /**
      * 查询轨迹页内容
      */
-    List<TrackDto> queryTrackPageDetail(String number, Date start, Date end, int pageIndex, int pageSize) throws
-            Exception;
+    List<TrackDto> queryTrackPageDetail(String number, Date start, Date end, int pageIndex, int pageSize) throws Exception;
 
     /**
      * 历史上线设备统计

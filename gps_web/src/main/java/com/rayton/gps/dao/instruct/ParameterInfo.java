@@ -24,11 +24,7 @@ public class ParameterInfo {
 
     @Override
     public String toString() {
-        return "ParameterInfo{" + "id='" + id + '\'' + ", pid='" + pid + '\'' + ", featureId='" + featureId + '\'' +
-                ", index=" + index + ", name='" + name + '\'' + ", label='" + label + '\'' + ", type=" + type + ", "
-                + "selectValue='" + selectValue + '\'' + ", dictionaryKey='" + dictionaryKey + '\'' + ", switchBit="
-                + switchBit + ", rows=" + rows + ", columns=" + columns + ", defaultValue='" + defaultValue + '\'' +
-                "," + " description='" + description + '\'' + '}';
+        return "ParameterInfo{" + "id='" + id + '\'' + ", pid='" + pid + '\'' + ", featureId='" + featureId + '\'' + ", index=" + index + ", name='" + name + '\'' + ", label='" + label + '\'' + ", type=" + type + ", " + "selectValue='" + selectValue + '\'' + ", dictionaryKey='" + dictionaryKey + '\'' + ", switchBit=" + switchBit + ", rows=" + rows + ", columns=" + columns + ", defaultValue='" + defaultValue + '\'' + "," + " description='" + description + '\'' + '}';
     }
 
     /**

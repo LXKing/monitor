@@ -2,6 +2,7 @@ package com.rayton.gps.controller.baseInfo;
 
 import com.rayton.gps.aop.Log;
 import com.rayton.gps.dao.Page;
+import com.rayton.gps.dao.baseinfo.company.ICompanyDao;
 import com.rayton.gps.dao.baseinfo.motorcade.Motorcade;
 import com.rayton.gps.dao.baseinfo.motorcade.MotorcadeInfo;
 import com.rayton.gps.dao.security.IdentityDto;
@@ -26,7 +27,8 @@ import java.util.Map;
 public class MotorcadeController {
     @Autowired
     private MotorcadeService motorcadeService;
-
+    @Autowired
+    private ICompanyDao companyDao;
 
     @RequiresPermissions("baseinfo.motorcade")
     @Log(name = "打开车队管理页面")
@@ -60,8 +62,7 @@ public class MotorcadeController {
 
     @PostMapping(value = "/motorcade/create.form")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> create(@ModelAttribute("motorcade") @Valid Motorcade motorcade,
-                                                      BindingResult binding) {
+    public ResponseEntity<Map<Object, Object>> create(@ModelAttribute("motorcade") @Valid Motorcade motorcade, BindingResult binding) {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
 
         // try {
@@ -80,6 +81,8 @@ public class MotorcadeController {
             errors.forEach(fieldError -> map.put(fieldError.getField(), fieldError.getDefaultMessage()));
             return ResponseEntityWrapper.Failed(map);
         }
+
+        motorcade.setCOMPANY(companyDao.fetch(identity.getCompanyId()).getFullName());
         // return "/baseinfo/motorcade/create.form";
         motorcade.setCompanyId(identity.getCompanyId());
         motorcadeService.create(motorcade);
@@ -100,8 +103,7 @@ public class MotorcadeController {
 
     @PostMapping(value = "/motorcade/edit.form")
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> edit(@ModelAttribute("motorcade") @Valid Motorcade motorcade,
-                                                    BindingResult binding) {
+    public ResponseEntity<Map<Object, Object>> edit(@ModelAttribute("motorcade") @Valid Motorcade motorcade, BindingResult binding) {
         if (binding.hasErrors()) {
             List<FieldError> errors = binding.getFieldErrors();
             Map<Object, Object> map = new HashMap<>();
@@ -138,12 +140,10 @@ public class MotorcadeController {
 
     @PostMapping(value = "/motorcade/exist")
     @ResponseBody
-    public Object exists(@RequestParam String name, @RequestParam(required = false) String id, @RequestParam boolean
-            checkId) throws Exception {
+    public Object exists(@RequestParam String name, @RequestParam(required = false) String id, @RequestParam boolean checkId) throws Exception {
         // Identity user = (Identity) request.getAttribute("user");
         IdentityDto user = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        return checkId ? !motorcadeService.exist(name, user.getCompanyId(), id) : !motorcadeService.exist(name, user
-                .getCompanyId());
+        return checkId ? !motorcadeService.exist(name, user.getCompanyId(), id) : !motorcadeService.exist(name, user.getCompanyId());
         // if (checkId) {
         //     response.getWriter().print(!motorcadeService.exist(name, user.getCompanyId(), id));
         // } else {

@@ -85,7 +85,8 @@ public class DeviceDataController {
             count++;
         }
 
-        if (count > 0) menus.add(menuMultimedia);
+        if (count > 0)
+            menus.add(menuMultimedia);
         count = 0;
 
         AdminMenu menuDrivingRecord = new AdminMenu();
@@ -192,7 +193,8 @@ public class DeviceDataController {
             count++;
         }
 
-        if (count > 0) menus.add(menuDrivingRecord);
+        if (count > 0)
+            menus.add(menuDrivingRecord);
         count = 0;
 
         AdminMenu menuTerminalReport = new AdminMenu();
@@ -221,7 +223,8 @@ public class DeviceDataController {
             count++;
         }
 
-        if (count > 0) menus.add(menuTerminalReport);
+        if (count > 0)
+            menus.add(menuTerminalReport);
 
         return menus;
     }
@@ -236,8 +239,7 @@ public class DeviceDataController {
 
     @RequestMapping(value = "/deviceData/multimedia/query", method = RequestMethod.POST)
     @ResponseBody
-    public Object queryMultimedia(@RequestParam String deviceNumber, @RequestParam Date start, @RequestParam Date
-            end, @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
+    public Object queryMultimedia(@RequestParam String deviceNumber, @RequestParam Date start, @RequestParam Date end, @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
         return deviceDataService.queryMultimedia(deviceNumber, start, end, pageIndex, pageSize);
     }
 
@@ -258,8 +260,7 @@ public class DeviceDataController {
 
     @RequestMapping(value = "/deviceData/multimediaEventReport/query", method = RequestMethod.POST)
     @ResponseBody
-    public Object multimediaEventReport(@RequestParam String deviceNumber, @RequestParam Date start, @RequestParam
-            Date end, @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
+    public Object multimediaEventReport(@RequestParam String deviceNumber, @RequestParam Date start, @RequestParam Date end, @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
         return deviceDataService.queryMultimediaEventReport(deviceNumber, start, end, pageIndex, pageSize);
     }
 
@@ -272,8 +273,7 @@ public class DeviceDataController {
 
     @RequestMapping(value = "/deviceData/multimediaRetrieval/query", method = RequestMethod.POST)
     @ResponseBody
-    public Object multimediaRetrieval(@RequestParam String deviceNumber, @RequestParam Date start, @RequestParam Date
-            end, @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
+    public Object multimediaRetrieval(@RequestParam String deviceNumber, @RequestParam Date start, @RequestParam Date end, @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
         return deviceDataService.queryMultimediaDataRetrieval(deviceNumber, start, end, pageIndex, pageSize);
     }
 
@@ -286,8 +286,7 @@ public class DeviceDataController {
 
     @RequestMapping(value = "/deviceData/deviceEventReport/query", method = RequestMethod.POST)
     @ResponseBody
-    public Object deviceEventReport(@RequestParam String deviceNumber, @RequestParam Date start, @RequestParam Date
-            end, @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
+    public Object deviceEventReport(@RequestParam String deviceNumber, @RequestParam Date start, @RequestParam Date end, @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
         return deviceDataService.queryDeviceEventReport(deviceNumber, start, end, pageIndex, pageSize);
     }
 
@@ -301,16 +300,13 @@ public class DeviceDataController {
 
     @RequestMapping(value = "/deviceData/deviceUpgradeResultReport/query", method = RequestMethod.POST)
     @ResponseBody
-    public Object deviceUpgradeResultReport(@RequestParam String deviceNumber, @RequestParam Date start,
-                                            @RequestParam Date end, @RequestParam int pageIndex, @RequestParam int
-                                                        pageSize) throws Exception {
+    public Object deviceUpgradeResultReport(@RequestParam String deviceNumber, @RequestParam Date start, @RequestParam Date end, @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
         return deviceDataService.deviceUpgradeResultReport(deviceNumber, start, end, pageIndex, pageSize);
     }
 
     @RequestMapping(value = "/deviceData/pickupMultmedia", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<Map<Object, Object>> pickupMultmedia(@RequestParam String deviceNumber, @RequestParam int
-            mediaId, RedirectAttributes r, HttpServletRequest request) throws Exception {
+    public ResponseEntity<Map<Object, Object>> pickupMultmedia(@RequestParam String deviceNumber, @RequestParam int mediaId, RedirectAttributes r, HttpServletRequest request) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
 
         // CommandDto dto = new CommandDto();
@@ -326,8 +322,8 @@ public class DeviceDataController {
         map.put("action", 0);
         String params = JsonMapper.toJson(map);
 
-        instructService.send(identity.getId(), UUID.randomUUID().toString(), deviceNumber, identity.getUnid(),
-                identity.getName(), "8805", "上传多媒体数据", params, null);
+        instructService.send(identity.getId(), UUID.randomUUID()
+                .toString(), deviceNumber, identity.getUnid(), identity.getName(), "8805", "上传多媒体数据", params, null);
         return ResponseEntityWrapper.OK();
 
         // return "redirect:/result";
@@ -355,8 +351,7 @@ public class DeviceDataController {
 
     @RequestMapping(value = "/deviceData/accidentDoubtLog/query", method = RequestMethod.POST)
     @ResponseBody
-    public Object queryAccidentDoubtLog(@RequestParam String deviceNumber, @RequestParam Date start, @RequestParam
-            Date end, @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
+    public Object queryAccidentDoubtLog(@RequestParam String deviceNumber, @RequestParam Date start, @RequestParam Date end, @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
         return deviceDataService.queryAccidentDoubtLog(deviceNumber, start, end, pageIndex, pageSize);
     }
 
@@ -369,8 +364,7 @@ public class DeviceDataController {
 
     @RequestMapping(value = "/deviceData/powerLog/query", method = RequestMethod.POST)
     @ResponseBody
-    public Object queryPowerLog(@RequestParam String deviceNumber, @RequestParam Date start, @RequestParam Date end,
-                                @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
+    public Object queryPowerLog(@RequestParam String deviceNumber, @RequestParam Date start, @RequestParam Date end, @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
         return deviceDataService.queryPowerLog(deviceNumber, start, end, pageIndex, pageSize);
     }
 
@@ -383,8 +377,7 @@ public class DeviceDataController {
 
     @RequestMapping(value = "/deviceData/timeoutLog/query", method = RequestMethod.POST)
     @ResponseBody
-    public Object queryTimeoutLog(@RequestParam String deviceNumber, @RequestParam Date start, @RequestParam Date
-            end, @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
+    public Object queryTimeoutLog(@RequestParam String deviceNumber, @RequestParam Date start, @RequestParam Date end, @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
         return deviceDataService.queryTimeoutLog(deviceNumber, start, end, pageIndex, pageSize);
     }
 
@@ -397,8 +390,7 @@ public class DeviceDataController {
 
     @RequestMapping(value = "/deviceData/parameterLog/query", method = RequestMethod.POST)
     @ResponseBody
-    public Object queryParameterLog(@RequestParam String deviceNumber, @RequestParam Date start, @RequestParam Date
-            end, @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
+    public Object queryParameterLog(@RequestParam String deviceNumber, @RequestParam Date start, @RequestParam Date end, @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
         return deviceDataService.queryParameterLog(deviceNumber, start, end, pageIndex, pageSize);
     }
 
@@ -411,8 +403,7 @@ public class DeviceDataController {
 
     @RequestMapping(value = "/deviceData/loginLog/query", method = RequestMethod.POST)
     @ResponseBody
-    public Object queryLoginLog(@RequestParam String deviceNumber, @RequestParam Date start, @RequestParam Date end,
-                                @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
+    public Object queryLoginLog(@RequestParam String deviceNumber, @RequestParam Date start, @RequestParam Date end, @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
         return deviceDataService.queryLoginLog(deviceNumber, start, end, pageIndex, pageSize);
     }
 
@@ -425,8 +416,7 @@ public class DeviceDataController {
 
     @RequestMapping(value = "/deviceData/speedStatusLog/query", method = RequestMethod.POST)
     @ResponseBody
-    public Object querySpeedStatusLog(@RequestParam String deviceNumber, @RequestParam Date start, @RequestParam Date
-            end, @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
+    public Object querySpeedStatusLog(@RequestParam String deviceNumber, @RequestParam Date start, @RequestParam Date end, @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
         return deviceDataService.querySpeedStatusLog(deviceNumber, start, end, pageIndex, pageSize);
     }
 
@@ -439,8 +429,7 @@ public class DeviceDataController {
 
     @RequestMapping(value = "/deviceData/locateLog/query", method = RequestMethod.POST)
     @ResponseBody
-    public Object queryLocateLog(@RequestParam String deviceNumber, @RequestParam Date start, @RequestParam Date end,
-                                 @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
+    public Object queryLocateLog(@RequestParam String deviceNumber, @RequestParam Date start, @RequestParam Date end, @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
         return deviceDataService.queryLocateLog(deviceNumber, start, end, pageIndex, pageSize);
     }
 
@@ -453,8 +442,7 @@ public class DeviceDataController {
 
     @RequestMapping(value = "/deviceData/speedLog/query", method = RequestMethod.POST)
     @ResponseBody
-    public Object querySpeedLog(@RequestParam String deviceNumber, @RequestParam Date start, @RequestParam Date end,
-                                @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
+    public Object querySpeedLog(@RequestParam String deviceNumber, @RequestParam Date start, @RequestParam Date end, @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
         return deviceDataService.querySpeedLog(deviceNumber, start, end, pageIndex, pageSize);
     }
 }

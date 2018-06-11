@@ -1,5 +1,6 @@
 package com.rayton.gps.dao.baseinfo.vehicle;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import java.sql.Date;
@@ -28,12 +29,15 @@ public class Vehicle {
     private int initialMileage;
     private double oilWear;
     private int usefulLife;
+
+    @JSONField(format = "yyyy-MM-dd")
     private Date installDate;
+    @JSONField(format = "yyyy-MM-dd")
     private Date annualSurveyDate;
     private String adminArea;
     private String marker;
     private boolean rotate;
-
+    @JSONField(format = "yyyy-MM-dd")
     private Date createTime;
 
 
@@ -54,40 +58,36 @@ public class Vehicle {
     private String LICENSEPLATESELFNUM;
     private String ENGINENUM;
     private String CARRIAGELONG;
+    @JSONField(format = "yyyy-MM-dd")
     private Date BUYDATE;
     private String PROVIDERCONTACT;
     private String DANGERPLATENUM;
     private String VEHICULARWEIGHT;
     private String INVOICEAMOUNT;
     private String PROVIDERTEL;
+    @JSONField(format = "yyyy-MM-dd")
     private Date REGISTRATIONDATE;
     private String BUYTAX;
     private String LICENSEEXAMINATIONPERIOD;
     private String VEHICLEPIC;
     private String VINPIC;
+    private String FUELTYPE;
+
+    public String getFUELTYPE() {
+        return FUELTYPE;
+    }
+
+    public void setFUELTYPE(String FUELTYPE) {
+        this.FUELTYPE = FUELTYPE;
+    }
+
+
     //
 
 
     @Override
     public String toString() {
-        return "Vehicle{" + "id='" + id + '\'' + ", companyId='" + companyId + '\'' + ", motorcadeId='" + motorcadeId
-                + '\'' + ", motorcade='" + motorcade + '\'' + ", deviceNumber='" + deviceNumber + '\'' + ", " +
-                "deviceId='" + deviceId + '\'' + ", plateNumber='" + plateNumber + '\'' + ", plateColor='" +
-                plateColor + '\'' + ", vehicleColor='" + vehicleColor + '\'' + ", vehicleType='" + vehicleType + '\''
-                + ", vehicleVoltage='" + vehicleVoltage + '\'' + ", carryType='" + carryType + '\'' + ", " +
-                "initialMileage=" + initialMileage + ", oilWear=" + oilWear + ", usefulLife=" + usefulLife + ", " +
-                "installDate=" + installDate + ", annualSurveyDate=" + annualSurveyDate + ", adminArea='" + adminArea
-                + '\'' + ", marker='" + marker + '\'' + ", rotate=" + rotate + ", createTime=" + createTime + ", " +
-                "remark='" + remark + '\'' + ", editTime=" + editTime + ", FACTORYPLATEMODE='" + FACTORYPLATEMODE +
-                '\'' + ", AXLENUM='" + AXLENUM + '\'' + ", MANUFACTURER='" + MANUFACTURER + '\'' + ", TRAILERNUM='" +
-                TRAILERNUM + '\'' + ", VIN='" + VIN + '\'' + ", BUYMONEY='" + BUYMONEY + '\'' + ", SERVICEPROVIDER='"
-                + SERVICEPROVIDER + '\'' + ", LICENSEPLATESELFNUM='" + LICENSEPLATESELFNUM + '\'' + ", ENGINENUM='" +
-                ENGINENUM + '\'' + ", CARRIAGELONG='" + CARRIAGELONG + '\'' + ", BUYDATE=" + BUYDATE + ", " +
-                "PROVIDERCONTACT='" + PROVIDERCONTACT + '\'' + ", DANGERPLATENUM='" + DANGERPLATENUM + '\'' + ", " +
-                "VEHICULARWEIGHT='" + VEHICULARWEIGHT + '\'' + ", INVOICEAMOUNT='" + INVOICEAMOUNT + '\'' + ", " +
-                "PROVIDERTEL='" + PROVIDERTEL + '\'' + ", REGISTRATIONDATE=" + REGISTRATIONDATE + ", BUYTAX='" +
-                BUYTAX + '\'' + ", LICENSEEXAMINATIONPERIOD='" + LICENSEEXAMINATIONPERIOD + '\'' + ", VEHICLEPIC='" +
-                VEHICLEPIC + '\'' + ", VINPIC='" + VINPIC + '\'' + '}';
+        return "Vehicle{" + "id='" + id + '\'' + ", companyId='" + companyId + '\'' + ", motorcadeId='" + motorcadeId + '\'' + ", motorcade='" + motorcade + '\'' + ", deviceNumber='" + deviceNumber + '\'' + ", " + "deviceId='" + deviceId + '\'' + ", plateNumber='" + plateNumber + '\'' + ", plateColor='" + plateColor + '\'' + ", vehicleColor='" + vehicleColor + '\'' + ", vehicleType='" + vehicleType + '\'' + ", vehicleVoltage='" + vehicleVoltage + '\'' + ", carryType='" + carryType + '\'' + ", " + "initialMileage=" + initialMileage + ", oilWear=" + oilWear + ", usefulLife=" + usefulLife + ", " + "installDate=" + installDate + ", annualSurveyDate=" + annualSurveyDate + ", adminArea='" + adminArea + '\'' + ", marker='" + marker + '\'' + ", rotate=" + rotate + ", createTime=" + createTime + ", " + "remark='" + remark + '\'' + ", editTime=" + editTime + ", FACTORYPLATEMODE='" + FACTORYPLATEMODE + '\'' + ", AXLENUM='" + AXLENUM + '\'' + ", MANUFACTURER='" + MANUFACTURER + '\'' + ", TRAILERNUM='" + TRAILERNUM + '\'' + ", VIN='" + VIN + '\'' + ", BUYMONEY='" + BUYMONEY + '\'' + ", SERVICEPROVIDER='" + SERVICEPROVIDER + '\'' + ", LICENSEPLATESELFNUM='" + LICENSEPLATESELFNUM + '\'' + ", ENGINENUM='" + ENGINENUM + '\'' + ", CARRIAGELONG='" + CARRIAGELONG + '\'' + ", BUYDATE=" + BUYDATE + ", " + "PROVIDERCONTACT='" + PROVIDERCONTACT + '\'' + ", DANGERPLATENUM='" + DANGERPLATENUM + '\'' + ", " + "VEHICULARWEIGHT='" + VEHICULARWEIGHT + '\'' + ", INVOICEAMOUNT='" + INVOICEAMOUNT + '\'' + ", " + "PROVIDERTEL='" + PROVIDERTEL + '\'' + ", REGISTRATIONDATE=" + REGISTRATIONDATE + ", BUYTAX='" + BUYTAX + '\'' + ", LICENSEEXAMINATIONPERIOD='" + LICENSEEXAMINATIONPERIOD + '\'' + ", VEHICLEPIC='" + VEHICLEPIC + '\'' + ", VINPIC='" + VINPIC + '\'' + '}';
     }
 
     public String getFACTORYPLATEMODE() {

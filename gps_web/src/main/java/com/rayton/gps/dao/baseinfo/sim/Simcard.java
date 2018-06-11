@@ -1,5 +1,7 @@
 package com.rayton.gps.dao.baseinfo.sim;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.sql.Date;
 import java.sql.Timestamp;
 
@@ -13,6 +15,7 @@ public class Simcard {
     /**
      * 创建时间
      */
+    @JSONField(format = "yyyy-MM-dd")
     public Date createTime;
     private String id;
     private String companyId;
@@ -20,10 +23,13 @@ public class Simcard {
     private String simcardNumber;
     private String speechType;
     private boolean openSMS;
+    @JSONField(format = "yyyy-MM-dd")
     private Date openDate;
+    @JSONField(format = "yyyy-MM-dd")
     private Date purchaseDate;
     private String carrierOperator;
     private double prepayment;
+    @JSONField(format = "yyyy-MM-dd")
     private Date expireDate;
     private String flowset;
     private String remark;
@@ -32,21 +38,17 @@ public class Simcard {
     // FUCK ME
     private String ACCOUNTNAME;
     private String MONTHLYRENT;
+    @JSONField(format = "yyyy-MM-dd")
     private Date INSTOCKDATE;
+    @JSONField(format = "yyyy-MM-dd")
     private Date OUTSTOCKDATE;
+    @JSONField(format = "yyyy-MM-dd")
     private Date EXPIRENOTIFYDATE;
     // FUCK ME
 
     @Override
     public String toString() {
-        return "Simcard{" + "createTime=" + createTime + ", id='" + id + '\'' + ", companyId='" + companyId + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' + ", simcardNumber='" + simcardNumber + '\'' + ", " +
-                "speechType='" + speechType + '\'' + ", openSMS=" + openSMS + ", openDate=" + openDate + ", " +
-                "purchaseDate=" + purchaseDate + ", carrierOperator='" + carrierOperator + '\'' + ", prepayment=" +
-                prepayment + ", expireDate=" + expireDate + ", flowset='" + flowset + '\'' + ", remark='" + remark +
-                '\'' + ", editTime=" + editTime + ", ACCOUNTNAME='" + ACCOUNTNAME + '\'' + ", MONTHLYRENT='" +
-                MONTHLYRENT + '\'' + ", INSTOCKDATE=" + INSTOCKDATE + ", OUTSTOCKDATE=" + OUTSTOCKDATE + ", " +
-                "EXPIRENOTIFYDATE=" + EXPIRENOTIFYDATE + '}';
+        return "Simcard{" + "createTime=" + createTime + ", id='" + id + '\'' + ", companyId='" + companyId + '\'' + ", phoneNumber='" + phoneNumber + '\'' + ", simcardNumber='" + simcardNumber + '\'' + ", " + "speechType='" + speechType + '\'' + ", openSMS=" + openSMS + ", openDate=" + openDate + ", " + "purchaseDate=" + purchaseDate + ", carrierOperator='" + carrierOperator + '\'' + ", prepayment=" + prepayment + ", expireDate=" + expireDate + ", flowset='" + flowset + '\'' + ", remark='" + remark + '\'' + ", editTime=" + editTime + ", ACCOUNTNAME='" + ACCOUNTNAME + '\'' + ", MONTHLYRENT='" + MONTHLYRENT + '\'' + ", INSTOCKDATE=" + INSTOCKDATE + ", OUTSTOCKDATE=" + OUTSTOCKDATE + ", " + "EXPIRENOTIFYDATE=" + EXPIRENOTIFYDATE + '}';
     }
 
     public String getACCOUNTNAME() {

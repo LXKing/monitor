@@ -1,5 +1,7 @@
 package com.rayton.gps.dao.lisence;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class VehicleLicense implements java.io.Serializable {
     private static final long serialVersionUID = 1L;
     private Integer id;
@@ -11,10 +13,12 @@ public class VehicleLicense implements java.io.Serializable {
     private String approvedPassengersCapacity;//核定载人数
     private String inspectionRecord;//检验记录
     private String vehicleType;//车辆类型
+    @JSONField(format = "yyyy-MM-dd")
     private java.util.Date registerDate;//注册日期
     private String remark;//备注
     private String approvedLoad;//核定载质量
     private String engineNo;//发动机号码
+    @JSONField(format = "yyyy-MM-dd")
     private java.util.Date issueDate;//发证日期
     private String plateNo;//车牌号
     private String documentNo;//档案编号
@@ -28,11 +32,7 @@ public class VehicleLicense implements java.io.Serializable {
         super();
     }
 
-    public VehicleLicense(Integer id, String owner, String overallSize, String tractionMass, String address, String
-            companyId, String approvedPassengersCapacity, String inspectionRecord, String vehicleType, java.util.Date
-            registerDate, String remark, String approvedLoad, String engineNo, java.util.Date issueDate, String
-            plateNo, String documentNo, String useCharacter, String model, String vin, String curbWeight, String
-            totalMass) {
+    public VehicleLicense(Integer id, String owner, String overallSize, String tractionMass, String address, String companyId, String approvedPassengersCapacity, String inspectionRecord, String vehicleType, java.util.Date registerDate, String remark, String approvedLoad, String engineNo, java.util.Date issueDate, String plateNo, String documentNo, String useCharacter, String model, String vin, String curbWeight, String totalMass) {
         super();
         this.id = id;
         this.owner = owner;

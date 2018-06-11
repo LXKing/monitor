@@ -41,31 +41,26 @@ public class InstructController {
 
     @PostMapping(value = "/instruct/send")
     @ResponseBody
-    public Object send(@RequestParam String deviceNumber, @RequestParam String command, @RequestParam String name,
-                       @RequestParam String params, @RequestParam String confirm) throws Exception {
+    public Object send(@RequestParam String deviceNumber, @RequestParam String command, @RequestParam String name, @RequestParam String params, @RequestParam String confirm) throws Exception {
         String serialNumber = UUID.randomUUID().toString();
         IdentityDto user = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         // Identity user = (Identity) request.getAttribute("user");
-        InstructInfo info = instructService.send(user.getId(), serialNumber, deviceNumber, user.getUnid(), user
-                .getName(), command, name, params, confirm);
+        InstructInfo info = instructService.send(user.getId(), serialNumber, deviceNumber, user.getUnid(), user.getName(), command, name, params, confirm);
         return info;
     }
 
     @PostMapping(value = "/instruct/query")
     @ResponseBody
-    public Object query(@RequestParam String deviceNumber, @RequestParam Date start, @RequestParam Date end,
-                        @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
+    public Object query(@RequestParam String deviceNumber, @RequestParam Date start, @RequestParam Date end, @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        Page<InstructInfo> page = instructService.query(deviceNumber, identity.getUnid(), start, end, pageIndex,
-                pageSize);
+        Page<InstructInfo> page = instructService.query(deviceNumber, identity.getUnid(), start, end, pageIndex, pageSize);
 
         return page;
     }
 
     @PostMapping(value = "/instruct/queryArr")
     @ResponseBody
-    public Object queryArr(@RequestParam String deviceNumber, @RequestParam Date start, @RequestParam Date end,
-                           @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
+    public Object queryArr(@RequestParam String deviceNumber, @RequestParam Date start, @RequestParam Date end, @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
 
         List<String> list = Arrays.asList(deviceNumber.split(","));
         IdentityDto identity = (IdentityDto) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
@@ -73,8 +68,7 @@ public class InstructController {
 
 
         for (String dn : list) {
-            Page<InstructInfo> aaaa = instructService.query(dn, identity.getUnid(), start, end, pageIndex,
-                    pageSize);
+            Page<InstructInfo> aaaa = instructService.query(dn, identity.getUnid(), start, end, pageIndex, pageSize);
             List<InstructInfo> a = aaaa.getRows();
             page.getRows().addAll(a);
 
@@ -91,8 +85,8 @@ public class InstructController {
         String result = info.getResult().replace("\r\n", "<br />");
         info.setResult(result);
         return info;
-//        model.addAttribute("instruct", info);
-//
-//        return "/instruct/details.form";
+        //        model.addAttribute("instruct", info);
+        //
+        //        return "/instruct/details.form";
     }
 }

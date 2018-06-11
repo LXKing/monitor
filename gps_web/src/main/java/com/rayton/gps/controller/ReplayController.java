@@ -33,8 +33,7 @@ public class ReplayController {
 
     @PostMapping(value = "/replay/count")
     @ResponseBody
-    public Object tracksCount(@RequestParam String number, @RequestParam Date start, @RequestParam Date end) throws
-            Exception {
+    public Object tracksCount(@RequestParam String number, @RequestParam Date start, @RequestParam Date end) throws Exception {
         int total = replayService.countTracks(number, start, end);
 
         return new CountTracks(total);
@@ -42,8 +41,7 @@ public class ReplayController {
 
     @PostMapping(value = "/replay/load")
     @ResponseBody
-    public Object tracksLoad(@RequestParam String number, @RequestParam Date start, @RequestParam Date end,
-                             @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
+    public Object tracksLoad(@RequestParam String number, @RequestParam Date start, @RequestParam Date end, @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
         return replayService.loadTracks(number, start, end, pageIndex, pageSize);
     }
 }

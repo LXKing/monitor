@@ -10,8 +10,7 @@ public class VehicleStatusOverview {
 
     @Override
     public String toString() {
-        return "VehicleStatusOverview{" + "online=" + online + ", offline=" + offline + ", accon=" + accon + ", " +
-                "accoff=" + accoff + ", alarm=" + alarm + '}';
+        return "VehicleStatusOverview{" + "online=" + online + ", offline=" + offline + ", accon=" + accon + ", " + "accoff=" + accoff + ", alarm=" + alarm + '}';
     }
 
     public int getOnline() {

@@ -35,8 +35,7 @@ public class Fault {
 
     @Override
     public String toString() {
-        return "Fault{" + "number='" + number + '\'' + ", time=" + time + ", sysId=" + sysId + ", modeId=" + modeId +
-                ", code1=" + code1 + ", code2=" + code2 + ", code3=" + code3 + '}';
+        return "Fault{" + "number='" + number + '\'' + ", time=" + time + ", sysId=" + sysId + ", modeId=" + modeId + ", code1=" + code1 + ", code2=" + code2 + ", code3=" + code3 + '}';
     }
 
     public String getNumber() {

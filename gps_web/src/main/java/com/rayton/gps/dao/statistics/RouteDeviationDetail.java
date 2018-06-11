@@ -14,9 +14,7 @@ public class RouteDeviationDetail {
 
     @Override
     public String toString() {
-        return "RouteDeviationDetail{" + "deviceNumber='" + deviceNumber + '\'' + ", motorcade='" + motorcade + '\''
-                + ", plateNumber='" + plateNumber + '\'' + ", times=" + times + ", duration=" + duration + ", start="
-                + start + ", end=" + end + '}';
+        return "RouteDeviationDetail{" + "deviceNumber='" + deviceNumber + '\'' + ", motorcade='" + motorcade + '\'' + ", plateNumber='" + plateNumber + '\'' + ", times=" + times + ", duration=" + duration + ", start=" + start + ", end=" + end + '}';
     }
 
     public String getDeviceNumber() {

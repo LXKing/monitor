@@ -76,8 +76,7 @@ public class InstructService {
 
     @RequiresPermissions("center.locate.instruct")
     @Log(name = "指令下发")
-    public InstructInfo send(String userId, String serialNumber, String deviceNumber, String unid, String user,
-                             String command, String name, String params, String confirm) throws Exception {
+    public InstructInfo send(String userId, String serialNumber, String deviceNumber, String unid, String user, String command, String name, String params, String confirm) throws Exception {
         if (confirm != null && confirm.length() > 0) {
             String pwd = securityDao.getPasswordByUnid(unid);
             if (!pwd.equals(confirm))
@@ -116,8 +115,7 @@ public class InstructService {
         return info;
     }
 
-    public void send(String serialNumber, String deviceNumber, String unid, String user, String command, String name,
-                     String params) throws Exception {
+    public void send(String serialNumber, String deviceNumber, String unid, String user, String command, String name, String params) throws Exception {
         InstructInfo info = new InstructInfo();
         info.setSendTime(new Date());
         info.setCommand(command);
@@ -181,8 +179,7 @@ public class InstructService {
         }
     }
 
-    public Page<InstructInfo> query(String deviceNumber, String unid, Date start, Date end, int pageIndex, int
-            pageSize) throws Exception {
+    public Page<InstructInfo> query(String deviceNumber, String unid, Date start, Date end, int pageIndex, int pageSize) throws Exception {
 
         Page<InstructDto> query = godpDao.queryInstruct(deviceNumber, unid, start, end, pageIndex, pageSize);
 

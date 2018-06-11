@@ -16,8 +16,7 @@ public class SectionPoint {
 
     @Override
     public String toString() {
-        return "SectionPoint{" + "id=" + id + ", sectionId=" + sectionId + ", lat=" + lat + ", lng=" + lng + ", " +
-                "index=" + index + '}';
+        return "SectionPoint{" + "id=" + id + ", sectionId=" + sectionId + ", lat=" + lat + ", lng=" + lng + ", " + "index=" + index + '}';
     }
 
     /**

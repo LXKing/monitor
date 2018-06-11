@@ -13,8 +13,7 @@ public class TimeoutParkingCount {
 
     @Override
     public String toString() {
-        return "TimeoutParkingCount{" + "motorcadeId='" + motorcadeId + '\'' + ", motorcade='" + motorcade + '\'' +
-                "," + " times=" + times + ", duration=" + duration + ", start=" + start + ", end=" + end + '}';
+        return "TimeoutParkingCount{" + "motorcadeId='" + motorcadeId + '\'' + ", motorcade='" + motorcade + '\'' + "," + " times=" + times + ", duration=" + duration + ", start=" + start + ", end=" + end + '}';
     }
 
     public String getMotorcadeId() {

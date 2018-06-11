@@ -14,8 +14,7 @@ public class Role {
 
     @Override
     public String toString() {
-        return "Role{" + "id='" + id + '\'' + ", companyId='" + companyId + '\'' + ", name='" + name + '\'' + ", " +
-                "remark='" + remark + '\'' + ", editTime=" + editTime + '}';
+        return "Role{" + "id='" + id + '\'' + ", companyId='" + companyId + '\'' + ", name='" + name + '\'' + ", " + "remark='" + remark + '\'' + ", editTime=" + editTime + '}';
     }
 
     public String getId() {

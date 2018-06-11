@@ -46,17 +46,7 @@ public class Flow {
 
     @Override
     public String toString() {
-        return "Flow{" + "number='" + number + '\'' + ", time=" + time + ", vss=" + vss + ", mileage=" + mileage + "," +
-                "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + " " + "bv=" + bv + ", rpm=" + rpm + ", ect=" + ect
-                + ", " + "" + "runtm=" + runtm + "," + " " + "eot=" + eot + ", " + "ifc=" + ifc + ", ot=" + ot + ", " +
-                "iat=" + iat + ", et=" + et + ", " + "maf=" + maf + ", ap=" + ap + ", " + "loadpct=" + loadpct + ", " +
-                "map=" + map + "," + " lftp=" + lftp + ", " + "altp=" + altp + ", rrtp=" + rrtp + ", " + "rftp=" +
-                rftp + ", " + "mord=" + mord + ", " + "iaa=" + iaa + ", " + "longftb1=" + longftb1 + "," + " " +
-                "shrtftb1=" + shrtftb1 + ", " + "" + "shrtftb1s1=" + shrtftb1s1 + ", " + "shrtftb1s2=" + shrtftb1s2 +
-                ", " + "" + "faults=" + faults + ", " + "tp=" + tp + ", " + "tpalb=" + tpalb + ", tpalc=" + tpalc +
-                ", frp=" + frp + ", fuelsys1='" + fuelsys1 + '\'' + "," + "" + " " + "fuelsys2='" + fuelsys2 + '\'' +
-                ", " + "o2sb1s1=" + o2sb1s1 + ", " + "o2sb1s2=" + o2sb1s2 + ", ppsd=" + ppsd + ", ppse=" + ppse + ", " +
-                "" + "vaptb1s1=" + vaptb1s1 + ", " + "vaptb1s2=" + vaptb1s2 + '}';
+        return "Flow{" + "number='" + number + '\'' + ", time=" + time + ", vss=" + vss + ", mileage=" + mileage + "," + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + " " + "bv=" + bv + ", rpm=" + rpm + ", ect=" + ect + ", " + "" + "runtm=" + runtm + "," + " " + "eot=" + eot + ", " + "ifc=" + ifc + ", ot=" + ot + ", " + "iat=" + iat + ", et=" + et + ", " + "maf=" + maf + ", ap=" + ap + ", " + "loadpct=" + loadpct + ", " + "map=" + map + "," + " lftp=" + lftp + ", " + "altp=" + altp + ", rrtp=" + rrtp + ", " + "rftp=" + rftp + ", " + "mord=" + mord + ", " + "iaa=" + iaa + ", " + "longftb1=" + longftb1 + "," + " " + "shrtftb1=" + shrtftb1 + ", " + "" + "shrtftb1s1=" + shrtftb1s1 + ", " + "shrtftb1s2=" + shrtftb1s2 + ", " + "" + "faults=" + faults + ", " + "tp=" + tp + ", " + "tpalb=" + tpalb + ", tpalc=" + tpalc + ", frp=" + frp + ", fuelsys1='" + fuelsys1 + '\'' + "," + "" + " " + "fuelsys2='" + fuelsys2 + '\'' + ", " + "o2sb1s1=" + o2sb1s1 + ", " + "o2sb1s2=" + o2sb1s2 + ", ppsd=" + ppsd + ", ppse=" + ppse + ", " + "" + "vaptb1s1=" + vaptb1s1 + ", " + "vaptb1s2=" + vaptb1s2 + '}';
     }
 
     /**

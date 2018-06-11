@@ -26,10 +26,7 @@ public class SectionArea {
 
     @Override
     public String toString() {
-        return "SectionArea{" + "id=" + id + ", companyId='" + companyId + '\'' + ", name='" + name + '\'' + ", " +
-                "width=" + width + ", flag=" + flag + ", maxSeconds=" + maxSeconds + ", minSeconds=" + minSeconds +
-                "," + " maxSpeed=" + maxSpeed + ", overspeedSeconds=" + overspeedSeconds + ", remark='" + remark +
-                '\'' + "," + " editTime=" + editTime + ", points=" + points + '}';
+        return "SectionArea{" + "id=" + id + ", companyId='" + companyId + '\'' + ", name='" + name + '\'' + ", " + "width=" + width + ", flag=" + flag + ", maxSeconds=" + maxSeconds + ", minSeconds=" + minSeconds + "," + " maxSpeed=" + maxSpeed + ", overspeedSeconds=" + overspeedSeconds + ", remark='" + remark + '\'' + "," + " editTime=" + editTime + ", points=" + points + '}';
     }
 
     /**

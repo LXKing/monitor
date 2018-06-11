@@ -1,5 +1,7 @@
 package com.rayton.gps.dao.baseinfo.device;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.sql.Date;
 
 public class DeviceInfo {
@@ -10,11 +12,27 @@ public class DeviceInfo {
     private String factoryNumber;
     private String model;
     private boolean enable;
+    @JSONField(format = "yyyy-MM-dd")
     private Date serviceStartDate;
+    @JSONField(format = "yyyy-MM-dd")
     private Date serviceEndDate;
+    @JSONField(format = "yyyy-MM-dd")
     private Date warranty;
     private String remark;
     private String protocolName;
+    private String Protocol;
+    //
+    private String SN;
+    @JSONField(format = "yyyy-MM-dd")
+    private Date INSTOCKDATE;
+    @JSONField(format = "yyyy-MM-dd")
+    private Date OUTSTOCKDATE;
+    @JSONField(format = "yyyy-MM-dd")
+    private Date ACTIVATIONDATE;
+    private String IMEI;
+    private String LIFECYCLE;
+    @JSONField(format = "yyyy-MM-dd")
+    private Date LIFEEXPIRATIONDATE;
 
     public String getProtocolName() {
         return protocolName;
@@ -23,7 +41,6 @@ public class DeviceInfo {
     public void setProtocolName(String protocolName) {
         this.protocolName = protocolName;
     }
-    private String Protocol;
 
     public String getProtocol() {
         return Protocol;
@@ -32,26 +49,11 @@ public class DeviceInfo {
     public void setProtocol(String protocol) {
         Protocol = protocol;
     }
-
     //
-    private String SN;
-    private Date INSTOCKDATE;
-    private Date OUTSTOCKDATE;
-    private Date ACTIVATIONDATE;
-    private String IMEI;
-    private String LIFECYCLE;
-    private Date LIFEEXPIRATIONDATE;
-    //
-
 
     @Override
     public String toString() {
-        return "DeviceInfo{" + "id='" + id + '\'' + ", deviceNumber='" + deviceNumber + '\'' + ", phoneNumber='" +
-                phoneNumber + '\'' + ", factoryNumber='" + factoryNumber + '\'' + ", model='" + model + '\'' + ", " +
-                "enable=" + enable + ", serviceStartDate=" + serviceStartDate + ", serviceEndDate=" + serviceEndDate
-                + ", warranty=" + warranty + ", remark='" + remark + '\'' + ", SN='" + SN + '\'' + ", INSTOCKDATE=" +
-                INSTOCKDATE + ", OUTSTOCKDATE=" + OUTSTOCKDATE + ", ACTIVATIONDATE=" + ACTIVATIONDATE + ", IMEI='" +
-                IMEI + '\'' + ", LIFECYCLE='" + LIFECYCLE + '\'' + ", LIFEEXPIRATIONDATE=" + LIFEEXPIRATIONDATE + '}';
+        return "DeviceInfo{" + "id='" + id + '\'' + ", deviceNumber='" + deviceNumber + '\'' + ", phoneNumber='" + phoneNumber + '\'' + ", factoryNumber='" + factoryNumber + '\'' + ", model='" + model + '\'' + ", " + "enable=" + enable + ", serviceStartDate=" + serviceStartDate + ", serviceEndDate=" + serviceEndDate + ", warranty=" + warranty + ", remark='" + remark + '\'' + ", SN='" + SN + '\'' + ", INSTOCKDATE=" + INSTOCKDATE + ", OUTSTOCKDATE=" + OUTSTOCKDATE + ", ACTIVATIONDATE=" + ACTIVATIONDATE + ", IMEI='" + IMEI + '\'' + ", LIFECYCLE='" + LIFECYCLE + '\'' + ", LIFEEXPIRATIONDATE=" + LIFEEXPIRATIONDATE + '}';
     }
 
     public String getSN() {

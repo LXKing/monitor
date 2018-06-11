@@ -74,8 +74,7 @@ public class ExcelView extends AbstractXlsView {
     // }
 
     @Override
-    protected void buildExcelDocument(Map<String, Object> model, Workbook workbook, HttpServletRequest request,
-                                      HttpServletResponse response) throws Exception {
+    protected void buildExcelDocument(Map<String, Object> model, Workbook workbook, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 
         String excelName = model.get("fileName").toString() + ".xls";
@@ -116,7 +115,7 @@ public class ExcelView extends AbstractXlsView {
             // setText(cell, title);
         }
 
-        Row headerRow=  sheet.createRow(index++);
+        Row headerRow = sheet.createRow(index++);
         for (int i = 0; i < headers.length; i++) { // 设置标题
             String header = headers[i];
             // HSSFCell cell = getCell(sheet, index, i);

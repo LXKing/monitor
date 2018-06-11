@@ -13,8 +13,7 @@ public class RouteDeviationCount {
 
     @Override
     public String toString() {
-        return "RouteDeviationCount{" + "motorcadeId='" + motorcadeId + '\'' + ", motorcade='" + motorcade + '\'' +
-                "," + " times=" + times + ", duration=" + duration + ", start=" + start + ", end=" + end + '}';
+        return "RouteDeviationCount{" + "motorcadeId='" + motorcadeId + '\'' + ", motorcade='" + motorcade + '\'' + "," + " times=" + times + ", duration=" + duration + ", start=" + start + ", end=" + end + '}';
     }
 
     public String getMotorcadeId() {

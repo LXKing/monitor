@@ -1,5 +1,7 @@
 package com.rayton.gps.dao.baseinfo.vehicle;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.sql.Date;
 
 /**
@@ -14,10 +16,15 @@ public class VehicleInfo {
     private String phoneNumber;
     private String plateNumber;
     private String plateColor;
+    @JSONField(format = "yyyy-MM-dd")
     private Date installDate;
+    @JSONField(format = "yyyy-MM-dd")
     private Date annualSurveyDate;
+    @JSONField(format = "yyyy-MM-dd")
     private Date serviceStartDate;
+    @JSONField(format = "yyyy-MM-dd")
     private Date serviceEndDate;
+    @JSONField(format = "yyyy-MM-dd")
     private Date nextMaintainDate;
     private String motorcade;
     private String marker;
@@ -35,38 +42,34 @@ public class VehicleInfo {
     private String LICENSEPLATESELFNUM;
     private String ENGINENUM;
     private String CARRIAGELONG;
+    @JSONField(format = "yyyy-MM-dd")
     private Date BUYDATE;
     private String PROVIDERCONTACT;
     private String DANGERPLATENUM;
     private String VEHICULARWEIGHT;
     private String INVOICEAMOUNT;
     private String PROVIDERTEL;
+    @JSONField(format = "yyyy-MM-dd")
     private Date REGISTRATIONDATE;
     private String BUYTAX;
     private String LICENSEEXAMINATIONPERIOD;
     private String VEHICLEPIC;
     private String VINPIC;
+    private String FUELTYPE;
+
+    public String getFUELTYPE() {
+        return FUELTYPE;
+    }
+
+    public void setFUELTYPE(String FUELTYPE) {
+        this.FUELTYPE = FUELTYPE;
+    }
     //
 
 
     @Override
     public String toString() {
-        return "VehicleInfo{" + "id='" + id + '\'' + ", deviceNumber='" + deviceNumber + '\'' + ", phoneNumber='" +
-                phoneNumber + '\'' + ", plateNumber='" + plateNumber + '\'' + ", plateColor='" + plateColor + '\'' +
-                ", installDate=" + installDate + ", annualSurveyDate=" + annualSurveyDate + ", serviceStartDate=" +
-                serviceStartDate + ", serviceEndDate=" + serviceEndDate + ", nextMaintainDate=" + nextMaintainDate +
-                ", motorcade='" + motorcade + '\'' + ", marker='" + marker + '\'' + ", remark='" + remark + '\'' + "," +
-                "" + "" + "" + "" + "" + "" + "" + "" + "" + " FACTORYPLATEMODE='" + FACTORYPLATEMODE + '\'' + ", " +
-                "AXLENUM='" + AXLENUM + '\'' + ", " + "" + "MANUFACTURER='" + MANUFACTURER + '\'' + ", TRAILERNUM='"
-                + TRAILERNUM + '\'' + "," + " " + "VIN='" + VIN + '\'' + ", " + "BUYMONEY='" + BUYMONEY + '\'' + ", "
-                + "SERVICEPROVIDER='" + SERVICEPROVIDER + '\'' + ", " + "" + "LICENSEPLATESELFNUM='" +
-                LICENSEPLATESELFNUM + '\'' + ", " + "ENGINENUM='" + ENGINENUM + '\'' + ", " + "CARRIAGELONG='" +
-                CARRIAGELONG + '\'' + ", BUYDATE=" + BUYDATE + ", PROVIDERCONTACT='" + PROVIDERCONTACT + '\'' + ", "
-                + "DANGERPLATENUM='" + DANGERPLATENUM + '\'' + ", VEHICULARWEIGHT='" + VEHICULARWEIGHT + '\'' + ", "
-                + "INVOICEAMOUNT='" + INVOICEAMOUNT + '\'' + ", PROVIDERTEL='" + PROVIDERTEL + '\'' + ", " +
-                "REGISTRATIONDATE=" + REGISTRATIONDATE + ", BUYTAX='" + BUYTAX + '\'' + ", " +
-                "LICENSEEXAMINATIONPERIOD='" + LICENSEEXAMINATIONPERIOD + '\'' + ", " + "VEHICLEPIC='" + VEHICLEPIC +
-                '\'' + ", VINPIC='" + VINPIC + '\'' + '}';
+        return "VehicleInfo{" + "id='" + id + '\'' + ", deviceNumber='" + deviceNumber + '\'' + ", phoneNumber='" + phoneNumber + '\'' + ", plateNumber='" + plateNumber + '\'' + ", plateColor='" + plateColor + '\'' + ", installDate=" + installDate + ", annualSurveyDate=" + annualSurveyDate + ", serviceStartDate=" + serviceStartDate + ", serviceEndDate=" + serviceEndDate + ", nextMaintainDate=" + nextMaintainDate + ", motorcade='" + motorcade + '\'' + ", marker='" + marker + '\'' + ", remark='" + remark + '\'' + "," + "" + "" + "" + "" + "" + "" + "" + "" + "" + " FACTORYPLATEMODE='" + FACTORYPLATEMODE + '\'' + ", " + "AXLENUM='" + AXLENUM + '\'' + ", " + "" + "MANUFACTURER='" + MANUFACTURER + '\'' + ", TRAILERNUM='" + TRAILERNUM + '\'' + "," + " " + "VIN='" + VIN + '\'' + ", " + "BUYMONEY='" + BUYMONEY + '\'' + ", " + "SERVICEPROVIDER='" + SERVICEPROVIDER + '\'' + ", " + "" + "LICENSEPLATESELFNUM='" + LICENSEPLATESELFNUM + '\'' + ", " + "ENGINENUM='" + ENGINENUM + '\'' + ", " + "CARRIAGELONG='" + CARRIAGELONG + '\'' + ", BUYDATE=" + BUYDATE + ", PROVIDERCONTACT='" + PROVIDERCONTACT + '\'' + ", " + "DANGERPLATENUM='" + DANGERPLATENUM + '\'' + ", VEHICULARWEIGHT='" + VEHICULARWEIGHT + '\'' + ", " + "INVOICEAMOUNT='" + INVOICEAMOUNT + '\'' + ", PROVIDERTEL='" + PROVIDERTEL + '\'' + ", " + "REGISTRATIONDATE=" + REGISTRATIONDATE + ", BUYTAX='" + BUYTAX + '\'' + ", " + "LICENSEEXAMINATIONPERIOD='" + LICENSEEXAMINATIONPERIOD + '\'' + ", " + "VEHICLEPIC='" + VEHICLEPIC + '\'' + ", VINPIC='" + VINPIC + '\'' + '}';
     }
 
     public String getFACTORYPLATEMODE() {

@@ -36,8 +36,7 @@ public class CommonContorller {
 
     @PostMapping(value = "/common/device/log/load")
     @ResponseBody
-    public Object deviceLoadDataLog(@RequestParam String number, @RequestParam Date start, @RequestParam Date end,
-                                    @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
+    public Object deviceLoadDataLog(@RequestParam String number, @RequestParam Date start, @RequestParam Date end, @RequestParam int pageIndex, @RequestParam int pageSize) throws Exception {
 
         return commonService.loadDataLog(number, start, end, pageIndex, pageSize);
     }

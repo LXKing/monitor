@@ -17,8 +17,7 @@ public class InstructResult {
 
     @Override
     public String toString() {
-        return "InstructResult{" + "number='" + number + '\'' + ", id='" + id + '\'' + ", result='" + result + '\'' +
-                '}';
+        return "InstructResult{" + "number='" + number + '\'' + ", id='" + id + '\'' + ", result='" + result + '\'' + '}';
     }
 
     public String getNumber() {

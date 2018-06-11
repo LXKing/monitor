@@ -18,11 +18,7 @@ public class VehicleAlarmDetail {
 
     @Override
     public String toString() {
-        return "VehicleAlarmDetail{" + "deviceNumber='" + deviceNumber + '\'' + ", motorcade='" + motorcade + '\'' +
-                ", plateNumber='" + plateNumber + '\'' + ", overspeedNoneArea=" + overspeedNoneArea + ", " +
-                "overspeedInArea=" + overspeedInArea + ", overspeedInSection=" + overspeedInSection + ", " +
-                "fatigueDriving=" + fatigueDriving + ", parkingTimeout=" + parkingTimeout + ", routeDeparture=" +
-                routeDeparture + ", start=" + start + ", end=" + end + '}';
+        return "VehicleAlarmDetail{" + "deviceNumber='" + deviceNumber + '\'' + ", motorcade='" + motorcade + '\'' + ", plateNumber='" + plateNumber + '\'' + ", overspeedNoneArea=" + overspeedNoneArea + ", " + "overspeedInArea=" + overspeedInArea + ", overspeedInSection=" + overspeedInSection + ", " + "fatigueDriving=" + fatigueDriving + ", parkingTimeout=" + parkingTimeout + ", routeDeparture=" + routeDeparture + ", start=" + start + ", end=" + end + '}';
     }
 
     public String getDeviceNumber() {

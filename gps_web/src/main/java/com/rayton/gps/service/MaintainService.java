@@ -20,16 +20,17 @@ public class MaintainService {
     @Autowired
     private IMaintainDao maintainDao;
 
-    public Page<MaintainInfo> query(String companyId, String plateNumber, Date from, Date to, int pageIndex, int
-            pageSize) {
+    public Page<MaintainInfo> query(String companyId, String plateNumber, Date from, Date to, int pageIndex, int pageSize) {
         int total = maintainDao.queryPageCount(companyId, plateNumber, from, to);
 
-        Page<MaintainInfo> query = new Page<MaintainInfo>(); query.total = total; if (total > 0) {
-            List<MaintainInfo> rows = maintainDao.queryPageDetail(companyId, plateNumber, from, to, (pageIndex - 1) *
-                    pageSize, pageSize);
+        Page<MaintainInfo> query = new Page<MaintainInfo>();
+        query.total = total;
+        if (total > 0) {
+            List<MaintainInfo> rows = maintainDao.queryPageDetail(companyId, plateNumber, from, to, (pageIndex - 1) * pageSize, pageSize);
             query.rows.addAll(rows);
 
-        } return query;
+        }
+        return query;
     }
 
     @RequiresPermissions("baseinfo.maintain.create")
@@ -63,7 +64,9 @@ public class MaintainService {
         } catch (Exception e) {
 
             e.printStackTrace();
-        } if (rows != 1) throw new RuntimeException(Errors.anotherEdited);
+        }
+        if (rows != 1)
+            throw new RuntimeException(Errors.anotherEdited);
 
         maintainDao.updateNextMaintainDate(maintain.getVehicleId(), maintain.getNextDate());
     }

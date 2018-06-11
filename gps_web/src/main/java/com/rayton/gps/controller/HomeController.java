@@ -6,9 +6,8 @@ import com.rayton.gps.domain.security.SaveMyKeyRequest;
 import com.rayton.gps.model.Login;
 import com.rayton.gps.service.OverviewService;
 import com.rayton.gps.service.SecurityService;
-import com.rayton.gps.util.FuckRSA;
+import com.rayton.gps.util.RSA;
 import com.rayton.gps.util.ResponseEntityWrapper;
-import com.rayton.gps.util.StupidRSA;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
@@ -32,12 +31,10 @@ import javax.validation.Valid;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.security.Key;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Handles requests for the application home page.
@@ -49,7 +46,7 @@ public class HomeController {
     @Autowired
     private OverviewService overviewService;
 
-    Map<String, String> map = new ConcurrentHashMap<>();
+    // Map<String, String> map = new ConcurrentHashMap<>();
 
     @GetMapping(value = "/")
     public ModelAndView login(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -68,16 +65,16 @@ public class HomeController {
             subject.logout();
         }
         ModelAndView modelAndView = new ModelAndView();
-        Map<String, Key> keyMap = StupidRSA.initKey();
-        String publicKey = StupidRSA.getPublicKey(keyMap);
-        String privateKey = StupidRSA.getPrivateKey(keyMap);
-
-
-        map.put("publicKey", publicKey);
-        map.put("privateKey", privateKey);
+        // Map<String, Key> keyMap = StupidRSA.initKey();
+        // String publicKey = StupidRSA.getPublicKey(keyMap);
+        // String privateKey = StupidRSA.getPrivateKey(keyMap);
+        //
+        //
+        // map.put("publicKey", publicKey);
+        // map.put("privateKey", privateKey);
 
         modelAndView.setViewName("login");
-        modelAndView.addObject("publicKey", FuckRSA.generateBase64PublicKey());
+        modelAndView.addObject("publicKey", RSA.generateBase64PublicKey());
         // modelAndView.addObject("privateKey", privateKey);
 
         return modelAndView;
@@ -169,7 +166,7 @@ public class HomeController {
             // }
 
 
-            UsernamePasswordToken token = new UsernamePasswordToken(model.getAccount(), FuckRSA.decryptBase64(encodedData));
+            UsernamePasswordToken token = new UsernamePasswordToken(model.getAccount(), RSA.decryptBase64(encodedData));
             // 默认，懒得搞了
             // TODO
             token.setRememberMe(true);

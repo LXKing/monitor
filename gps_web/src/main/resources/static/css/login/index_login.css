@@ -39,16 +39,18 @@
   margin-top: 94px;
   margin-right: 248px;
 }
-.login_page .login_info .login_all P:nth-child(1) {
+.login_page .login_info .login_all .p1 {
   font-family: "Microsoft YaHei";
   font-size: 33px;
   opacity: .7;
+  padding-right: 27px;
 }
-.login_page .login_info .login_all p:nth-child(2) {
+.login_page .login_info .login_all .p2 {
   margin-top: 9px;
   font-size: 15px;
   text-align: right;
   opacity: .3;
+  padding-right: 20px;
 }
 .login_page .login_info .login_all .login_box {
   width: 384px;

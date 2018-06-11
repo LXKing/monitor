@@ -44,8 +44,8 @@ public class DeviceInstructSender {
         if (top == null)
             return;
         try {
-            instructDao.send(top.getSerialNumber(), top.getDeviceNumber(), top.getUnid(), top.getUser(), top
-                    .getCommand(), top.getName(), top.getParams());
+            instructDao.send(top.getSerialNumber(), top.getDeviceNumber(), top.getUnid(), top.getUser(), top.getCommand(), top
+                    .getName(), top.getParams());
         } catch (Exception e) {
             e.printStackTrace();
         }

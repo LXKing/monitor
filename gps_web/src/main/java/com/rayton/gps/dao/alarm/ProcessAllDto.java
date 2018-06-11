@@ -49,8 +49,6 @@ public class ProcessAllDto {
 
     @Override
     public String toString() {
-        return "ProcessAllDto{" + "deviceNumber='" + deviceNumber + '\'' + ", userMethod='" + userMethod + '\'' + ", " +
-                "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "userRemark='" + userRemark + '\'' + ", " +
-                "userId='" + userId + '\'' + ", " + "" + "userName='" + userName + '\'' + '}';
+        return "ProcessAllDto{" + "deviceNumber='" + deviceNumber + '\'' + ", userMethod='" + userMethod + '\'' + ", " + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "userRemark='" + userRemark + '\'' + ", " + "userId='" + userId + '\'' + ", " + "" + "userName='" + userName + '\'' + '}';
     }
 }
