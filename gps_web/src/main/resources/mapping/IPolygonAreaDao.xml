@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mmp.gps.monitor.dao.baseinfo.polygonArea.IPolygonAreaDao">
+    <select id="queryPageCount" resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM
+            polygon_region
+        WHERE COMPANYID = #{param1}
+          AND NAME LIKE CONCAT('%', #{param2}, '%')
+    </select>
+    <select id="queryPageDetail" resultType="mmp.gps.monitor.dao.baseinfo.polygonArea.PolygonAreaInfo">
+        SELECT
+            ID,
+            NAME,
+            DEVICECATCH,
+            REMARK
+        FROM polygon_region
+        WHERE COMPANYID = #{param1}
+          AND NAME LIKE
+              CONCAT('%', #{param2}, '%')
+        ORDER BY NAME
+                 LIMIT #{param3}, #{param4}
+    </select>
+    <select id="searchPageCount" resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM
+            polygon_region
+        WHERE COMPANYID = #{param1}
+          AND NAME LIKE CONCAT('%', #{param2}, '%')
+    </select>
+    <select id="searchPageDetail" resultType="mmp.gps.monitor.dao.baseinfo.polygonArea.PolygonAreaInfo">
+        SELECT
+            ID,
+            NAME,
+            DEVICECATCH,
+            REMARK
+        FROM polygon_region
+        WHERE COMPANYID = #{param1}
+          AND NAME LIKE
+              CONCAT('%', #{param2}, '%')
+        ORDER BY NAME
+                 LIMIT #{param3}, #{param4}
+    </select>
+    <insert id="create" useGeneratedKeys="true" keyProperty="id"
+            parameterType="mmp.gps.monitor.dao.baseinfo.polygonArea.PolygonArea">
+        INSERT INTO polygon_region (COMPANYID,
+                                    NAME, DEVICECATCH, FLAG, MAXSPEED,
+                                    OVERSPEEDSECONDS, STARTTIME,
+                                    ENDTIME, REMARK)
+        VALUES (#{companyId}, #{name}, #{deviceCatch},
+                #{flag}, #{maxSpeed}, #{overspeedSeconds},
+                #{startTime}, #{endTime},
+                #{remark})
+    </insert>
+    <select id="fetch" resultType="mmp.gps.monitor.dao.baseinfo.polygonArea.PolygonArea">
+        SELECT
+            ID,
+            COMPANYID,
+            NAME,
+            DEVICECATCH,
+            FLAG,
+            MAXSPEED,
+            OVERSPEEDSECONDS,
+            STARTTIME,
+            ENDTIME,
+            REMARK,
+            EDITTIME
+        FROM polygon_region
+        WHERE ID = #{)0}
+            LIMIT 1
+    </select>
+    <update id="update" parameterType="mmp.gps.monitor.dao.baseinfo.polygonArea.PolygonArea">
+        UPDATE polygon_region
+        SET
+            COMPANYID        = #{companyId},
+            NAME             = #{name},
+            DEVICECATCH      = #{deviceCatch},
+            FLAG             = #{flag},
+            MAXSPEED         = #{maxSpeed},
+            OVERSPEEDSECONDS = #{overspeedSeconds},
+            STARTTIME        = #{startTime},
+            ENDTIME          = #{endTime},
+            REMARK           = #{remark},
+            EDITTIME         = #{editTime}
+        WHERE ID = #{id}
+
+            LIMIT 1
+    </update>
+    <delete id="delete">
+        DELETE
+        FROM polygon_region
+        WHERE ID = #{param1}
+            LIMIT 1
+    </delete>
+    <insert id="createPolygonPoint">
+        INSERT INTO polygon_vertex(PID, LAT, LNG) VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.key},#{item.value.lat},#{item.value.lng})
+        </foreach>
+    </insert>
+    <select id="fetchPolygonPoint" resultType="com.rayton.gps.common.LatLng">
+        SELECT
+            LAT,
+            LNG
+        FROM
+            polygon_vertex
+        WHERE PID = #{param1}
+    </select>
+    <delete id="deletePolygonPoint">
+        DELETE
+        FROM polygon_vertex
+        WHERE PID = #{param1}
+    </delete>
+    <select id="exist" resultType="java.lang.Boolean">
+        SELECT COUNT(1)
+        FROM polygon_region
+        WHERE
+            NAME = #{param1}
+          AND COMPANYID = #{param2}
+            LIMIT 1
+    </select>
+    <select id="existOutId" resultType="java.lang.Boolean">
+        SELECT COUNT(1)
+        FROM polygon_region
+        WHERE NAME = #{param1}
+          AND COMPANYID = #{param2}
+          AND ID != #{param3}
+            LIMIT 1
+    </select>
+</mapper>

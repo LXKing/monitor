@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mmp.gps.monitor.dao.alarm.IAlarmDao">
+    <resultMap type="mmp.gps.monitor.dao.alarm.Alarm" id="AlarmDtoMap">
+        <id property="id" column="ID" jdbcType="VARCHAR"/>
+        <result column="DEVICENUMBER" property="dn" jdbcType="VARCHAR"/>
+        <result column="PLATENUMBER" property="na" jdbcType="VARCHAR"/>
+        <result column="GPSTIME" property="gt" jdbcType="TIMESTAMP"/>
+        <result column="SERVERTIME" property="st" jdbcType="TIMESTAMP"/>
+        <result column="VALID" property="val" jdbcType="TINYINT"/>
+        <result column="LNG" property="lng" jdbcType="DOUBLE"/>
+        <result column="LAT" property="lat" jdbcType="DOUBLE"/>
+        <result column="ALT" property="alt" jdbcType="INTEGER"/>
+        <result column="SPEED" property="sp" jdbcType="FLOAT"/>
+        <result column="ANGLE" property="d" jdbcType="INTEGER"/>
+        <result column="ALARMS" property="a" jdbcType="BIGINT"/>
+        <result column="STATUS" property="s" jdbcType="BIGINT"/>
+        <result column="MILEAGE" property="m" jdbcType="DOUBLE"/>
+        <result column="OILMASS" property="oil" jdbcType="FLOAT"/>
+        <result column="VSS" property="vss" jdbcType="FLOAT"/>
+        <result column="OVAREATYPE" property="ovt" jdbcType="TINYINT"/>
+        <result column="OVAREAID" property="oid" jdbcType="BIGINT"/>
+        <result column="IOAREATYPE" property="iot" jdbcType="TINYINT"/>
+        <result column="IOAREAID" property="iid" jdbcType="BIGINT"/>
+        <result column="IOAREAFLAG" property="iof" jdbcType="TINYINT"/>
+        <result column="ROUTEID" property="rid" jdbcType="BIGINT"/>
+        <result column="ROUTESECONDS" property="rt" jdbcType="INTEGER"/>
+        <result column="ROUTEFLAG" property="rf" jdbcType="TINYINT"/>
+        <result column="ALARMID" property="aid" jdbcType="INTEGER"/>
+        <result column="EXSTATUS" property="exs" jdbcType="BIGINT"/>
+        <result column="IOSTATUS" property="ios" jdbcType="INTEGER"/>
+        <result column="AD0" property="ad0" jdbcType="INTEGER"/>
+        <result column="AD1" property="ad1" jdbcType="INTEGER"/>
+        <result column="NETWORK" property="net" jdbcType="SMALLINT"/>
+        <result column="SATELLITES" property="sat" jdbcType="SMALLINT"/>
+        <result column="FROM" property="from" jdbcType="TINYINT"/>
+        <result column="USERNAME" property="userName" jdbcType="VARCHAR"/>
+        <result column="USERTIME" property="userTime" jdbcType="TIMESTAMP"/>
+        <result column="USERCONFIRM" property="userconfirm" jdbcType="INTEGER"/>
+        <result column="USERMETHOD" property="userMethod" jdbcType="VARCHAR"/>
+        <result column="USERREMARK" property="userRemark" jdbcType="VARCHAR"/>
+        <result column="EDITTIME" property="editTime" jdbcType="TIMESTAMP"/>
+        <result column="ISHANDLED" property="ISHANDLED" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="untreatedByDeviceNumber" resultMap="AlarmDtoMap">
+        SELECT *
+        FROM
+            alarm
+        WHERE DEVICENUMBER = #{deviceNumber}
+          AND ISHANDLED = 0
+          AND (GPSTIME BETWEEN #{start} AND
+            #{end})
+
+        ORDER BY
+            GPSTIME
+            DESC LIMIT
+            #{pageIndex}, #{pageSize}
+    </select>
+
+    <select id="getDnUntreated" resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM
+            alarm
+        WHERE DEVICENUMBER = #{param1}
+          AND ISHANDLED = 0
+          AND (GPSTIME BETWEEN #{param2} AND
+            #{param3})
+    </select>
+
+    <select id="processPageCount" resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM
+            alarm
+        WHERE DEVICENUMBER = #{param1}
+          AND (GPSTIME BETWEEN #{param2} AND
+            #{param3})
+          AND
+            ISHANDLED = 1
+    </select>
+    <select id="processedPageDetail" resultMap="AlarmDtoMap">
+        SELECT *
+        FROM alarm
+        WHERE DEVICENUMBER = #{param1}
+          AND (GPSTIME BETWEEN #{param2} AND #{param3})
+          AND
+            ISHANDLED = 1
+        ORDER BY GPSTIME
+    </select>
+    <select id="getAlarmTimestamp" resultType="java.util.Date">
+        SELECT EDITTIME
+        FROM
+            alarm
+        WHERE ID = #{param1}
+          AND ISHANDLED = 0
+            LIMIT 1
+    </select>
+    <update id="processOnce" parameterType="mmp.gps.monitor.dao.alarm.ProcessOnceDto">
+        UPDATE alarm
+        SET
+            USERID     = #{userId},
+            USERNAME   = #{userName},
+            USERTIME   = NOW(),
+            ISHANDLED  = 1,
+            USERMETHOD = #{userMethod},
+            USERREMARK = #{userRemark}
+        WHERE ID = #{alarmId}
+            LIMIT 1
+    </update>
+    <update id="processAll" parameterType="mmp.gps.monitor.dao.alarm.ProcessAllDto">
+        UPDATE alarm
+        SET
+            USERID     = #{userId},
+            USERNAME   = #{userName},
+            USERTIME   = NOW(),
+            ISHANDLED  = 1,
+            USERMETHOD = #{userMethod},
+            USERREMARK = #{userRemark}
+        WHERE DEVICENUMBER = #{deviceNumber}
+          AND ISHANDLED = 0
+    </update>
+
+    <select id="allByDeviceNumbers" resultMap="AlarmDtoMap" parameterType="java.util.HashMap">
+        SELECT A.*,C.PLATENUMBER FROM alarm AS A INNER JOIN
+        equipment AS B ON
+        A.DEVICENUMBER=B.DEVICENUMBER INNER JOIN automobile AS C ON
+        B.ID=C.DEVICEID WHERE A.DEVICENUMBER IN
+        <foreach item="item" index="index" collection="deviceNumbers" open="("
+                 separator="," close=")">
+            #{item}
+        </foreach>
+        ORDER BY GPSTIME DESC LIMIT
+        #{pageIndex}, #{pageSize}
+    </select>
+
+    <select id="getCount" resultType="java.lang.Integer">
+        SELECT count(1) FROM alarm AS A INNER JOIN
+        equipment AS B ON
+        A.DEVICENUMBER=B.DEVICENUMBER INNER JOIN automobile AS C ON
+        B.ID=C.DEVICEID WHERE A.DEVICENUMBER IN
+        <foreach item="item" index="index" collection="list" open="("
+                 separator="," close=")">
+            #{item}
+        </foreach>
+
+    </select>
+
+    <select id="untreatedByDeviceNumbers" resultMap="AlarmDtoMap">
+        SELECT A.*,C.PLATENUMBER FROM alarm AS A INNER JOIN
+        equipment AS B ON
+        A.DEVICENUMBER=B.DEVICENUMBER INNER JOIN automobile AS C ON
+        B.ID=C.DEVICEID WHERE
+        ISHANDLED=0 AND A.DEVICENUMBER IN
+        <foreach item="item" index="index" collection="list" open="("
+                 separator="," close=")">
+            #{item}
+        </foreach>
+        ORDER BY GPSTIME DESC
+    </select>
+</mapper>

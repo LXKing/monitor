@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mmp.gps.monitor.dao.baseinfo.device.IDeviceDao">
+    <select id="queryPageCount" resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM
+            equipment AS A
+                LEFT JOIN simcard AS B ON A.SIMCARDID = B.ID
+        WHERE
+            (A.DEVICENUMBER LIKE CONCAT('%', #{param2}, '%') OR B.PHONENUMBER LIKE
+                                                                CONCAT('%', #{param2}, '%'))
+          AND
+            A.COMPANYID = #{param1}
+    </select>
+    <select id="queryPageDetail" resultType="mmp.gps.monitor.dao.baseinfo.device.DeviceInfo">
+        SELECT
+            A.id,
+            S.SYSVID,
+            A.DEVICENUMBER,
+            B.PHONENUMBER,
+            A.FACTORYNUMBER,
+            A.MODEL,
+            A.WARRANTY,
+            A.Protocol,
+            A.ProtocolName,
+            A.SN,
+            A.INSTOCKDATE,
+            A.OUTSTOCKDATE,
+            A.ACTIVATIONDATE,
+            A.IMEI,
+            A.LIFECYCLE,
+            A.LIFEEXPIRATIONDATE,
+            A.TERMINALSERVICESTATE,
+            A.EDITUSER,
+            A.REMARKS,
+            cnm.NAME as motorcade
+        FROM equipment AS A
+                 LEFT JOIN simcard AS B ON A.SIMCARDID = B.ID
+                 LEFT JOIN sysvid AS S ON A.ID = S.SYSVID
+                 left join automobile as automobile on automobile.DEVICEID = A.ID
+                 left join motorcade as cnm on cnm.ID = automobile.MOTORCADEID
+        WHERE (A.DEVICENUMBER LIKE
+               CONCAT('%', #{param2}, '%') OR
+               B.PHONENUMBER LIKE CONCAT('%', #{param2}, '%'))
+          AND
+            A.COMPANYID = #{param1}
+        ORDER BY A.DEVICENUMBER
+                 LIMIT #{param3}, #{param4}
+    </select>
+    <insert id="create" parameterType="mmp.gps.monitor.dao.baseinfo.device.Device">
+        INSERT INTO equipment (ID,
+                               COMPANYID,
+                               DEVICENUMBER,
+                               SIMCARDID,
+                               MODEL,
+                               FACTORYNAME,
+                               FACTORYNUMBER,
+                               CAMERAS,
+                               HASMICROPHONE,
+                               HASNAVIGATION,
+                               SENSORS,
+                               WARRANTY,
+                               PURCHASEDATE,
+                               INSTALLDATE,
+                               SN,
+                               INSTOCKDATE,
+                               OUTSTOCKDATE,
+                               ACTIVATIONDATE,
+                               IMEI,
+                               LIFECYCLE,
+                               LIFEEXPIRATIONDATE,
+                               Protocol,
+                               ProtocolName,
+                               REPAIR,
+                               EDITUSER,
+                               REPAIRMAN,
+                               MAINTENANCETIME,
+                               CAUSEOFFAILURE,
+                               TERMINALSERVICESTATE,
+                               REMARKS)
+        VALUES
+        (#{id}, #{companyId}, #{deviceNumber},
+         #{simcardId}, #{model},
+         #{factoryName}, #{factoryNumber}, #{cameras},
+         #{hasMicrophone}, #{hasNavigation}, #{sensors}, #{warranty},
+         #{purchaseDate}, #{installDate}, #{SN}, #{INSTOCKDATE},
+         #{OUTSTOCKDATE}, #{ACTIVATIONDATE}, #{IMEI},
+         #{LIFECYCLE}, #{LIFEEXPIRATIONDATE}, #{protocol}, #{protocolName}, #{REPAIR},
+         #{EDITUSER}, #{repairman}, #{maintenanceTime}, #{causeofFailure}, #{terminalServiceState}, #{remarks})
+    </insert>
+    <update id="update" parameterType="mmp.gps.monitor.dao.baseinfo.device.Device">
+        UPDATE equipment
+        SET
+            COMPANYID            = #{companyId},
+            DEVICENUMBER         = #{deviceNumber},
+            SIMCARDID            = #{simcardId},
+            MODEL                = #{model},
+            FACTORYNAME          = #{factoryName},
+            FACTORYNUMBER        = #{factoryNumber},
+            CAMERAS              = #{cameras},
+            HASMICROPHONE        = #{hasMicrophone},
+            HASNAVIGATION        = #{hasNavigation},
+            SENSORS              = #{sensors},
+            WARRANTY             = #{warranty},
+            PURCHASEDATE         = #{purchaseDate},
+            INSTALLDATE          = #{installDate},
+            SN                   = #{SN},
+            EDITUSER             = #{EDITUSER},
+            INSTOCKDATE          = #{INSTOCKDATE},
+            OUTSTOCKDATE         = #{OUTSTOCKDATE},
+            ACTIVATIONDATE       = #{ACTIVATIONDATE},
+            IMEI                 = #{IMEI},
+            LIFECYCLE            = #{LIFECYCLE},
+            LIFEEXPIRATIONDATE   = #{LIFEEXPIRATIONDATE},
+            EDITTIME             = #{editTime},
+            Protocol             = #{protocol},
+            REPAIR               = #{REPAIR},
+            REPAIRMAN            = #{repairman},
+            MAINTENANCETIME      = #{maintenanceTime},
+            CAUSEOFFAILURE       = #{causeofFailure},
+            TERMINALSERVICESTATE = #{terminalServiceState},
+            REMARKS              = #{remarks}
+        WHERE ID = #{id}
+
+            LIMIT 1
+    </update>
+    <select id="assignedVehicle" resultType="java.lang.String">
+        SELECT PLATENUMBER
+        FROM
+            automobile
+        WHERE DEVICEID = #{param1}
+    </select>
+    <delete id="delete">
+        DELETE
+        FROM equipment
+        WHERE ID = #{param1}
+    </delete>
+    <select id="getDeviceNumber" resultType="java.lang.String">
+        SELECT DEVICENUMBER
+        FROM
+            equipment
+        WHERE ID = #{param1}
+            LIMIT 1
+    </select>
+    <select id="getPlateNumber" resultType="java.lang.String">
+        SELECT A.PLATENUMBER
+        FROM
+            automobile AS A
+                INNER JOIN equipment AS B ON
+                A.DEVICEID = B.ID
+        WHERE
+            B.DEVICENUMBER = #{param1}
+            LIMIT 1
+    </select>
+    <select id="fetch" resultType="mmp.gps.monitor.dao.baseinfo.device.Device">
+        SELECT
+            A.ID,
+            A.COMPANYID,
+            A.DEVICENUMBER,
+            B.PHONENUMBER AS PHONENUMBER,
+            A.SIMCARDID,
+            A.MODEL,
+            A.FACTORYNAME,
+            A.FACTORYNUMBER,
+            A.CAMERAS,
+            A.HASMICROPHONE,
+            A.HASNAVIGATION,
+            A.SENSORS,
+            A.WARRANTY,
+            A.EDITTIME,
+            A.PURCHASEDATE,
+            A.INSTALLDATE,
+            A.Protocol,
+            A.ProtocolName,
+            A.REPAIR,
+            A.EDITUSER,
+            A.SN,
+            A.INSTOCKDATE,
+            A.OUTSTOCKDATE,
+            A.ACTIVATIONDATE,
+            A.IMEI,
+            A.LIFECYCLE,
+            A.LIFEEXPIRATIONDATE,
+            A.REPAIRMAN,
+            A.REMARKS,
+            A.REGISTTIME,
+            A.CAUSEOFFAILURE,
+            A.TERMINALSERVICESTATE,
+            v.SYSVID      as vid,
+            M.motorcadeId
+        FROM
+            equipment AS A
+                LEFT JOIN simcard AS B ON A.SIMCARDID = B.ID
+                LEFT JOIN sysvid AS v ON A.ID = v.SYSVID
+                LEFT JOIN equipment_motorcade AS M ON A.id = M.deviceeId
+        WHERE A.ID = #{param1}
+            LIMIT 1
+    </select>
+    <select id="exist" resultType="java.lang.Boolean">
+        SELECT COUNT(1)
+        FROM equipment
+        WHERE
+            DEVICENUMBER = #{param1}
+            LIMIT 1
+    </select>
+    <select id="existOutId" resultType="java.lang.Boolean">
+        SELECT COUNT(1)
+        FROM equipment
+        WHERE DEVICENUMBER = #{param1}
+          AND ID != #{param2}
+            LIMIT 1
+    </select>
+    <select id="searchPageCount" resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM
+            equipment
+                LEFT JOIN simcard ON equipment.SIMCARDID = simcard.ID
+        WHERE
+            equipment.COMPANYID = #{param1}
+          AND equipment.DEVICENUMBER LIKE
+              CONCAT('%', #{param2}, '%')
+    </select>
+    <select id="searchPageDetail" resultType="mmp.gps.monitor.dao.baseinfo.device.DeviceSearchInfo">
+        SELECT
+            A.ID,
+            A.DEVICENUMBER,
+            B.PHONENUMBER,
+            A.MODEL,
+            A.FACTORYNAME,
+            A.FACTORYNUMBER
+        FROM equipment AS A
+                 LEFT JOIN simcard AS B ON
+                A.SIMCARDID = B.ID
+        WHERE
+            A.COMPANYID = #{param1}
+          AND A.DEVICENUMBER LIKE CONCAT('%', #{param2}, '%')
+        ORDER BY
+            A.DEVICENUMBER
+            LIMIT #{param3}, #{param4}
+    </select>
+    <select id="freePageCount" resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM
+            equipment
+                LEFT JOIN simcard ON equipment.SIMCARDID = simcard.ID
+        WHERE equipment.ID
+            NOT IN (SELECT DEVICEID
+                    FROM automobile
+                    WHERE
+                        COMPANYID = #{param1})
+          AND
+            equipment.COMPANYID = #{param1}
+          AND equipment.DEVICENUMBER LIKE
+              CONCAT('%', #{param2}, '%')
+    </select>
+    <select id="freePageDetail" resultType="mmp.gps.monitor.dao.baseinfo.device.DeviceSearchInfo">
+        SELECT
+            A.ID,
+            A.DEVICENUMBER,
+            B.PHONENUMBER,
+            A.MODEL,
+            A.FACTORYNAME,
+            A.FACTORYNUMBER
+
+        FROM equipment AS A
+                 LEFT JOIN simcard AS B ON
+                A.SIMCARDID = B.ID
+        WHERE A.ID
+            NOT IN (SELECT DEVICEID
+                    FROM automobile
+                    WHERE
+                        COMPANYID = #{param1})
+          AND
+            A.COMPANYID = #{param1}
+          AND A.DEVICENUMBER LIKE CONCAT('%', #{param2}, '%')
+        ORDER BY
+            A.DEVICENUMBER
+            LIMIT #{param3}, #{param4}
+    </select>
+    <delete id="clearEventMenu">
+        DELETE
+        FROM event_menu
+        WHERE DEVICENUMBER = #{param1}
+    </delete>
+    <insert id="resetEventNumber">
+        REPLACE
+        event_menu
+        SET
+        DEVICENUMBER
+        =
+        #{param1},
+        EVENTID
+        =
+        #{param2},
+        CONTENT
+        =
+        #{param3}
+    </insert>
+    <delete id="removeEventNumber">
+        DELETE
+        FROM event_menu
+        WHERE DEVICENUMBER = #{param1}
+          AND
+            EVENTID = #{param2}
+            LIMIT 1
+    </delete>
+
+
+    <select id="getByNum" resultType="mmp.gps.monitor.dao.baseinfo.device.Device">
+
+        SELECT *
+        FROM
+            equipment
+        WHERE DEVICENUMBER = #{param1}
+            LIMIT 1
+
+    </select>
+    <select id="getD" resultType="mmp.gps.monitor.dao.baseinfo.device.Device">
+        SELECT
+            A.COMPANYID,
+            A.DEVICENUMBER,
+            A.ID,
+            A.MODEL,
+            A.SIMCARDID,
+            A.SN,
+
+            A.IMEI
+        FROM
+            equipment AS A
+        WHERE A.DEVICENUMBER = #{param1}
+            LIMIT 1
+    </select>
+
+    <select id="free" resultType="mmp.gps.monitor.dao.baseinfo.device.DeviceSearchInfo">
+        SELECT
+            A.ID,
+            A.DEVICENUMBER,
+            B.PHONENUMBER
+        FROM equipment AS A
+                 LEFT JOIN simcard AS B ON
+                A.SIMCARDID = B.ID
+        WHERE A.ID
+            NOT IN (SELECT DEVICEID
+                    FROM automobile
+                    WHERE
+                        COMPANYID = #{param1})
+          AND
+            A.COMPANYID = #{param1}
+        ORDER BY
+            A.DEVICENUMBER
+
+    </select>
+
+
+    <select id="list" resultType="mmp.gps.monitor.dao.baseinfo.device.DeviceInfo">
+        SELECT
+            A.id,
+            A.DEVICENUMBER
+
+        FROM equipment AS A
+                 LEFT JOIN simcard AS B ON A.SIMCARDID = B.ID
+
+
+    </select>
+
+
+    <select id="num2Id" resultType="java.lang.String">
+
+        SELECT ID
+        from equipment
+        WHERE DEVICENUMBER = #{param1}
+            LIMIT 1
+
+    </select>
+
+    <select id="nums2Ids" resultType="java.lang.String">
+
+
+        SELECT ID from equipment
+        WHERE DEVICENUMBER in
+        <foreach item="item" index="index" collection="list" open="("
+                 separator="," close=")">
+            #{item}
+        </foreach>
+
+    </select>
+
+
+</mapper>

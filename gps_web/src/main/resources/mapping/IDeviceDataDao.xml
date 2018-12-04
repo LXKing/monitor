@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mmp.gps.monitor.dao.devicedata.IDeviceDataDao">
+    <select id="queryMultimediaEventReportPageCount" resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM multimedia_event_report
+        WHERE DEVICENUMBER = #{param1}
+          AND
+            TIME BETWEEN #{param2}
+          AND #{param3}
+    </select>
+    <select id="queryMultimediaEventReportPageDetail"
+            resultType="mmp.gps.monitor.dao.locate.MultimediaEventReportDto">
+        SELECT
+            ID,
+            DEVICENUMBER,
+            TIME,
+            MEDIAID,
+            MEDIATYPE,
+            FORMATTYPE,
+            EVENTTYPE,
+            CHANNELID
+        FROM multimedia_event_report
+        WHERE
+            DEVICENUMBER = #{param1} AND TIME
+            BETWEEN #{param2} AND #{param3}
+        ORDER BY TIME
+                 LIMIT
+                 #{param4}, #{param5}
+    </select>
+    <select id="queryMultimediaDataRetrievalPageCount" resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM multimedia_retrieval
+        WHERE DEVICENUMBER = #{param1}
+          AND
+            TIME
+            BETWEEN #{param2}
+          AND #{param3}
+    </select>
+    <select id="queryMultimediaDataRetrievalPageDetail"
+            resultType="mmp.gps.monitor.dao.locate.MultimediaRetrievalDto">
+        SELECT *
+        FROM multimedia_retrieval
+        WHERE DEVICENUMBER = #{param1}
+          AND TIME
+            BETWEEN #{param2}
+          AND #{param3}
+        ORDER BY TIME
+                 LIMIT #{param4}, #{param5}
+    </select>
+    <select id="queryDeviceEventReportPageCount" resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM event_report
+        WHERE DEVICENUMBER = #{param1}
+          AND TIME BETWEEN
+            #{param2}
+          AND
+            #{param3}
+    </select>
+    <select id="queryDeviceEventReportPageDetail" resultType="mmp.gps.monitor.dao.locate.DeviceEventReportDto">
+        SELECT
+            ID,
+            DEVICENUMBER,
+            TIME,
+            EVENTID,
+            CONTENT
+        FROM event_report
+        WHERE
+            DEVICENUMBER = #{param1} AND TIME BETWEEN #{param2} AND #{param3}
+        ORDER BY TIME
+                 LIMIT
+                 #{param4}, #{param5}
+    </select>
+    <select id="queryDeviceUpgradeResultReportPageCount" resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM update_report
+        WHERE DEVICENUMBER = #{param1}
+          AND TIME
+            BETWEEN #{param2}
+          AND #{param3}
+    </select>
+    <select id="queryDeviceUpgradeResultReportPageDetail"
+            resultType="mmp.gps.monitor.dao.locate.UpgradeResultReportDto">
+        SELECT
+            ID,
+            DEVICENUMBER,
+            TIME,
+            `TYPE`,
+            RESULT
+        FROM
+            update_report
+        WHERE
+            DEVICENUMBER = #{param1} AND TIME BETWEEN #{param2} AND #{param3}
+        ORDER BY
+            TIME
+            LIMIT #{param4}, #{param5}
+    </select>
+    <select id="getDriverName" resultType="java.lang.String">
+        SELECT NAME
+        FROM driver
+        WHERE DRIVINGLICENSENUMBER =
+              #{param1}
+            LIMIT 1
+    </select>
+</mapper>

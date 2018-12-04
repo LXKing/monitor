@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mmp.gps.logic.dao.IDeviceDao">
+    <insert id="create">
+        INSERT INTO device(NUMBER, PROTOCOLKIND,
+                           CREATETIME)
+        VALUES (#{0}, #{1}, NOW())
+    </insert>
+    <select id="reload" resultType="mmp.gps.logic.dao.device.DeviceDto">
+        SELECT *
+        FROM device
+    </select>
+    <update id="upgradeCompletedReport">
+        UPDATE device
+        SET UPGRADEEND = sysdate(),
+            UPGRADING  =
+                0,
+            CURVER     = #{1}
+        WHERE
+            NUMBER = #{0}
+    </update>
+    <update id="setSleepStatus">
+        UPDATE device
+        SET SLEEPING = #{1}
+        WHERE NUMBER = #{0}
+    </update>
+    <update id="vehicleSystemMatchReport">
+        UPDATE device
+        SET MATCHING    = 0,
+            MATCHTIME   =
+                sysdate(),
+            MATCHRESULT = #{1}
+        WHERE
+            NUMBER = #{0}
+    </update>
+    <update id="setRepairMode">
+        UPDATE device
+        SET REPAIRING = #{1}
+        WHERE NUMBER =
+              #{0}
+    </update>
+    <update id="setDebuggingMode">
+        UPDATE device
+        SET DEBUGGING = #{1}
+        WHERE NUMBER =
+              #{0}
+    </update>
+    <select id="loadLogPageCount" resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM
+            datalog
+        WHERE NUMBER = #{0}
+          AND TIME BETWEEN #{1}
+          AND #{2}
+    </select>
+    <select id="loadLogPageDetail" resultType="mmp.gps.logic.dao.device.DataLogDto">
+        SELECT TIME, RAW
+        FROM
+            datalog
+        WHERE NUMBER = #{0} AND TIME BETWEEN #{1} AND #{2}
+            LIMIT
+            #{3}
+            ,#{4}
+    </select>
+    <insert id="bindUser">
+        REPLACE
+        deviceinuser
+        SET
+        NUMBER
+        =
+        #{1},
+        USERID
+        =
+        #{0}
+    </insert>
+    <delete id="unbindUser">
+        DELETE
+        FROM deviceinuser
+        WHERE NUMBER = #{1}
+          AND
+            USERID = #{0}
+    </delete>
+    <select id="getDeviceInUsers" resultType="mmp.gps.logic.dao.device.DeviceInUserDto">
+        SELECT NUMBER, USERID
+        FROM deviceinuser
+    </select>
+    <update id="regist" parameterType="mmp.gps.logic.dao.device.DeviceRegistrationDto">
+        UPDATE device
+        SET
+            PROVINCEID=#{provinceId},
+            CITYID=#{cityId},
+            FACTORYID=#{factoryId},
+            MODEL=#{model},
+            DEVICEID=#{deviceId},
+            VEHICLEPLATECOLOR=#{vehiclePlateColor},
+            VEHICLEID=#{vehicleId}
+        WHERE
+            NUMBER = #{number}
+    </update>
+</mapper>

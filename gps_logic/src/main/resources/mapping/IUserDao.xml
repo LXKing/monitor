@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mmp.gps.logic.dao.user.IUserDao">
+    <insert id="create" parameterType="mmp.gps.logic.dao.user.UserDto">
+        INSERT INTO user(ACCOUNT,
+                         PASSWORD, NAME, PUSHURL,
+                         EMAIL, PHONE, CONTACT,
+                         ENABLED,
+                         SERVICESTARTDATE, SERVICEENDDATE,
+                         REMARK, CREATETIME, ID)
+        VALUES
+        (#{account},
+         #{password}, #{name}, #{pushUrl}, #{email}, #{phone},
+         #{contact}, #{enabled},
+         #{serviceStartDate}, #{serviceEndDate},
+         #{remark}, sysdate(), #{id})
+    </insert>
+    <update id="update" parameterType="mmp.gps.logic.dao.user.UserDto">
+        UPDATE user
+        SET
+            ACCOUNT=#{account},
+            NAME=#{name},
+            PUSHURL=#{pushUrl},
+            EMAIL=#{email},
+            PHONE=#{phone},
+            CONTACT=#{contact},
+            ENABLED=#{enabled},
+            SERVICESTARTDATE=#{serviceStartDate},
+            SERVICEENDDATE=
+                #{serviceEndDate},
+            REMARK=#{remark}
+        WHERE ID = #{id}
+          and
+            EDITTIME = #{editTime}
+    </update>
+    <select id="fetch" resultType="mmp.gps.logic.dao.user.UserDto">
+        SELECT ID,
+               ACCOUNT,
+               PASSWORD,
+               NAME,
+               PUSHURL,
+               EMAIL,
+               PHONE,
+               CONTACT,
+               CREATETIME,
+               ENABLED,
+               EDITTIME,
+               SERVICESTARTDATE,
+               SERVICEENDDATE,
+               REMARK
+        FROM user
+        WHERE ID = #{0} LIMIT
+            1
+    </select>
+    <delete id="deleteDeviceInUser">
+        DELETE
+        FROM deviceinuser
+        WHERE USERID = #{0}
+    </delete>
+    <delete id="deleteRoleInUser">
+        DELETE
+        FROM roleinuser
+        WHERE USERID = #{0}
+    </delete>
+    <delete id="delete">
+        DELETE
+        FROM user
+        WHERE ID = #{0}
+    </delete>
+    <select id="exist" resultType="java.lang.Boolean">
+        SELECT COUNT(1)
+        FROM user
+        WHERE
+            ACCOUNT = #{0} LIMIT 1
+    </select>
+    <select id="existOutId" resultType="java.lang.Boolean">
+        SELECT COUNT(1)
+        FROM user
+        WHERE ACCOUNT = #{0}
+          AND ID != #{1} LIMIT 1
+    </select>
+    <select id="queryPageCount" resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM user
+        WHERE ID != '5629a3f87a056430ae68996c' AND NAME
+            LIKE
+            CONCAT('%'
+            ,#{0}
+            ,'%'
+        )
+    </select>
+    <select id="queryPageDetail" resultType="mmp.gps.logic.dao.user.UserDto">
+        SELECT ID,
+               ACCOUNT,
+               NAME,
+               PUSHURL,
+               CREATETIME,
+               ENABLED,
+               SERVICESTARTDATE,
+               SERVICEENDDATE,
+               REMARK
+        FROM user
+        where ID !=
+            '5629a3f87a056430ae68996c' AND NAME LIKE
+            CONCAT('%'
+            ,#{0}
+            ,'%'
+        )
+        ORDER BY ACCOUNT LIMIT #{1},#{2}
+    </select>
+    <select id="assignRole">
+        REPLACE
+        INTO
+        roleinuser
+        (
+        USERID,
+        ROLEID
+        )
+        VALUES
+        (
+        #{0},
+        #{1}
+        )
+    </select>
+    <delete id="removeRole">
+        DELETE
+        FROM roleinuser
+        WHERE USERID = #{0}
+          AND
+            ROLEID = #{1}
+    </delete>
+    <select id="getRoles" resultType="java.lang.String">
+        SELECT ROLEID
+        FROM roleinuser
+        WHERE USERID = #{0}
+    </select>
+    <select id="getPushUrls" resultType="mmp.gps.logic.dao.user.UserPushUrlDto">
+        SELECT ID, PUSHURL
+        FROM user
+    </select>
+</mapper>

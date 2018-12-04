@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<appSettings>
+    <cache>
+        <maxDataRows>1</maxDataRows>
+    </cache>
+    <configure>
+        <excepLog>error.log</excepLog>
+    </configure>
+    <godp>
+        <url>http://localhost:8081/logic-1.0.0/api</url>
+    </godp>
+    <instruct>
+        <mqUrl>failover:tcp://localhost:61616</mqUrl>
+        <queueName>gateway.1</queueName>
+        <user></user>
+        <password></password>
+    </instruct>
+    <servers>
+        <server>
+            <className>mmp.gps.gateway.server.JTT808TcpServer</className>
+            <ipAddress>any</ipAddress>
+            <name>JTT808(TCP)</name>
+            <port>7808</port>
+        </server>
+        <server>
+            <className>mmp.gps.gateway.server.JTT808UdpServer</className>
+            <ipAddress>any</ipAddress>
+            <name>JTT808(UDP)</name>
+            <port>6808</port>
+        </server>
+        <server>
+            <className>mmp.gps.gateway.server.kangkaisiTcpServer</className>
+            <ipAddress>any</ipAddress>
+            <name>kks(TCP)</name>
+            <port>3808</port>
+        </server>
+        <server>
+            <className>mmp.gps.gateway.server.Phoenix808UdpServer</className>
+            <ipAddress>any</ipAddress>
+            <name>phoenix-808(udp)</name>
+            <port>4808</port>
+        </server>
+
+    </servers>
+</appSettings>

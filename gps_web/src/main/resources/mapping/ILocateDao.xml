@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mmp.gps.monitor.dao.locate.ILocateDao">
+    <insert id="saveAlarms" parameterType="mmp.gps.monitor.dao.locate.AlarmDto">
+        INSERT INTO alarm (ID,
+        DEVICENUMBER, GPSTIME, SERVERTIME, LNG, LAT,
+        ALT,
+        SPEED, ANGLE, ALARMS,
+        `STATUS`, MILEAGE, OILMASS, VSS, OVAREATYPE,
+        OVAREAID, IOAREATYPE,
+        IOAREAID, IOAREAFLAG, ROUTEID, ROUTESECONDS,
+        ROUTEFLAG, ALARMID,
+        EXSTATUS, IOSTATUS, AD0, AD1, NETWORK, SATELLITES,
+        `FROM`, VALID,
+        ISHANDLED) VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.id},
+            #{item.dn}, #{item.gt}, #{item.st}, #{item.lng}, #{item.lat},
+            #{item.alt},
+            #{item.sp}, #{item.d}, #{item.a}, #{item.s}, #{item.m},
+            #{item.oil}, #{item.vss}, #{item.ovt}, #{item.oid}, #{item.iot},
+            #{item.iid}, #{item.iof}, #{item.rid}, #{item.rt}, #{item.rf},
+            #{item.aid}, #{item.exs}, #{item.ios}, #{item.ad0},
+            #{item.ad1},
+            #{item.net}, #{item.sat}, #{item.from}, #{item.val}, 0)
+        </foreach>
+    </insert>
+    <select id="vehicleBaseInfo" resultType="mmp.gps.monitor.dao.locate.VehicleBaseInfoDto">
+        SELECT
+            B.SHORTNAME AS
+                           COMPANY,
+            C.NAME      AS MOTORCADE,
+            D.DEVICENUMBER,
+            A.PLATENUMBER,
+            A.PLATECOLOR,
+            A.VEHICLECOLOR,
+            A.VEHICLETYPE,
+            A.VEHICLEVOLTAGE,
+            A.CARRYTYPE,
+            A.INITIALMILEAGE,
+            A.OILWEAR,
+            A.USEFULLIFE,
+            A.ADMINAREA,
+            A.REMARK,
+            A.INSTALLDATE,
+            A.ANNUALSURVEYDATE
+        FROM automobile AS A
+                 INNER JOIN company AS B ON A.COMPANYID = B.ID
+                 INNER JOIN motorcade AS C ON
+                A.MOTORCADEID = C.ID
+                 INNER JOIN equipment AS D ON
+                A.DEVICEID = D.ID
+        WHERE
+            A.ID = #{param1}
+            LIMIT 1
+    </select>
+    <select id="ownerBaseInfo" resultType="mmp.gps.monitor.dao.locate.OwnerBaseInfoDto">
+        SELECT
+            OWNERNAME,
+            B.PHONE,
+            A.IDTYPE,
+            A.IDNUMBER,
+            B.EMAIL,
+            B.REMARK
+        FROM automobile_owner AS A
+                 INNER JOIN user AS B ON A.ID = B.ID
+                 INNER JOIN automobile_automobile_owner AS C ON
+                A.ID = C.OWNERID
+        WHERE C.VEHICLEID = #{param1}
+    </select>
+    <select id="driverBaseInfo" resultType="mmp.gps.monitor.dao.locate.DriverBaseInfoDto">
+        SELECT
+            NAME,
+            SEX,
+            PHONE,
+            IDTYPE,
+            IDNUMBER,
+            DRIVINGLICENSENUMBER,
+            DRIVINGLICENSEEXPIRYDATE,
+            REMARK
+        FROM driver AS A
+                 INNER JOIN automobile_driveer AS B ON A.ID = B.DRIVERID
+        WHERE B.VEHICLEID = #{param1}
+    </select>
+    <insert id="saveMultimediaEventReport"
+            parameterType="mmp.gps.monitor.dao.locate.MultimediaEventReportDto">
+        INSERT INTO multimedia_event_report (ID, DEVICENUMBER,
+                                             TIME, MEDIAID,
+                                             MEDIATYPE, FORMATTYPE, EVENTTYPE, CHANNELID, READED)
+        VALUES (#{id}, #{number}, #{time},
+                #{mediaId}, #{mediaType},
+                #{formatType}, #{eventType}, #{channelId}, 0)
+    </insert>
+    <select id="loadUnreadMultimediaEvent"
+            resultType="mmp.gps.monitor.dao.locate.MultimediaEventReportDto">
+        SELECT ID, DEVICENUMBER, TIME, MEDIAID, FORMATTYPE, EVENTTYPE,
+        CHANNELID
+        FROM multimedia_event_report WHERE READED=0 AND DEVICENUMBER IN
+        <foreach item="item" index="index" collection="list" open="("
+                 separator="," close=")">
+            #{item}
+        </foreach>
+        ORDER BY TIME
+    </select>
+    <update id="readMultmediaEventReport">
+        UPDATE multimedia_event_report
+        SET
+            READED   = 1,
+            USERID   = #{param2},
+            USERNAME = #{param3},
+            USERTIME = NOW()
+        WHERE ID = #{param1}
+            LIMIT 1
+    </update>
+    <insert id="saveMultimediaRetrieval">
+        REPLACE INTO multimedia_retrieval
+        (DEVICENUMBER, TIME, MEDIAID,
+        MEDIATYPE, EVENTTYPE, CHANNELID, LNG, LAT, ALT, SPEED,
+        ANGLE, ALARMS,
+        `STATUS`)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{number},
+            #{gpstime},
+            #{mediaId}, #{mediaType}, #{eventType}, #{channelId},
+            #{lng}, #{lat}, #{altitude}, #{speed}, #{angle}, #{alarms},
+            #{status})
+        </foreach>
+    </insert>
+    <select id="getEventReportDescription" resultType="java.lang.String">
+        SELECT CONTENT
+        FROM event_menu
+        WHERE DEVICENUMBER = #{param1}
+          AND EVENTID = #{param2}
+            LIMIT 1
+    </select>
+    <insert id="saveDeviceEventReport" parameterType="mmp.gps.monitor.dao.locate.DeviceEventReportDto">
+        INSERT INTO
+            event_report (ID, DEVICENUMBER, TIME, EVENTID, CONTENT, READED)
+        VALUES
+            (#{id}, #{number}, NOW(), #{eventId}, #{content}, 0)
+    </insert>
+    <update id="readDeviceEventReport">
+        UPDATE event_report
+        SET
+            READED   = 1,
+            USERID   = #{param2},
+            USERNAME = #{param3},
+            USERTIME = NOW()
+        WHERE
+            ID = #{param1}
+            LIMIT 1
+    </update>
+    <select id="loadUnreadDeviceEvent" resultType="mmp.gps.monitor.dao.locate.DeviceEventReportDto">
+        SELECT ID, DEVICENUMBER, TIME, EVENTID, CONTENT FROM event_report WHERE
+        READED=0 AND
+        DEVICENUMBER IN
+        <foreach item="item" index="index" collection="list" open="("
+                 separator="," close=")">
+            #{item}
+        </foreach>
+        ORDER BY TIME
+    </select>
+    <insert id="saveUpgradeResultReport" parameterType="mmp.gps.monitor.dao.locate.UpgradeResultReportDto">
+        INSERT INTO
+            update_report (ID, DEVICENUMBER, TIME, `TYPE`, RESULT, READED)
+        VALUES
+            (#{id}, #{number}, NOW(), #{type}, #{result}, 0)
+    </insert>
+    <select id="loadUnreadDeviceUpgradeResultReport" resultType="mmp.gps.monitor.dao.locate.UpgradeResultReportDto">
+        SELECT ID, DEVICENUMBER, TIME, `TYPE`, RESULT FROM update_report WHERE
+        READED=0 AND
+        DEVICENUMBER IN
+        <foreach item="item" index="index" collection="list" open="("
+                 separator="," close=")">
+            #{item}
+        </foreach>
+        ORDER BY TIME
+    </select>
+    <update id="readDeviceUpgradeResultReport">
+        UPDATE update_report
+        SET
+            READED   = 1,
+            USERID   = #{param2},
+            USERNAME = #{param3},
+            USERTIME = NOW()
+        WHERE
+            ID = #{param1}
+            LIMIT 1
+    </update>
+</mapper>
