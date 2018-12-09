@@ -2,11 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a72caabf-f45b-4f2f-b944-ad7ad06aad3e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gps_gateway/src/main/java/mmp/gps/gateway/codec/RawDataParsers.java" beforeDir="false" afterPath="$PROJECT_DIR$/gps_gateway/src/main/java/mmp/gps/gateway/codec/RawDataParsers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gps_gateway/src/main/java/mmp/gps/gateway/codec/jtt808/JTT808Decoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/gps_gateway/src/main/java/mmp/gps/gateway/codec/jtt808/JTT808Decoder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gps_protocol/src/main/java/mmp/gps/protocol/jtt808/JTT808Packet.java" beforeDir="false" afterPath="$PROJECT_DIR$/gps_protocol/src/main/java/mmp/gps/protocol/jtt808/JTT808Packet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gps_protocol/src/main/java/mmp/gps/protocol/jtt808/JTT808Util.java" beforeDir="false" afterPath="$PROJECT_DIR$/gps_protocol/src/main/java/mmp/gps/protocol/jtt808/JTT808Util.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/monitor.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,7 +24,7 @@
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
               <first_editor relative-caret-position="534">
-                <caret line="75" lean-forward="true" selection-start-line="75" selection-end-line="75" />
+                <caret line="75" selection-start-line="75" selection-end-line="75" />
               </first_editor>
               <second_editor />
             </state>
@@ -217,15 +220,15 @@
       <workItem from="1544263970709" duration="1906000" />
       <workItem from="1544277510872" duration="2459000" />
       <workItem from="1544327758071" duration="16514000" />
+      <workItem from="1544350228941" duration="14000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20924000" />
+    <option name="totallyTimeSpent" value="20938000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.109375" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -644,7 +647,7 @@
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
           <first_editor relative-caret-position="534">
-            <caret line="75" lean-forward="true" selection-start-line="75" selection-end-line="75" />
+            <caret line="75" selection-start-line="75" selection-end-line="75" />
           </first_editor>
           <second_editor />
         </state>
