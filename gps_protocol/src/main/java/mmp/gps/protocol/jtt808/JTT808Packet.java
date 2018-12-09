@@ -9,16 +9,45 @@ public class JTT808Packet {
 
     public final byte HEADER = 126;
     public final byte TAIL = 126;
+
     private int state;
+
+    /*
+     * 标识位 0x7e
+     * */
     private byte header;
+
+
+    /*
+     * 消息头
+     * */
+
+    // 消息 ID
     private int command;
+    // 是否加密
     private int flag;
+    // 终端手机号 BCD[n] 8421 码，n 字节
     private String number;
+    // 消息流水号
     private int serialNumber;
+    // 消息包封装项 如果消息体属性中相关标识位确定消息分包处理，则该项有内容，否则无该项
     private int pages;
     private int page;
+
+    /*
+     * 消息包（整个包，包含消息体）
+     * */
     private IPacket body;
+
+    /*
+     * 检验码
+     * */
+
     private short xor;
+
+    /*
+     * 标识位 0x7e
+     * */
     private byte tail;
 
 
@@ -67,6 +96,8 @@ public class JTT808Packet {
 
     public void setPaging(boolean paging) {
         if (paging) {
+            // \u后面必须跟4个十六进制数字（不足四位前面用零补齐）
+            // this.flag = this.flag & 0xdfff;
             this.flag &= '\udfff';
         } else {
             this.flag |= 8192;
@@ -74,6 +105,7 @@ public class JTT808Packet {
 
     }
 
+    // 100 0000 0000
     public boolean isEncrypting() {
         return (this.flag & 1024) == 1024;
     }
@@ -82,16 +114,19 @@ public class JTT808Packet {
         if (encrypting) {
             this.flag |= 1024;
         } else {
+            // 1110 0011 1111 1111
             this.flag &= '\ue3ff';
         }
 
     }
 
+    // 11 1111 1111
     public int getBodyLength() {
         return this.flag & 1023;
     }
 
     public void setBodyLength(int bodyLength) {
+        // 1111 1100 0000 0000
         this.flag &= '\ufc00';
         this.flag |= bodyLength;
     }
@@ -152,6 +187,7 @@ public class JTT808Packet {
         this.tail = tail;
     }
 
+
     private int size() {
         return (this.isPaging() ? 19 : 15) + (this.body == null ? 0 : this.body.size());
     }
@@ -183,7 +219,7 @@ public class JTT808Packet {
         byte[] data = new byte[this.size()];
         this.setBodyLength(this.body == null ? 0 : this.body.size());
         ByteIO io = new ByteIO(data);
-        io.put((byte) 126);
+        io.put((byte) HEADER);
         io.putUshort(this.command);
         io.putUshort(this.flag);
         BigInteger bi = new BigInteger(this.number, 16);
@@ -200,8 +236,10 @@ public class JTT808Packet {
         }
 
         io.putUbyte(this.xor);
-        io.put((byte) 126);
+        io.put((byte) TAIL);
         JTT808Util.xor(data);
         return JTT808Util.escape(data);
     }
 }
+
+

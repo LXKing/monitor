@@ -28,10 +28,10 @@ public class RawDataParsers {
         if (parsers == null) {
             parsers = new HashMap();
             List classes = PackageUtil.getSubClasses("mmp.gps.gateway.codec", IRawDataParser.class);
-            Iterator var2 = classes.iterator();
+            Iterator iterator = classes.iterator();
 
-            while (var2.hasNext()) {
-                Class c = (Class) var2.next();
+            while (iterator.hasNext()) {
+                Class c = (Class) iterator.next();
 
                 try {
                     IRawDataParser e = (IRawDataParser) c.newInstance();
